@@ -24,7 +24,7 @@
     "marketplace": {
       "title": "Amazon marketplace",
       "type": "string",
-      "description": "Use this for seller IDs that do not include an Amazon URL. Select the marketplace, for example DE for amazon.de; a supplied Amazon URL always overrides it. Defaults to US. This setting is not a proxy-country selector.",
+      "description": "Use this for seller IDs that do not include an Amazon URL. Select the marketplace, for example DE for amazon.de; a supplied Amazon URL always overrides it. Defaults to US. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "enum": [
         "US",
         "UK",
@@ -111,11 +111,13 @@
       "maximum": 5
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Use this to configure Apify Proxy for Amazon access. Automatic Apify Proxy is the default; residential proxies are recommended for larger or blocked runs. The Actor keeps a session consistent across requests. This field is not a way to supply website credentials.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

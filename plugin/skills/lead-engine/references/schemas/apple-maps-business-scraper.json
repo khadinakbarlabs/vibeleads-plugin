@@ -101,10 +101,12 @@
       "editor": "textfield"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional Apify proxy settings for MapKit and website enrichment HTTP. Leave off for the default direct path. Enable Apify Residential if Apple or business sites return 403/429. This is not an Apple ID session and does not unlock private Maps data.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

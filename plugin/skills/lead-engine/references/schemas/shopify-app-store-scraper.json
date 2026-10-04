@@ -90,23 +90,25 @@
     "country": {
       "title": "Proxy country",
       "type": "string",
-      "description": "Two-letter country code for the Apify residential/datacenter proxy egress (e.g. 'US', 'GB'). Affects geo-targeted pricing/currency shown on listings. Defaults to 'US'. Uppercase ISO-3166 alpha-2.",
+      "description": "'US', 'GB'). Affects geo-targeted pricing/currency shown on listings. Defaults to 'US'. Uppercase ISO-3166 alpha-2. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
       "type": "integer",
-      "description": "Maximum parallel requests. Defaults to 10. Lower it (e.g. 5) for very large jobs (thousands of apps) if you hit rate-limit (HTTP 429) blocks \u2014 slower but steadier. Raising it rarely helps and risks more blocks.",
+      "description": "Maximum parallel requests. Defaults to 10. Lower it (e.g. Raising it rarely helps and risks more blocks. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 50
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify proxy settings. Defaults to Apify Proxy (AUTO) which is sufficient \u2014 apps.shopify.com is not aggressively bot-protected. Override only if you need a specific proxy group or country.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

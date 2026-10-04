@@ -2,6 +2,8 @@
 
 Read the relevant prospecting playbook and shared operating contract. Source titles/IDs do not establish data-use rights. “Verified” below means metadata/input schema verified, not lead quality or runtime health. Refresh the schema and pricing before execution.
 
+Apply the [source access gate](../access-safety.md) before execution. Provider recovery recommendations are replaced by VibeLeads restrictions; structural field names/types/bounds remain references.
+
 ## reddit-search-scraper
 
 Exact owner: `khadinakbar`. Identity: `j1gQL2JlzmGKxrPzJ`. State: `public_schema_verified`.
@@ -12,13 +14,13 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `searchQuery` | string | Use this when the user wants to search public Reddit posts by keyword, topic, brand, phrase, or question. Accepts plain text such as 'OpenAI API pricing' or 'CRM recommendations for startups'. Required; blank strings ret |
+| `searchQuery` | string | Use this when the user wants to search public Reddit posts by keyword, topic, brand, phrase, or question. Accepts plain text such as 'OpenAI API pricing' or 'CRM recommendations for startups'. Required; blank strings return an INVALID_INPUT summary. Do not put subreddit URLs here — use withinSubreddit to scope a keyword search. |
 | `withinSubreddit` | string | Optional subreddit scope for the search query. Accepts a subreddit name with or without r/ prefix, such as 'learnpython' or 'r/MachineLearning'. Leave blank to search across Reddit. This is not a post URL field. |
-| `maxResults` | integer; minimum=1; maximum=10000 | Maximum number of Reddit search result records to return. Each saved result is charged as one result event. Defaults to 25, minimum 1, maximum 10000. Use small values for smoke tests and larger values for monitoring or r |
-| `sortBy` | string; relevance, new, top, comments | How to sort Reddit search results. Use 'relevance' for the closest keyword match, 'new' for recent posts, 'top' for highly scored posts, or 'comments' for heavily discussed posts. Defaults to relevance. This affects sear |
+| `maxResults` | integer; minimum=1; maximum=10000 | Maximum number of Reddit search result records to return. Each saved result is charged as one result event. Defaults to 25, minimum 1, maximum 10000. Use small values for smoke tests and larger values for monitoring or research exports. |
+| `sortBy` | string; relevance, new, top, comments | How to sort Reddit search results. Use 'relevance' for the closest keyword match, 'new' for recent posts, 'top' for highly scored posts, or 'comments' for heavily discussed posts. Defaults to relevance. This affects search ranking only, not comment extraction. |
 | `timeFilter` | string; day, week, month, year, all | Time window for Reddit search results. Use 'day', 'week', 'month', 'year', or 'all'. Defaults to month for useful recent monitoring results. This is a search filter, not a post creation date guarantee. |
-| `postDateLimit` | string | Optional post creation cutoff applied after provider search results are returned. Use ISO 8601 format such as '2026-01-01' or '2026-01-01T00:00:00Z'. Leave blank to keep all provider results. Invalid dates are ignored an |
-| `includeNsfw` | boolean | When enabled, includes Reddit posts marked NSFW in the dataset. Disabled by default to keep monitoring and business research outputs safer. This does not bypass private, quarantined, deleted, or login-only content. NSFW  |
+| `postDateLimit` | string | Optional post creation cutoff applied after provider search results are returned. Use ISO 8601 format such as '2026-01-01' or '2026-01-01T00:00:00Z'. Leave blank to keep all provider results. Invalid dates are ignored and reported as a PARTIAL warning. |
+| `includeNsfw` | boolean | When enabled, includes Reddit posts marked NSFW in the dataset. Disabled by default to keep monitoring and business research outputs safer. This does not bypass private, quarantined, deleted, or login-only content. NSFW filtering depends on provider metadata. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -34,16 +36,16 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | --- | --- | --- |
 | `queries` | array | Keywords, phrases, brands, competitors, products, pain points, or natural-language topics to search on Reddit. AI agents should put the main user request here. |
 | `subreddits` | array | Optional subreddit names or URLs. Leave empty for global Reddit search. When set, every query is searched inside each subreddit. Accepts r/SEO, SEO, or https://www.reddit.com/r/SEO. |
-| `sort` | string; relevance, new, top, comments, hot | How Reddit orders matching posts. Relevance is best for research and AI agents, new is best for monitoring, top is best for high-signal historical posts, comments finds active discussions, and hot finds currently trendin |
+| `sort` | string; relevance, new, top, comments, hot | How Reddit orders matching posts. Relevance is best for research and AI agents, new is best for monitoring, top is best for high-signal historical posts, comments finds active discussions, and hot finds currently trending matches. |
 | `timeRange` | string; hour, day, week, month, year, all | Time window for search results. Use week or month for current market research, year or all for evergreen SEO research. |
 | `maxPosts` | integer; minimum=1; maximum=200000 | Maximum number of unique post records to return across all queries and subreddits. Billing stops when this cap is reached. |
 | `includeTopComments` | boolean | When true, each post record includes a compact topComments array. Use this for AI summaries and sentiment analysis. Leave off for faster, cheaper post-only extraction. |
 | `maxTopCommentsPerPost` | integer; minimum=1; maximum=100 | Maximum number of top comments to embed in each post when includeTopComments is enabled. |
 | `postDateLimit` | string | Optional ISO date. Example: 2026-01-01. Posts older than this are skipped after retrieval. |
 | `includeNsfw` | boolean | Disabled by default for business research and AI-agent workflows. Enable only when you intentionally need NSFW Reddit content. |
-| `proxy` | object | Proxy settings. Defaults to Apify Residential proxies because Reddit often blocks datacenter IPs. Leave unchanged unless you know your target and plan requirements. |
+| `proxy` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 | `redditClientId` | string | Optional Reddit app client ID. Leave blank to use owner-managed access when configured. Create a free app at reddit.com/prefs/apps if you want to use your own credentials. |
-| `redditClientSecret` | string | Credential/access field. Use secure authorized setup only if this feature requires it; never include a credential in files or chat. |
+| `redditClientSecret` | string | Optional Reddit app client secret paired with redditClientId. This is not your Reddit password. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -57,13 +59,13 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `queries` | array | Use this when you need to find public Reddit comments containing one or more phrases. Pass phrases such as "AI coding assistant" or "best standing desk". Defaults to "artificial intelligence" and accepts at most 20 disti |
-| `subreddit` | string | Use this to search comments within one public subreddit. Pass a name such as "MachineLearning" or "r/MachineLearning". Defaults to all of Reddit and accepts only one community name. This is not a subreddit URL or a list  |
-| `maxComments` | integer; minimum=1; maximum=1000 | Use this to cap unique comments saved across every query. Pass an integer such as 100. Defaults to 100 and accepts 1 through 1000, which also caps comment-event charges. This is not a number of comments per post or a req |
-| `sort` | string; relevance, new, top, comments | Use this to choose Reddit's ordering for matching comments. Choose relevance, new, top, or comments; for example, "new" prioritizes recent matches. Defaults to relevance. This does not analyze sentiment or change Reddit' |
-| `time` | string; hour, day, week, month, year, all | Use this to restrict comment search to a Reddit time window. Choose hour, day, week, month, year, or all; for example, "month". Defaults to all. This is not an exact date-range filter and Reddit may cap deep search pagin |
-| `includeNsfw` | boolean | Use this only when adult-marked public Reddit content is appropriate for the research task. Pass true to retain a result explicitly marked NSFW. Defaults to false. This does not bypass Reddit safety controls or access pr |
-| `responseFormat` | string; concise, detailed | Use this to balance agent context size against diagnostic metadata. Choose concise for core text, authorship, score, and links, or detailed for moderation and award fields; for example, "concise". Defaults to concise. Th |
+| `queries` | array | Use this when you need to find public Reddit comments containing one or more phrases. Pass phrases such as "AI coding assistant" or "best standing desk". Defaults to "artificial intelligence" and accepts at most 20 distinct phrases. This is not a Reddit URL, username, or full-thread request. |
+| `subreddit` | string | Use this to search comments within one public subreddit. Pass a name such as "MachineLearning" or "r/MachineLearning". Defaults to all of Reddit and accepts only one community name. This is not a subreddit URL or a list of communities. |
+| `maxComments` | integer; minimum=1; maximum=1000 | Use this to cap unique comments saved across every query. Pass an integer such as 100. Defaults to 100 and accepts 1 through 1000, which also caps comment-event charges. This is not a number of comments per post or a request to retrieve a full thread. |
+| `sort` | string; relevance, new, top, comments | Use this to choose Reddit's ordering for matching comments. Choose relevance, new, top, or comments; for example, "new" prioritizes recent matches. Defaults to relevance. This does not analyze sentiment or change Reddit's search match logic. |
+| `time` | string; hour, day, week, month, year, all | Use this to restrict comment search to a Reddit time window. Choose hour, day, week, month, year, or all; for example, "month". Defaults to all. This is not an exact date-range filter and Reddit may cap deep search pagination. |
+| `includeNsfw` | boolean | Use this only when adult-marked public Reddit content is appropriate for the research task. Pass true to retain a result explicitly marked NSFW. Defaults to false. This does not bypass Reddit safety controls or access private communities. |
+| `responseFormat` | string; concise, detailed | Use this to balance agent context size against diagnostic metadata. Choose concise for core text, authorship, score, and links, or detailed for moderation and award fields; for example, "concise". Defaults to concise. This does not alter matching, pagination, or comment-event billing. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -77,12 +79,12 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `queries` | array | Use this when you need to discover public Reddit communities from keywords. Pass one or more phrases such as "machine learning" or "personal finance". Defaults to "artificial intelligence" and accepts at most 20 distinct |
-| `maxSubreddits` | integer; minimum=1; maximum=100 | Use this to cap the total unique communities returned across every query. Pass an integer such as 25. Defaults to 25 and accepts 1 through 100, which also caps event charges. This is not a number of posts, comments, or r |
-| `minSubscribers` | integer; minimum=0; maximum=1000000000 | Use this to filter out communities below a subscriber threshold. Pass an integer such as 10000. Defaults to 0 and accepts 0 through 1,000,000,000; communities with an unavailable count do not pass a positive threshold. T |
-| `sort` | string; relevance, subscribers, activity, newest | Use this to choose how matching communities are ordered after deduplication. Choose relevance, subscribers, activity, or newest; for example, "subscribers" ranks the largest known communities first. Defaults to relevance |
-| `includeNsfw` | boolean | Use this only when adult-marked public communities are appropriate for the research task. Pass true to include a community whose Reddit metadata is marked NSFW, for example true. Defaults to false. This does not bypass R |
-| `responseFormat` | string; concise, detailed | Use this to balance agent context size against metadata depth. Choose concise for identifiers, counts, URLs, and status, or detailed for descriptions and artwork URLs; for example, "concise". Defaults to concise. This do |
+| `queries` | array | Use this when you need to discover public Reddit communities from keywords. Pass one or more phrases such as "machine learning" or "personal finance". Defaults to "artificial intelligence" and accepts at most 20 distinct phrases. This is not a subreddit URL, post URL, or Reddit username. |
+| `maxSubreddits` | integer; minimum=1; maximum=100 | Use this to cap the total unique communities returned across every query. Pass an integer such as 25. Defaults to 25 and accepts 1 through 100, which also caps event charges. This is not a number of posts, comments, or results per query. |
+| `minSubscribers` | integer; minimum=0; maximum=1000000000 | Use this to filter out communities below a subscriber threshold. Pass an integer such as 10000. Defaults to 0 and accepts 0 through 1,000,000,000; communities with an unavailable count do not pass a positive threshold. This is not a sort order or a guaranteed active-user count. |
+| `sort` | string; relevance, subscribers, activity, newest | Use this to choose how matching communities are ordered after deduplication. Choose relevance, subscribers, activity, or newest; for example, "subscribers" ranks the largest known communities first. Defaults to relevance. This does not change Reddit's matching logic or search inside post content. |
+| `includeNsfw` | boolean | Use this only when adult-marked public communities are appropriate for the research task. Pass true to include a community whose Reddit metadata is marked NSFW, for example true. Defaults to false. This does not bypass Reddit safety controls or access private communities. |
+| `responseFormat` | string; concise, detailed | Use this to balance agent context size against metadata depth. Choose concise for identifiers, counts, URLs, and status, or detailed for descriptions and artwork URLs; for example, "concise". Defaults to concise. This does not affect matching, filtering, or billing per returned community. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -96,9 +98,9 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `query` | string | Keyword or phrase to search for in public LinkedIn posts. The actor uses Google-indexed LinkedIn post results via the primary managed public-data route, so results are best-effort and depend on public indexing. Use a foc |
-| `datePosted` | string; any, last-hour, last-day, last-week, last-month, last-year | Optional freshness filter applied by the upstream provider to Google-indexed LinkedIn results. Recent windows can be sparse because the provider can only return public posts that Google has indexed. Use last-week or last |
-| `maxResults` | integer; minimum=1; maximum=500 | Maximum number of post records to save to the dataset. This is also the hard cap for billable post-found events. Higher values may require multiple provider pages because the primary managed public-data route returns pag |
+| `query` | string | Keyword or phrase to search for in public LinkedIn posts. The actor uses Google-indexed LinkedIn post results via the primary managed public-data route, so results are best-effort and depend on public indexing. Use a focused phrase such as a company name, topic, product category, or exact quote for cleaner matches. |
+| `datePosted` | string; any, last-hour, last-day, last-week, last-month, last-year | Optional freshness filter applied by the upstream provider to Google-indexed LinkedIn results. Recent windows can be sparse because the provider can only return public posts that Google has indexed. Use last-week or last-month for the best balance of freshness and coverage. |
+| `maxResults` | integer; minimum=1; maximum=500 | Maximum number of post records to save to the dataset. This is also the hard cap for billable post-found events. Higher values may require multiple provider pages because the primary managed public-data route returns paginated results. |
 | `maxProviderPages` | integer; minimum=1; maximum=60 | Advanced safety valve for pagination. Leave at 60 for normal runs. Lower this when you are testing, debugging cursor behavior, or intentionally limiting upstream provider calls. |
 | `startCursor` | string | Optional cursor returned by a previous run. Paste the value from the run summary to continue from a later provider page. Leave empty for the first page of results. |
 | `includeComments` | boolean | Include the public comments returned by the provider in each dataset record. Disable this for smaller records when you only need post-level metadata and engagement counts. |
@@ -176,13 +178,13 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `tweetUrls` | array; minItems=1; maxItems=50 | Use this when you need public replies from specific X/Twitter posts. Enter full URLs like https://x.com/openai/status/1930000000000000000 or numeric tweet IDs. Defaults to one working public tweet example. This is not fo |
-| `rankingMode` | string; Relevance, Recency, Likes | Use this when choosing how X should order replies for each tweet. Relevance returns the default conversation ranking, Recency returns newer replies first, and Likes prioritizes liked replies. Defaults to Relevance. This  |
-| `maxReplies` | integer; minimum=1; maximum=5000 | Use this to cap the total reply rows saved across all input tweets. The actor stops before charging beyond this limit. Defaults to 100 and supports up to 5000. This is a hard billing and dataset cap, not a per-tweet targ |
-| `maxPagesPerTweet` | integer; minimum=1; maximum=100 | Use this as a pagination safety valve for each tweet conversation. Higher values collect deeper reply pages when the provider returns a next cursor. Defaults to 10 and supports up to 100. This does not override maxReplie |
+| `tweetUrls` | array; minItems=1; maxItems=50 | Use this when you need public replies from specific X/Twitter posts. Enter full URLs like https://x.com/openai/status/1930000000000000000 or numeric tweet IDs. Defaults to one working public tweet example. This is not for keyword search or profile timelines. |
+| `rankingMode` | string; Relevance, Recency, Likes | Use this when choosing how X should order replies for each tweet. Relevance returns the default conversation ranking, Recency returns newer replies first, and Likes prioritizes liked replies. Defaults to Relevance. This does not scrape quote tweets or retweeters. |
+| `maxReplies` | integer; minimum=1; maximum=5000 | Use this to cap the total reply rows saved across all input tweets. The actor stops before charging beyond this limit. Defaults to 100 and supports up to 5000. This is a hard billing and dataset cap, not a per-tweet target. |
+| `maxPagesPerTweet` | integer; minimum=1; maximum=100 | Use this as a pagination safety valve for each tweet conversation. Higher values collect deeper reply pages when the provider returns a next cursor. Defaults to 10 and supports up to 100. This does not override maxReplies. |
 | `startCursor` | string | Use this when continuing one tweet from a previous RUN_SUMMARY nextCursors value. Paste the cursor string exactly as returned by the actor. Leave blank for a fresh run. This is not a tweet URL or tweet ID field. |
-| `includeRaw` | boolean | Use this for debugging provider field drift or building custom parsers. When enabled, each dataset row includes the raw the managed fallback route reply object. Defaults to false for smaller datasets. This is not needed  |
-| `dedupeReplies` | boolean | Use this to skip duplicate reply tweets across pages and input tweets. The actor dedupes by reply ID first, then reply URL or text fallback. Defaults to true. Disable only when you need to inspect provider pagination ove |
+| `includeRaw` | boolean | Use this for debugging provider field drift or building custom parsers. When enabled, each dataset row includes the raw the managed fallback route reply object. Defaults to false for smaller datasets. This is not needed for normal analytics exports. |
+| `dedupeReplies` | boolean | Use this to skip duplicate reply tweets across pages and input tweets. The actor dedupes by reply ID first, then reply URL or text fallback. Defaults to true. Disable only when you need to inspect provider pagination overlap. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -196,18 +198,18 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `useUnblockerFallback` | boolean | Retry a blocked public search through Apify Unblocker with at most two requests for transient failures. Defaults to true; set false for direct routes only. Each successful proxy request adds 10 Unblocker units to platfor |
-| `searchQuery` | string | Use this when you need posts matching text, a phrase, or supported Lucene-style syntax. Enter a focused query such as 'open source' or '"climate change"'. The field is required and accepts up to 500 characters. This is n |
+| `useUnblockerFallback` | boolean | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
+| `searchQuery` | string | Use this when you need posts matching text, a phrase, or supported Lucene-style syntax. Enter a focused query such as 'open source' or '"climate change"'. The field is required and accepts up to 500 characters. This is not a profile handle or Bluesky post URL. |
 | `sort` | string; latest, top | Use this when choosing how Bluesky ranks matching posts. Choose 'latest' for newest indexed posts or 'top' for relevance-ranked results. Defaults to 'latest'. This does not sort the finished dataset locally. |
 | `maxResults` | integer; minimum=1; maximum=100 | Use this when bounding dataset size and per-post charges. Enter an integer from 1 to 100, such as 100. Defaults to 100 and the Console prefill is 25. Bluesky's public search route currently supports one page per query. |
-| `since` | string | Use this when restricting results to posts indexed at or after a date. Enter YYYY-MM-DD or an ISO 8601 timestamp, such as '2026-07-01'. Defaults to no lower date bound. This filter uses Bluesky search time and may differ |
+| `since` | string | Use this when restricting results to posts indexed at or after a date. Enter YYYY-MM-DD or an ISO 8601 timestamp, such as '2026-07-01'. Defaults to no lower date bound. This filter uses Bluesky search time and may differ from the post's createdAt value. |
 | `until` | string | Use this when restricting results to posts before a date. Enter YYYY-MM-DD or an ISO 8601 timestamp, such as '2026-07-15'. Defaults to no upper date bound and is exclusive. This must be later than Posts since. |
-| `lang` | string | Use this when you need posts tagged with one language. Enter a BCP 47 tag such as 'en', 'ja', or 'pt-BR'. Defaults to all languages. This is not a country or proxy location. |
+| `lang` | string | Use this when you need posts tagged with one language. Enter a BCP 47 tag such as 'en', 'ja', or 'pt-BR'. Defaults to all languages. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate. |
 | `author` | string | Use this when limiting search to posts from one public Bluesky account. Enter a handle or DID such as 'jay.bsky.team'; a leading @ is accepted. Defaults to any author. This does not scrape a user's full feed or profile. |
-| `mentions` | string | Use this when finding posts that mention one Bluesky account through a rich-text mention facet. Enter a handle or DID such as 'bsky.app'; a leading @ is accepted. Defaults to any mention. Plain text that only resembles a |
-| `domain` | string | Use this when finding posts whose facets or embeds link to a hostname. Enter a domain such as 'github.com'; a full https URL is normalized to its hostname. Defaults to any linked domain. This is not a keyword search with |
+| `mentions` | string | Use this when finding posts that mention one Bluesky account through a rich-text mention facet. Enter a handle or DID such as 'bsky.app'; a leading @ is accepted. Defaults to any mention. Plain text that only resembles a handle may not match. |
+| `domain` | string | Use this when finding posts whose facets or embeds link to a hostname. Enter a domain such as 'github.com'; a full https URL is normalized to its hostname. Defaults to any linked domain. This is not a keyword search within page contents. |
 | `url` | string | Use this when finding posts that link to one absolute web URL. Enter an http or https URL such as 'https://example.com/report'. Defaults to any linked URL. This is not the URL of a Bluesky post to fetch directly. |
-| `tags` | array; maxItems=10 | Use this when posts must contain specific hashtags. Enter up to 10 tags without #, such as ['ai', 'opensource']; multiple tags use AND matching. Defaults to no hashtag filter. These are structured hashtag facets, not fre |
+| `tags` | array; maxItems=10 | Use this when posts must contain specific hashtags. Enter up to 10 tags without #, such as ['ai', 'opensource']; multiple tags use AND matching. Defaults to no hashtag filter. These are structured hashtag facets, not free-text keywords. |
 | `includeReplies` | boolean | Use this when deciding whether reply posts may appear in the dataset. Set false to drop posts containing Bluesky reply metadata after search. Defaults to true. This does not fetch complete reply threads. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
@@ -222,8 +224,8 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `searchType` | string; posts, users | What to search Meta Threads for. 'posts' searches the text of public Threads posts by keyword (e.g. 'ai agents'). 'users' searches for public Threads accounts by username keyword (e.g. 'openai'). Defaults to 'posts'. Thi |
-| `queries` | array | One or more search terms. For 'posts' these are content keywords or hashtags (e.g. 'ai agents', 'climate tech'); for 'users' these are username fragments (e.g. 'openai'). Each query is searched independently and results  |
+| `searchType` | string; posts, users | What to search Meta Threads for. 'posts' searches the text of public Threads posts by keyword (e.g. 'ai agents'). 'users' searches for public Threads accounts by username keyword (e.g. 'openai'). Defaults to 'posts'. This is NOT a single-post URL scraper — it returns search-result lists. |
+| `queries` | array | One or more search terms. For 'posts' these are content keywords or hashtags (e.g. 'ai agents', 'climate tech'); for 'users' these are username fragments (e.g. 'openai'). Each query is searched independently and results are merged + de-duplicated. Provide at least one. NOT post URLs or profile URLs. |
 | `maxResults` | integer; minimum=1 | Hard cap on total results pushed across all queries, used for cost control. Each result is billed (see pricing). Defaults to 100. The actor stops once this many records are collected. Bounds: 1 and up. |
 | `maxResultsPerQuery` | integer; minimum=1; maximum=100 | Cap on results taken from each individual query before moving to the next. The provider search endpoint returns roughly 20-25 items per query, so values above ~25 rarely add more. Defaults to 25. Bounds: 1-100. |
 | `startDate` | string | Optional earliest date filter for 'posts' search, format YYYY-MM-DD (e.g. '2026-01-01'). Ignored for 'users' search. Leave empty for no lower bound. Only honored by the primary managed public-data route provider. |
@@ -241,10 +243,10 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `startUrls` | array | List of Quora URLs to scrape. Each may be a question page (https://www.quora.com/What-is-the-best-way-to-learn-programming), a profile (https://www.quora.com/profile/Adam-DAngelo), a space (https://www.quora.com/q/<space |
-| `maxItemsPerTarget` | integer; minimum=1; maximum=1000 | Maximum number of records to return for each URL or keyword. The Actor scrolls to paginate until this cap, then stops, so it doubles as your cost ceiling (each record is one billable event). Defaults to 50. Lower it for  |
-| `maxConcurrency` | integer; minimum=1; maximum=10 | How many target pages to scrape in parallel. Higher is faster but uses more proxy IPs and memory; lower is gentler on anti-bot defenses. Defaults to 5 (max 10). Leave default unless you hit blocking. |
-| `proxyConfiguration` | object | Proxy settings. Residential proxies are strongly recommended — Quora is protected by Cloudflare and datacenter IPs are often challenged. Defaults to Apify Proxy automatic. Override to select residential proxies or a spec |
+| `startUrls` | array | List of Quora URLs to scrape. Each may be a question page (https://www.quora.com/What-is-the-best-way-to-learn-programming), a profile (https://www.quora.com/profile/Adam-DAngelo), a space (https://www.quora.com/q/<space>), or a topic (https://www.quora.com/topic/<topic>). The type is auto-detected from the URL. At least one URL is required. |
+| `maxItemsPerTarget` | integer; minimum=1; maximum=1000 | Maximum number of records to return for each URL or keyword. The Actor scrolls to paginate until this cap, then stops, so it doubles as your cost ceiling (each record is one billable event). Defaults to 50. Lower it for cheaper test runs. |
+| `maxConcurrency` | integer; minimum=1; maximum=10 | How many target pages to scrape in parallel. Defaults to 5 (max 10). Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate. |
+| `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -258,18 +260,18 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `mode` | string; repo, repo-search, issues, prs, code-search, contributors, releases, readme, commits, user, trending | Which GitHub surface to scrape. One actor, 11 modes. Pick exactly one. 'repo' = full metadata for one repo (50+ fields). 'repo-search' = keyword/qualifier search. 'issues'/'prs' = list issues/PRs for a repo with comments |
-| `repo` | string | GitHub repository in 'owner/name' format (e.g., 'facebook/react'). Required for modes: repo, issues, prs, contributors, releases, readme, commits. Accepts full URL too — 'https://github.com/facebook/react' is normalised. |
-| `query` | string | Free-text query with GitHub search qualifiers (e.g., 'language:typescript stars:>1000 web framework'). Used by modes: repo-search, code-search. Supports all GitHub search operators (language:, stars:, forks:, user:, org: |
+| `mode` | string; repo, repo-search, issues, prs, code-search, contributors, releases, readme, commits, user, trending | Which GitHub surface to scrape. One actor, 11 modes. Pick exactly one. 'repo' = full metadata for one repo (50+ fields). 'repo-search' = keyword/qualifier search. 'issues'/'prs' = list issues/PRs for a repo with comments, labels, reviews. 'code-search' = search code across GitHub (REQUIRES GITHUB_TOKEN env var). 'contributors' = repo contributors with profile data. 'releases' = release history with assets. 'readme' = full README markdown + rendered text. 'commits' = commit history with author, files, stats. 'user' = user/org profile + their repos. 'trending' = trending repos by language and timeframe. NOT for private repos or GitHub Enterprise. |
+| `repo` | string | GitHub repository in 'owner/name' format (e.g., 'facebook/react'). Required for modes: repo, issues, prs, contributors, releases, readme, commits. Accepts full URL too — 'https://github.com/facebook/react' is normalised. NOT used for repo-search, code-search, user, trending modes. |
+| `query` | string | Free-text query with GitHub search qualifiers (e.g., 'language:typescript stars:>1000 web framework'). Used by modes: repo-search, code-search. Supports all GitHub search operators (language:, stars:, forks:, user:, org:, path:, extension:, in:). NOT a repository identifier — for that use the 'repo' field. |
 | `user` | string | GitHub user or organization login (e.g., 'torvalds' or 'apify'). Required for mode 'user'. Returns profile, repos, organizations, and (if available) social accounts. NOT a repo path — for that use 'repo' field. |
 | `language` | string | Optional language filter for trending mode (e.g., 'python', 'rust', 'typescript'). Lowercase, hyphenated for multi-word. For repo-search use 'language:python' inside the query field instead. Empty = all languages. |
 | `timeframe` | string; daily, weekly, monthly | Time window for trending mode. 'daily' = today's trending repos, 'weekly' = this week, 'monthly' = this month. GitHub publishes these lists at github.com/trending. Only used by mode 'trending'. Default: daily. |
 | `state` | string; open, closed, all | Filter issues or PRs by state. 'open' = only open, 'closed' = only closed, 'all' = both. Only used by modes 'issues' and 'prs'. Default: open. GitHub's UI default is open, so leave as 'open' for most agent use. |
 | `since` | string | Only return items updated/created at or after this ISO 8601 date (e.g., '2026-01-01' or '2026-01-01T00:00:00Z'). Used by modes 'issues', 'prs', 'commits'. Empty = no lower bound. |
-| `maxResults` | integer; minimum=1; maximum=1000 | Maximum number of records to return. Each record = one PPE 'result' ($0.005) or 'deep-result' ($0.01) charge. Default 50. Hard cap 1000 to keep one run under $10 for x402 agents. Set lower to control cost; the actor will |
-| `includeComments` | boolean | When true, fetches comments for each issue or PR (extra API call per item). Increases run cost but gives the full conversation thread. Only affects modes 'issues' and 'prs'. Default: false. Set true when an agent needs s |
-| `includeReviews` | boolean | When true, fetches reviews and review comments for each PR (extra API call per PR). Returns reviewer login, state (APPROVED/REQUEST_CHANGES/COMMENTED), submitted_at, body. Only affects mode 'prs'. Default: false. Set tru |
-| `includeFiles` | boolean | When true, includes the list of files changed per commit with additions/deletions/status. Charged as 'deep-result' ($0.01) instead of 'result'. Only affects mode 'commits'. Default: false. Set true when an agent needs to |
+| `maxResults` | integer; minimum=1; maximum=1000 | Maximum number of records to return. Each record = one PPE 'result' ($0.005) or 'deep-result' ($0.01) charge. Default 50. Hard cap 1000 to keep one run under $10 for x402 agents. Set lower to control cost; the actor will stop early when it reaches the cap. |
+| `includeComments` | boolean | When true, fetches comments for each issue or PR (extra API call per item). Increases run cost but gives the full conversation thread. Only affects modes 'issues' and 'prs'. Default: false. Set true when an agent needs sentiment, decisions, or context from threads. |
+| `includeReviews` | boolean | When true, fetches reviews and review comments for each PR (extra API call per PR). Returns reviewer login, state (APPROVED/REQUEST_CHANGES/COMMENTED), submitted_at, body. Only affects mode 'prs'. Default: false. Set true when an agent needs review-status or reviewer breakdown. |
+| `includeFiles` | boolean | When true, includes the list of files changed per commit with additions/deletions/status. Charged as 'deep-result' ($0.01) instead of 'result'. Only affects mode 'commits'. Default: false. Set true when an agent needs to reason about diffs. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -283,10 +285,10 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `searchQueries` | array | Use this when you want to discover Google-indexed Facebook groups for one or more topics. Provide short natural-language phrases such as 'real estate investors' or 'small business owners London'. The actor searches Googl |
-| `maxResultsPerQuery` | integer; minimum=1; maximum=100 | Use this when you need to cap the number of unique public Facebook groups returned for each search query. Enter an integer from 1 to 100; the default is 20. A lower number reduces both event charges and result-review tim |
-| `countryCode` | string | Use this when the group search should be localized to a country. Enter a two-letter uppercase country code such as 'US', 'GB', or 'CA'; the default is 'US'. This affects the search provider's regional results, not Facebo |
-| `includeRawData` | boolean | Use this when you need the original provider result alongside the normalized group fields for debugging. Defaults to false to keep dataset rows compact and agent-friendly. Raw response shapes can change without notice an |
+| `searchQueries` | array | Use this when you want to discover Google-indexed Facebook groups for one or more topics. Provide short natural-language phrases such as 'real estate investors' or 'small business owners London'. The actor searches Google for Facebook group URLs and deduplicates results across queries. This is not a Facebook group URL input and does not access private content. |
+| `maxResultsPerQuery` | integer; minimum=1; maximum=100 | Use this when you need to cap the number of unique public Facebook groups returned for each search query. Enter an integer from 1 to 100; the default is 20. A lower number reduces both event charges and result-review time. This is not a guaranteed number of matching groups because a query may have fewer indexed public results. |
+| `countryCode` | string | Use this when the group search should be localized to a country. Enter a two-letter uppercase country code such as 'US', 'GB', or 'CA'; the default is 'US'. This affects the search provider's regional results, not Facebook group membership or visibility. This is not a city or language field. |
+| `includeRawData` | boolean | Use this when you need the original provider result alongside the normalized group fields for debugging. Defaults to false to keep dataset rows compact and agent-friendly. Raw response shapes can change without notice and should not be used as a stable contract. This does not include private Facebook data. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -307,10 +309,10 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `startCursor` | string | Optional provider pagination cursor. Use a cursor from RUN_SUMMARY.nextCursors to resume a group feed. |
 | `sortBy` | string; RECENT_ACTIVITY, TOP_POSTS, CHRONOLOGICAL, CHRONOLOGICAL_LISTINGS | Provider-side Facebook group post ordering. |
 | `dataSource` | string; auto, provider, browser | Auto tries configured providers first, then browser fallback when enabled. Provider only skips browser fallback. Browser only skips provider APIs. |
-| `useBrowserFallback` | boolean | Try a Playwright browser scrape when provider APIs are unavailable, empty, or disabled. |
+| `useBrowserFallback` | boolean | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 | `maxBrowserScrolls` | integer; minimum=0; maximum=50 | Maximum page scrolls in browser fallback mode. |
-| `facebookCookies` | string | Optional JSON cookie array or raw Cookie header for browser fallback only. Use your own authorized session; do not use this for data you are not allowed to access. |
-| `proxy` | object | Proxy settings for browser fallback. |
+| `facebookCookies` | string | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
+| `proxy` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 | `includeRawData` | boolean | Include raw source objects in each dataset row for debugging and custom downstream parsing. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
@@ -325,12 +327,12 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `communityUrls` | array | Skool community URLs or bare slugs to look up directly (group mode). Accepts full links like 'https://www.skool.com/new-society' or just 'new-society'. Returns the full public profile of each community plus its owner. NO |
-| `searchQueries` | array | Keywords to search Skool's public Discovery directory (discovery mode), e.g. 'real estate' or 'ai automation'. Each keyword is paginated and every matched community is returned. Use this to build lists of communities in  |
-| `enrichDetails` | boolean | When ON (default), each Discovery result is enriched via the Skool group API to add pricing, post/course counts, join questions, and the owner lead. When OFF, Discovery returns the lean directory card only (name, descrip |
-| `maxItems` | integer; minimum=1; maximum=100000 | Hard cap on the total number of communities returned across all inputs, for cost control. Each community is billed at $0.005. Defaults to 100. Set lower for a quick sample or higher to sweep a whole niche (Skool Discover |
-| `maxPagesPerQuery` | integer; minimum=1; maximum=34 | Upper bound on how many Discovery pages (30 communities each) to fetch per keyword before moving on. Defaults to 34, the full depth Skool exposes (~1000 results). Lower it to sample only the top results of each keyword.  |
-| `proxyConfiguration` | object | Proxy used for requests. Skool's public API is a clean JSON endpoint, so the default Apify Proxy (datacenter, US) is sufficient and cheapest. Override only if you hit regional issues. Residential is rarely needed. |
+| `communityUrls` | array | Skool community URLs or bare slugs to look up directly (group mode). Accepts full links like 'https://www.skool.com/new-society' or just 'new-society'. Returns the full public profile of each community plus its owner. NOT a member roster — Skool gates individual member lists behind login, so this returns counts and the owner, not every member. |
+| `searchQueries` | array | Keywords to search Skool's public Discovery directory (discovery mode), e.g. 'real estate' or 'ai automation'. Each keyword is paginated and every matched community is returned. Use this to build lists of communities in a niche. Leave empty if you only want the specific communities in 'Community URLs or slugs'. |
+| `enrichDetails` | boolean | When ON (default), each Discovery result is enriched via the Skool group API to add pricing, post/course counts, join questions, and the owner lead. When OFF, Discovery returns the lean directory card only (name, description, member count, logo) — faster and cheaper. Has no effect on direct 'Community URLs or slugs', which are always fully detailed. |
+| `maxItems` | integer; minimum=1; maximum=100000 | Hard cap on the total number of communities returned across all inputs, for cost control. Each community is billed at $0.005. Defaults to 100. Set lower for a quick sample or higher to sweep a whole niche (Skool Discovery returns up to ~1000 per keyword). |
+| `maxPagesPerQuery` | integer; minimum=1; maximum=34 | Upper bound on how many Discovery pages (30 communities each) to fetch per keyword before moving on. Defaults to 34, the full depth Skool exposes (~1000 results). Lower it to sample only the top results of each keyword. Ignored for direct community lookups. |
+| `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 

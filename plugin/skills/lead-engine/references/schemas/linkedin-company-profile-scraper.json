@@ -41,5 +41,6 @@
   },
   "required": [
     "companyUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

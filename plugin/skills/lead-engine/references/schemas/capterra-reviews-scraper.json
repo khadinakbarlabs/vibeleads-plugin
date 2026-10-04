@@ -52,10 +52,11 @@
       ]
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy used to reach Capterra. Residential proxies are required \u2014 Capterra runs enterprise Cloudflare and blocks datacenter IPs. Defaults to Apify Residential, US. Change the country if you target a regional Capterra TLD (e.g. capterra.co.uk).",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "debug": {
       "title": "Debug mode",
@@ -64,5 +65,6 @@
       "editor": "checkbox"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

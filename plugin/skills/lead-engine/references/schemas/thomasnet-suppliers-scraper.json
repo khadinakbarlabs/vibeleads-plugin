@@ -38,10 +38,12 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy used for all requests. ThomasNet uses DataDome and blocks every datacenter IP \u2014 by default this actor uses Apify Residential pinned to the US for highest success rate. Override only if you have your own residential proxy; datacenter proxies will be blocked.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

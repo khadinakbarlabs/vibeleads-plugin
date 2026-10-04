@@ -65,15 +65,16 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy used to reach StepStone. Defaults to Apify Residential proxies in Germany, which are required \u2014 StepStone is protected by Akamai Bot Manager and blocks datacenter IPs. Leave as default unless you have a specific reason to change it.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
       "type": "integer",
-      "description": "Maximum number of pages fetched in parallel. Defaults to 10. Lower it if you hit blocks; raise it for faster large runs on a healthy proxy pool. Most users should leave this at the default.",
+      "description": "Maximum number of pages fetched in parallel. Defaults to 10. Most users should leave this at the default. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 50
@@ -85,5 +86,6 @@
       "editor": "hidden"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -62,5 +62,6 @@
     "queries",
     "locationName",
     "dataCid"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -39,14 +39,15 @@
     "enrichDetails": {
       "title": "Fetch job detail pages",
       "type": "boolean",
-      "description": "Use this when you want richer job fields from individual Wellfound job pages. Defaults to false for a bounded lightweight export; enable it when you need detail-page enrichment. The actor falls back to listing data if a detail page is blocked. This does not scrape private applicant or recruiter data.",
+      "description": "Use this when you want richer job fields from individual Wellfound job pages. Defaults to false for a bounded lightweight export; enable it when you need detail-page enrichment. This does not scrape private applicant or recruiter data. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Use this to control how the actor reaches Wellfound. Defaults to Apify Residential proxies in the United States because Wellfound search pages use DataDome and Cloudflare protection. Leave unchanged for most runs. This is not an authentication or cookie setting.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
@@ -63,5 +64,6 @@
       "editor": "hidden"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

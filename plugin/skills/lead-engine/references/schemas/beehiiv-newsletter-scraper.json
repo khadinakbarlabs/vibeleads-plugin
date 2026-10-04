@@ -52,5 +52,6 @@
       "maximum": 5000,
       "sectionCaption": "Scraping Options"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

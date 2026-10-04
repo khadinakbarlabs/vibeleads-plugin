@@ -1,6 +1,6 @@
 {
   "title": "LinkedIn Ad Library Search Scraper input",
-  "description": "Search the public LinkedIn Ad Library with provider-backed, no-cookie collection and normalized output.",
+  "description": "Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -19,7 +19,7 @@
     "countries": {
       "title": "Countries",
       "type": "array",
-      "description": "Use this when results should be limited to countries reported by the Ad Library. Enter ISO alpha-2 codes such as US, DE, or GB. Defaults to no country filter, while supplied codes are sent together to each search. This is not a proxy location setting or a city-level targeting filter.",
+      "description": "Use this when results should be limited to countries reported by the Ad Library. Enter ISO alpha-2 codes such as US, DE, or GB. Defaults to no country filter, while supplied codes are sent together to each search. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "stringList"
     },
     "startDate": {
@@ -66,5 +66,6 @@
         "Detailed"
       ]
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

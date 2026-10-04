@@ -1,5 +1,7 @@
 # Lead-source coverage and selection
 
+Before collection or recovery, apply the [source access gate](access-safety.md). Catalog/schema verification is not execution permission. Denied underlying source access is excluded from Actor failover and automatic retries.
+
 Use the [exact catalog](source-catalog.md), then refresh live schema and pricing. Metadata verification is not runtime certification. Pick sources by what the request needs, not by similarity to a database name.
 
 | Motion/source family | Use | Key limitation |

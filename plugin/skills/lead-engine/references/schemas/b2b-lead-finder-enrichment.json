@@ -41,12 +41,14 @@
       "sectionDescription": "When enabled, the actor crawls each business's website to find a real contact email. Enriched leads cost more but include verified emails scraped directly from the source."
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "HTTP proxy settings for scraping. Leave as default (Apify datacenter proxies, US) for best results. Only change if you need to target a specific country or use residential proxies for higher-trust requests.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "proxy",
-      "sectionCaption": "Advanced settings",
-      "sectionDescription": "Proxy and performance settings. The defaults work well for most use cases."
+      "sectionCaption": "Restricted access control",
+      "sectionDescription": "Proxy and performance settings. The defaults work well for most use cases.",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

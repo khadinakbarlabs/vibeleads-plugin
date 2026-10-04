@@ -101,5 +101,6 @@
       "description": "When enabled, each review record includes company metadata: trust score, total review count, categories, and domain. Disable to reduce output size when only review content is needed."
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

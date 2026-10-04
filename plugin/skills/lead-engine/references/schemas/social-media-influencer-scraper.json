@@ -1,6 +1,6 @@
 {
   "title": "Social Media Influencer Scraper Input",
-  "description": "Use this actor to discover or enrich public influencer profiles across Instagram, TikTok, and YouTube. It returns one normalized public profile per dataset row and never requests account cookies or login credentials.",
+  "description": "Use this actor to discover or enrich public influencer profiles across Instagram, TikTok, and YouTube. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -86,5 +86,6 @@
       "description": "Use this only for provider-schema diagnostics when you need the original public response alongside normalized fields. It defaults to false to keep dataset records compact for agents and CSV exports. Raw payloads can change without notice. This is not required for normal creator discovery.",
       "editor": "checkbox"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

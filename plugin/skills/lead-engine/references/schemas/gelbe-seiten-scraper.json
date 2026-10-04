@@ -49,5 +49,6 @@
       "description": "Visit each listed business page to collect additional publicly displayed contact and opening-hour data. Example: true. Defaults to true; disable it for faster list-card-only output. This does not discover private contact information.",
       "editor": "checkbox"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -40,12 +40,14 @@
       "maximum": 500
     },
     "proxyConfig": {
-      "title": "Proxy Configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings. Datacenter proxy is recommended for most websites. Use residential proxy only for sites that actively block scrapers.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "proxy",
-      "sectionCaption": "Advanced"
+      "sectionCaption": "Restricted access control",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

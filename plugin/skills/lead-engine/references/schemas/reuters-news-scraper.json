@@ -6,7 +6,7 @@
     "sections": {
       "title": "Reuters sections",
       "type": "array",
-      "description": "Reuters sections to pull from the public Google News sitemap (headline, publish time, image, tags, URL). Select one or more. Use \"latest\" for all English paths. reuters.com HTML is DataDome-blocked \u2014 this Actor returns sitemap/search metadata only (bodyText is always null).",
+      "description": "Reuters sections to pull from the public Google News sitemap (headline, publish time, image, tags, URL). Select one or more. Use \"latest\" for all English paths. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "select",
       "items": {
         "type": "string",
@@ -55,7 +55,7 @@
     "articleUrls": {
       "title": "Article URLs",
       "type": "array",
-      "description": "Optional list of reuters.com article URLs. Matched against the public news sitemap when possible; otherwise a URL-derived title/date row is returned. Does not scrape article HTML (DataDome) and does not return full body text.",
+      "description": "Optional list of reuters.com article URLs. Matched against the public news sitemap when possible; otherwise a URL-derived title/date row is returned. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "stringList"
     },
     "languages": {
@@ -107,10 +107,12 @@
       "maximum": 8
     },
     "proxyConfiguration": {
-      "title": "Proxy (optional)",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional Apify proxy. The public news sitemap and Bing News RSS usually work without a proxy. Enable only if your environment blocks outbound XML/RSS.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -52,5 +52,6 @@
   },
   "required": [
     "searchQuery"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

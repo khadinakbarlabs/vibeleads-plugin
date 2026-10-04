@@ -47,11 +47,13 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Legacy proxy configuration",
-      "description": "Kept for backward compatibility with saved tasks created before version 0.2. The rebuilt actor uses managed provider routes and does not send this configuration to Etsy. Leave the default unchanged. This field does not select the provider or country of returned shop metadata.",
+      "title": "Restricted access control",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "type": "object",
-      "editor": "proxy"
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

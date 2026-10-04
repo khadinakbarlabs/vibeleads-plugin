@@ -1,6 +1,6 @@
 {
   "title": "Gartner Peer Insights Scraper \u2014 Input",
-  "description": "Scrape public Gartner Peer Insights product profiles, ratings, market listings, and review samples. Provide product URLs/slugs and/or market URLs. Optional sessionCookie unlocks paginated api3 reviews when you have a logged-in Peer Insights session.",
+  "description": "Scrape public Gartner Peer Insights product profiles, ratings, market listings, and review samples. Provide product URLs/slugs and/or market URLs. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -37,7 +37,7 @@
     "maxReviewsPerProduct": {
       "title": "Max reviews per product",
       "type": "integer",
-      "description": "Hard cap on review/highlight rows saved per product. Public pages usually expose a small sample; larger values matter mainly when sessionCookie unlocks api3 pagination. Default 5 for quality tests. Range 1-500.",
+      "description": "Hard cap on review/highlight rows saved per product. Default 5 for quality tests. Range 1-500. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 500
@@ -65,7 +65,7 @@
     "sort": {
       "title": "Review sort (authenticated mode)",
       "type": "string",
-      "description": "Sort used for authenticated api3 pagination when a Peer Insights cookie is provided. Ignored for public page samples. Default most helpful.",
+      "description": "Ignored for public page samples. Default most helpful. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "select",
       "enum": [
         "helpful",
@@ -77,18 +77,21 @@
       ]
     },
     "sessionCookie": {
-      "title": "Peer Insights session cookie (optional)",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Optional Cookie header from a logged-in Gartner Peer Insights browser session. Caller-provided / user-provided: supply your own secret for the run. Enables api3 pagination for fuller review catalogs. Leave empty for public-only scraping. This value is never written to the dataset, output, or logs.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "textarea",
-      "isSecret": true
+      "isSecret": true,
+      "x-vibeleads-execution": "unsupported"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify Proxy. UNBLOCKER is strongly recommended \u2014 Gartner sits behind Cloudflare. Default: UNBLOCKER.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

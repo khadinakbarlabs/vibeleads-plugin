@@ -2,7 +2,7 @@
   "title": "Website Tech Stack Detector",
   "type": "object",
   "schemaVersion": 1,
-  "description": "Detect technology stacks on public website URLs using owned HTTP fingerprinting. No provider API keys. Each successfully analyzed URL is billed as tech-stack-detected.",
+  "description": "No provider API keys. Each successfully analyzed URL is billed as tech-stack-detected. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "required": [],
   "properties": {
     "websiteUrls": {
@@ -11,7 +11,7 @@
       "items": {
         "type": "string"
       },
-      "description": "Public website URLs or bare domains to fingerprint. Example: https://www.shopify.com or shopify.com. Only http(s) public hosts are accepted \u2014 no localhost, private IPs, or credentialed URLs. Prefer full https URLs. Duplicate URLs are deduped. Each successful detection costs $0.01.",
+      "description": "Example: https://www.shopify.com or shopify.com. Only http(s) public hosts are accepted \u2014 no localhost, private IPs, or credentialed URLs. Prefer full https URLs. Duplicate URLs are deduped. Each successful detection costs $0.01. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "stringList",
       "maxItems": 50
     },
@@ -36,15 +36,17 @@
     "requestTimeoutSecs": {
       "title": "Per-URL request timeout (seconds)",
       "type": "integer",
-      "description": "HTTP timeout per URL attempt. Defaults to 25. Range 5\u201360. Does not change pricing. Increase only for slow origins; prefer proxies for blocks.",
+      "description": "HTTP timeout per URL attempt. Defaults to 25. Range 5\u201360. Does not change pricing. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "minimum": 5,
       "maximum": 60
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional Apify proxy. Leave off for the default direct HTTPS path. Enable Apify Residential when a target returns 403/429 or Cloudflare challenges. This is not a third-party tech-catalog API.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

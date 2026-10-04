@@ -64,10 +64,11 @@
       "editor": "checkbox"
     },
     "useProxyFallback": {
-      "title": "Use a managed proxy only after a block",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Allow one Apify Residential proxy retry only after the direct request is blocked or transiently unavailable. It defaults to true to improve resilience while keeping direct public-site collection as the primary route. Proxy usage is additional platform usage and is not a bypass for private or restricted content.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     },
     "requestTimeoutSecs": {
       "title": "Per-page request timeout seconds",
@@ -80,5 +81,6 @@
   },
   "required": [
     "companies"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

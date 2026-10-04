@@ -46,11 +46,13 @@
       "unit": "listings"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings. The default Apify datacenter (US) proxy is sufficient \u2014 AppExchange has no CAPTCHA, only light per-IP rate limiting that session rotation clears. Only switch to RESIDENTIAL if you see repeated blocking. Leave as default for best speed and cost.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

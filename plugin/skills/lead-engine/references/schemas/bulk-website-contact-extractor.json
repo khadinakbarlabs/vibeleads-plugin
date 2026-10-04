@@ -31,15 +31,17 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "HTTP proxy settings. Leave as default (Apify datacenter proxies) for most websites. Switch to residential proxies only if target sites block datacenter IPs \u2014 residential proxies are slower and cost more.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "proxy",
-      "sectionCaption": "Advanced settings",
-      "sectionDescription": "Proxy and performance configuration"
+      "sectionCaption": "Restricted access control",
+      "sectionDescription": "Proxy and performance configuration",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "startUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

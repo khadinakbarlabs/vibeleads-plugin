@@ -42,13 +42,15 @@
       ]
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional proxy routing. ATS public JSON APIs are open and usually need no proxy, so this defaults to a direct connection. Enable Apify Proxy only if you hit rate limits or geo-restricted boards; set a countryCode for geo-specific listings.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "startUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

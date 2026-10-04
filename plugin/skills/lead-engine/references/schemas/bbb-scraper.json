@@ -18,7 +18,7 @@
     "country": {
       "title": "Country",
       "type": "string",
-      "description": "Country directory to search: US (bbb.org USA) or CA (Canada). Defaults to US. Also pins the residential proxy region. Does not affect direct profile 'startUrls', which already encode their country.",
+      "description": "Country directory to search: US (bbb.org USA) or CA (Canada). Defaults to US. Does not affect direct profile 'startUrls', which already encode their country. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "select",
       "enum": [
         "US",
@@ -86,11 +86,13 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Advanced. Proxy settings. Defaults to Apify Residential proxy pinned to the chosen country, which is required to bypass bbb.org's Cloudflare protection. Override only if you know what you are doing \u2014 datacenter proxies are blocked by BBB.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

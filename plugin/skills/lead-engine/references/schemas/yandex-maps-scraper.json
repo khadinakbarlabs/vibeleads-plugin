@@ -62,11 +62,13 @@
       ]
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy used for requests. Yandex Maps requires residential proxies to avoid SmartCaptcha; the default is Apify Residential in Russia. Change the country to match your target region (e.g. TR for Turkey). Keep 'Use Apify Proxy' enabled.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

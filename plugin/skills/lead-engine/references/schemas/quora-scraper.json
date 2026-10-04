@@ -20,17 +20,19 @@
     "maxConcurrency": {
       "title": "Max concurrent browsers",
       "type": "integer",
-      "description": "How many target pages to scrape in parallel. Higher is faster but uses more proxy IPs and memory; lower is gentler on anti-bot defenses. Defaults to 5 (max 10). Leave default unless you hit blocking.",
+      "description": "How many target pages to scrape in parallel. Defaults to 5 (max 10). Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "minimum": 1,
       "maximum": 10,
       "editor": "number"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings. Residential proxies are strongly recommended \u2014 Quora is protected by Cloudflare and datacenter IPs are often challenged. Defaults to Apify Proxy automatic. Override to select residential proxies or a specific country for reliable access.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

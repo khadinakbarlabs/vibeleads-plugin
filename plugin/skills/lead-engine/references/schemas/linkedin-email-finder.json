@@ -18,7 +18,7 @@
     "includeUnverified": {
       "title": "Return best-guess when SMTP can't confirm",
       "type": "boolean",
-      "description": "When true (default), if the mail server cannot be SMTP-probed (port 25 blocked) or is catch-all, the highest-probability pattern email is still returned with a confidence score and an honest emailStatus. When false, only mailbox-confirmed ('valid') emails are returned in the email field. Set false for strict deliverability-only output.",
+      "description": "When false, only mailbox-confirmed ('valid') emails are returned in the email field. Set false for strict deliverability-only output. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "checkbox"
     },
     "maxResults": {
@@ -38,5 +38,6 @@
       "maximum": 15
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

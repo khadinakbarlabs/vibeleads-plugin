@@ -72,10 +72,12 @@
       "description": "When enabled, appends 'remote' to all search queries and marks all results as is_remote: true. Enable this when the user asks specifically for remote, work-from-home, or WFH jobs."
     },
     "proxyCountry": {
-      "title": "Proxy Country",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "2-letter country code for residential proxy location (e.g. 'US', 'GB', 'CA'). Controls which Google region is scraped. Default: US. Change this to target job markets in other countries.",
-      "editor": "textfield"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "textfield",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

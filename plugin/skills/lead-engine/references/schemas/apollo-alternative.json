@@ -57,7 +57,7 @@
     "country": {
       "title": "Search country",
       "type": "string",
-      "description": "Two-letter ISO country code used for public-search market context and the residential proxy, such as `US`, `GB`, or `PK`. Defaults to `US`; it does not guarantee that every profile belongs to this country. Do not enter a full country name here.",
+      "description": "Defaults to `US`; it does not guarantee that every profile belongs to this country. Do not enter a full country name here. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield",
       "minLength": 2,
       "maxLength": 2
@@ -71,5 +71,6 @@
       "maximum": 100
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

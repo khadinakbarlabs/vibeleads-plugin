@@ -32,7 +32,8 @@
         "language",
         "minRating"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-maps-extractor",
@@ -61,7 +62,8 @@
         "language",
         "countryCode"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-maps-email-extractor",
@@ -89,7 +91,8 @@
         "language",
         "startUrls"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "yelp-scraper-all-in-one",
@@ -116,7 +119,8 @@
         "maxReviewsPerBusiness",
         "proxyType"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "yellow-pages-us-scraper",
@@ -143,7 +147,8 @@
         "enrichDetails",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "yellow-pages-uae-scraper",
@@ -169,7 +174,8 @@
         "enrichDetails",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "apple-maps-business-scraper",
@@ -204,7 +210,8 @@
         "countryCode",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "yandex-maps-scraper",
@@ -233,7 +240,8 @@
         "language",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "naver-map-scraper",
@@ -261,7 +269,8 @@
         "maxPlaces",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "gelbe-seiten-scraper",
@@ -285,7 +294,8 @@
         "maxResults",
         "enrichDetails"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "bbb-scraper",
@@ -315,7 +325,8 @@
         "storeRawSample",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "houzz-scraper",
@@ -342,7 +353,8 @@
         "proxyCountry",
         "maxRequestRetries"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "checkatrade-scraper",
@@ -373,7 +385,8 @@
         "minReviews",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "angi-home-services-scraper",
@@ -407,7 +420,8 @@
         "proxyConfiguration",
         "storeRawSample"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-local-services-ads-scraper",
@@ -438,7 +452,8 @@
         "countryCode",
         "jobType"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-local-pack-api",
@@ -467,7 +482,8 @@
         "seDomain",
         "maxLocalPackResults"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "b2b-lead-finder-enrichment",
@@ -493,7 +509,8 @@
         "enableEnrichment",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "universal-lead-finder",
@@ -520,7 +537,8 @@
         "includeSubpages",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "lead-finder-pro",
@@ -548,7 +566,8 @@
         "includeDirectories",
         "excludeDomains"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-search-scraper",
@@ -574,7 +593,8 @@
         "maxResults",
         "enrich"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-profile-scraper",
@@ -602,7 +622,8 @@
         "maxEmployeesSample",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-details-scraper",
@@ -627,7 +648,8 @@
         "includePosts",
         "maxCompanies"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-by-domain-scraper",
@@ -653,7 +675,8 @@
         "includeSerpEvidence",
         "minConfidence"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-finder-from-website",
@@ -680,7 +703,8 @@
         "enrichCompany",
         "maxConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-people-search-scraper",
@@ -709,7 +733,8 @@
         "maxResults",
         "resultsRegion"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-profile-details-scraper",
@@ -735,7 +760,8 @@
         "outputMode",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-employee-scraper",
@@ -767,7 +793,8 @@
         "maxConcurrency",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-sales-navigator-scraper",
@@ -798,7 +825,8 @@
         "resultsRegion",
         "preferProvider"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-sales-account-scraper",
@@ -827,7 +855,8 @@
         "maxResults",
         "resultsRegion"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "dnb-companies-scraper",
@@ -854,7 +883,8 @@
         "enrichDetails",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "companies-house-uk-scraper",
@@ -888,7 +918,8 @@
         "maxConcurrency",
         "companiesHouseApiKey"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "apollo-alternative",
@@ -915,7 +946,8 @@
         "country",
         "maxResults"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "zoominfo-alternative",
@@ -945,7 +977,8 @@
         "useApifyUnblockerFallback",
         "preferApifyUnblocker"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "rocketreach-alternative",
@@ -974,7 +1007,8 @@
         "maxCandidatesPerContact",
         "includeMxValidatedCandidates"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "clearbit-alternative",
@@ -1003,7 +1037,8 @@
         "useProxyFallback",
         "requestTimeoutSecs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "lusha-alternative",
@@ -1031,7 +1066,8 @@
         "responseFormat",
         "useApifyUnblockerFallback"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "cognism-alternative",
@@ -1059,7 +1095,8 @@
         "useApifyUnblockerFallback",
         "preferApifyUnblocker"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "seamless-ai-alternative",
@@ -1087,7 +1124,8 @@
         "useApifyUnblockerFallback",
         "preferApifyUnblocker"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "snov-io-alternative",
@@ -1115,7 +1153,8 @@
         "useApifyUnblockerFallback",
         "preferApifyUnblocker"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "producthunt-scraper-pro",
@@ -1156,7 +1195,8 @@
         "lookbackDays",
         "outputMode"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "ycombinator-scraper",
@@ -1198,7 +1238,8 @@
         "monitoringMode",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "shopify-app-store-scraper",
@@ -1230,7 +1271,8 @@
         "maxConcurrency",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "salesforce-appexchange-scraper",
@@ -1256,7 +1298,8 @@
         "maxScan",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "apify-store-scraper",
@@ -1283,7 +1326,8 @@
         "enrichDetails",
         "detailConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "startup-investors-scraper",
@@ -1313,7 +1357,8 @@
         "maxInvestors",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "pitchbook-scraper",
@@ -1337,7 +1382,8 @@
         "useApifyProxy",
         "useGoogleSearchFallback"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-jobs-scraper",
@@ -1366,7 +1412,8 @@
         "workType",
         "salaryBase"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-jobs-scraper",
@@ -1399,7 +1446,8 @@
         "enrichCompany",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "indeed-job-scraper",
@@ -1425,7 +1473,8 @@
         "country",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-jobs-scraper",
@@ -1452,7 +1501,8 @@
         "remoteOnly",
         "proxyCountry"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "wellfound-jobs-scraper",
@@ -1481,7 +1531,8 @@
         "maxConcurrency",
         "debugDumpHtml"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "glassdoor-jobs-scraper",
@@ -1510,7 +1561,8 @@
         "deduplicate",
         "debug"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "greenhouse-jobs-scraper",
@@ -1538,7 +1590,8 @@
         "departmentIncludes",
         "includeDescriptions"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "lever-jobs-scraper",
@@ -1567,7 +1620,8 @@
         "commitmentIncludes",
         "includeDescriptions"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "ashby-jobs-scraper",
@@ -1596,7 +1650,8 @@
         "remoteOnly",
         "includeDescriptions"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "workable-jobs-scraper",
@@ -1625,7 +1680,8 @@
         "departmentIncludes",
         "includeDescriptions"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "workday-jobs-scraper",
@@ -1652,7 +1708,8 @@
         "includeJobDetails",
         "useApifyProxy"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "career-site-job-scraper",
@@ -1679,7 +1736,8 @@
         "descriptionFormat",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "hiringcafe-jobs-scraper",
@@ -1704,7 +1762,8 @@
         "maxPages",
         "useUnblockerFallback"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "remote-jobs-aggregator",
@@ -1733,7 +1792,8 @@
         "includeDescription",
         "dedupe"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "multiple-job-board-scraper",
@@ -1760,7 +1820,8 @@
         "maxResults",
         "includeDescription"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "jobs-sh-scraper",
@@ -1785,7 +1846,8 @@
         "includeJobDetails",
         "responseFormat"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "bayt-jobs-scraper",
@@ -1811,7 +1873,8 @@
         "maxResults",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "gulftalent-job-scraper",
@@ -1837,7 +1900,8 @@
         "includeJobDetails",
         "proxyCountry"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "naukri-jobs-scraper",
@@ -1870,7 +1934,8 @@
         "maxConcurrency",
         "debugDumpHtml"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "seek-job-scraper",
@@ -1898,7 +1963,8 @@
         "includeDetails",
         "proxyCountry"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "stepstone-jobs-scraper",
@@ -1928,7 +1994,8 @@
         "maxConcurrency",
         "debugDumpHtml"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "clutch-scraper",
@@ -1961,7 +2028,8 @@
         "maxPages",
         "maxConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "clutch-listings-scraper",
@@ -1993,7 +2061,8 @@
         "locationKeyword",
         "maxConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "clutch-reviews-scraper",
@@ -2018,7 +2087,8 @@
         "maxReviews",
         "maxConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "g2-product-reviews-scraper",
@@ -2046,7 +2116,8 @@
         "proxyConfiguration",
         "debug"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "capterra-reviews-scraper",
@@ -2074,7 +2145,8 @@
         "proxyConfiguration",
         "debug"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "trustradius-reviews-scraper",
@@ -2106,7 +2178,8 @@
         "proxyConfiguration",
         "debug"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "gartner-peer-insights-scraper",
@@ -2138,7 +2211,8 @@
         "sessionCookie",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "software-reviews-all-in-one-scraper",
@@ -2167,7 +2241,8 @@
         "proxyConfiguration",
         "debug"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "trustpilot-company-scraper",
@@ -2194,7 +2269,8 @@
         "maxResultsPerQuery",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "trustpilot-reviews-scraper",
@@ -2223,7 +2299,8 @@
         "onlyWithReplies",
         "includeCompanyInfo"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-maps-reviews-scraper",
@@ -2255,7 +2332,8 @@
         "includePersonalData",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "yelp-reviews-scraper",
@@ -2284,7 +2362,8 @@
         "includeBusinessSummary",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "glassdoor-reviews-scraper",
@@ -2314,7 +2393,8 @@
         "debug",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "reddit-search-scraper",
@@ -2343,7 +2423,8 @@
         "postDateLimit",
         "includeNsfw"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "reddit-posts-search-scraper",
@@ -2377,7 +2458,8 @@
         "redditClientId",
         "redditClientSecret"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "reddit-comments-search-scraper",
@@ -2404,7 +2486,8 @@
         "includeNsfw",
         "responseFormat"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "reddit-subreddit-search-scraper",
@@ -2430,7 +2513,8 @@
         "includeNsfw",
         "responseFormat"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-post-search-scraper",
@@ -2459,7 +2543,8 @@
         "includeComments",
         "outputMode"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-company-posts-scraper",
@@ -2488,7 +2573,8 @@
         "enrichPosts",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-post-comments-engagements-scraper",
@@ -2517,7 +2603,8 @@
         "includeRawData",
         "maxConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "x-twitter-search-scraper",
@@ -2546,7 +2633,8 @@
         "includeRaw",
         "dedupeResults"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "x-twitter-replies-scraper",
@@ -2575,7 +2663,8 @@
         "includeRaw",
         "dedupeReplies"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "search-bluesky-posts",
@@ -2610,7 +2699,8 @@
         "tags",
         "includeReplies"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "threads-search-scraper",
@@ -2638,7 +2728,8 @@
         "startDate",
         "endDate"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "quora-scraper",
@@ -2662,7 +2753,8 @@
         "maxConcurrency",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "github-deep-scraper",
@@ -2696,7 +2788,8 @@
         "includeReviews",
         "includeFiles"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "facebook-groups-search-scraper",
@@ -2722,7 +2815,8 @@
         "countryCode",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "facebook-group-posts-scraper",
@@ -2754,7 +2848,8 @@
         "proxy",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "skool-community-scraper",
@@ -2780,7 +2875,8 @@
         "maxPagesPerQuery",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-forums-search-scraper",
@@ -2811,7 +2907,8 @@
         "includeDomains",
         "excludeDomains"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "meta-ad-library-scraper",
@@ -2853,7 +2950,8 @@
         "metaAccessTokens",
         "proxyUrls"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "facebook-ads-library-scraper",
@@ -2893,7 +2991,8 @@
         "includeRawData",
         "requestTimeoutSecs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-ads-transparency-scraper",
@@ -2920,7 +3019,8 @@
         "startUrls",
         "enrichDetails"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-ad-library-search-scraper",
@@ -2949,7 +3049,8 @@
         "fetchAdDetails",
         "responseFormat"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "tiktok-ads-library-scraper",
@@ -2979,7 +3080,8 @@
         "includeDetails",
         "requestTimeoutSecs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "pinterest-ads-library-scraper",
@@ -3008,7 +3110,8 @@
         "maxResults",
         "requestTimeoutSecs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "shopify-all-in-one-scraper",
@@ -3036,7 +3139,8 @@
         "maxCollectionsPerStore",
         "maxReviewsPerProduct"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "ecommerce-store-scraper",
@@ -3061,7 +3165,8 @@
         "includeDescription",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "woocommerce-product-scraper",
@@ -3093,7 +3198,8 @@
         "sortOrder",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "amazon-seller-scraper",
@@ -3123,7 +3229,8 @@
         "maxStorefrontPages",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "amazon-seller-email-scraper",
@@ -3151,7 +3258,8 @@
         "maxContactPages",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "etsy-shop-details-scraper",
@@ -3176,7 +3284,8 @@
         "includeShopSections",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "tiktok-shop-scraper",
@@ -3202,7 +3311,8 @@
         "maxReviewsPerProduct",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "alibaba-listings-scraper",
@@ -3238,7 +3348,8 @@
         "site",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "thomasnet-suppliers-scraper",
@@ -3264,7 +3375,8 @@
         "enrichDetails",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "importyeti-scraper",
@@ -3291,7 +3403,8 @@
         "minShipments",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "sam-gov-scraper",
@@ -3324,7 +3437,8 @@
         "responseDueTo",
         "maxResults"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "scrape-public-tenders",
@@ -3355,7 +3469,8 @@
         "maxResults",
         "language"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "eventbrite-events-scraper",
@@ -3386,7 +3501,8 @@
         "includeDetails",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "10times-events-scraper",
@@ -3418,7 +3534,8 @@
         "includeDetails",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "meetup-events-scraper",
@@ -3456,7 +3573,8 @@
         "maxItems",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "beehiiv-newsletter-scraper",
@@ -3481,7 +3599,8 @@
         "maxPostsPerPublication",
         "maxResults"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "substack-posts-scraper",
@@ -3511,7 +3630,8 @@
         "audience",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "instagram-niche-influencer-finder",
@@ -3544,7 +3664,8 @@
         "maxSearchPagesPerTopic",
         "outputMode"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "instagram-user-search-scraper",
@@ -3573,7 +3694,8 @@
         "includePrivateProfiles",
         "parseContacts"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "instagram-profile-stats-scraper",
@@ -3600,7 +3722,8 @@
         "maxRequestRetries",
         "requestTimeoutSecs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "instagram-contact-scraper",
@@ -3625,7 +3748,8 @@
         "onlyWithContact",
         "maxItems"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "tiktok-user-search-scraper",
@@ -3656,7 +3780,8 @@
         "trim",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "tiktok-shop-creators-scraper",
@@ -3692,7 +3817,8 @@
         "trim",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "youtube-channel-search-scraper",
@@ -3726,7 +3852,8 @@
         "fallbackMode",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "youtube-channel-scraper",
@@ -3756,7 +3883,8 @@
         "country",
         "language"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "youtube-channel-email-extractor",
@@ -3785,7 +3913,8 @@
         "youtubeSessionCookies",
         "maxInquiryUnlocksPerRun"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "social-media-influencer-scraper",
@@ -3815,7 +3944,8 @@
         "countryCode",
         "includeRawData"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "google-news-scraper",
@@ -3845,7 +3975,8 @@
         "decodeUrls",
         "deduplicateResults"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "reuters-news-scraper",
@@ -3874,7 +4005,8 @@
         "maxSitemapPages",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "financial-times-news-scraper",
@@ -3901,7 +4033,8 @@
         "maxItems",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "bloomberg-news-scraper",
@@ -3927,7 +4060,8 @@
         "maxItems",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "sec-edgar-all-in-one-scraper",
@@ -3958,7 +4092,8 @@
         "enableAiSummary",
         "xbrlConcept"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "scrape-google-serp",
@@ -3990,7 +4125,8 @@
         "includeKnowledgeGraph",
         "maxConcurrency"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "bing-search-scraper",
@@ -4022,7 +4158,8 @@
         "fallbackMode",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "website-tech-stack-detector",
@@ -4048,7 +4185,8 @@
         "requestTimeoutSecs",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "website-stack-evidence-audit",
@@ -4077,7 +4215,8 @@
         "useApifyProxy",
         "responseFormat"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "wappalyzer-alternative",
@@ -4104,7 +4243,8 @@
         "useProviderCatalog",
         "useApifyProxyFallback"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "website-seo-spider",
@@ -4136,7 +4276,8 @@
         "fetchMode",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "website-backlink-checker",
@@ -4165,7 +4306,8 @@
         "includeSubdomains",
         "excludeInternalBacklinks"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "backlink-opportunity-finder",
@@ -4196,7 +4338,8 @@
         "maxPagesPerQuery",
         "minimumRelevanceScore"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "contact-details-scraper",
@@ -4222,7 +4365,8 @@
         "maxResults",
         "proxyConfig"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "bulk-website-contact-extractor",
@@ -4249,7 +4393,8 @@
         "followContactPages",
         "proxyConfiguration"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "linkedin-email-finder",
@@ -4274,7 +4419,8 @@
         "maxResults",
         "maxCandidatesPerLead"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "email-address-validator",
@@ -4301,7 +4447,8 @@
         "concurrency",
         "timeoutMs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "neverbounce-alternative",
@@ -4330,7 +4477,8 @@
         "concurrency",
         "timeoutMs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "zerobounce-alternative",
@@ -4359,28 +4507,32 @@
         "concurrency",
         "timeoutMs"
       ],
-      "verified_date": "2026-10-05"
+      "verified_date": "2026-10-05",
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "2gis-places-scraper",
       "group": "Local businesses",
       "state": "public_metadata_unavailable",
       "id": "s12YodiOzxwNenTJ6",
-      "http_status": 404
+      "http_status": 404,
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "acquire-com-scraper",
       "group": "Startups and software",
       "state": "public_metadata_unavailable",
       "id": "IzMeaEaveAmTFhndd",
-      "http_status": 404
+      "http_status": 404,
+      "execution_eligibility": "requires_live_access_review"
     },
     {
       "name": "scrape-luma-events",
       "group": "Events and partnerships",
       "state": "public_metadata_unavailable",
       "id": "3JyCkOcgh4tjUanzW",
-      "http_status": 404
+      "http_status": 404,
+      "execution_eligibility": "requires_live_access_review"
     }
   ]
 }

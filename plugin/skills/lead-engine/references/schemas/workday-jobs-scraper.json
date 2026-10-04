@@ -31,13 +31,15 @@
       "editor": "checkbox"
     },
     "useApifyProxy": {
-      "title": "Use residential proxy",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Use this when you want the actor to route public Workday requests through Apify Residential Proxy. Set true for a more resilient public-board route or false only when direct access is specifically required. The default is true. This is not a field for pasting your own proxy URL or credentials.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "careerSiteUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

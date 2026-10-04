@@ -1,6 +1,6 @@
 {
   "title": "LinkedIn Company Employee Scraper Input",
-  "description": "Scrape visible LinkedIn company employees from company URLs. Use this actor for account mapping, recruiting research, lead sourcing, and profile-URL seed lists. Do not use it for private LinkedIn data, guaranteed complete rosters, emails, or phone numbers. In auto mode it uses Automatic, the managed fallback route second, then optional LINKEDIN_COOKIES and public-search fallbacks.",
+  "description": "Scrape visible LinkedIn company employees from company URLs. Use this actor for account mapping, recruiting research, lead sourcing, and profile-URL seed lists. Do not use it for private LinkedIn data, guaranteed complete rosters, emails, or phone numbers. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -33,7 +33,7 @@
     "mode": {
       "title": "Scrape mode",
       "type": "string",
-      "description": "Choose how the actor discovers employee profile URLs. Use auto for production workflows because it tries Automatic, the managed fallback route second, authenticated LinkedIn people-tab scraping when LINKEDIN_COOKIES is set, and public search last. Use publicSearch only when provider and cookie-backed paths are unavailable. Use linkedinPeopleTab only when LINKEDIN_COOKIES is configured and you specifically want the company people-tab path.",
+      "description": "Use publicSearch only after verifying the actual build respects the source access gate and disables automatic recovery. The auto and linkedinPeopleTab modes are unavailable in VibeLeads.",
       "editor": "select",
       "enum": [
         "auto",
@@ -44,6 +44,9 @@
         "Auto",
         "Public search only",
         "LinkedIn people tab only"
+      ],
+      "x-vibeleads-allowed-values": [
+        "publicSearch"
       ]
     },
     "searchQuery": {
@@ -73,25 +76,28 @@
     "includeProfileDetails": {
       "title": "Visit profile detail pages",
       "type": "boolean",
-      "description": "Authenticated LinkedIn fallback only. When enabled, the actor visits discovered profile pages to improve visible name, headline, and location extraction. This is slower, uses more compute, and is more likely to hit LinkedIn rate limits. Keep this off for fast MCP calls unless profile-detail quality matters more than speed.",
-      "editor": "checkbox"
+      "description": "Unavailable for enablement in VibeLeads. Keep disabled; gated profile collection is unsupported.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
       "type": "integer",
-      "description": "How many companies to process in parallel. Keep this low when using LinkedIn cookies to reduce rate-limit risk and account pressure. Provider-first runs can usually tolerate the default. For AI-agent calls, the default balances speed and reliability.",
+      "description": "How many companies to process in parallel. Provider-first runs can usually tolerate the default. For AI-agent calls, the default balances speed and reliability. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 5
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings for LinkedIn fallback and public search paths. The default uses Apify Residential proxy, which is recommended for reliability. Provider API calls do not need browser proxying, but fallback scraping does. Keep residential proxies enabled for production runs.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "companyUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "vibeleads-b2b",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Context-aware B2B prospecting, enrichment, email quality, feedback, visual reports and bounded recurring research skills.",
   "author": {
     "name": "Khadin Akbar"
@@ -20,7 +20,7 @@
       "interface": {
         "displayName": "VibeLeads: B2B Lead Finder",
         "shortDescription": "Find and qualify B2B leads",
-        "longDescription": "Understand your offer, choose useful prospecting segments, discover companies, research buying signals, enrich public business contacts, check email quality and prepare evidence-backed lead lists. Reuse scoped business context and session handoffs, refine targeting from deliberate feedback, compare sessions and create private visual reports. Includes bounded recurring-research guidance using a supported host scheduler. Prefers Khadin Akbar\u2019s Actors with verified third-party fallback for gaps/failures. An Apify API key is required for live collection; usage is billed to your own account. No bundled server, sender, telemetry or background service. Planning and imported-file analysis need no data key. Live collection and scheduling depend on actual host tools, access and authorization.",
+        "longDescription": "A business productivity toolkit for B2B sales teams, agencies and founders. Understand your offer, choose useful prospecting segments, discover companies, research buying signals, enrich public business contacts, check email quality and prepare evidence-backed lead lists. Reuse scoped business context and session handoffs, refine targeting from deliberate feedback, compare sessions and create private visual reports. Includes bounded recurring-research guidance using a supported host scheduler. Prefers Khadin Akbar\u2019s Actors with verified third-party fallback for gaps/failures. An Apify API key is required for live collection; usage is billed to your own account. No bundled server, sender, telemetry or background service. Planning and imported-file analysis need no data key. Live collection and scheduling depend on actual host tools, access and authorization.",
         "developerName": "Khadin Akbar",
         "defaultPrompt": [
           "Understand my business and find the most promising B2B prospects with evidence.",
@@ -33,11 +33,17 @@
         "supportURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/SUPPORT.md",
         "privacyPolicyURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/TERMS.md",
-        "category": "Productivity"
+        "category": "Productivity",
+        "capabilities": [
+          "B2B prospecting",
+          "Company and contact enrichment",
+          "Email quality review",
+          "Visual lead reports"
+        ]
       },
       "publication": {
         "countries": [],
-        "release_notes": "Initial directory candidate: 26 prospecting, enrichment, email quality, context, feedback and visual reporting skills. Each user supplies their own data connection; no bundled service or scheduler."
+        "release_notes": "Adds a mandatory source-access gate, disables incompatible automatic recovery, and removes provider access-control workaround instructions. 26 prospecting, enrichment, email quality, context, feedback and visual reporting skills; users supply their own authorized data connection."
       }
     }
   },

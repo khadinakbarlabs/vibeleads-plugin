@@ -79,11 +79,12 @@
     "maxConcurrency": {
       "title": "Max Concurrent Requests",
       "type": "integer",
-      "description": "Number of parallel requests sent to Google. Higher = faster but more likely to trigger rate limits. Recommended: 5 for standard use, 2\u20133 if experiencing blocks.",
+      "description": "Number of parallel requests sent to Google. Recommended: 5 for standard use, 2\u20133 if experiencing blocks. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "minimum": 1,
       "maximum": 20,
       "sectionCaption": "Performance",
       "sectionDescription": "Advanced performance tuning. Default settings work well for most use cases."
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

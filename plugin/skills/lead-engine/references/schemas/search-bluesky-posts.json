@@ -5,10 +5,11 @@
   "schemaVersion": 1,
   "properties": {
     "useUnblockerFallback": {
-      "title": "Use Unblocker after a blocked search",
-      "description": "Retry a blocked public search through Apify Unblocker with at most two requests for transient failures. Defaults to true; set false for direct routes only. Each successful proxy request adds 10 Unblocker units to platform usage. This preserves the query filters and accesses public posts only.",
+      "title": "Restricted access control",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "type": "boolean",
-      "editor": "checkbox"
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     },
     "searchQuery": {
       "title": "Post search query",
@@ -52,7 +53,7 @@
     },
     "lang": {
       "title": "Post language",
-      "description": "Use this when you need posts tagged with one language. Enter a BCP 47 tag such as 'en', 'ja', or 'pt-BR'. Defaults to all languages. This is not a country or proxy location.",
+      "description": "Use this when you need posts tagged with one language. Enter a BCP 47 tag such as 'en', 'ja', or 'pt-BR'. Defaults to all languages. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "type": "string",
       "editor": "textfield"
     },
@@ -99,5 +100,6 @@
   },
   "required": [
     "searchQuery"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

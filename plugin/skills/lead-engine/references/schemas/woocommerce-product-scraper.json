@@ -84,13 +84,15 @@
       ]
     },
     "proxyConfiguration": {
-      "title": "Apify Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Use this only if a public Store API blocks the default direct request path. Set useApifyProxy to true and optionally choose a proxy group or two-letter country code. It defaults to direct HTTP requests because the public WooCommerce Store API is usually accessible without a proxy. This setting never accepts third-party credentials, cookies, or authorization tokens.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "storeUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

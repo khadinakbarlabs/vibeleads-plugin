@@ -1,6 +1,6 @@
 {
   "title": "YouTube Channel Email & Contact Scraper",
-  "description": "Discover YouTube channels by URL or niche and return public contact records (emails, phones, websites, socials). Prefer the default public scrape. Set unlockBusinessInquiryEmail only when the user explicitly wants emails behind YouTube's \"View email address\" button and supplies their own logged-in YouTube session cookies. Never invent cookies. Never enable unlock for smoke tests or MCP probes.",
+  "description": "Discover YouTube channels by URL or niche and return public contact records (emails, phones, websites, socials). Prefer the default public scrape. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -19,13 +19,13 @@
     "maxResults": {
       "title": "Maximum channels to scrape",
       "type": "integer",
-      "description": "How many YouTube channels to extract contact data from in total (across all URLs and search queries combined). Set to 10\u201320 for a quick test. Set to 500\u20135000 for bulk influencer outreach lists. A channel with a public email charges the $0.05 Channel Result event. Optional inquiry unlock (when enabled and successful) charges a separate $0.12 event. Default: 100 channels.",
+      "description": "How many YouTube channels to extract contact data from in total (across all URLs and search queries combined). Set to 10\u201320 for a quick test. Set to 500\u20135000 for bulk influencer outreach lists. A channel with a public email charges the $0.05 Channel Result event. Default: 100 channels. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "minimum": 1,
       "maximum": 10000,
       "editor": "number"
     },
     "scrapeWebsite": {
-      "title": "Follow linked website to find hidden emails",
+      "title": "Read public website contacts",
       "type": "boolean",
       "description": "When enabled, the actor visits the website linked on each channel's About page and scrapes it for additional email addresses and contact info. This is the most powerful feature \u2014 many creators list their business email only on their website, not on YouTube. Increases email hit rate by 30\u201350%. Slightly increases run time. Highly recommended: keep this ON.",
       "editor": "checkbox"
@@ -37,35 +37,40 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "HTTP proxy settings. The actor uses Apify Residential proxies by default \u2014 these are required for reliable YouTube access. Only change this if you have a specific proxy provider or want to use your own proxies. Leave default for best results.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "unlockBusinessInquiryEmail": {
-      "title": "Also unlock YouTube \"View email address\" (optional, needs your Google cookies)",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Most users leave this OFF. Default public scrape already reads About text, mailto links, websites, and Linktree-style pages. Turn this ON only when the user explicitly wants the business inquiry email behind YouTube's \"View email address\" button (login-gated). Requires youtubeSessionCookies owned by the caller. Costs a separate $0.12 inquiry-email-unlocked event only when unlock succeeds for a channel that had no public email. Captcha, expired cookies, and daily limits can still return no email \u2014 there is no guarantee. Never enable for smoke tests or MCP probes. Never invent cookies.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "checkbox",
-      "sectionCaption": "Optional: unlock business inquiry email (BYOK)"
+      "sectionCaption": "Restricted access control",
+      "x-vibeleads-execution": "unsupported"
     },
     "youtubeSessionCookies": {
-      "title": "YouTube session cookies (secret)",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Required only when unlockBusinessInquiryEmail is true. Paste a logged-in YouTube/Google session as a Cookie header string (for example SAPISID=\u2026; __Secure-3PSID=\u2026; LOGIN_INFO=\u2026) or a JSON object of {cookieName: value}. Use a session the caller owns. Cookies are used only for the optional inquiry unlock path, are never written to the dataset or OUTPUT, and expired cookies produce an honest miss rather than a crash. Leave empty when unlock is off. Agents must ask the user for cookies \u2014 never invent them.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "textarea",
       "isSecret": true,
-      "sectionCaption": "Optional: unlock business inquiry email (BYOK)"
+      "sectionCaption": "Restricted access control",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxInquiryUnlocksPerRun": {
-      "title": "Max inquiry unlocks this run",
+      "title": "Restricted access control",
       "type": "integer",
-      "description": "Maximum number of channels for which the optional View-email unlock may be attempted in this run (only when unlock is on and the public path found no email). Use 1\u20135 for tests. Raise only when the user asks for bulk gated unlocks. Range 1\u201350. Default 10. Protects the caller's Google session from burn.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "minimum": 1,
       "maximum": 50,
       "editor": "number",
-      "sectionCaption": "Optional: unlock business inquiry email (BYOK)"
+      "sectionCaption": "Restricted access control",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

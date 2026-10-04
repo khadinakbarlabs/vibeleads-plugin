@@ -17,15 +17,18 @@
       "maximum": 25
     },
     "useApifyProxy": {
-      "title": "Use Apify Residential proxy",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Use this for the initial direct request to a public PitchBook URL. The default true sends an ordinary unauthenticated request through Apify Residential proxy. It does not log in, persist cookies, solve CAPTCHAs, or circumvent access controls. Disable only when testing direct Apify-cloud access."
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "x-vibeleads-execution": "unsupported"
     },
     "useGoogleSearchFallback": {
-      "title": "Use public Google metadata fallback",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Use this when PitchBook blocks the direct unauthenticated request. The default true queries the exact URL identifier through Apify's Google SERP proxy and accepts only a result whose destination exactly matches the supplied URL. It returns public indexed title and description metadata, not private PitchBook fields. Disable to require direct-page extraction only."
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -71,5 +71,6 @@
       "description": "When true, visits each ad's creative detail page after listing extraction to populate first_shown_date, last_shown_date, regions_shown, platforms, ad_headline, and ad_text. Set to false for fastest listing-only mode (these fields will be null/empty)."
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

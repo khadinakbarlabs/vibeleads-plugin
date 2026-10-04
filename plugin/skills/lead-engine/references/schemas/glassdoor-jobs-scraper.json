@@ -59,8 +59,9 @@
     "debug": {
       "title": "Debug mode",
       "type": "boolean",
-      "description": "Use this only for troubleshooting. When true, the actor saves the first few captured Glassdoor JSON responses and any blocked-page HTML to the key-value store for inspection. Defaults to false. This does not change which jobs are scraped.",
+      "description": "Use this only for troubleshooting. Defaults to false. This does not change which jobs are scraped. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "checkbox"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -22,7 +22,7 @@
       "sectionDescription": "Required for full data (spend, impressions, demographics). Get yours free at developers.facebook.com/tools/explorer \u2192 select app \u2192 tick ads_read \u2192 Generate Access Token. Once entered, the actor remembers it for future runs.",
       "title": "Meta API Access Token",
       "type": "string",
-      "description": "Your Meta Graph API access token with ads_read permission. Unlocks spend ranges, impressions, demographics, image/video URLs, and much faster scraping. Without it the actor uses web scraping mode (slower, fewer fields). Get a free token at: https://developers.facebook.com/tools/explorer/",
+      "description": "Your Meta Graph API access token with ads_read permission. Without it the actor uses web scraping mode (slower, fewer fields). Get a free token at: https://developers.facebook.com/tools/explorer/ Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield",
       "isSecret": true
     },
@@ -53,7 +53,7 @@
     "adType": {
       "title": "Ad type",
       "type": "string",
-      "description": "Type of ads to include. ALL covers standard commercial ads and works without a token. HOUSING_ADS, EMPLOYMENT_ADS and CREDIT_ADS are regulated categories that Facebook heavily restricts without a metaAccessToken \u2014 expect limited or blocked results in those modes unless you provide one.",
+      "description": "Type of ads to include. ALL covers standard commercial ads and works without a token. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "select",
       "enum": [
         "ALL",
@@ -131,9 +131,10 @@
       "description": "Adds extra fields to every ad: ad_summary (one-line description), detected_cta (call-to-action type), ad_category, running_days, word_count, hashtag_count, emoji_count. Highly recommended for LLM/MCP pipelines. No extra cost."
     },
     "providerFallbackEnabled": {
-      "title": "Use provider fallback",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "When the native Meta Graph API or browser scrape returns no ads because of a block, timeout, rate limit, or expired token, try the configured ScrapeCreators/SociaVault public Meta Ad Library API fallback. No user cookies required."
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "x-vibeleads-execution": "unsupported"
     },
     "onlyCount": {
       "title": "Count only (no ad data)",
@@ -187,17 +188,20 @@
       ]
     },
     "metaAccessTokens": {
-      "title": "Token pool (high-volume)",
+      "title": "Restricted access control",
       "type": "array",
-      "description": "Add multiple Meta API tokens to distribute rate limits across tokens. The actor picks one randomly per run. Only needed for very high-volume use (1000+ ads per minute). Leave empty if using the single token above.",
-      "editor": "json"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "json",
+      "x-vibeleads-execution": "unsupported"
     },
     "proxyUrls": {
-      "title": "Custom proxy URLs",
+      "title": "Restricted access control",
       "type": "array",
-      "description": "Use your own residential proxies (Webshare, BrightData, Oxylabs, Smartproxy). Format: http://user:pass@host:port. Only applies in web scrape mode (no Meta token). Leave empty to use Apify's built-in proxies.",
-      "editor": "json"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "json",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

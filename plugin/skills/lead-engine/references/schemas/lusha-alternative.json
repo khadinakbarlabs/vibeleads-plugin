@@ -71,7 +71,7 @@
     "requestTimeoutSecs": {
       "title": "Request timeout in seconds",
       "type": "integer",
-      "description": "Maximum wait for each direct or fallback public-page request. Defaults to 10 seconds and accepts 5 to 20 seconds, keeping a single run bounded. A transient or blocked direct request gets one short retry and, if enabled, one Apify Unblocker fallback. This does not extend the overall Actor timeout.",
+      "description": "Maximum wait for each direct or fallback public-page request. Defaults to 10 seconds and accepts 5 to 20 seconds, keeping a single run bounded. This does not extend the overall Actor timeout. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 5,
       "maximum": 20
@@ -87,13 +87,15 @@
       ]
     },
     "useApifyUnblockerFallback": {
-      "title": "Use Apify Unblocker fallback",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "After a direct request is blocked or transiently unavailable, make one bounded retry through Apify Unblocker. Defaults to true to improve public-page reachability while preserving the same domain and redirect checks. Unblocker is Apify platform usage paid by the caller, not an external contact-data subscription. Disable it for a direct-only control run.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "contacts"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

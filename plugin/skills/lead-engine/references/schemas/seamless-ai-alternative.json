@@ -68,17 +68,20 @@
       "maximum": 45
     },
     "useApifyUnblockerFallback": {
-      "title": "Use Apify Unblocker after a classified direct failure",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "When enabled, a single Apify Unblocker retry is attempted only after a direct fetch is blocked or transiently unavailable. This can add Apify proxy usage charges."
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "x-vibeleads-execution": "unsupported"
     },
     "preferApifyUnblocker": {
-      "title": "Prefer Apify Unblocker before a direct request",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Off by default. Enable only if a customer-authorized site consistently blocks direct public requests."
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "contacts"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

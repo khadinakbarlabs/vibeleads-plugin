@@ -127,11 +127,13 @@
       ]
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings. Residential proxies are strongly recommended \u2014 Alibaba blocks most datacenter IPs. The Actor automatically prefers Apify residential when your account has it, and gracefully falls back to Apify datacenter when it does not \u2014 so leaving this at the default works on any plan. Override only for a specific proxy requirement.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

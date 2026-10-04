@@ -74,5 +74,40 @@ class PackageTests(unittest.TestCase):
         (self.root / 'skills/lead-engine/references/operating-contract.md').unlink()
         self.assertFalse(validate(self.root)['passed'])
 
+    def test_schema_network_controls_require_explicit_restriction(self):
+        path = self.root / 'skills/lead-engine/references/schemas/zoominfo-alternative.json'
+        data = json.loads(path.read_text())
+        data['properties']['useApifyUnblockerFallback'].pop('x-vibeleads-execution', None)
+        path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_embedded_block_recovery_recommendation_rejected(self):
+        path = self.root / 'skills/lead-engine/references/schemas/zoominfo-alternative.json'
+        data = json.loads(path.read_text())
+        data['description'] = 'Use residential proxies to bypass protection.'
+        path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_explicit_prohibition_is_not_recovery_guidance(self):
+        path = self.root / 'skills/lead-engine/references/schemas/zoominfo-alternative.json'
+        data = json.loads(path.read_text())
+        data['description'] = 'Increase a timeout only for a slow response, not to bypass access controls.'
+        path.write_text(json.dumps(data))
+        self.assertTrue(validate(self.root)['passed'])
+
+    def test_cookie_unlock_control_is_restricted(self):
+        path = self.root / 'skills/lead-engine/references/schemas/youtube-channel-email-extractor.json'
+        data = json.loads(path.read_text())
+        data['properties']['youtubeSessionCookies'].pop('x-vibeleads-execution', None)
+        path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_token_rotation_recommendation_rejected(self):
+        path = self.root / 'skills/lead-engine/references/schemas/meta-ad-library-scraper.json'
+        data = json.loads(path.read_text())
+        data['description'] = 'Distribute rate limits across randomly selected tokens.'
+        path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
 
 if __name__ == '__main__': unittest.main()

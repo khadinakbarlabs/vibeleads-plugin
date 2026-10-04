@@ -61,7 +61,7 @@
     "language": {
       "title": "Google Maps result language",
       "type": "string",
-      "description": "The Google Maps interface language used while collecting the listing. Select 'en' for English or another supported language such as 'es' or 'de'. It defaults to 'en' and can influence category and address text. It is not a country or proxy-region selector.",
+      "description": "The Google Maps interface language used while collecting the listing. Select 'en' for English or another supported language such as 'es' or 'de'. It defaults to 'en' and can influence category and address text. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "enum": [
         "en",
         "es",
@@ -88,5 +88,6 @@
       "maximum": 5
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

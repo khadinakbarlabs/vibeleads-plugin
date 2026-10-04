@@ -100,7 +100,7 @@
     "countryCode": {
       "title": "Country hint",
       "type": "string",
-      "description": "Two-letter Google region hint used for Maps review requests. Use this when review ordering or place resolution should match a specific market, for example US, GB, DE, or PK. Defaults to US. Not a proxy country selector by itself.",
+      "description": "Two-letter Google region hint used for Maps review requests. Use this when review ordering or place resolution should match a specific market, for example US, GB, DE, or PK. Defaults to US. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield"
     },
     "includePersonalData": {
@@ -109,11 +109,13 @@
       "description": "When true, includes reviewer name, profile URL, and profile photo URL. When false (default), these are nulled out and only a stable reviewer hash is returned. Personal data is regulated by GDPR in the EU \u2014 keep disabled unless you have a legitimate purpose and documented basis. reviewId is always returned regardless of this setting."
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy used to scrape Google Maps. Defaults to Apify Residential proxy which bypasses most Google bot checks. Do not override unless you know your proxy can handle Google.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

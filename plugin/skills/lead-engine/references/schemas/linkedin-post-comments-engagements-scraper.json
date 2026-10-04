@@ -1,6 +1,6 @@
 {
   "title": "LinkedIn Post Comments & Engagements Scraper Input",
-  "description": "Scrape known public LinkedIn post URLs for post-level engagement metrics and visible comments. The actor uses the owner-configured the managed fallback route API key and does not ask users for LinkedIn cookies.",
+  "description": "Scrape known public LinkedIn post URLs for post-level engagement metrics and visible comments. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -69,5 +69,6 @@
   },
   "required": [
     "postUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

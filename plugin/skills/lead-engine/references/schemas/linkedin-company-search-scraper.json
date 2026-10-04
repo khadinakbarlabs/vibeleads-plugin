@@ -42,5 +42,6 @@
       "editor": "checkbox"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

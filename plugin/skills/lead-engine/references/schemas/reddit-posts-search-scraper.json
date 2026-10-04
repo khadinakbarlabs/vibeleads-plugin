@@ -89,10 +89,11 @@
       "description": "Disabled by default for business research and AI-agent workflows. Enable only when you intentionally need NSFW Reddit content."
     },
     "proxy": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings. Defaults to Apify Residential proxies because Reddit often blocks datacenter IPs. Leave unchanged unless you know your target and plan requirements.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "redditClientId": {
       "title": "Reddit client ID (optional)",
@@ -111,5 +112,6 @@
   },
   "required": [
     "queries"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

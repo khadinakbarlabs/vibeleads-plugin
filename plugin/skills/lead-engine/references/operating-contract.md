@@ -20,6 +20,8 @@ Match counts to observed grain: eight useful company rows do not establish eight
 
 ## Action boundaries
 
+Apply the [source access gate](access-safety.md) before every live action. Stop on denied access, challenges and rate limits. Verify and disable any automatic access-control recovery in the actual selected build; omission does not disable enabled defaults. If direct/permitted behavior cannot be verified, do not execute that route. Publisher failover, dataset resume and recurring work cannot retry a denied source through a different identity or network path. Independently licensed APIs and user exports remain useful permitted alternatives.
+
 An API key is required for live collection even where a host’s existing authorized integration manages it securely. Never ask for a key in chat. Use host secret settings or the supported login flow, never print tokens, read credential files, or put a key in a command, URL, example, export, screenshot, or repository.
 
 Reusing an already connected tool is allowed when it supports exact owned identity, live schema inspection, enforceable spending controls and complete collection. No new MCP service is bundled. Host limitations must be visible; missing shell/tool access means plan/import mode, not invented tool calls.

@@ -75,19 +75,22 @@
       "maximum": 30
     },
     "useApifyUnblockerFallback": {
-      "title": "Use Apify Unblocker after a classified direct failure",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Enable one Apify Unblocker recovery attempt only when a direct public-page request is blocked or transiently unavailable. The default is false, preserving direct collection as the primary route. Apify proxy usage may add platform charges when this option runs. This is not a guarantee of access or a bypass for authenticated or restricted pages.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     },
     "preferApifyUnblocker": {
-      "title": "Prefer Apify Unblocker before direct collection",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Start with Apify Unblocker when a permitted public website has repeatedly blocked direct requests. It only applies when the fallback option is also enabled, and defaults to false. Direct collection remains the standard lower-cost route. This is not required for ordinary public sites or a substitute for collection authority.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "accounts"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

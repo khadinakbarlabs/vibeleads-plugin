@@ -39,8 +39,8 @@
       "type": "boolean"
     },
     "proxyCountry": {
-      "title": "Residential proxy country",
-      "description": "Use this when the public GulfTalent API needs a nearby Gulf-region residential fallback route. Choose the proxy country closest to your search market; this is not a job-location filter.",
+      "title": "Restricted access control",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "type": "string",
       "editor": "select",
       "enum": [
@@ -58,7 +58,9 @@
         "Kuwait",
         "Bahrain",
         "Oman"
-      ]
+      ],
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

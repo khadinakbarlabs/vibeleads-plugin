@@ -13,7 +13,7 @@
     "location": {
       "title": "Location",
       "type": "string",
-      "description": "Use this to narrow a keyword search to a SEEK place name. Enter a location such as Melbourne VIC or Auckland. It is optional and defaults to an Australia-wide or New Zealand-wide search when blank. This is not a proxy country setting or a street-address field.",
+      "description": "Use this to narrow a keyword search to a SEEK place name. Enter a location such as Melbourne VIC or Auckland. It is optional and defaults to an Australia-wide or New Zealand-wide search when blank. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield"
     },
     "country": {
@@ -64,13 +64,13 @@
     "includeDetails": {
       "title": "Include job descriptions",
       "type": "boolean",
-      "description": "Use this when you need the public job description and detail-page fields alongside search-card data. Set true or false, for example true. It defaults to true and a blocked detail page leaves the search result available with a warning. Set false for a faster, compact result set without detail-page enrichment.",
+      "description": "Use this when you need the public job description and detail-page fields alongside search-card data. Set true or false, for example true. Set false for a faster, compact result set without detail-page enrichment. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "checkbox"
     },
     "proxyCountry": {
-      "title": "Residential proxy country",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Use this to select the actor-managed Residential proxy used for the browser session. Choose AU or NZ, for example AU. It defaults to the selected SEEK market. This is not a location filter and does not collect credentials or cookies.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "select",
       "enum": [
         "AU",
@@ -79,7 +79,9 @@
       "enumTitles": [
         "Australia",
         "New Zealand"
-      ]
+      ],
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

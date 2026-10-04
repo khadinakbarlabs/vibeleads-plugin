@@ -189,11 +189,13 @@
       "description": "Fetch each event's detail page to extract full description, organizer name and profile URL, ticket tiers with prices, and structured pricing currency. When false, returns only browse-page fields (still 25+ fields). Adds one HTTP request per event but no extra event charge."
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify proxy settings. Defaults to RESIDENTIAL group for reliability against Cloudflare image CDN. Datacenter works for low-volume runs but may get rate-limited at scale.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

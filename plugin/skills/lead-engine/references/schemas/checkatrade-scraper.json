@@ -14,7 +14,7 @@
     "location": {
       "title": "UK location or postcode",
       "type": "string",
-      "description": "The UK town, city, postcode, or postcode area to search, such as 'London' or 'SW1A'. Combined with trade unless searchUrls is supplied. Defaults to 'London'. This is not a country selector or proxy setting.",
+      "description": "The UK town, city, postcode, or postcode area to search, such as 'London' or 'SW1A'. Combined with trade unless searchUrls is supplied. Defaults to 'London'. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield"
     },
     "searchUrls": {
@@ -69,11 +69,13 @@
       "maximum": 100000
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional Apify proxy configuration used for public Checkatrade requests. The default uses the RESIDENTIAL group for consistent UK directory access. Leave the default unless you operate an approved custom proxy. This does not alter the location searched above.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

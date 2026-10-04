@@ -73,14 +73,16 @@
     "debug": {
       "title": "Save Debug Snapshots",
       "type": "boolean",
-      "description": "Use this when a run returns diagnostic rows and you need HTML or response samples for troubleshooting. Defaults to false to keep storage small. When enabled, the actor saves blocked HTML and response samples to KV storage. This is not needed for normal scraping."
+      "description": "Use this when a run returns diagnostic rows and you need HTML or response samples for troubleshooting. Defaults to false to keep storage small. This is not needed for normal scraping. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate."
     },
     "proxyConfiguration": {
-      "title": "Proxy Configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Use this only when you need to override the default residential proxy configuration. Defaults to Apify Residential proxies because Glassdoor uses Cloudflare protection. Keep the default for most runs. This is not where you put Glassdoor account cookies or passwords.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

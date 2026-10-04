@@ -149,11 +149,12 @@
     "requestTimeoutSecs": {
       "title": "Request timeout seconds",
       "type": "integer",
-      "description": "Use this to set the navigation and public-library request timeout in seconds. Enter a value from 20 to 120; the default is 60 and retries rotate the residential browser session. Increase it only for a slow target response, not to bypass an access block. This is not the overall Apify run timeout.",
+      "description": "Use this to set the navigation and public-library request timeout in seconds. Increase it only for a slow target response, not to bypass an access block. This is not the overall Apify run timeout. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 20,
       "maximum": 120
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

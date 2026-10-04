@@ -70,9 +70,10 @@
       ]
     },
     "useBrowserFallback": {
-      "title": "Use browser fallback",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Try a Playwright browser scrape when provider APIs are unavailable, empty, or disabled."
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxBrowserScrolls": {
       "title": "Max browser scrolls",
@@ -82,21 +83,24 @@
       "maximum": 50
     },
     "facebookCookies": {
-      "title": "Facebook cookies",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Optional JSON cookie array or raw Cookie header for browser fallback only. Use your own authorized session; do not use this for data you are not allowed to access.",
-      "editor": "textarea"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "textarea",
+      "x-vibeleads-execution": "unsupported"
     },
     "proxy": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings for browser fallback.",
-      "editor": "json"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "json",
+      "x-vibeleads-execution": "unsupported"
     },
     "includeRawData": {
       "title": "Include raw response data",
       "type": "boolean",
       "description": "Include raw source objects in each dataset row for debugging and custom downstream parsing."
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

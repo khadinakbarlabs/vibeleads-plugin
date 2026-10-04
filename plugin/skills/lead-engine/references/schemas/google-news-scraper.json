@@ -1,6 +1,6 @@
 {
   "title": "Google News Extractor Input",
-  "description": "Extract news articles from Google News by keyword, topic, or URL. Supports bulk search queries, built-in topics, custom section URLs, and direct RSS feed URLs. No login, API key, or cookies required.",
+  "description": "Extract news articles from Google News by keyword, topic, or URL. Supports bulk search queries, built-in topics, custom section URLs, and direct RSS feed URLs. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -213,5 +213,6 @@
       "description": "When enabled (default), removes duplicate articles across queries and topics based on URL. Prevents the same article from appearing multiple times when it matches several search queries or topics simultaneously. Disable only if you need to know which queries each article appeared in (the search_query field tracks this).",
       "editor": "checkbox"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

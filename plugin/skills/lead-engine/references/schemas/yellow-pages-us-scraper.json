@@ -44,10 +44,12 @@
       "description": "Visit each business profile page to extract email addresses, business hours, and description. Slower but more complete data."
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings. yellowpages.com requires residential proxies \u2014 Apify RESIDENTIAL group recommended. The actor includes a the managed proxy route residential fallback for reliability.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -109,14 +109,15 @@
       ]
     },
     "fallbackPolicy": {
-      "title": "Verification fallback policy",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Choose strict to fail truthfully without billing when the required verification provider is unavailable. Choose dns_candidate to return the MX-backed candidate route when provider verification cannot complete. The default strict policy keeps provider availability distinct from a completed verification. The fallback never labels a conventional candidate as mailbox-verified.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "select",
       "enum": [
         "strict",
         "dns_candidate"
-      ]
+      ],
+      "x-vibeleads-execution": "unsupported"
     },
     "maxResults": {
       "title": "Maximum contact enrichments",
@@ -141,5 +142,6 @@
       "editor": "checkbox"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

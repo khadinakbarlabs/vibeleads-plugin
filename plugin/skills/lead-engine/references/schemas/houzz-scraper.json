@@ -36,19 +36,21 @@
       "maximum": 2000
     },
     "proxyCountry": {
-      "title": "Proxy country",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Two-letter country code for the residential proxy exit, e.g. 'US', 'GB', 'CA', 'AU'. Defaults to 'US'. Match this to the Houzz market you want. Residential proxies are required \u2014 Houzz (PerimeterX) blocks datacenter IPs.",
-      "editor": "textfield"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "textfield",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxRequestRetries": {
       "title": "Max request retries",
       "type": "integer",
-      "description": "How many times a blocked or failed page is retried with a fresh session before giving up. Default 8 (Houzz uses PerimeterX, so retries matter). Range 1-15. Higher values raise reliability but also compute cost on hard blocks.",
+      "description": "Range 1-15. Higher values raise reliability but also compute cost on hard blocks. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 15
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

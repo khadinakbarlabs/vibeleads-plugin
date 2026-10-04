@@ -20,7 +20,7 @@
     "maxConcurrency": {
       "title": "Max concurrency",
       "type": "integer",
-      "description": "How many profile pages to load in parallel (e.g. 2). Higher values are faster but raise the chance of anti-bot blocks. Defaults to 2. Keep at 1-3 for reliability.",
+      "description": "How many profile pages to load in parallel (e.g. 2). Defaults to 2. Keep at 1-3 for reliability. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 5
@@ -28,5 +28,6 @@
   },
   "required": [
     "profileUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

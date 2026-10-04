@@ -72,7 +72,7 @@
     "requirePhone": {
       "title": "Require public phone",
       "type": "boolean",
-      "description": "Skip profiles with no public phone number. Does not unlock Angi-gated numbers. Default false.",
+      "description": "Skip profiles with no public phone number. Default false. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "checkbox"
     },
     "maxPagesPerListing": {
@@ -84,10 +84,11 @@
       "maximum": 50
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify RESIDENTIAL US is required. Datacenter proxies are Cloudflare-blocked on angi.com. Override only if you know what you are doing.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "storeRawSample": {
       "title": "Store raw page sample (debug)",
@@ -96,5 +97,6 @@
       "editor": "checkbox"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

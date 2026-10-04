@@ -47,10 +47,12 @@
       "maximum": 10
     },
     "useUnblockerFallback": {
-      "title": "Retry blocked public pages through Apify Unblocker",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "When HiringCafe blocks the direct stateless HTML request, retry that public search page once through Apify Unblocker. This is only used after a classified block and can add separate platform usage. Defaults to true.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

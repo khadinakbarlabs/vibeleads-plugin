@@ -63,7 +63,7 @@
     "country": {
       "title": "Country (gl)",
       "type": "string",
-      "description": "Two-letter ISO country code used as YouTube geo context (gl) and residential proxy country, for example 'US' or 'GB'. Defaults to 'US'. This is not a language code \u2014 see language.",
+      "description": "Defaults to 'US'. This is not a language code \u2014 see language. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield"
     },
     "language": {
@@ -79,9 +79,9 @@
       "editor": "checkbox"
     },
     "fallbackMode": {
-      "title": "Managed fallback mode",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Controls when the managed fallback runs after direct YouTube HTTP. 'auto' (default) uses residential YouTube first and falls back only if blocked. 'never' stays on direct HTTP. 'always' skips direct scraping. This is not a proxy group setting.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "select",
       "enum": [
         "auto",
@@ -92,16 +92,19 @@
         "Auto (direct first, managed fallback last resort)",
         "Never (direct only)",
         "Always (managed fallback only)"
-      ]
+      ],
+      "x-vibeleads-execution": "unsupported"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings for the direct YouTube HTTP scrape. Residential proxies are enabled by default because datacenter IPs are blocked. Country follows the country field unless overridden. This is not the managed fallback.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "searchQueries"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

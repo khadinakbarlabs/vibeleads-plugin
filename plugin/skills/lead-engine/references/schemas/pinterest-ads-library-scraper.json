@@ -9,7 +9,7 @@
     "country": {
       "title": "Ad target market",
       "type": "string",
-      "description": "Select the supported Pinterest repository market used to find disclosed ads, for example FR for France. Use a two-letter country code from the list. Defaults to FR for a working public repository search. This is not your billing country or proxy-location setting.",
+      "description": "Select the supported Pinterest repository market used to find disclosed ads, for example FR for France. Use a two-letter country code from the list. Defaults to FR for a working public repository search. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "select",
       "enum": [
         "AT",
@@ -142,5 +142,6 @@
       "maximum": 120
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

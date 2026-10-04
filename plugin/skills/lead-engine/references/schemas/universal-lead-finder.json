@@ -2,7 +2,7 @@
   "title": "Universal B2B Lead Finder \u2014 Input",
   "type": "object",
   "schemaVersion": 1,
-  "description": "Find B2B leads with emails, phones, and social profiles. No cookies or API keys required.",
+  "description": "Find B2B leads with emails, phones, and social profiles. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
   "properties": {
     "searchQuery": {
       "title": "Search Query",
@@ -46,12 +46,14 @@
       "description": "Also crawl /contact, /about, /team subpages for better email coverage. Slower but finds more emails."
     },
     "proxyConfiguration": {
-      "title": "Proxy Configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Proxy settings for scraping. Datacenter proxies (default) work for most sites. Use Residential if you experience blocks.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "proxy",
-      "sectionCaption": "Advanced Settings"
+      "sectionCaption": "Restricted access control",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

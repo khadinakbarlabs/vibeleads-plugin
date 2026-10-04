@@ -65,7 +65,7 @@
     "articleUrls": {
       "title": "Article URLs",
       "type": "array",
-      "description": "Optional list of ft.com /content/{uuid} URLs. Each URL is enriched from public Open Graph / meta tags only when HTML is reachable. Often blocked by Cloudflare without Residential proxy. Does not bypass the FT paywall or return subscription-only full text.",
+      "description": "Optional list of ft.com /content/{uuid} URLs. Each URL is enriched from public Open Graph / meta tags only when HTML is reachable. Does not bypass the FT paywall or return subscription-only full text. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "stringList"
     },
     "sinceHours": {
@@ -84,10 +84,12 @@
       "maximum": 500
     },
     "proxyConfiguration": {
-      "title": "Proxy (optional)",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional Apify proxy. Official FT RSS feeds normally work without one. Enable Residential only if HTML URL enrich is Cloudflare-blocked.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

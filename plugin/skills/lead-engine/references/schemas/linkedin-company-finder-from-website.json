@@ -39,10 +39,11 @@
       "type": "integer",
       "minimum": 1,
       "maximum": 5,
-      "description": "How many website lookups to run in parallel. Default 2 balances speed against provider rate limits. Raise to 5 for large batches; lower to 1 if you see provider rate-limit errors in the run log."
+      "description": "How many website lookups to run in parallel. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate."
     }
   },
   "required": [
     "websites"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

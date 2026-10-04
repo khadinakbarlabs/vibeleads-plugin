@@ -108,11 +108,13 @@
       "maximum": 20
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify Proxy settings. Defaults to automatic proxy. Amazon blocks datacenter IPs aggressively on heavy use \u2014 for reliable, large runs switch this to RESIDENTIAL. Seller profile pages tolerate datacenter better than search/product pages.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

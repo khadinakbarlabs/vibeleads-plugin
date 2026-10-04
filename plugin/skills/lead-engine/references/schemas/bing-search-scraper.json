@@ -13,7 +13,7 @@
     "country": {
       "title": "Country code",
       "type": "string",
-      "description": "Two-letter ISO country code (e.g., 'US', 'GB', 'DE') used for IP geo-targeting via Apify residential proxy and Bing market hint. Defaults to 'US'. NOT a city name or 3-letter code.",
+      "description": "Defaults to 'US'. NOT a city name or 3-letter code. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "select",
       "enum": [
         "US",
@@ -119,24 +119,27 @@
       "editor": "checkbox"
     },
     "fallbackMode": {
-      "title": "Managed Bing fallback mode",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Controls when the managed Bing search fallback runs. 'auto' (default) \u2014 Bing direct first; managed fallback only for queries the direct scrape returned zero records for. 'always' \u2014 skip Bing direct, use managed search for every query (most reliable, higher cost). 'never' \u2014 direct Bing only, no fallback. NOT a setting for the Microsoft Bing Search API.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "select",
       "enum": [
         "auto",
         "always",
         "never"
-      ]
+      ],
+      "x-vibeleads-execution": "unsupported"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify Proxy configuration. Defaults to residential proxy with country-targeted IP for reliable Bing access. Override only if you have a specific proxy strategy.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "queries"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

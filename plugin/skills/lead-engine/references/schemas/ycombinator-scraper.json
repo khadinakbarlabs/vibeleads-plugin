@@ -247,11 +247,13 @@
       "type": "boolean"
     },
     "proxyConfiguration": {
-      "title": "\ud83d\udee1\ufe0f Proxy Configuration (HTML enrichment only)",
-      "description": "Proxy used for HTML page fetches (`/companies/{slug}`, `/jobs`, `/jobs/{slug}`). YC's Algolia API is hit directly without proxy. Default uses Apify residential proxy for highest reliability against rate limits.",
+      "title": "Restricted access control",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "type": "object",
-      "editor": "proxy"
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

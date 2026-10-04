@@ -53,9 +53,9 @@
       "unit": "reviews"
     },
     "proxyType": {
-      "title": "Proxy Type",
+      "title": "Restricted access control",
       "type": "string",
-      "description": "Proxy strategy for scraping. Yelp blocks shared datacenter IPs heavily, so residential is the default direct-scrape path. Use datacenter only for small tests, and 'none' for local testing only.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "select",
       "enum": [
         "datacenter",
@@ -67,8 +67,10 @@
         "Residential \u2014 Recommended for Yelp",
         "None \u2014 No proxy (local testing only)"
       ],
-      "sectionCaption": "Proxy Settings",
-      "sectionDescription": "Yelp requires proxies to scrape reliably at scale."
+      "sectionCaption": "Restricted access control",
+      "sectionDescription": "Yelp requires proxies to scrape reliably at scale.",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

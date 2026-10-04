@@ -83,11 +83,12 @@
     "maxConcurrency": {
       "title": "Parallel directory requests",
       "type": "integer",
-      "description": "Use this advanced control to set how many Clutch directory requests run in parallel. Two is the reliability-oriented default. Higher values may finish faster but can trigger stricter rate limiting. Keep the default unless runtime matters more than conservative request pacing.",
+      "description": "Use this advanced control to set how many Clutch directory requests run in parallel. Two is the reliability-oriented default. Keep the default unless runtime matters more than conservative request pacing. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 5
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

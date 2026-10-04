@@ -41,13 +41,15 @@
       "editor": "checkbox"
     },
     "useApifyProxyFallback": {
-      "title": "Use Apify Residential Proxy fallback",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Retry through Apify Residential Proxy after a direct request is clearly blocked or temporarily unavailable. Defaults to true to improve current public-page reachability. Apify proxy traffic is platform usage paid by the caller; catalog evidence can still return when live access is unavailable.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     }
   },
   "required": [
     "startUrls"
-  ]
+  ],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

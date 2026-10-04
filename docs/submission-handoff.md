@@ -1,17 +1,33 @@
 # Submission handoff
 
-Listing name: **VibeLeads: B2B Lead Finder**. Subtitle: **Find and qualify B2B leads**. Short description: “Context-aware B2B prospecting, enrichment, email quality, feedback, private visual reports and bounded recurring research skills.” Key disclosure: an Apify API key is required for live collection; data usage is billed to the user’s account.
+## Released package
 
-Source published: [khadinakbarlabs/vibeleads-plugin](https://github.com/khadinakbarlabs/vibeleads-plugin). Public package privacy, terms and support pages are included in the repository. Directory submissions are being prepared; no directory approval or publication is claimed. Publisher verification, country availability and attestations must match the actual destination account and the developer’s choices.
+**VibeLeads: B2B Lead Finder**, subtitle **Find and qualify B2B leads**, is published in [khadinakbarlabs/vibeleads-plugin](https://github.com/khadinakbarlabs/vibeleads-plugin). Latest packaged release: [v0.2.4](https://github.com/khadinakbarlabs/vibeleads-plugin/releases/tag/v0.2.4), with the source-access safety remediation. The user selected the **Momentum** logo and availability in **all supported countries**.
 
-Next release steps: publish the tagged archives; verify the public support/privacy/terms pages; confirm publisher identity, availability and commercial details; review the included VibeLeads icon in the destination listing; load final packages in intended hosts; then submit separately to each vendor. Only declare vendor compliance/approval after that vendor’s checks and observed review state. Skills-only workflows do not need fabricated MCP endpoints or reviewer credentials.
+The installable folder is `plugin/`, with identifier `vibeleads-b2b`. It contains one shared set of **26 skills** and optional readable offline quality/report helpers. Maintainer tests, scripts and the fictional marketing preview remain outside the installation. No dedicated agent personas, MCP server, sender, scheduler service or hidden telemetry are bundled.
 
-Behavioral scenarios and evidence are in `tests/` and the exported validation report. A prompt script is not a demo recording. A metadata/schema check is not proof of live lead delivery from every source.
+Live collection requires the user's Apify API key or configured login and bills their own data account. Owned Actors are preferred; verified other-publisher fallback is allowed for gaps or failures within the authorized remaining budget. Planning and imported-file analysis require no data key. Recurring jobs depend on actual supported host tools and an authorized scope; none was activated during this release.
 
-Revision 0.2.0 contains 26 skills and optional offline quality/report helpers. No dedicated agent personas or scheduler/server are bundled. Recurring jobs are created only through a supported host after an actual authorized request; user context/feedback persists only in an established chosen workspace or explicitly enabled host memory. Visual preview is fictional; no tenfold performance or conversion lift is claimed.
+## Verified checks
 
-October 5 review preparation: user paused both vendor submissions to select the logo, and requested maximum fixes to the Claude auto-review findings. No Anthropic/OpenAI submission has been sent. Revision 0.2.2 separates the installable `plugin/` folder from public maintainer tools/tests and uses the distinct internal identifier `vibeleads-b2b`. User chose all supported countries. Initial root-folder scan found legitimate PNG references and a name-similarity hold; a scan of the new runtime folder is required before claiming they are resolved. Legal/policy attestations remain developer actions.
+- 74 automated tests passed, including package boundary and secret checks.
+- Claude Code v2.1.289 strict runtime and root marketplace validation passed without warnings.
+- The independent package review confirmed all 250 skill/resource files survived the distribution move unchanged. Both archive layouts contain the same 261 package files, excluding maintainer material.
+- Live Claude directory scan of `plugin/` at `e18c7af` passed validation, directory lints and name/publisher checks, with **zero policy holds**. All seven earlier holds were resolved. Five metadata notices remain for four directory URL fields and the icon; each expanded notice explicitly states **No action needed**.
+- Public support, privacy and terms pages are present and accessible. ZIP extraction and hashes were verified before GitHub publication.
 
-Observed live rescan of `plugin/` at c249d37: validation passed, 26 skills, no MCP servers, directory lints passed, name/publisher checks passed, zero policy holds. Four directory URL metadata warnings remain; each expanded portal message explicitly says “No action needed.” Current official Claude Code v2.1.289 strict runtime and marketplace validators both pass without warnings. The user selected logo direction A, Momentum; final logo preparation precedes vendor submission.
+The fictional report preview is interaction evidence, not real prospect data. Native conversation evaluation was blocked by account usage limits. Catalog/schema inspection is not proof of live delivery from every provider. No paid collection or outreach was performed during validation.
 
-Final Momentum asset scan at 7cfa614: zero policy holds; five metadata notices (four URL fields plus icon), all explicitly no action needed. OpenAI accepted 0.2.2 as a draft with all 26 skills and verified individual publisher selection. Its category check found the omitted category; revision 0.2.3 explicitly selects the documented Productivity category. Neither directory submission has been sent; human legal/policy attestations remain.
+## Directory state as of October 5, 2026
+
+**Anthropic:** a saved directory draft uses the public repository, default branch and `plugin/` folder. Listing links and data-handling responses are filled. The latest source scan has no policy holds. The user completed the compliance attestations and submitted it. The portal shows **Submitted / Scanning**, not reviewed or published. The push-only, SSL-verified webhook is connected; the initial ping returned HTTP 200.
+
+**OpenAI:** the dashboard accepted v0.2.3 as a draft with 26 skills, the Momentum logo, the existing verified individual publisher and category **Productivity**. All 26 skill checks finished; lead-engine was rejected for access-control circumvention. Revision 0.2.4 implements a source-access gate and removes incompatible recovery recommendations. A new ZIP and fresh scan are required. A nonblocking category notice persists after adding the documented category and must be reviewed; it is not claimed resolved. Six developer attestations remain. The draft has **not been submitted for review or published**.
+
+## Remaining actions
+
+1. Publish the reviewed v0.2.4 safety update and verify its tracked-branch scan in Anthropic.
+2. Finish OpenAI's automated checks; address concrete blockers if any. The authorized developer reviews and completes its attestations, then submits for review.
+3. Read back each portal's actual state. Report **In review**, **Approved** and **Published** separately. An uploaded or saved draft is not a submitted or published directory release.
+
+Do not manufacture MCP endpoints, reviewer credentials, demo recordings, provider guarantees or acceptance evidence for a skills-only package. Keep portal screenshots and publisher contact information in local release evidence rather than public assets.

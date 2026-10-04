@@ -102,5 +102,6 @@
       "type": "boolean",
       "description": "When on (default), the same title+company on several boards becomes one row. The richer copy wins and the others appear in alsoFoundOn. Turn off to emit every board copy separately. Duplicate rows are never billed twice when this is on."
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

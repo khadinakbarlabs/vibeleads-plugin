@@ -77,10 +77,11 @@
       ]
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Apify Proxy. Residential is strongly recommended \u2014 G2 and Capterra use Cloudflare/Gartner anti-bot that blocks datacenter IPs. Default: residential US.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "debug": {
       "title": "Debug dump (developer only)",
@@ -88,5 +89,6 @@
       "description": "When true, the first page of each product is dumped to the run's key-value store under 'DEBUG-<platform>-<slug>' for selector diagnostics. Leave OFF for production scrapes \u2014 it makes runs slower and clutters KV.",
       "editor": "checkbox"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

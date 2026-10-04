@@ -31,12 +31,14 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Advanced: Apify proxy configuration. Leave as default unless you have a specific proxy requirement. Residential proxies are enabled by default for best compatibility with anti-bot systems.",
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "proxy",
-      "sectionCaption": "Advanced settings"
+      "sectionCaption": "Restricted access control",
+      "x-vibeleads-execution": "unsupported"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

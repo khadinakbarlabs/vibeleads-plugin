@@ -73,9 +73,10 @@
     "countryCode": {
       "title": "Proxy country",
       "type": "string",
-      "description": "Use this to route the browser through an Apify residential proxy in the target country. Accepted format is a two-letter ISO code such as 'US', 'GB', or 'DE'. Defaults to 'US'. This is not a location filter; use Location for the search area.",
+      "description": "Accepted format is a two-letter ISO code such as 'US', 'GB', or 'DE'. Defaults to 'US'. This is not a location filter; use Location for the search area. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "textfield"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

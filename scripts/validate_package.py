@@ -14,6 +14,34 @@ ALLOWED_EXTENSIONS = {'.md', '.json', '.py', '.yaml', '.png', '.svg'}
 PRIVATE_NAME = re.compile(r'^(?:auth|credentials?|secrets?|tokens?|private[-_].*)(?:\.|$)', re.I)
 SECRET_KEY = re.compile(r'^(?:api[_-]?key|.*api[_-]?key|access[_-]?token|auth[_-]?token|password|.*password|secret|.*secret)$', re.I)
 TOP_DIRS = {'skills', '.claude-plugin', '.cursor-plugin', 'assets'}
+NETWORK_CONTROL = re.compile(r'proxy|unblocker|captcha|fingerprint|session.?rotation|cookie|fallback|unlock|^metaAccessTokens$', re.I)
+BLOCK_RECOVERY_GUIDANCE = re.compile(
+    r'(?<!not )(?:to|for|by)\s+(?:bypass(?:ing)?|evad(?:e|ing)|avoid)\s+(?:\w+\s+){0,4}(?:protection|captcha|cloudflare|access controls)'
+    r'|(?:proxy|proxies|unblocker|rotation|fingerprint).{0,180}(?:blocks?|blocked|blocking|cloudflare|datadome|captcha|rate.limit)'
+    r'|(?:blocks?|blocked|blocking|cloudflare|datadome|captcha|rate.limit).{0,180}(?:proxy|proxies|unblocker|rotation|fingerprint)'
+    r'|paste.{0,120}(?:logged.in|session|cookie)'
+    r'|(?:block|rate.limit|expired token).{0,120}(?:try|retry|fallback)'
+    r'|(?:distribut|rotat).{0,120}(?:rate.limit|tokens?|session)', re.I)
+
+
+def schema_access_errors(value):
+    """Catch reintroduced provider recovery recommendations, not certify policy compliance."""
+    errors = []
+    if isinstance(value, dict):
+        description = value.get('description')
+        if isinstance(description, str) and BLOCK_RECOVERY_GUIDANCE.search(description):
+            errors.append('Embedded access-control recovery recommendation')
+        properties = value.get('properties', {})
+        if isinstance(properties, dict):
+            for key, field in properties.items():
+                if NETWORK_CONTROL.search(key) and isinstance(field, dict) and field.get('x-vibeleads-execution') != 'unsupported':
+                    errors.append('Unrestricted network/access control: ' + key)
+        for item in value.values():
+            errors.extend(schema_access_errors(item))
+    elif isinstance(value, list):
+        for item in value:
+            errors.extend(schema_access_errors(item))
+    return errors
 
 
 def release_files(root):
@@ -64,6 +92,8 @@ def validate(root=ROOT):
                     parsed = json.loads(content)
                     if has_secret_value(parsed):
                         errors.append('Credential value in JSON: ' + str(path.relative_to(root)))
+                    if path.parent.name == 'schemas':
+                        errors.extend(message + ': ' + str(path.relative_to(root)) for message in schema_access_errors(parsed))
                 except ValueError: errors.append('Invalid JSON: ' + str(path.relative_to(root)))
             if path.suffix == '.md':
                 for target in re.findall(r'\]\(([^)]+)\)', content):

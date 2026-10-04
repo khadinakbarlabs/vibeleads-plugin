@@ -91,11 +91,12 @@
     "maxConcurrency": {
       "title": "Max concurrency",
       "type": "integer",
-      "description": "Number of parallel browser pages. Keep 1-2 for best Cloudflare reliability; use 3-5 only when you accept more blocking risk.",
+      "description": "Number of parallel browser pages. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 5
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

@@ -58,10 +58,11 @@
       "maximum": 50
     },
     "useApifyProxy": {
-      "title": "Use Apify Residential Proxy",
+      "title": "Restricted access control",
       "type": "boolean",
-      "description": "Use Apify Residential Proxy for public-page requests to improve access consistency on websites that restrict direct cloud traffic. Defaults to enabled and can add platform proxy usage charges in addition to the per-domain event price. This does not bypass logins, paywalls, CAPTCHA challenges, or website access controls.",
-      "editor": "checkbox"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported"
     },
     "responseFormat": {
       "title": "Response format",
@@ -73,5 +74,6 @@
         "concise"
       ]
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

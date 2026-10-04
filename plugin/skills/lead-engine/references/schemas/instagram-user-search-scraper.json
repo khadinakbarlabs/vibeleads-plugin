@@ -77,5 +77,6 @@
       "editor": "checkbox",
       "description": "Extracts public email addresses and phone numbers found in each user's bio text and bio links into separate contact fields. Defaults to true; parsing is text-only and never guesses missing values. Contacts are optional nulls when a bio has none."
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

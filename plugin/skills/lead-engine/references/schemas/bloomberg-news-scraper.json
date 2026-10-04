@@ -70,10 +70,12 @@
       "maximum": 2000
     },
     "proxyConfiguration": {
-      "title": "Proxy (optional)",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Optional Apify proxy. The public news index normally works without one, so leave this off unless you hit a transient network block.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

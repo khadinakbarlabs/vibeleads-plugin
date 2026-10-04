@@ -147,15 +147,16 @@
       "editor": "checkbox"
     },
     "proxyConfiguration": {
-      "title": "Proxy configuration",
+      "title": "Restricted access control",
       "type": "object",
-      "description": "Use this to control the proxy used for Naukri requests. Defaults to Apify Residential proxies in India because Naukri is protected by Akamai and commonly blocks datacenter traffic. Keep the default unless you know your proxy can pass Naukri. This is not an authentication or cookie field.",
-      "editor": "proxy"
+      "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
+      "editor": "proxy",
+      "x-vibeleads-execution": "unsupported"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
       "type": "integer",
-      "description": "Use this to control how many browser pages run at once. Defaults to 2 to keep sessions consistent and reduce Naukri blocking. Increase only after successful canary runs on your proxy pool. This is not the result limit.",
+      "description": "Use this to control how many browser pages run at once. This is not the result limit. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
       "editor": "number",
       "minimum": 1,
       "maximum": 10
@@ -167,5 +168,6 @@
       "editor": "hidden"
     }
   },
-  "required": []
+  "required": [],
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }

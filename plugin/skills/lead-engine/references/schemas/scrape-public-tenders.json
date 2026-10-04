@@ -111,5 +111,6 @@
       "description": "TED language code for localized title and buyer fields, default ENG. Falls back to English then the first available translation. UK notices stay English. This is not a country filter.",
       "editor": "textfield"
     }
-  }
+  },
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
 }
