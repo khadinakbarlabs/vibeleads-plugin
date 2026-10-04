@@ -12,5 +12,6 @@
   "privacyPolicyUrl": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/PRIVACY.md",
   "supportUrl": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/SUPPORT.md",
   "termsOfServiceUrl": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/TERMS.md",
-  "documentationUrl": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/README.md"
+  "documentationUrl": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/plugin/README.md",
+  "icon": "./assets/icon.png"
 }

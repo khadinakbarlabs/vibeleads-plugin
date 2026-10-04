@@ -10,4 +10,4 @@ VibeLeads workflows are original instructions informed by these public reference
 
 Public Actor input-schema snapshots belong to Khadin Akbar’s published Actors. Snapshots preserve declarative input information and remove defaults/prefills; no private source, build payloads or runtime datasets are included. Sources were inspected October 5, 2026. Names of third-party services identify source coverage or comparisons, not affiliation, certification or licensed integration.
 
-The listing icon reuses the owner’s existing VibeLeads violet tile and chevron paths from `components/brand/LogoMark.tsx`, rendered as a square PNG for this package.
+The listing icon uses the owner-selected Momentum direction: a flowing V ending in an ascending arrow on the established violet background. The final artwork was generated for this project; no third-party logo artwork is included.

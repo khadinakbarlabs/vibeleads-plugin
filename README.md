@@ -1,5 +1,7 @@
 # VibeLeads: B2B Lead Finder
 
+<img src="plugin/assets/icon.png" alt="VibeLeads Momentum logo" width="96" height="96">
+
 Find the right companies, understand why they might buy, and prepare a lead list you can trust.
 
 VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecting process together: ideal customer profiles, source selection, buying signals, company research, company and public contact enrichment, email validation, qualification, list hygiene, account plans, and outreach drafts. It also reuses scoped business context, improves targeting from deliberate feedback, resumes sessions, prepares bounded recurring research and produces private visual reports.
