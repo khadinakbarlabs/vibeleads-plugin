@@ -17,3 +17,5 @@ Claude documentation: [manifest](https://code.claude.com/docs/en/plugins-referen
 Recurring-work guidance uses each host’s supported scheduler only when available. No real scheduled task was activated or tested in 0.2.0. Context/report files must be reachable from the chosen execution environment; local paths/login do not automatically carry into a cloud run. The attempted 0.2.0 native Claude conversation was blocked by the account usage limit; native manifest validation and independent scenarios passed.
 
 Before release, refresh platform rules, load the final archive in each intended host, check discovered skills and behavior, and complete each vendor’s actual submission requirements. The same source repository can serve all destinations; vendor portals may require different ZIP layouts and listing fields.
+
+Release 0.2.1 adds directory support/privacy/terms/documentation metadata. The current Claude Code validator loads the plugin but warns that these four directory-specific metadata fields are unknown; strict mode treats those metadata-only warnings as errors. The directory portal explicitly requests those fields. Runtime skills are unchanged from 0.2.0.

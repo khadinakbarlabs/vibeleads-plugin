@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "vibeleads",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Context-aware B2B prospecting, enrichment, email quality, feedback, visual reports and bounded recurring research skills.",
   "author": {
     "name": "Khadin Akbar"
@@ -33,6 +33,10 @@
         "supportURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/SUPPORT.md",
         "privacyPolicyURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/TERMS.md"
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Initial directory candidate: 26 prospecting, enrichment, email quality, context, feedback and visual reporting skills. Each user supplies their own data connection; no bundled service or scheduler."
       }
     }
   },
