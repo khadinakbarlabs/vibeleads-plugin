@@ -19,7 +19,7 @@
     "maxResults": {
       "title": "Max products",
       "type": "integer",
-      "description": "Maximum number of product records to return. The Actor auto-paginates until this cap is reached, then stops, so it doubles as your cost ceiling (each product is one billable event). Defaults to 100. Set higher for bulk sourcing research.",
+      "description": "Maximum number of product records to return. The Actor auto-paginates until this cap is reached, then stops, so it doubles as your cost ceiling (each product is one billable event). Defaults to 100. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 10000
     },
@@ -135,5 +135,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

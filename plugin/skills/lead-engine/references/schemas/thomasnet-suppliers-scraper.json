@@ -34,8 +34,10 @@
     "enrichDetails": {
       "title": "Scrape full supplier profiles",
       "type": "boolean",
-      "description": "When true, every listing supplier is followed to its own ThomasNet profile to add full description, employee count, year founded, annual sales, certifications, products taxonomy, and additional contact details. Slower and costs an extra $0.003 per enriched supplier on top of the base $0.005. Leave false for fast listing-level data (name, phone, website, location, headline) only.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -45,5 +47,6 @@
       "x-vibeleads-execution": "unsupported"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

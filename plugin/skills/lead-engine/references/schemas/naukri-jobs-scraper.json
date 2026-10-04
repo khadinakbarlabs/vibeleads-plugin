@@ -143,8 +143,10 @@
     "enrichDetails": {
       "title": "Fetch full job details",
       "type": "boolean",
-      "description": "Use this when you need the richest detail-page description and structured fields. Defaults to false because Naukri's search API often returns enough data and detail pages cost more browser time. Enable it for smaller, high-value runs. It does not change the per-job PPE price.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -169,5 +171,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

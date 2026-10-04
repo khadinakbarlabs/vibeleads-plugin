@@ -1,6 +1,6 @@
 {
   "title": "Google News Extractor Input",
-  "description": "Extract news articles from Google News by keyword, topic, or URL. Supports bulk search queries, built-in topics, custom section URLs, and direct RSS feed URLs. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
+  "description": "Extract news articles from Google News by keyword, topic, or URL. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -56,7 +56,7 @@
     "maxResultsPerQuery": {
       "title": "Max Articles Per Query / Topic",
       "type": "integer",
-      "description": "Maximum number of articles to extract per search query or topic feed. Google News RSS feeds return up to 100 articles per request. Default is 100. For bulk jobs with many queries, set lower (e.g. 10\u201320) to stay within budget.",
+      "description": "Maximum number of articles to extract per search query or topic feed. Google News RSS feeds return up to 100 articles per request. Default is 100. 10\u201320) to stay within budget. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "number",
       "minimum": 1,
       "maximum": 100
@@ -214,5 +214,6 @@
       "editor": "checkbox"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

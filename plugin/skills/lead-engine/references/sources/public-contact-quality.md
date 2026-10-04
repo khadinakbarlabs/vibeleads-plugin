@@ -2,6 +2,8 @@
 
 Read the relevant prospecting playbook and shared operating contract. Source titles/IDs do not establish data-use rights. “Verified” below means metadata/input schema verified, not lead quality or runtime health. Refresh the schema and pricing before execution.
 
+Apply the [qualified business/contact-use gate](../contact-use.md). Provider result bounds are not recommended audience sizes; optional contact extraction must be disabled during discovery.
+
 Apply the [source access gate](../access-safety.md) before execution. Provider recovery recommendations are replaced by VibeLeads restrictions; structural field names/types/bounds remain references.
 
 ## contact-details-scraper
@@ -36,7 +38,7 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `startUrls` | array | Use this field when the user provides a list of website URLs to extract emails, phone numbers, or contact information from. Each URL is crawled independently and returns one result record. Accepts both plain strings ('https://acme.com') and objects ({"url": "https://acme.com"}). Do NOT use for search queries — this requires direct URLs. Example triggers: 'extract emails from these sites', 'get contact info for this URL list', 'enrich these domains'. |
 | `maxPagesPerDomain` | integer; minimum=1; maximum=20 | How many pages to visit per input URL when hunting for contact info. The crawler always prioritises /contact, /about, /team, and /imprint pages before general pages. Higher values = more thorough extraction but more credits used. Use 1 to scan the homepage only. Default: 6. |
 | `maxResults` | integer; minimum=0 | Maximum number of input URLs to process. Use when the user says 'process only the first 100', 'limit to 50 websites', or 'stop after 200 results'. Set to 0 to process all input URLs. Default: 1000. |
-| `followContactPages` | boolean | When enabled, the crawler automatically discovers and follows links to /contact, /about, /team, /imprint, /support, and equivalent multilingual pages before extracting. Recommended: keep enabled for best email and phone discovery. Disable only if you want to scan the homepage URL only. |
+| `followContactPages` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
 | `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
@@ -51,11 +53,11 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
-| `linkedinUrls` | array | Public LinkedIn profile URLs to find a work email for, e.g. 'https://www.linkedin.com/in/williamhgates'. Each profile is resolved to a name + current company via the primary managed public-data route (the managed fallback route fallback), the company website domain is looked up, then an email is generated and verified. Defaults to empty. NOT a search query and NOT a company URL — for company-wide enumeration use a company scraper instead. |
-| `directLeads` | array | Skip LinkedIn lookup and find an email directly from a known person + company. Each item is an object like {"fullName": "Jane Doe", "companyDomain": "acme.com", "companyName": "Acme"}. Use this when you already know the company domain and only need email generation + SMTP verification. companyName is optional. Defaults to empty. |
-| `includeUnverified` | boolean | When false, only mailbox-confirmed ('valid') emails are returned in the email field. Set false for strict deliverability-only output. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate. |
-| `maxResults` | integer; minimum=1; maximum=10000 | Hard cap on how many leads are processed and billed this run (across linkedinUrls + directLeads). Protects your budget on large inputs. Defaults to 100. Minimum 1. |
-| `maxCandidatesPerLead` | integer; minimum=1; maximum=15 | How many ranked email permutations to verify per person before stopping (verification stops early once a mailbox is SMTP-confirmed). Higher = more thorough, slower. Defaults to 15. Range 1-15. |
+| `linkedinUrls` | array | Structural provider input only. The whole route is unavailable for VibeLeads execution; do not generate or probe candidate addresses. |
+| `directLeads` | array | Structural provider input only. The whole route is unavailable for VibeLeads execution; do not generate or probe candidate addresses. |
+| `includeUnverified` | boolean | Structural provider input only. The whole route is unavailable for VibeLeads execution; do not generate or probe candidate addresses. |
+| `maxResults` | integer; minimum=1; maximum=10000 | Structural provider input only. The whole route is unavailable for VibeLeads execution; do not generate or probe candidate addresses. |
+| `maxCandidatesPerLead` | integer; minimum=1; maximum=15 | Structural provider input only. The whole route is unavailable for VibeLeads execution; do not generate or probe candidate addresses. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
 
@@ -90,7 +92,7 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
 | `emails` | array; minItems=1; maxItems=1000 | List of email addresses to validate. Pass a single address as a one-item array. Each entry is normalized to lowercase before validation. Example: ["jane@example.com", "info@acme.io"]. NOT a CSV file path or a domain — supply individual full addresses. |
-| `maxEmails` | integer; minimum=1; maximum=1000 | Hard cap for unique emails processed and charged in this run. Use 1000 for the largest supported batch or a smaller number to control event cost. Defaults to 1000. NOT a pagination offset; duplicate addresses are removed before this cap is applied. |
+| `maxEmails` | integer; minimum=1; maximum=1000 | Hard cap for unique emails processed and charged in this run. Defaults to 1000. NOT a pagination offset; duplicate addresses are removed before this cap is applied. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission. |
 | `verificationTier` | string; standard, premium | Choose standard for the built-in preflight signals or premium for a deeper, owner-managed verification result. Premium runs are capped at 100 unique emails to keep the maximum charge predictable. |
 | `checkSmtp` | boolean | When true, attempts a live SMTP RCPT TO probe to confirm the mailbox accepts mail. NOTE: most cloud platforms (Apify included, since it runs on AWS) block outbound port 25, so SMTP probes from Apify usually return 'unknown'. The actor still works perfectly without SMTP — syntax + MX + disposable/role/free/typo checks already catch 60–80% of bad addresses. Leave OFF unless you self-host. Default: false. |
 | `checkCatchAll` | boolean | When true and checkSmtp=true, probes a random non-existent address on the same domain to detect catch-all servers. Same cloud-port-25 caveat applies as checkSmtp. Default: false. |

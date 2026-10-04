@@ -1,5 +1,7 @@
 # Data connection and Apify CLI execution
 
+Apply the [qualified business/contact-use gate](contact-use.md) before collection or enrichment; a replacement Actor must preserve company-first discovery and disabled contact harvesting.
+
 Before collection or recovery, apply the [source access gate](access-safety.md). Catalog/schema verification is not execution permission. Denied underlying source access is excluded from Actor failover and automatic retries.
 
 VibeLeads supplies skills, not an executable data engine. The agent uses the independently installed official Apify CLI or a capable existing authenticated integration. An Apify API key is required; each user uses their own account. The publisher’s account and keys are never shipped.

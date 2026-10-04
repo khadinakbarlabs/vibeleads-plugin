@@ -43,12 +43,15 @@
       "title": "Direct profile URLs (enrich a lead list)",
       "type": "array",
       "description": "Optional list of LinkedIn personal-profile URLs (https://www.linkedin.com/in/<slug>) \u2014 for example a lead list exported from Sales Navigator. When provided (and no salesNavigatorUrl is set), search is skipped and these profiles are enriched directly. Use when you already have URLs and just want full public data. NOT company or post URLs.",
-      "editor": "stringList"
+      "editor": "stringList",
+      "x-vibeleads-use-review": "required"
     },
     "enrichProfiles": {
       "title": "Deep profile enrichment",
       "type": "boolean",
-      "description": "When true (default), each lead is fetched for full public data: about, experience, education, skills, follower/connection counts. When false, only fast search-level fields (name, headline, location, URL) are returned at the lower price. Enrichment is billed per lead."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "maxResults": {
       "title": "Max leads",
@@ -79,5 +82,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

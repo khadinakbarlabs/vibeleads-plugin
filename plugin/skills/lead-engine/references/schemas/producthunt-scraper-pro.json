@@ -85,8 +85,10 @@
     "enrichEmails": {
       "title": "Find Email Addresses",
       "type": "boolean",
-      "description": "When enabled (the default), enriches each verified product website. It visits the homepage and up to four same-site contact, about, team, privacy, or terms pages linked from that homepage, then checks up to two public maker homepages and can use the managed contact finder if deliverable-email slots remain.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "resolveWebsites": {
       "title": "Resolve Product Websites",
@@ -108,19 +110,24 @@
       "description": "Returns and bills for up to this many ranked public email addresses associated with the product or its listed makers. Default and maximum are 3.",
       "minimum": 1,
       "maximum": 3,
-      "editor": "number"
+      "editor": "number",
+      "x-vibeleads-use-review": "required"
     },
     "verifyEmails": {
       "title": "Verify Emails with EmailListVerify",
       "type": "boolean",
-      "description": "Enabled by default. Verifies every selected public email with the Actor's managed EmailListVerify integration. Each result includes the exact provider status; invalid, disposable, and spam-trap results are never presented as verified emails.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "findContacts": {
       "title": "Fill Missing Contacts",
       "type": "boolean",
-      "description": "Enabled by default. After product-site and maker-homepage public discovery, use the managed EmailListVerify Contact Finder with a Product Hunt maker name first, then a domain-only fallback only if deliverable-email slots remain. Provider calls and credit ceilings remain bounded per product.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "websiteUrlOverrides": {
       "title": "Approved External Website Overrides",
@@ -151,7 +158,7 @@
     "outputMode": {
       "title": "Output Mode",
       "type": "string",
-      "description": "Controls what gets returned. 'full' = all fields (default). 'lean' = minimal fields optimized for LLM/AI agent context windows (name, tagline, website, upvotes, rank, emails, topics). 'leads' = full fields but only products where at least 1 email was found \u2014 perfect for outreach lists.",
+      "description": "Controls what gets returned. 'full' = all fields (default). 'lean' = minimal fields optimized for LLM/AI agent context windows (name, tagline, website, upvotes, rank, emails, topics). VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "enum": [
         "full",
         "lean",
@@ -160,5 +167,6 @@
       "editor": "select"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

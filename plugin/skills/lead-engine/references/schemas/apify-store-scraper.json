@@ -60,7 +60,9 @@
     "enrichDetails": {
       "title": "Enrich with Detail Data",
       "type": "boolean",
-      "description": "When true (default), fetches the full actor detail page per actor to add: publish date (created_at), last modified, current version, build number, memory/timeout defaults, SEO title/description, README summary. Slower but much richer output. Set false for a fast shallow scan."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "detailConcurrency": {
       "title": "Detail Fetch Concurrency",
@@ -72,5 +74,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

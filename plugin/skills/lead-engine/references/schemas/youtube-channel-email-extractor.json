@@ -13,13 +13,13 @@
     "searchQueries": {
       "title": "Search by niche or keyword (auto-discover channels)",
       "type": "array",
-      "description": "Use this field when the user describes a niche, topic, or industry instead of specific channels (e.g. 'fitness influencers', 'tech reviewers', 'cooking YouTube channels'). The actor searches YouTube and auto-discovers matching channels. Use searchQueries when the user says 'find YouTube channels about X', 'build me a list of influencers in [niche]', 'discover creators who cover [topic]', or 'get emails for [industry] YouTubers'. Each query returns up to 20 channels. Stack multiple queries for large lists.",
+      "description": "Use this field when the user describes a niche, topic, or industry instead of specific channels (e.g. 'fitness influencers', 'tech reviewers', 'cooking YouTube channels'). The actor searches YouTube and auto-discovers matching channels. Use searchQueries when the user says 'find YouTube channels about X', 'build me a list of influencers in [niche]', 'discover creators who cover [topic]', or 'get emails for [industry] YouTubers'. Each query returns up to 20 channels. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "stringList"
     },
     "maxResults": {
       "title": "Maximum channels to scrape",
       "type": "integer",
-      "description": "How many YouTube channels to extract contact data from in total (across all URLs and search queries combined). Set to 10\u201320 for a quick test. Set to 500\u20135000 for bulk influencer outreach lists. A channel with a public email charges the $0.05 Channel Result event. Default: 100 channels. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
+      "description": "How many YouTube channels to extract contact data from in total (across all URLs and search queries combined). Set to 10\u201320 for a quick test. A channel with a public email charges the $0.05 Channel Result event. Default: 100 channels. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 10000,
       "editor": "number"
@@ -27,14 +27,18 @@
     "scrapeWebsite": {
       "title": "Read public website contacts",
       "type": "boolean",
-      "description": "When enabled, the actor visits the website linked on each channel's About page and scrapes it for additional email addresses and contact info. This is the most powerful feature \u2014 many creators list their business email only on their website, not on YouTube. Increases email hit rate by 30\u201350%. Slightly increases run time. Highly recommended: keep this ON.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "followLinkAggregators": {
       "title": "Follow Linktree, Beacons, Bio.link pages",
       "type": "boolean",
-      "description": "When enabled, the actor follows link aggregator pages (Linktree, Beacons.ai, Bio.link, Campsite, Bento, etc.) found in channel About sections. These pages often contain business emails, booking links, and all social profiles in one place. Recommended: keep this ON for maximum contact data coverage.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -49,7 +53,8 @@
       "description": "VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate.",
       "editor": "checkbox",
       "sectionCaption": "Restricted access control",
-      "x-vibeleads-execution": "unsupported"
+      "x-vibeleads-execution": "unsupported",
+      "x-vibeleads-use-review": "required"
     },
     "youtubeSessionCookies": {
       "title": "Restricted access control",
@@ -72,5 +77,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

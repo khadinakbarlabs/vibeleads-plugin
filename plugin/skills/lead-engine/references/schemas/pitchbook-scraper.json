@@ -7,7 +7,8 @@
       "title": "Public PitchBook URLs",
       "type": "array",
       "description": "Use this when you already have public PitchBook profile, research, or news URLs. Enter up to 25 HTTPS URLs such as https://pitchbook.com/profiles/company/127635-40. When direct public HTML is unavailable, the optional Google fallback can recover only publicly indexed title and description metadata. The actor rejects login, dashboard, and private subscription URLs.",
-      "editor": "stringList"
+      "editor": "stringList",
+      "x-vibeleads-use-review": "required"
     },
     "maxItems": {
       "title": "Maximum records",
@@ -30,5 +31,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

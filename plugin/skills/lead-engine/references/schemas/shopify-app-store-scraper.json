@@ -43,7 +43,9 @@
     "enrichDetails": {
       "title": "Enrich search/category results with full detail",
       "type": "boolean",
-      "description": "For search and category modes, visit each app's detail page to add full metadata (description, pricing plans, developer, works-with, languages) instead of just the listing card. Slower and adds one app-scraped charge per app. Defaults to false (fast card-level listing only)."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "maxApps": {
       "title": "Max apps per query/category",
@@ -110,5 +112,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

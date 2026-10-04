@@ -1,5 +1,7 @@
 # Recurring research contract
 
+Apply the [qualified business/contact-use gate](../../lead-engine/references/contact-use.md): refresh company evidence, not a continuously growing personal-contact audience; keep optional contact harvesting disabled in discovery.
+
 Apply the [source access gate](../../lead-engine/references/access-safety.md) before every pilot, fallback or resumed window. Access-denied, challenged or rate-limited sources do not qualify for automatic recovery; preserve partial rows and pause that source until permitted access is restored.
 
 A recurring prompt is a durable action request, not unlimited permission. Use human-readable task instructions; never place keys in scheduler prompts or records.
@@ -12,7 +14,7 @@ Reuse explicit existing values. For missing required constraints ask one grouped
 
 ## Ready prompt pattern
 
-Read the chosen business brief and current handoff for this profile. Run only the listed research/report actions within the stated sources, limits and expiry. Before any paid work reconcile cumulative actual spend, unresolved/in-flight reservations and other jobs sharing the period allowance. Do not reset budget on retries or session creation. Reuse preferred owned routes; verify suitable same-source fallback only for actual gaps/failure. Apply suppression and exact-grain deduplication before paid lookups. Retain partial usable records, and report COMPLETE/VALID_EMPTY/PARTIAL/failure truthfully. Never send messages, upload contacts or enroll outreach unless specifically included with a destination. Write the private report/handoff to the chosen workspace. Notify only on a meaningful change/failure or at the requested digest cadence. Stop new paid work when any required constraint, access or allowance is missing; return a useful status.
+Read the chosen business brief and current handoff for this profile. Run only the listed research/report actions within the stated sources, limits and expiry. Before any paid work reconcile cumulative actual spend, unresolved/in-flight reservations and other jobs sharing the period allowance. Do not reset budget on retries or session creation. Reuse preferred owned routes; verify suitable same-source fallback only for actual gaps/failure. Apply suppression and exact-grain deduplication before paid lookups. Retain partial usable records, and report COMPLETE/VALID_EMPTY/PARTIAL/failure truthfully. Stop at research, reports and human-review drafts. Never send messages, upload recipient audiences or enroll outreach through this plugin; any legitimate messaging belongs to a separate workflow with its own recipient-use authorization. Apply the company-first contact-use gate on each run, keep optional contact collection explicitly disabled during discovery, and preserve use-basis and suppression records alongside outputs. Write the private report/handoff to the chosen workspace. Notify only on a meaningful change/failure or at the requested digest cadence. Stop new paid work when any required constraint, access or allowance is missing; return a useful status.
 
 ## Windows, recovery and overlapping runs
 

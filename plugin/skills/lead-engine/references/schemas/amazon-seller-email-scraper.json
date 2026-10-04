@@ -69,7 +69,9 @@
     "discoverWebsiteEmails": {
       "title": "Discover emails on official seller websites",
       "type": "boolean",
-      "description": "Use this to follow a seller website that Amazon itself links, or a matching URL supplied in companyWebsites, when the seller page has no email. The Actor scans the homepage and a few same-site contact pages. Defaults to true. It never searches the open web or guesses addresses from company names."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "companyWebsites": {
       "title": "Known official seller websites",
@@ -108,7 +110,8 @@
       "type": "integer",
       "description": "Use this to limit extra official-site crawling for a seller without an Amazon-page email. The homepage is included, followed by same-site contact, support, imprint, or legal pages. Defaults to 3 and accepts 1\u20135. This does not crawl social networks, marketplaces, or arbitrary external links.",
       "minimum": 1,
-      "maximum": 5
+      "maximum": 5,
+      "x-vibeleads-use-review": "required"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -119,5 +122,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -1,14 +1,14 @@
 {
   "$schema": "https://apify.com/schemas/v1/input.ide.json",
   "title": "Public company contact evidence input",
-  "description": "Check a caller-supplied list of known B2B people against public pages owned by their supplied employer domain. The Actor returns only reviewable public-page evidence and never searches a proprietary people database, guesses an email pattern, or supplies direct dials. It is designed for contact validation and research, not prospect discovery or outreach. Source URLs, valid-empty results, and unavailable-source results remain explicit in every run.",
+  "description": "Check a caller-supplied list of known B2B people against public pages owned by their supplied employer domain. The Actor returns only reviewable public-page evidence and never searches a proprietary people database, guesses an email pattern, or supplies direct dials. Source URLs, valid-empty results, and unavailable-source results remain explicit in every run. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
     "contacts": {
       "title": "Known B2B contacts",
       "type": "array",
-      "description": "Provide 1 to 25 people you already know, each with a full name and the employer\u2019s public website domain. Optional companyName and externalId are carried through so the returned evidence can join back to your CRM or spreadsheet. Optional sourceUrls must be HTTPS pages on that same employer domain and are checked before standard public pages. This Actor is not a free-text people search, LinkedIn scraper, email-pattern generator, or outreach tool.",
+      "description": "Provide 1 to 25 people you already know, each with a full name and the employer\u2019s public website domain. Optional companyName and externalId are carried through so the returned evidence can join back to your CRM or spreadsheet. Optional sourceUrls must be HTTPS pages on that same employer domain and are checked before standard public pages. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "json",
       "minItems": 1,
       "maxItems": 25,
@@ -50,7 +50,8 @@
           "fullName",
           "companyDomain"
         ]
-      }
+      },
+      "x-vibeleads-use-review": "required"
     },
     "maxContacts": {
       "title": "Maximum contacts to process",
@@ -58,7 +59,8 @@
       "description": "Hard cap on distinct valid contacts processed in one run. Defaults to 25 and accepts 1 to 25, limiting public-page collection and the maximum public-contact-found event charge. Duplicate name-and-domain entries are skipped before collection. Apify platform usage is billed separately to the caller.",
       "editor": "number",
       "minimum": 1,
-      "maximum": 25
+      "maximum": 25,
+      "x-vibeleads-use-review": "required"
     },
     "maxPagesPerContact": {
       "title": "Maximum public pages per contact",
@@ -66,7 +68,8 @@
       "description": "How many public company-owned pages to inspect per contact, from 1 to 3. The Actor tries caller-provided source URLs first, then bounded standard public routes. Defaults to 3 to make the evidence set small and reviewable. It never crawls a whole website or follows a redirect to another domain.",
       "editor": "number",
       "minimum": 1,
-      "maximum": 3
+      "maximum": 3,
+      "x-vibeleads-use-review": "required"
     },
     "requestTimeoutSecs": {
       "title": "Request timeout in seconds",
@@ -97,5 +100,6 @@
   "required": [
     "contacts"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

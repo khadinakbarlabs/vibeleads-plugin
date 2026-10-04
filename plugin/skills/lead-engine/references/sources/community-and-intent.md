@@ -2,6 +2,8 @@
 
 Read the relevant prospecting playbook and shared operating contract. Source titles/IDs do not establish data-use rights. “Verified” below means metadata/input schema verified, not lead quality or runtime health. Refresh the schema and pricing before execution.
 
+Apply the [qualified business/contact-use gate](../contact-use.md). Provider result bounds are not recommended audience sizes; optional contact extraction must be disabled during discovery.
+
 Apply the [source access gate](../access-safety.md) before execution. Provider recovery recommendations are replaced by VibeLeads restrictions; structural field names/types/bounds remain references.
 
 ## reddit-search-scraper
@@ -122,8 +124,8 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `maxPosts` | integer; minimum=1; maximum=1000 | Maximum number of post records to save across all company URLs. |
 | `startPage` | integer; minimum=1; maximum=7 | the primary managed public-data route company-post pages are numbered from 1. |
 | `maxPagesPerCompany` | integer; minimum=1; maximum=7 | the primary managed public-data route currently exposes up to 7 company-post pages because of LinkedIn public-page limits. |
-| `includeCompanyProfile` | boolean | When the managed fallback route is available, attach public company metadata such as name, handle, followers, industry, logo, and website. |
-| `enrichPosts` | boolean | Fetch each post detail with the managed fallback route when available to add engagement counts and author/comment previews. This costs one provider request per post. |
+| `includeCompanyProfile` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
+| `enrichPosts` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
 | `includeRawData` | boolean | Include compact raw provider payloads for debugging and downstream custom parsing. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
@@ -139,7 +141,7 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | Field | Type/mode/bounds | Meaning |
 | --- | --- | --- |
 | `postUrls` | array | One or more public LinkedIn post, feed update, or Pulse article URLs. Use this actor when you already know the post URLs and want comments, commenters, and engagement counts. |
-| `maxPosts` | integer; minimum=1; maximum=500 | Maximum number of unique post URLs to process from the input list. Use this to cap provider calls and PPE cost for large URL batches. |
+| `maxPosts` | integer; minimum=1; maximum=500 | Maximum number of unique post URLs to process from the input list. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission. |
 | `maxCommentsPerPost` | integer; minimum=0; maximum=1000 | Maximum number of comment rows to save per post. The provider may expose fewer comments than this cap. Set to 0 when you only need post-level engagement rows. |
 | `outputMode` | string; both, comments, posts | Choose whether to save post-level engagement summary rows, per-comment rows, or both. Both is recommended for CRM, lead research, and AI-agent workflows. |
 | `dedupeComments` | boolean | Remove duplicate comments per post using comment URL, commenter profile URL, and text. Keep enabled for cleaner automation datasets. |
@@ -329,7 +331,7 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | --- | --- | --- |
 | `communityUrls` | array | Skool community URLs or bare slugs to look up directly (group mode). Accepts full links like 'https://www.skool.com/new-society' or just 'new-society'. Returns the full public profile of each community plus its owner. NOT a member roster — Skool gates individual member lists behind login, so this returns counts and the owner, not every member. |
 | `searchQueries` | array | Keywords to search Skool's public Discovery directory (discovery mode), e.g. 'real estate' or 'ai automation'. Each keyword is paginated and every matched community is returned. Use this to build lists of communities in a niche. Leave empty if you only want the specific communities in 'Community URLs or slugs'. |
-| `enrichDetails` | boolean | When ON (default), each Discovery result is enriched via the Skool group API to add pricing, post/course counts, join questions, and the owner lead. When OFF, Discovery returns the lean directory card only (name, description, member count, logo) — faster and cheaper. Has no effect on direct 'Community URLs or slugs', which are always fully detailed. |
+| `enrichDetails` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
 | `maxItems` | integer; minimum=1; maximum=100000 | Hard cap on the total number of communities returned across all inputs, for cost control. Each community is billed at $0.005. Defaults to 100. Set lower for a quick sample or higher to sweep a whole niche (Skool Discovery returns up to ~1000 per keyword). |
 | `maxPagesPerQuery` | integer; minimum=1; maximum=34 | Upper bound on how many Discovery pages (30 communities each) to fetch per keyword before moving on. Defaults to 34, the full depth Skool exposes (~1000 results). Lower it to sample only the top results of each keyword. Ignored for direct community lookups. |
 | `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |

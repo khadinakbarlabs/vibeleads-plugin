@@ -46,8 +46,10 @@
     "enrichDetails": {
       "title": "Enrich with profile details",
       "type": "boolean",
-      "description": "When true (default), each business found in search is opened and its full profile is scraped (accreditation date, years in business, hours, owner contacts). When false, only the lighter search-listing fields are returned, which is faster and cheaper. Ignored for direct profile 'startUrls' (always enriched).",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "minRating": {
       "title": "Minimum BBB rating",
@@ -94,5 +96,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

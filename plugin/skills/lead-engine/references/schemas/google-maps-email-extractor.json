@@ -20,14 +20,16 @@
     "maxResults": {
       "title": "\ud83d\udcaf Max businesses to extract",
       "type": "integer",
-      "description": "Maximum number of businesses to extract per search. Lower = faster and cheaper. Set 5-10 for testing, 50-200 for typical campaigns, 500+ for bulk lists. Hard cap at 2,000 per run \u2014 split larger jobs across cities for reliability.",
+      "description": "Maximum number of businesses to extract per search. Lower = faster and cheaper. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 2000
     },
     "skipWithoutEmail": {
       "title": "\ud83d\udce7 Only return businesses with an email",
       "type": "boolean",
-      "description": "When enabled, businesses without a verified email are dropped from the output \u2014 you pay only for records with emails. Useful when building targeted cold-outreach lists. When off, all businesses are returned (with or without email)."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "minRating": {
       "title": "\u2b50 Minimum Google rating",
@@ -39,7 +41,7 @@
     "skipClosedPlaces": {
       "title": "\u23e9 Skip permanently closed businesses",
       "type": "boolean",
-      "description": "Skip businesses marked as 'Permanently closed' on Google Maps. Recommended for cold outreach lists to avoid wasting effort on defunct businesses."
+      "description": "Skip businesses marked as 'Permanently closed' on Google Maps. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission."
     },
     "language": {
       "title": "\ud83c\udf0d Language",
@@ -71,5 +73,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

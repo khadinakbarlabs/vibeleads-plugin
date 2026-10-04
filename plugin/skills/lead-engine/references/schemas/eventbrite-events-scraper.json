@@ -179,14 +179,16 @@
     "maxResults": {
       "title": "Max results",
       "type": "integer",
-      "description": "Maximum number of events to return. Eventbrite browse pages return 20 events per page with up to 49 pages per query (~1,000 events max per filter combination). Default 50 keeps run cost low for typical agent calls. Set higher for bulk extraction.",
+      "description": "Maximum number of events to return. Eventbrite browse pages return 20 events per page with up to 49 pages per query (~1,000 events max per filter combination). Default 50 keeps run cost low for typical agent calls. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 10000
     },
     "includeDetails": {
       "title": "Include detail-page enrichment",
       "type": "boolean",
-      "description": "Fetch each event's detail page to extract full description, organizer name and profile URL, ticket tiers with prices, and structured pricing currency. When false, returns only browse-page fields (still 25+ fields). Adds one HTTP request per event but no extra event charge."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -197,5 +199,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

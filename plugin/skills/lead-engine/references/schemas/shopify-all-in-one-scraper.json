@@ -32,7 +32,9 @@
     "scrapeContactInfo": {
       "title": "Scrape Merchant Contact Info",
       "type": "boolean",
-      "description": "Use this when the user wants merchant emails, phone numbers, or social media links for B2B outreach, lead generation, or sales prospecting. Extracts live contact data from the store's pages. Charged at $0.005 per store (one record per store). This gives the highest ROI for sales teams."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "maxProductsPerStore": {
       "title": "Max Products per Store",
@@ -55,5 +57,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -17,10 +17,11 @@
     "maxEmployees": {
       "title": "Max employees",
       "type": "integer",
-      "description": "Global cap across all companies in the run. The actor stops after this many unique employee profile rows have been pushed to the dataset. This is a maximum, not a guarantee, because LinkedIn and provider sources may expose fewer visible employees. Use a lower value for fast agent calls and a higher value for bulk account mapping.",
+      "description": "Global cap across all companies in the run. The actor stops after this many unique employee profile rows have been pushed to the dataset. This is a maximum, not a guarantee, because LinkedIn and provider sources may expose fewer visible employees. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "number",
       "minimum": 1,
-      "maximum": 2500
+      "maximum": 2500,
+      "x-vibeleads-use-review": "required"
     },
     "maxEmployeesPerCompany": {
       "title": "Max employees per company",
@@ -28,7 +29,8 @@
       "description": "Per-company cap for each LinkedIn company URL. This keeps multi-company runs balanced and prevents one large company from consuming the whole global cap. Use it when an agent is comparing several accounts in one run. The actor can still return fewer rows when visible data is limited.",
       "editor": "number",
       "minimum": 1,
-      "maximum": 1000
+      "maximum": 1000,
+      "x-vibeleads-use-review": "required"
     },
     "mode": {
       "title": "Scrape mode",
@@ -78,7 +80,8 @@
       "type": "boolean",
       "description": "Unavailable for enablement in VibeLeads. Keep disabled; gated profile collection is unsupported.",
       "editor": "checkbox",
-      "x-vibeleads-execution": "unsupported"
+      "x-vibeleads-execution": "unsupported",
+      "x-vibeleads-use-review": "required"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
@@ -99,5 +102,6 @@
   "required": [
     "companyUrls"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

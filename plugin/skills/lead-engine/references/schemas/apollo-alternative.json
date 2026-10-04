@@ -1,6 +1,6 @@
 {
   "title": "Apollo Alternative: B2B Prospect Finder input",
-  "description": "Find public LinkedIn profiles through a bounded web-search workflow. It returns source-linked discovery records, not a private contact database, verified emails or phones, or an outbound campaign.",
+  "description": "Find public LinkedIn profiles through a bounded web-search workflow. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -72,5 +72,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

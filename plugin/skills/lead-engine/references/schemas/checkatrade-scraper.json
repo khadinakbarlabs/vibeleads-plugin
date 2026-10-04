@@ -40,7 +40,9 @@
     "scrapeDetails": {
       "title": "Scrape profile details",
       "type": "boolean",
-      "description": "Controls full-profile enrichment for profiles discovered from Checkatrade search pages. Keep this enabled to return contact, service, rating, and review fields from the profile. Defaults to true. Direct profile URLs are always handled as detailed profiles."
+      "description": "Keep explicitly disabled during company discovery. Detailed profile/contact expansion is available only for named qualified businesses under the contact-use gate. Direct profile inputs that always expand details are unavailable for broad discovery; verify actual build controls or decline that route.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "extractReviews": {
       "title": "Include recent reviews",
@@ -50,7 +52,9 @@
     "requirePhone": {
       "title": "Only profiles with phone numbers",
       "type": "boolean",
-      "description": "When enabled, excludes profiles without a public phone number. Use it for phone-first outreach lists. Defaults to false so all valid public profiles remain eligible. It does not infer or enrich hidden contact information."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "minRating": {
       "title": "Minimum rating",
@@ -77,5 +81,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

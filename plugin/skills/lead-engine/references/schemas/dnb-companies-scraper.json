@@ -38,8 +38,10 @@
     "enrichDetails": {
       "title": "Enrich with full company profile",
       "type": "boolean",
-      "description": "When true (default), each company from a listing is enriched with its full profile page (website, industries + NAICS, Fortune ranking, competitor industry, similar companies, contact/principal counts). Adds one extra request per company. Set false for a faster, listing-only run (name, DUNS, address, revenue).",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -50,5 +52,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

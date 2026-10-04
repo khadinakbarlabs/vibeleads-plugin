@@ -12,7 +12,8 @@
       "editor": "stringList",
       "uniqueItems": true,
       "minItems": 1,
-      "maxItems": 1000
+      "maxItems": 1000,
+      "x-vibeleads-use-review": "required"
     },
     "checkSmtp": {
       "title": "Run live SMTP probe (experimental)",
@@ -48,7 +49,8 @@
       "description": "Optional per-run cap from 1 to 1,000. The Actor processes the first normalized unique addresses only; later addresses are skipped and not charged.",
       "minimum": 1,
       "maximum": 1000,
-      "editor": "number"
+      "editor": "number",
+      "x-vibeleads-use-review": "required"
     },
     "concurrency": {
       "title": "Concurrent validations",
@@ -70,5 +72,6 @@
   "required": [
     "emails"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

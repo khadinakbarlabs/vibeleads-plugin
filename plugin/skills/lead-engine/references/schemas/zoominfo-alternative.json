@@ -1,13 +1,13 @@
 {
   "title": "ZoomInfo Alternative company-enrichment input",
-  "description": "Enrich a caller-supplied list of company domains from each company\u2019s public website. It is a source-cited firmographic and published-business-contact workflow, not a people database, direct-dial finder, buyer-intent feed, or outreach tool.",
+  "description": "Enrich a caller-supplied list of company domains from each company\u2019s public website. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
     "companies": {
       "title": "Companies to enrich",
       "type": "array",
-      "description": "One to 100 companies already selected by you, each with a public website domain such as example.com. Optional companyName and externalId are carried into the result to make CRM matching auditable. This is not a free-text people search, a request to discover contacts, or an authorization to send outreach.",
+      "description": "One to 100 companies already selected by you, each with a public website domain such as example.com. Optional companyName and externalId are carried into the result to make CRM matching auditable. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "json",
       "minItems": 1,
       "maxItems": 100,
@@ -54,8 +54,10 @@
     "includePublishedContacts": {
       "title": "Include website-published contacts",
       "type": "boolean",
-      "description": "Return business emails and telephone links visibly published on the company pages that were fetched. Defaults to true and preserves the exact source URLs for review. It does not guess email patterns, unmask protected data, validate mailbox ownership, or return private contact data.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "includeTechnologySignals": {
       "title": "Include technology signals",
@@ -89,5 +91,6 @@
   "required": [
     "companies"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

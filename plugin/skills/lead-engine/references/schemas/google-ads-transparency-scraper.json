@@ -68,9 +68,12 @@
     "enrichDetails": {
       "title": "Enrich with detail-page fields",
       "type": "boolean",
-      "description": "When true, visits each ad's creative detail page after listing extraction to populate first_shown_date, last_shown_date, regions_shown, platforms, ad_headline, and ad_text. Set to false for fastest listing-only mode (these fields will be null/empty)."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

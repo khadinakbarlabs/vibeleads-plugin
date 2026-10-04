@@ -61,7 +61,8 @@
       "title": "Author handle or DID",
       "description": "Use this when limiting search to posts from one public Bluesky account. Enter a handle or DID such as 'jay.bsky.team'; a leading @ is accepted. Defaults to any author. This does not scrape a user's full feed or profile.",
       "type": "string",
-      "editor": "textfield"
+      "editor": "textfield",
+      "x-vibeleads-use-review": "required"
     },
     "mentions": {
       "title": "Mentioned account",
@@ -101,5 +102,6 @@
   "required": [
     "searchQuery"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

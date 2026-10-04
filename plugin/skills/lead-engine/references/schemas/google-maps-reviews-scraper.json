@@ -106,7 +106,9 @@
     "includePersonalData": {
       "title": "\ud83d\udd12 Include reviewer personal data (GDPR)",
       "type": "boolean",
-      "description": "When true, includes reviewer name, profile URL, and profile photo URL. When false (default), these are nulled out and only a stable reviewer hash is returned. Personal data is regulated by GDPR in the EU \u2014 keep disabled unless you have a legitimate purpose and documented basis. reviewId is always returned regardless of this setting."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -117,5 +119,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -7,13 +7,13 @@
     "advertisers": {
       "title": "Advertiser names",
       "type": "array",
-      "description": "Use this when you know the company or advertiser whose public ads you want to review. Enter a list of display names such as Microsoft or HubSpot. Defaults to Microsoft only when neither advertisers nor keywords is supplied. This is not a LinkedIn company URL or a private Campaign Manager account ID.",
+      "description": "Use this when you know the company or advertiser whose public ads you want to review. Enter a list of display names such as Microsoft or HubSpot. Defaults to Microsoft only when neither advertisers nor keywords is supplied. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "stringList"
     },
     "keywords": {
       "title": "Creative keywords",
       "type": "array",
-      "description": "Use this when you want public ads whose creative matches a phrase instead of one known advertiser. Enter plain keywords such as CRM software or data warehouse. Defaults to no keyword searches, and each keyword becomes an independent search. This is not a Boolean LinkedIn profile query or a list of campaign IDs.",
+      "description": "Use this when you want public ads whose creative matches a phrase instead of one known advertiser. Enter plain keywords such as CRM software or data warehouse. Defaults to no keyword searches, and each keyword becomes an independent search. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "stringList"
     },
     "countries": {
@@ -25,7 +25,7 @@
     "startDate": {
       "title": "Start date",
       "type": "string",
-      "description": "Use this when limiting ads by the beginning of their reported run window. Enter an ISO date such as 2026-01-01. Defaults to no lower date boundary and may be used with or without an end date. This is not a timestamp, a relative date phrase, or a campaign launch prediction.",
+      "description": "Use this when limiting ads by the beginning of their reported run window. Enter an ISO date such as 2026-01-01. Defaults to no lower date boundary and may be used with or without an end date. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "textfield"
     },
     "endDate": {
@@ -49,7 +49,7 @@
     "fetchAdDetails": {
       "title": "Fetch optional details",
       "type": "boolean",
-      "description": "Use this when you need a second verified provider call per saved ad for richer public transparency data. Set true to request details and false to use the normalized search response only. Defaults to true and adds the documented detail-enrichment event only after a successful detail fetch. This is not a request for private advertiser, member, or Campaign Manager data.",
+      "description": "Use this when you need a second verified provider call per saved ad for richer public transparency data. Set true to request details and false to use the normalized search response only. Defaults to true and adds the documented detail-enrichment event only after a successful detail fetch. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "checkbox"
     },
     "responseFormat": {
@@ -67,5 +67,6 @@
       ]
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

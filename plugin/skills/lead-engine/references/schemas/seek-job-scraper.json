@@ -64,8 +64,10 @@
     "includeDetails": {
       "title": "Include job descriptions",
       "type": "boolean",
-      "description": "Use this when you need the public job description and detail-page fields alongside search-card data. Set true or false, for example true. Set false for a faster, compact result set without detail-page enrichment. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyCountry": {
       "title": "Restricted access control",
@@ -83,5 +85,6 @@
       "x-vibeleads-execution": "unsupported"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

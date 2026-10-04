@@ -69,14 +69,19 @@
       "title": "Include private profiles",
       "type": "boolean",
       "editor": "checkbox",
-      "description": "Also saves private (locked) accounts when they match the keyword. Defaults to false because private accounts hide most public data. Turn on only when the username itself is the deliverable."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "parseContacts": {
       "title": "Parse email and phone from bios",
       "type": "boolean",
       "editor": "checkbox",
-      "description": "Extracts public email addresses and phone numbers found in each user's bio text and bio links into separate contact fields. Defaults to true; parsing is text-only and never guesses missing values. Contacts are optional nulls when a bio has none."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

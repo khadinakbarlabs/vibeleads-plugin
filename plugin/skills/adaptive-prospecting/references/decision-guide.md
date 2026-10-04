@@ -1,5 +1,7 @@
 # Evidence-driven prospecting judgment
 
+Apply the [qualified business/contact-use gate](../../lead-engine/references/contact-use.md): refresh company evidence, not a continuously growing personal-contact audience; keep optional contact harvesting disabled in discovery.
+
 Apply the [source access gate](../../lead-engine/references/access-safety.md) before every pilot, fallback or resumed window. Access-denied, challenged or rate-limited sources do not qualify for automatic recovery; preserve partial rows and pause that source until permitted access is restored.
 
 Use transparent reasoning rather than mysterious “AI intuition.” Confidence describes evidence completeness/source consistency; the 0–100 quality heuristic is not probability of buying.

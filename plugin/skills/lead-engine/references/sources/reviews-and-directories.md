@@ -2,6 +2,8 @@
 
 Read the relevant prospecting playbook and shared operating contract. Source titles/IDs do not establish data-use rights. “Verified” below means metadata/input schema verified, not lead quality or runtime health. Refresh the schema and pricing before execution.
 
+Apply the [qualified business/contact-use gate](../contact-use.md). Provider result bounds are not recommended audience sizes; optional contact extraction must be disabled during discovery.
+
 Apply the [source access gate](../access-safety.md) before execution. Provider recovery recommendations are replaced by VibeLeads restrictions; structural field names/types/bounds remain references.
 
 ## clutch-scraper
@@ -245,7 +247,7 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `reviewSearchQuery` | string | Optional keyword to search inside Google Maps reviews before extraction. Use this when you only need reviews mentioning a phrase such as 'parking' or 'refund'. Defaults to no keyword filter. Not a business search query — use Search Query above to find the place itself. |
 | `language` | string; en, es, fr, de, it, pt, nl, pl, ru, ja, ko, zh-CN, ar, tr, hi, id, vi, th, sv, no, da, fi, cs, el, he | Language for the Google Maps UI and for review translations. 'en' returns English UI, reviews stay in their original language. Affects Google's 'N reviews' parsing and the text of the 'a month ago' date labels. |
 | `countryCode` | string | Two-letter Google region hint used for Maps review requests. Use this when review ordering or place resolution should match a specific market, for example US, GB, DE, or PK. Defaults to US. Use only permitted direct/public or licensed API access verified against the actual build. Stop on access denial or rate limits; see the source access gate. |
-| `includePersonalData` | boolean | When true, includes reviewer name, profile URL, and profile photo URL. When false (default), these are nulled out and only a stable reviewer hash is returned. Personal data is regulated by GDPR in the EU — keep disabled unless you have a legitimate purpose and documented basis. reviewId is always returned regardless of this setting. |
+| `includePersonalData` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
 | `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.

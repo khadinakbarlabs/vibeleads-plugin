@@ -12,15 +12,17 @@
       "editor": "stringList",
       "uniqueItems": true,
       "minItems": 1,
-      "maxItems": 1000
+      "maxItems": 1000,
+      "x-vibeleads-use-review": "required"
     },
     "maxEmails": {
       "title": "Maximum emails to validate",
       "type": "integer",
-      "description": "Hard cap for unique emails processed and charged in this run. Use 1000 for the largest supported batch or a smaller number to control event cost. Defaults to 1000. NOT a pagination offset; duplicate addresses are removed before this cap is applied.",
+      "description": "Hard cap for unique emails processed and charged in this run. Defaults to 1000. NOT a pagination offset; duplicate addresses are removed before this cap is applied. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 1000,
-      "editor": "number"
+      "editor": "number",
+      "x-vibeleads-use-review": "required"
     },
     "verificationTier": {
       "title": "Verification tier",
@@ -70,5 +72,6 @@
   "required": [
     "emails"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

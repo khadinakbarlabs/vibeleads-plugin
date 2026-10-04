@@ -128,7 +128,9 @@
     "enrichAds": {
       "title": "Enrich with auto-analysis",
       "type": "boolean",
-      "description": "Adds extra fields to every ad: ad_summary (one-line description), detected_cta (call-to-action type), ad_category, running_days, word_count, hashtag_count, emoji_count. Highly recommended for LLM/MCP pipelines. No extra cost."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "providerFallbackEnabled": {
       "title": "Restricted access control",
@@ -203,5 +205,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

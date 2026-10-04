@@ -7,7 +7,8 @@
       "title": "Clutch profile URLs or slugs",
       "type": "array",
       "description": "One or more Clutch.co agency profiles to scrape reviews from. Accepts full URLs (e.g. 'https://clutch.co/profile/wedowebapps') or bare slugs (e.g. 'wedowebapps'). Each profile is paginated automatically to collect its review history. NOT a Clutch category or search URL \u2014 for company listings use the clutch-scraper actor instead.",
-      "editor": "stringList"
+      "editor": "stringList",
+      "x-vibeleads-use-review": "required"
     },
     "maxReviews": {
       "title": "Max reviews per run",
@@ -29,5 +30,6 @@
   "required": [
     "profileUrls"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

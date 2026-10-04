@@ -75,8 +75,10 @@
     "enrichProfiles": {
       "title": "Enrich channel profiles",
       "type": "boolean",
-      "description": "When true, each found channel is fetched for About-page fields (description, total views, joined date, country, links) and billed as one extra channel-enriched event. Default false returns search-card fields only. Leave off for cheap discovery.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "fallbackMode": {
       "title": "Restricted access control",
@@ -106,5 +108,6 @@
   "required": [
     "searchQueries"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

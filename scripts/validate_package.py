@@ -15,6 +15,8 @@ PRIVATE_NAME = re.compile(r'^(?:auth|credentials?|secrets?|tokens?|private[-_].*
 SECRET_KEY = re.compile(r'^(?:api[_-]?key|.*api[_-]?key|access[_-]?token|auth[_-]?token|password|.*password|secret|.*secret)$', re.I)
 TOP_DIRS = {'skills', '.claude-plugin', '.cursor-plugin', 'assets'}
 NETWORK_CONTROL = re.compile(r'proxy|unblocker|captcha|fingerprint|session.?rotation|cookie|fallback|unlock|^metaAccessTokens$', re.I)
+CONTACT_FIELD = re.compile(r'email|phone|contact|profile|employee|person|enrich|social|author|reviewer|scrapeWebsite|followLinkAggregators|deepScrape|includeDetails|scrapeDetails', re.I)
+MASS_CONTACT_GUIDANCE = re.compile(r'\b(?:set|raise|use|build|stack|split).{0,100}(?:bulk.{0,60}(?:outreach|email|contact)|cold.outreach lists|mass.{0,50}(?:email|outreach)|large.{0,50}contact lists)', re.I)
 BLOCK_RECOVERY_GUIDANCE = re.compile(
     r'(?<!not )(?:to|for|by)\s+(?:bypass(?:ing)?|evad(?:e|ing)|avoid)\s+(?:\w+\s+){0,4}(?:protection|captcha|cloudflare|access controls)'
     r'|(?:proxy|proxies|unblocker|rotation|fingerprint).{0,180}(?:blocks?|blocked|blocking|cloudflare|datadome|captcha|rate.limit)'
@@ -31,11 +33,15 @@ def schema_access_errors(value):
         description = value.get('description')
         if isinstance(description, str) and BLOCK_RECOVERY_GUIDANCE.search(description):
             errors.append('Embedded access-control recovery recommendation')
+        if isinstance(description, str) and MASS_CONTACT_GUIDANCE.search(description):
+            errors.append('Embedded mass-contact harvesting recommendation')
         properties = value.get('properties', {})
         if isinstance(properties, dict):
             for key, field in properties.items():
                 if NETWORK_CONTROL.search(key) and isinstance(field, dict) and field.get('x-vibeleads-execution') != 'unsupported':
                     errors.append('Unrestricted network/access control: ' + key)
+                if CONTACT_FIELD.search(key) and isinstance(field, dict) and field.get('x-vibeleads-use-review') != 'required':
+                    errors.append('Unreviewed contact use stage: ' + key)
         for item in value.values():
             errors.extend(schema_access_errors(item))
     elif isinstance(value, list):

@@ -109,5 +109,19 @@ class PackageTests(unittest.TestCase):
         path.write_text(json.dumps(data))
         self.assertFalse(validate(self.root)['passed'])
 
+    def test_mass_contact_harvesting_recommendation_rejected(self):
+        path = self.root / 'skills/lead-engine/references/schemas/youtube-channel-email-extractor.json'
+        data = json.loads(path.read_text())
+        data['description'] = 'Set 5000 for bulk influencer outreach lists.'
+        path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_contact_fields_require_use_stage_review(self):
+        path = self.root / 'skills/lead-engine/references/schemas/google-maps-leads-scraper.json'
+        data = json.loads(path.read_text())
+        data['properties']['enrichEmails'].pop('x-vibeleads-use-review', None)
+        path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
 
 if __name__ == '__main__': unittest.main()

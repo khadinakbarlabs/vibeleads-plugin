@@ -102,14 +102,18 @@
     "enrichJobDetails": {
       "title": "Fetch full job details",
       "type": "boolean",
-      "description": "When true, visits each job's detail page to add description text, applicant count, seniority, employment type, job function and industries. Slower and adds one request per job. Defaults to false (list-level fields only).",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "enrichCompany": {
       "title": "Attach company metadata",
       "type": "boolean",
-      "description": "When true, attaches the company's industry, size, employee count, headquarters, followers, website and logo via managed public-data routes. Required and forced on when 'company' is a URL or slug (used to resolve the numeric ID). Set false only when you pass a numeric company ID and want jobs without company metadata. Defaults to true.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -122,5 +126,6 @@
   "required": [
     "company"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

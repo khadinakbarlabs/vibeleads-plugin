@@ -1,13 +1,13 @@
 {
   "title": "Clearbit Alternative company-enrichment input",
-  "description": "Enrich a caller-supplied domain list from each company\u2019s public website. This is a source-cited company-profile workflow, not a proprietary people graph, private-email finder, buyer-intent feed, or outreach tool.",
+  "description": "Enrich a caller-supplied domain list from each company\u2019s public website. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
     "companies": {
       "title": "Companies to enrich",
       "type": "array",
-      "description": "Provide one to 100 companies you already selected, each with a public website domain such as apify.com. Optional companyName and externalId are carried through for an auditable CRM join. This is not a free-text person search, a LinkedIn profile list, or permission to send outreach.",
+      "description": "Provide one to 100 companies you already selected, each with a public website domain such as apify.com. Optional companyName and externalId are carried through for an auditable CRM join. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "json",
       "minItems": 1,
       "maxItems": 100,
@@ -54,8 +54,10 @@
     "includePublishedContacts": {
       "title": "Include website-published business contacts",
       "type": "boolean",
-      "description": "When enabled, return business email and phone links visibly published on the fetched public company pages. It defaults to true and preserves supporting source URLs for review. It never guesses email patterns, unmask protected data, or validate a mailbox owner.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "includeTechnologySignals": {
       "title": "Include observed technology signals",
@@ -82,5 +84,6 @@
   "required": [
     "companies"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

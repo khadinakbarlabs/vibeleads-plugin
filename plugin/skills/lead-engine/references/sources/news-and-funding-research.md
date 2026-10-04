@@ -2,6 +2,8 @@
 
 Read the relevant prospecting playbook and shared operating contract. Source titles/IDs do not establish data-use rights. “Verified” below means metadata/input schema verified, not lead quality or runtime health. Refresh the schema and pricing before execution.
 
+Apply the [qualified business/contact-use gate](../contact-use.md). Provider result bounds are not recommended audience sizes; optional contact extraction must be disabled during discovery.
+
 Apply the [source access gate](../access-safety.md) before execution. Provider recovery recommendations are replaced by VibeLeads restrictions; structural field names/types/bounds remain references.
 
 ## google-news-scraper
@@ -18,7 +20,7 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `topics` | array | Select from Google News built-in topic sections. Each selected topic fetches its own RSS feed of top headlines. Use this for broad category monitoring without keywords. Can be combined with searchQueries. |
 | `topicUrls` | array | Advanced: Paste the URL of any Google News section, topic page, or custom RSS feed directly. Both HTML page URLs (https://news.google.com/topics/...) and RSS URLs (https://news.google.com/rss/topics/...) are accepted — they are automatically converted. Use this for niche topics not covered by built-in topic sections. |
 | `startUrls` | array | Advanced: Provide raw Google News RSS feed URLs directly. Use for custom queries already formatted as RSS (e.g. from Google Alerts exports). Each URL must be a valid RSS feed returning XML. |
-| `maxResultsPerQuery` | integer; minimum=1; maximum=100 | Maximum number of articles to extract per search query or topic feed. Google News RSS feeds return up to 100 articles per request. Default is 100. For bulk jobs with many queries, set lower (e.g. 10–20) to stay within budget. |
+| `maxResultsPerQuery` | integer; minimum=1; maximum=100 | Maximum number of articles to extract per search query or topic feed. Google News RSS feeds return up to 100 articles per request. Default is 100. 10–20) to stay within budget. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission. |
 | `regionLanguage` | string; US:en, GB:en, AU:en, CA:en, IN:en, DE:de, AT:de, CH:de, FR:fr, BE:fr, CH:fr, ES:es, MX:es, AR:es, CO:es, IT:it, PT:pt, BR:pt, NL:n | Controls the Google News edition to query — determines language, regional sources, and geographically relevant articles. Format: COUNTRY_CODE:language_code (e.g. US:en, GB:en, DE:de, FR:fr, JP:ja). Defaults to US:en (US English). Use this to monitor non-English news or regional publications. |
 | `timeRange` | string; any, 1h, 1d, 7d, 30d, 1y | Filter articles by how recently they were published. Use '1h' for breaking news, '1d' for daily monitoring, '7d' for weekly digests. Defaults to 'any' (no time filter — returns all available articles). |
 | `extractFullText` | boolean | When enabled, the actor visits each article page and extracts the full body text. Produces a full_text field and word_count field on each record. Ideal for AI/LLM pipelines, RAG (Retrieval-Augmented Generation), sentiment analysis, and NLP workloads. Requires source_url to be resolvable — increases run time and cost (additional article-full-text charge applies per article with text extracted). |

@@ -27,8 +27,10 @@
     "followContactPages": {
       "title": "Follow contact & about pages",
       "type": "boolean",
-      "description": "When enabled, the crawler automatically discovers and follows links to /contact, /about, /team, /imprint, /support, and equivalent multilingual pages before extracting. Recommended: keep enabled for best email and phone discovery. Disable only if you want to scan the homepage URL only.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -43,5 +45,6 @@
   "required": [
     "startUrls"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

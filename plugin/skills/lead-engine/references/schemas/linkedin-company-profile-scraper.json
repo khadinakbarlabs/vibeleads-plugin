@@ -24,14 +24,17 @@
     "includeEmployeesSample": {
       "title": "Include sample employees",
       "type": "boolean",
-      "description": "Attach a small public sample of employees surfaced on the company page (name, title, profile URL, image). Defaults to false. This is a preview sample, not the full employee roster - for that use the linkedin-company-employee-scraper actor."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "maxEmployeesSample": {
       "title": "Max sample employees",
       "type": "integer",
       "description": "How many sample employees to include when 'Include sample employees' is on. Accepts 1 to 100; defaults to 10. Ignored when the sample is disabled.",
       "minimum": 1,
-      "maximum": 100
+      "maximum": 100,
+      "x-vibeleads-use-review": "required"
     },
     "includeRawData": {
       "title": "Include raw response data",
@@ -42,5 +45,6 @@
   "required": [
     "companyUrls"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

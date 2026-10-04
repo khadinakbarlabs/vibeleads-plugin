@@ -2,6 +2,8 @@
 
 Read the relevant prospecting playbook and shared operating contract. Source titles/IDs do not establish data-use rights. “Verified” below means metadata/input schema verified, not lead quality or runtime health. Refresh the schema and pricing before execution.
 
+Apply the [qualified business/contact-use gate](../contact-use.md). Provider result bounds are not recommended audience sizes; optional contact extraction must be disabled during discovery.
+
 Apply the [source access gate](../access-safety.md) before execution. Provider recovery recommendations are replaced by VibeLeads restrictions; structural field names/types/bounds remain references.
 
 ## eventbrite-events-scraper
@@ -22,8 +24,8 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `priceFilter` | string; , free, paid | Filter by free or paid events only. Leave empty to include both. NOT a numeric price range — Eventbrite browse pages do not support arbitrary price ranges. |
 | `onlineOnly` | boolean | Restrict results to virtual/online events. When true, location is ignored. Defaults to false (both in-person and online included). |
 | `startUrls` | array | Direct Eventbrite browse URLs or event page URLs to scrape. Use this for custom search filters not exposed by this Actor's inputs, or to scrape specific event detail pages. Any URL parameters are preserved (e.g., '?page=2'). Mutually exclusive with searchQuery and location — provide either startUrls OR the filter inputs, not both. |
-| `maxResults` | integer; minimum=1; maximum=10000 | Maximum number of events to return. Eventbrite browse pages return 20 events per page with up to 49 pages per query (~1,000 events max per filter combination). Default 50 keeps run cost low for typical agent calls. Set higher for bulk extraction. |
-| `includeDetails` | boolean | Fetch each event's detail page to extract full description, organizer name and profile URL, ticket tiers with prices, and structured pricing currency. When false, returns only browse-page fields (still 25+ fields). Adds one HTTP request per event but no extra event charge. |
+| `maxResults` | integer; minimum=1; maximum=10000 | Maximum number of events to return. Eventbrite browse pages return 20 events per page with up to 49 pages per query (~1,000 events max per filter combination). Default 50 keeps run cost low for typical agent calls. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission. |
+| `includeDetails` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
 | `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.
@@ -47,8 +49,8 @@ Relevant input fields (schema guidance, not a ready-to-run request):
 | `startDate` | string | Only return events starting on or after this date. Format YYYY-MM-DD (e.g. '2026-06-01'). Leave empty for all upcoming events. NOT a date range — pair with endDate to bound on both sides. |
 | `endDate` | string | Only return events starting on or before this date. Format YYYY-MM-DD (e.g. '2026-12-31'). Leave empty for no upper bound. Pair with startDate for a bounded date window. |
 | `onlineOnly` | boolean | Restrict results to virtual/online events. Defaults to false (both in-person and online included). |
-| `maxItems` | integer; minimum=1; maximum=10000 | Maximum number of events to return. 10times listing pages show ~30 events per page; this Actor paginates until maxItems is met or the listing is exhausted. Default 50 keeps run cost low for typical agent calls (~$0.25). Set higher for bulk extraction. Hard ceiling 10000. |
-| `includeDetails` | boolean | Fetch each event's detail page to extract full description, organizer details, visitor/exhibitor estimates, and rating. When false, returns only listing-page fields (still includes name, dates, venue, URL). Adds one HTTP request per event but no extra event charge. |
+| `maxItems` | integer; minimum=1; maximum=10000 | Maximum number of events to return. 10times listing pages show ~30 events per page; this Actor paginates until maxItems is met or the listing is exhausted. Default 50 keeps run cost low for typical agent calls (~$0.25). Hard ceiling 10000. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission. |
+| `includeDetails` | boolean | VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection. |
 | `proxyConfiguration` | object | VibeLeads restriction: enablement is unsupported. Verify a documented disabled/direct/public mode and actual build behavior before execution; otherwise decline this route. See the source access gate. |
 
 Verify actual output rows before mapping. Preserve company identity, source URL, event/collection date, contact state and evidence. Modes and optional enrichments can affect setup/cost; inspect conditions and current pricing. Summary/error rows are not leads.

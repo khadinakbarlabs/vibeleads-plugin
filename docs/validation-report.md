@@ -1,4 +1,4 @@
-# VibeLeads 0.2.0 validation — October 5, 2026
+# VibeLeads validation history — October 5, 2026
 
 ## Observed result
 
@@ -41,3 +41,6 @@ After updating the official CLI to Claude Code 2.1.289, both native strict manif
 
 
 Revision 0.2.4 access-safety remediation: OpenAI rejected lead-engine for access-control circumvention. Provider source/schema annotations contained network workaround recommendations despite the shared prohibition. Those recommendations are replaced by explicit restrictions while preserving structural field keys/types/bounds. Every catalog route requires live access review; the workflow declines entire routes unless documented direct/disabled behavior is verified, including automatic enabled defaults. Access-denied sources are excluded from publisher fallback, resume and scheduling. Five regression checks cover unrestricted controls, reintroduced recovery guidance and an explicit prohibition; 74 tests pass. This is not a claim of vendor approval or a runtime canary for every Actor.
+
+
+Revision 0.2.5 contact-use remediation: OpenAI's v0.2.4 scan cleared the access-control finding but rejected lead-engine for “Spam mass abuse”; the other 25 skills passed. This update makes discovery company-first, requires explicit disabling of optional contact/detail collection including enabled defaults, restricts contact enrichment to named qualified businesses, and declines inseparable address generation/probing. Public email visibility and validation are not consent or lawful recipient eligibility. Contact-use/opt-out provenance stays in a companion mapping because the offline quality helper omits unknown fields; explicit suppressions must be mapped before processing. Saved recurring prompts stop at research/reports/drafts. Two additional regression checks cover mass-harvesting recommendations and contact-field review markers; 76 tests pass. Independent review checked 149 schema contracts and 1,255 parameter-table meanings, including website/detail extraction defaults and candidate-address modes. No paid collection or messaging was performed. Anthropic v0.2.4 is live; v0.2.5 requires fresh vendor scans and publication readback.

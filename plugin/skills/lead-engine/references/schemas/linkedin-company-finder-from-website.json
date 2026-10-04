@@ -32,7 +32,9 @@
     "enrichCompany": {
       "title": "Enrich matched companies",
       "type": "boolean",
-      "description": "When enabled, each found LinkedIn company page is fetched to add industry, employee count, headquarters, followers, founded year, and description. Enrichment costs an additional $0.02 per successfully enriched company on top of the $0.01 found-company charge. Leave disabled when you only need the LinkedIn URL."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "maxConcurrency": {
       "title": "Max concurrency",
@@ -45,5 +47,6 @@
   "required": [
     "websites"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

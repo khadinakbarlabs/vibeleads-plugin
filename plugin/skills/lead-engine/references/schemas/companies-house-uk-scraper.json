@@ -2,7 +2,7 @@
   "title": "Companies House UK Scraper",
   "type": "object",
   "schemaVersion": 1,
-  "description": "Look up UK Companies House companies, directors (officers), and persons with significant control (PSCs) through the official Public Data API. Pass company numbers, company names, officer names, or Companies House URLs. Nested officers and PSCs are included by default. This is a live register lookup, not a bulk snapshot dump of every UK company.",
+  "description": "Look up UK Companies House companies, directors (officers), and persons with significant control (PSCs) through the official Public Data API. Pass company numbers, company names, officer names, or Companies House URLs. Nested officers and PSCs are included by default. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "properties": {
     "companyNumbers": {
       "title": "Company numbers",
@@ -123,5 +123,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -37,12 +37,15 @@
       "title": "Direct profile URLs (skip search)",
       "type": "array",
       "description": "Optional list of LinkedIn personal-profile URLs (https://www.linkedin.com/in/<slug>). When provided, search is skipped and these profiles are enriched directly. Use this when you already have URLs and just want full public data. NOT company or post URLs.",
-      "editor": "stringList"
+      "editor": "stringList",
+      "x-vibeleads-use-review": "required"
     },
     "enrichProfiles": {
       "title": "Deep profile enrichment",
       "type": "boolean",
-      "description": "When true (default), each found profile is fetched for full public data: About section, work history with company links, education entries and follower count. When false, only the fast search-level fields (name, headline, location, URL) are returned at the lower price. Enrichment is billed per profile."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "maxResults": {
       "title": "Max results",
@@ -59,5 +62,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -20,8 +20,10 @@
     "enrichDescriptions": {
       "title": "Enrich full descriptions",
       "type": "boolean",
-      "description": "Fetch the complete job description for ATS platforms that do NOT return it in the listing call (SmartRecruiters, Workable, Workday, and Ashby boards without the inline posting API) via one extra request per job. Accepts true/false. Defaults to true. When false, those platforms return listing fields only; platforms that include descriptions inline (Greenhouse, Lever, Recruitee) are unaffected and always free.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "descriptionFormat": {
       "title": "Description format",
@@ -52,5 +54,6 @@
   "required": [
     "startUrls"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

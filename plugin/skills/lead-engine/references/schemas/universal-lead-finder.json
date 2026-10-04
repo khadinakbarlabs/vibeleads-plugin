@@ -43,7 +43,7 @@
     "includeSubpages": {
       "title": "Crawl contact/about subpages",
       "type": "boolean",
-      "description": "Also crawl /contact, /about, /team subpages for better email coverage. Slower but finds more emails."
+      "description": "VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission."
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -55,5 +55,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

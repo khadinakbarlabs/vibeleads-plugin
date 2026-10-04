@@ -26,7 +26,7 @@
     "maxResults": {
       "title": "Maximum Results",
       "type": "integer",
-      "description": "Maximum number of job listings to scrape and return. Each result costs $0.002 (= $2 per 1,000 jobs). Default is 50. Set to 100\u20131000 for bulk collection.",
+      "description": "Maximum number of job listings to scrape and return. Each result costs $0.002 (= $2 per 1,000 jobs). Default is 50. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "number",
       "minimum": 1,
       "maximum": 1000,
@@ -71,5 +71,6 @@
       "x-vibeleads-execution": "unsupported"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

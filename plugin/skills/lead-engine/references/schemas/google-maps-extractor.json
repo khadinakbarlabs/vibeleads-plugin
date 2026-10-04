@@ -26,7 +26,7 @@
     "maxResults": {
       "title": "Max places",
       "type": "integer",
-      "description": "Use this to cap how many Google Maps places are returned and charged. Accepted range is 1 to 2000; use 5-10 for testing and 50-200 for campaigns. Defaults to 20. This is not a page-count setting; one result means one place record.",
+      "description": "Use this to cap how many Google Maps places are returned and charged. Defaults to 20. This is not a page-count setting; one result means one place record. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 2000
     },
@@ -45,7 +45,9 @@
     "includeWebsiteContacts": {
       "title": "Scan business websites for contact links",
       "type": "boolean",
-      "description": "Use this when you want a lightweight scan of each listed website for public email and social profile links. Accepted value is true or false. Defaults to false to keep Google Maps extraction fast and predictable. This is not deep lead enrichment or email verification."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "language": {
       "title": "Language",
@@ -78,5 +80,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

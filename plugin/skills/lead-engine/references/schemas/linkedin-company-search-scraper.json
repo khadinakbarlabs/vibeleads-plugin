@@ -38,10 +38,13 @@
     "enrich": {
       "title": "Deep enrich each company",
       "type": "boolean",
-      "description": "When true, each found company is additionally fetched from its public LinkedIn page (industry, employee count, company size, headquarters, website, founded year, followers, specialties, description) via optional company enrichment and billed as one extra 'company-enriched' event. Defaults to false (search-only). Leave off for fast, cheap discovery.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

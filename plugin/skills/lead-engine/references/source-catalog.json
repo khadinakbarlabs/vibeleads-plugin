@@ -4420,7 +4420,7 @@
         "maxCandidatesPerLead"
       ],
       "verified_date": "2026-10-05",
-      "execution_eligibility": "requires_live_access_review"
+      "execution_eligibility": "unavailable; inseparable candidate-address generation/probing"
     },
     {
       "name": "email-address-validator",

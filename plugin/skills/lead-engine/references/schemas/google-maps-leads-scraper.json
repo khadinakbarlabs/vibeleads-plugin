@@ -25,19 +25,23 @@
     "maxResults": {
       "title": "Maximum qualified leads",
       "type": "integer",
-      "description": "The maximum number of business lead records to return and bill as place-scraped events. Choose 5 for a smoke test, 50 for a focused territory, or a larger bounded campaign. The allowed range is 1 to 5000 and the actor stops once it reaches this limit. This is not a page count, because Maps result pages contain a variable number of businesses.",
+      "description": "The maximum number of business lead records to return and bill as place-scraped events. The allowed range is 1 to 5000 and the actor stops once it reaches this limit. This is not a page count, because Maps result pages contain a variable number of businesses. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 5000
     },
     "enrichEmails": {
       "title": "Find public emails and social profiles",
       "type": "boolean",
-      "description": "When enabled, the actor visits a business website and its likely contact pages to find public email and social links. Email enrichment is optional and has a separate event only when an email is found. It defaults to true for outreach-ready lead generation. It does not guess, buy, or validate private personal email addresses."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "requireEmail": {
       "title": "Return only leads with a public email",
       "type": "boolean",
-      "description": "Keep only businesses for which the website crawl found a public email address. This filter runs after Maps extraction and optional website enrichment. It defaults to false so useful phone or website-only prospects are not discarded. It does not guarantee inbox deliverability or consent for outreach."
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "requireWebsite": {
       "title": "Return only leads with a website",
@@ -89,5 +93,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

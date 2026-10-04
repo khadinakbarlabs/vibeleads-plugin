@@ -53,7 +53,7 @@
     "maxItems": {
       "title": "Maximum jobs",
       "type": "integer",
-      "description": "Maximum number of job postings to return and bill for in this run (1 job = $0.003). Defaults to 100. The run stops once this many jobs are collected, even across multiple result pages. Increase for bulk exports.",
+      "description": "Maximum number of job postings to return and bill for in this run (1 job = $0.003). Defaults to 100. The run stops once this many jobs are collected, even across multiple result pages. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "number",
       "minimum": 1,
       "maximum": 100000
@@ -61,8 +61,10 @@
     "enrichDetails": {
       "title": "Fetch full job details",
       "type": "boolean",
-      "description": "When enabled (default), each job's detail page is fetched to add the full description, employment type, and structured salary from StepStone's JobPosting data. Disable for a faster, leaner run returning only fields visible on the search page. Does not change the per-job price.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -87,5 +89,6 @@
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -18,7 +18,8 @@
       "description": "Use this to cap how many creator profile rows are saved for each search query. Accepts integers from 1 to 10000. Defaults to 50 and the prefill is 10 for fast tests. This is the main per-query billing guard.",
       "type": "integer",
       "minimum": 1,
-      "maximum": 10000
+      "maximum": 10000,
+      "x-vibeleads-use-review": "required"
     },
     "maxPagesPerQuery": {
       "title": "Max Pages Per Query",
@@ -29,10 +30,11 @@
     },
     "maxTotalProfiles": {
       "title": "Max Total Profiles",
-      "description": "Use this to cap the whole run across all search queries. Accepts integers from 1 to 50000. Defaults to 5000 and the prefill is 50. This prevents accidental overbilling on large keyword batches.",
+      "description": "Use this to cap the whole run across all search queries. Accepts integers from 1 to 50000. Defaults to 5000 and the prefill is 50. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "type": "integer",
       "minimum": 1,
-      "maximum": 50000
+      "maximum": 50000,
+      "x-vibeleads-use-review": "required"
     },
     "minFollowerCount": {
       "title": "Minimum Follower Count",
@@ -64,5 +66,6 @@
   "required": [
     "searchQueries"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

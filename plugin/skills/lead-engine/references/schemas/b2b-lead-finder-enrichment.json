@@ -27,7 +27,7 @@
     "maxResults": {
       "title": "Maximum number of leads to return",
       "type": "integer",
-      "description": "Maximum number of business leads to extract from Google Maps per query. Each lead is charged as a PPE event. Prefilled at 3 for fast quality testing \u2014 raise to 50, 100, or 500 for real bulk prospecting. Google Maps typically returns up to ~120 results per query before pagination stops.",
+      "description": "Maximum number of business leads to extract from Google Maps per query. Each lead is charged as a PPE event. Google Maps typically returns up to ~120 results per query before pagination stops. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "minimum": 1,
       "maximum": 1000,
       "editor": "number"
@@ -35,10 +35,12 @@
     "enableEnrichment": {
       "title": "Enable email enrichment (crawl business websites)",
       "type": "boolean",
-      "description": "Set to true when the user wants email addresses for each lead. When enabled, the actor crawls each business's own website to find their contact email directly \u2014 no third-party API needed. This costs more credits (lead-enriched event) but returns verified emails sourced directly from the business. Set to false (default) to get basic lead data faster and cheaper (lead-basic event only).",
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
       "editor": "checkbox",
       "sectionCaption": "Email Enrichment (optional)",
-      "sectionDescription": "When enabled, the actor crawls each business's website to find a real contact email. Enriched leads cost more but include verified emails scraped directly from the source."
+      "sectionDescription": "When enabled, the actor crawls each business's website to find a real contact email. Enriched leads cost more but include verified emails scraped directly from the source.",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "proxyConfiguration": {
       "title": "Restricted access control",
@@ -50,5 +52,6 @@
       "x-vibeleads-execution": "unsupported"
     }
   },
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

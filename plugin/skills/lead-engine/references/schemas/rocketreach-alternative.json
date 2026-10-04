@@ -1,6 +1,6 @@
 {
   "title": "RocketReach Alternative work-email enrichment input",
-  "description": "Find or validate work email for known B2B contacts, or search public professional profiles by an explicit professional query. Work-email routes use EmailListVerify; public-profile search uses HarvestAPI and returns only public profile fields with provenance. Neither route discovers personal emails, phone numbers, or supports outreach.",
+  "description": "Find or validate work email for known B2B contacts, or search public professional profiles by an explicit professional query. Work-email routes use EmailListVerify; public-profile search uses HarvestAPI and returns only public profile fields with provenance. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -52,19 +52,21 @@
           "email": {
             "title": "Known work email",
             "type": "string",
-            "description": "Optional work email to validate in verify_supplied_email mode, for example ada@example.com. The provider tests deliverability and returns a result; it does not authorize outreach. Leave empty when find_and_verify should search within the supplied employer domain."
+            "description": "A known, lawfully held business email supplied for validation. Do not leave it empty to activate address generation or a finder mode.",
+            "x-vibeleads-use-review": "required"
           }
         },
         "required": [
           "fullName",
           "companyDomain"
         ]
-      }
+      },
+      "x-vibeleads-use-review": "required"
     },
     "publicProfileSearch": {
       "title": "Public professional-profile search",
       "type": "object",
-      "description": "Required for public_profile_search: provide a professional search query or a public LinkedIn company URL, with optional title and location filters. Results are public profile name, headline, URL, and location only; no email, phone, personal contact data, or outreach capability is returned.",
+      "description": "Required for public_profile_search: provide a professional search query or a public LinkedIn company URL, with optional title and location filters. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "json",
       "properties": {
         "query": {
@@ -87,7 +89,9 @@
           "type": "string",
           "description": "Optional public professional-location filter, such as New York."
         }
-      }
+      },
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-use-scope": "named qualified employer only; require currentCompany for this workflow"
     },
     "maxProfiles": {
       "title": "Maximum public profiles",
@@ -95,17 +99,22 @@
       "description": "For public_profile_search, process one to 25 returned public profiles. Each accepted complete profile is charged only after the separately priced public-profile event has become active. Defaults to 10.",
       "editor": "number",
       "minimum": 1,
-      "maximum": 25
+      "maximum": 25,
+      "x-vibeleads-use-review": "required"
     },
     "enrichmentMode": {
       "title": "Enrichment mode",
       "type": "string",
-      "description": "Choose find_and_verify to find a work email from the known name and employer domain, verify_supplied_email to validate contact.email, or candidate_only for DNS-backed conventional patterns. The default uses the owner-configured EmailListVerify route. Verification modes require the EMAIL_LIST_VERIFY_API_KEY Actor secret and return explicit provider outcomes. candidate_only preserves an MX-backed candidate boundary without asserting mailbox delivery.",
+      "description": "VibeLeads allows verify_supplied_email only, for known lawfully held business emails. Address-pattern generation and finder modes are unavailable. Verify actual build behavior and source/use rights before execution.",
       "editor": "select",
       "enum": [
         "find_and_verify",
         "verify_supplied_email",
         "candidate_only"
+      ],
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-allowed-values": [
+        "verify_supplied_email"
       ]
     },
     "fallbackPolicy": {
@@ -130,18 +139,23 @@
     "maxCandidatesPerContact": {
       "title": "Maximum candidates per contact",
       "type": "integer",
-      "description": "Number of common work-email patterns returned for an MX-capable employer domain. Defaults to 3 and accepts 1 to 5 patterns, ordered by conventional pattern priority. This does not verify that a specific mailbox exists or that the person currently works there.",
+      "description": "Candidate-address generation is unavailable in VibeLeads. This provider field is retained as structural metadata only; do not activate a candidate mode.",
       "editor": "number",
       "minimum": 1,
-      "maximum": 5
+      "maximum": 5,
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-execution": "unsupported"
     },
     "includeMxValidatedCandidates": {
       "title": "Include MX-valid email candidates",
       "type": "boolean",
-      "description": "Return candidate work-email strings only when the supplied company domain advertises an MX mail host. Defaults to true; turning it off still returns the enrichment status and DNS provenance without email strings. This is not mailbox, SMTP, ownership, or personal-email verification.",
-      "editor": "checkbox"
+      "description": "Unavailable for enablement. Explicitly disable candidate-address output and verify the actual build, or decline the route.",
+      "editor": "checkbox",
+      "x-vibeleads-execution": "unsupported",
+      "x-vibeleads-use-review": "required"
     }
   },
   "required": [],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

@@ -45,13 +45,15 @@
     "requireEmail": {
       "type": "boolean",
       "title": "Only influencers with a public email",
-      "description": "Use this when outreach-ready contacts are required. Enable it to keep only influencers that expose an email in their public business contact field or biography; the default is off. The actor reads public data only and cannot discover hidden or direct-message contacts. Turn it off when the shortlist matters more than contactability.",
-      "editor": "checkbox"
+      "description": "VibeLeads scope: keep optional contact/detail extraction explicitly disabled during company discovery. A relevant stage for named qualified businesses requires verified actual build controls, source/use rights and suppression under the contact-use gate. Decline inseparable audience collection.",
+      "editor": "checkbox",
+      "x-vibeleads-use-review": "required",
+      "x-vibeleads-discovery": "explicitly disabled; verify actual build, otherwise decline route"
     },
     "requireVerified": {
       "type": "boolean",
       "title": "Only verified influencers",
-      "description": "Use this when the blue check is a campaign requirement. Enable it to keep only publicly verified accounts; the default is off. Verified status comes from the public profile metadata returned by the data provider. It does not measure audience quality or fake followers.",
+      "description": "Enable it to keep only publicly verified accounts; the default is off. Verified status comes from the public profile metadata returned by the data provider. It does not measure audience quality or fake followers. VibeLeads scope: qualify companies first. Optional contact extraction stays disabled in discovery; enable only a reviewed, relevant contact stage for named qualified businesses under the contact-use gate. Provider bounds are not recommended volumes or permission.",
       "editor": "checkbox"
     },
     "sortBy": {
@@ -104,5 +106,6 @@
   "required": [
     "topics"
   ],
-  "x-vibeleads-execution-review": "required; schema inspection is not execution permission"
+  "x-vibeleads-execution-review": "required; schema inspection is not execution permission",
+  "x-vibeleads-contact-use-review": "required; company discovery and contact stages are distinct"
 }

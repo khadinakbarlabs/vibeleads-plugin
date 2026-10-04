@@ -2,7 +2,7 @@
 
 ## Released package
 
-**VibeLeads: B2B Lead Finder**, subtitle **Find and qualify B2B leads**, is published in [khadinakbarlabs/vibeleads-plugin](https://github.com/khadinakbarlabs/vibeleads-plugin). Latest packaged release: [v0.2.4](https://github.com/khadinakbarlabs/vibeleads-plugin/releases/tag/v0.2.4), with the source-access safety remediation. The user selected the **Momentum** logo and availability in **all supported countries**.
+**VibeLeads: B2B Lead Finder**, subtitle **Find and qualify B2B leads**, is published in [khadinakbarlabs/vibeleads-plugin](https://github.com/khadinakbarlabs/vibeleads-plugin). Published release: [v0.2.4](https://github.com/khadinakbarlabs/vibeleads-plugin/releases/tag/v0.2.4). Revision v0.2.5 adds the qualified-business/contact-use remediation and is prepared for publication and fresh directory checks. The user selected the **Momentum** logo and availability in **all supported countries**.
 
 The installable folder is `plugin/`, with identifier `vibeleads-b2b`. It contains one shared set of **26 skills** and optional readable offline quality/report helpers. Maintainer tests, scripts and the fictional marketing preview remain outside the installation. No dedicated agent personas, MCP server, sender, scheduler service or hidden telemetry are bundled.
 
@@ -10,7 +10,7 @@ Live collection requires the user's Apify API key or configured login and bills 
 
 ## Verified checks
 
-- 74 automated tests passed, including package boundary and secret checks.
+- 76 automated tests passed, including package boundary and secret checks.
 - Claude Code v2.1.289 strict runtime and root marketplace validation passed without warnings.
 - The independent package review confirmed all 250 skill/resource files survived the distribution move unchanged. Both archive layouts contain the same 261 package files, excluding maintainer material.
 - Live Claude directory scan of `plugin/` at `e18c7af` passed validation, directory lints and name/publisher checks, with **zero policy holds**. All seven earlier holds were resolved. Five metadata notices remain for four directory URL fields and the icon; each expanded notice explicitly states **No action needed**.
@@ -20,13 +20,13 @@ The fictional report preview is interaction evidence, not real prospect data. Na
 
 ## Directory state as of October 5, 2026
 
-**Anthropic:** a saved directory draft uses the public repository, default branch and `plugin/` folder. Listing links and data-handling responses are filled. The latest source scan has no policy holds. The user completed the compliance attestations and submitted it. The portal shows **Scan passed / In review** for v0.2.3, with the user's publish request waiting for an Anthropic reviewer. The tracked v0.2.4 update at e618c21 was detected and is now scanning; it is not yet claimed passed or published. The push-only, SSL-verified webhook is connected; the initial ping returned HTTP 200.
+**Anthropic:** the user completed compliance attestations and submitted/published the plugin. The portal confirms **Published**, with live version **v0.2.4 at e618c21**, listed for Claude Code, Cowork and Claude apps. The newer docs-only main revision at 544f67a passed scanning and awaits its publication update; its installable package is identical. The push-only, SSL-verified webhook is connected, with ping and push deliveries returning HTTP 200. Revision v0.2.5 is prepared locally and requires a fresh tracked-branch scan after publication.
 
-**OpenAI:** the dashboard accepted v0.2.3 as a draft with 26 skills, the Momentum logo, the existing verified individual publisher and category **Productivity**. All 26 skill checks finished; lead-engine was rejected for access-control circumvention. Revision 0.2.4 implements a source-access gate and removes incompatible recovery recommendations. The dashboard accepted the replacement v0.2.4 ZIP. Most skill checks have passed; automated review of the updated skills is in progress. Read the live dashboard for the current count. A nonblocking category notice persists after adding the documented category and must be reviewed; it is not claimed resolved. Replacing the bundle reset the six developer attestations; the user is completing them. The draft has **not been submitted for review or published**.
+**OpenAI:** the replacement v0.2.4 draft has 26 checked skills: **25 passed**, and lead-engine was flagged for **Spam mass abuse**. The previous access-control finding cleared. Revision v0.2.5 enforces company-first discovery, qualified contact stages, explicit suppression/use-basis mapping and research/draft-only recurring prompts. It requires a replacement upload and fresh scan. A nonblocking category notice persists for the documented **Productivity** category. Six developer attestations must be completed by the authorized developer after the final replacement upload. The draft has **not been submitted for review or published**.
 
 ## Remaining actions
 
-1. Publish the reviewed v0.2.4 safety update and verify its tracked-branch scan in Anthropic.
+1. Publish the reviewed v0.2.5 update to GitHub, verify its Anthropic scan and request the publication update.
 2. Finish OpenAI's automated checks; address concrete blockers if any. The authorized developer reviews and completes its attestations, then submits for review.
 3. Read back each portal's actual state. Report **In review**, **Approved** and **Published** separately. An uploaded or saved draft is not a submitted or published directory release.
 

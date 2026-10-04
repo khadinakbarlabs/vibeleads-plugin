@@ -22,4 +22,6 @@ Inspect help first. Omitting `--csv` writes only JSON; `--sendable-only` restric
 
 Preserve required external IDs and provider-specific enrichment/validation detail in a companion mapping before the helper drops unsupported fields. Join by reviewed stable identity after deduplication, never row position; include that mapping in enrichment/CRM handoffs.
 
+Also preserve contact-use basis, consent provenance where applicable and opt-outs in that mapping. Apply explicit opt-outs through supported suppression inputs before the helper; use disqualifiers if no stable suppression key exists. Technical email-ready/sendable-only results do not evaluate permission to message and must not be presented as a recipient audience. Return unresolved eligibility as unknown alongside quality results.
+
 Review notes/evidence for irrelevant private data before exporting. Escape formula-leading cells in CSV. Report qualified/review/excluded counts, duplicates, suppressed rows, email-quality distribution, scoring rationale and missing fields. Preserve original source files.

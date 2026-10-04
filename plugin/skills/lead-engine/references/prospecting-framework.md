@@ -11,6 +11,8 @@ Reuse available offer/product/customer context. Capture what is sold, value, reg
 
 ## Account-first search
 
+Apply the [contact-use gate](contact-use.md): qualify businesses before optional contact enrichment, and explicitly disable default-on contact extraction during discovery. Prefer minimal published company contact routes. A company's fit or validated email does not establish eligibility to message; preserve that distinction in every handoff.
+
 Start with one primary source and one verification source. Search for a narrow segment and a meaningful signal; do not run every available source. A small pilot reveals wrong geography, chain locations, ambiguous company domains and stale records cheaply. Inspect the actual rows before scaling within remaining budget. A 2–3x candidate buffer is a planning estimate, not an automatic authorization to triple collection.
 
 Use exclusions early: competitors, current customers, suppressed domains/contacts, franchises if independent firms are required, closed businesses, irrelevant countries, recruitment agencies when hiring companies are requested. Preserve false negatives and uncertain matches in a review bucket rather than silently deleting them.
