@@ -1,0 +1,4 @@
+interface:
+  display_name: "Business Context"
+  short_description: "Understand your offer and remember useful context"
+  default_prompt: "Use $business-context for my B2B prospecting workflow."

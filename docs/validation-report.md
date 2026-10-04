@@ -1,40 +1,36 @@
-# VibeLeads 0.1.1 validation — October 5, 2026
+# VibeLeads 0.2.0 validation — October 5, 2026
 
-## Outcome
+## Observed result
 
-Local skills-only source and two archive layouts built. Revision 0.1.1 adds company/contact enrichment, email validation and owned-first routing with verified other-publisher fallback when needed. 20 skills, 14 detailed source-family guides, 152 selected owned routes: 149 public metadata/default input schemas verified; 3 routes returned public HTTP 404 and remain explicit coverage gaps. Public schema visibility does not prove live source health. No paid Actor collection, outreach, CRM upload, scheduling, deployment or marketplace submission occurred.
+One skills-only plugin, 26 skills, three platform manifests and no bundled agent personas/service/scheduler. Revision 0.2.0 adds business-context, adaptive-prospecting, feedback-learning, session-continuity, scheduled-prospecting and lead-reporting. Context/feedback use deliberate scoped workspace files; recurring jobs use actual host capabilities. No claim of a measured tenfold conversion or productivity gain.
 
-## Verification
+## Current verification
 
 | Check | Observed result |
 | --- | --- |
-| Offline lead qualification and release tests | 39 passed: evidence scoring, status separation, suppression, account/contact/branch grains, stronger duplicate selection, matching contact-route evidence, malformed input, CSV formulas, private/ambiguous URLs, private release files, manifest path escape, symlinks, missing resources/assets, archive round-trip. |
-| Skill Creator validation | All 20 skills passed frontmatter/naming/scaffold checks. |
-| Native Claude manifest validation | Plugin and local marketplace both passed `claude plugin validate --strict` on Claude Code 2.1.165. They were validated separately because a marketplace file can take precedence when validating a directory. |
-| Portable/OpenAI schema | Root manifest passed the retrieved Agent Plugins 1.0 JSON Schema. Presentation name/subtitle/prompts fit current limits. |
-| Cursor schema | Compatibility manifest passed Cursor’s official plugin schema. |
-| Native Claude source-planning test | Explicit skill invocation loaded successfully. Exact Apollo request with no Apollo subscription disclosed the source gap; strict Series A/date qualification required actual financing evidence. No tool for live collection was enabled. |
-| Native Claude natural-language test | A request for 15 independent Austin dental practices activated VibeLeads guidance and produced an editable ICP and useful plan without fabricated clinic records or collection. |
-| Independent forward tests | Exact source, Product Hunt + financing, untrusted imported commands, unknown deliverability, suppression and distinct contacts were exercised in an isolated fictional workspace. Findings were repaired and rechecked. |
-| Independent 0.1.1 enrichment/failover tests | Four read-only scenarios passed: charged partial failure retains rows and remaining budget; valid-empty avoids automatic spend; syntax/MX with blocked SMTP stays non-sendable; exact vendor source requires authorized access. Fictional 8+6 overlap merge retained eight originals and produced 12 unique accounts; a companion mapping retained original ID and validator details. |
-| Final native Claude email-validation check | Passed the targeted offline scenario: eight company rows did not become eight emails/qualified accounts; blocked SMTP stayed `unknown`; no unverified warmup sends were advised; email-ready set remained empty; fallback reused $2 remaining; original IDs/provider detail used a companion mapping. No collection tool was enabled. |
-| Third-party discovery smoke | Read-only catalog searches returned four Google Maps and three email-validation candidates from other publishers. This establishes discovery, not suitability, runtime health or live fallback delivery. |
-| Offline CLI fixture | Canonical fictional records: qualified=1, review=2, excluded=1. Only the validator-backed qualified email entered the sendable CSV. |
-| Assets | Existing owner’s VibeLeads mark rendered as 512×512 PNG, 16,055 bytes; visually inspected and included. |
-| Distribution | Root-layout and enclosing-folder ZIPs extracted and matched source byte-for-byte; hashes in exported archive-report.json. |
+| Automated suite | 68 passed: 28 lead-quality, 29 reporting and 11 release tests. New coverage includes actual email denominators, suppression, grain identities, full canonical/evidence changes, newly excluded versus absent, historical suppression, unknown budget, reserved charges, overspend, input protection, safe HTML/Markdown, opaque feedback references and three-format CLI output. |
+| Independent code/security review | Accuracy, privacy, XSS, path safety, feedback behavior and accessible focus were reviewed. Findings repaired and rechecked. No remaining blocker in reviewed scope. |
+| Independent forward evaluation | Six realistic fictional scenarios produced useful briefs/handoffs/feedback/recovery artifacts: no allowance reset, small-sample caution, untrusted feedback rejection, partial monitor cursor/reservation recovery, absent-runtime inactive schedule, and deliberate scoped feedback without telemetry. |
+| Real browser interactions | Chrome via Playwright: search, quality filter, empty state, displayed exclusion search, selected-feedback label search, explicit feedback download and clearing on reload passed. No remote request or browser error. |
+| Responsive/visual | No horizontal overflow at 1440, 820, 390 and 320 pixels. Desktop/mobile reports visually inspected. Preview and downloadable HTML/Markdown/JSON/PDF use clearly fictional records. |
+| Skill scaffolds | All 26 passed Skill Creator frontmatter/naming/scaffold validation. |
+| Native Claude manifests | Plugin and local marketplace passed strict validation separately. |
+| Portable/OpenAI and Cursor | Current manifests passed the included official schema snapshots; display/subtitle/starter limits passed package checks. |
+| Native Claude v0.2 prompt evaluation | Attempted context/feedback/schedule scenario, but the account session usage limit blocked execution immediately. Not counted as a passed behavioral test or plugin failure. |
+| Packaging | Root and enclosing-folder archives validated after extraction and matched source bytes. Final hashes are in the export directory's archive-report.json. |
 
-The first native source-plan evaluation exposed excess implementation detail and unverified rate references in its draft. The shared contract was tightened to keep technical records separate and forbid quoting schema/example prices as current rates. The subsequent natural-language test stayed in business/plan language. Independent review found and repaired duplicate ordering, contact provenance, malformed disqualifiers, keyword/public-token guide descriptions, private-file packaging, unsafe manifest names and ambiguous URL qualification.
+Independent review found incomplete changed-field detection, observed exclusions counted as absent, retroactive prior suppression, indistinguishable same-company contact/branch cards, and low focus contrast. Regression tests repaired these. The feedback UI then exposed search matching unselected option labels; substantive record search and selected-label search were fixed and checked in the actual browser. User-facing reason codes are translated into plain language, while canonical JSON retains exact reasons.
 
-The first 0.1.1 native offline prompt exposed redundant approvals for optional provider examples and included premium validation, ambiguous failed-run resume language, and an overgeneralized SMTP explanation. Shared contracts were repaired: exact required sources are distinct from examples/“where available”; included enrichment/validation reuses the authorized remaining envelope; reading a dataset does not restart a terminal failed run; blocked SMTP is inconclusive. Independent review also repaired two stale owned-only sentences and made companion mappings explicit for external IDs and richer validation details. A subsequent native test correctly reused authorization and preserved mappings but still invented email denominators from company counts and suggested sending unverified addresses for warmup. The contract now explicitly requires actual counts, blocked-SMTP state `unknown`, and verification rather than warmup sends. This evidence is retained as a model-behavior limitation, not hidden as a passed test.
+## Prior evidence and scope limits
 
-## Limits and remaining release gates
+The [0.1.1 validation history](validation-history-0.1.1.md) records earlier native Claude prospecting/enrichment checks, source inspection and initial repairs. The source map still has 14 detailed families and 152 preferred routes: 149 public metadata/default schemas inspected, three public HTTP-404 gaps. No route is labeled runtime-tested. This revision did not spend on lead collection or perform another full live inventory/schema refresh.
 
-- CLI 1.8.0 presence/help and authenticated owned inventory were checked. Catalog/schema reads used public endpoints with TLS verification. No new Actor run or runtime output delivery was tested; none of the 149 routes is labeled runtime-tested.
-- The three unavailable public routes are 2GIS Places, Acquire.com and Luma. They remain in the preferred map as gaps, not available production sources; a suitable verified other-publisher route can fill missing coverage.
-- Claude source-directory loading was exercised. Cached marketplace installation, Cowork/cloud-shell access, Codex/OpenAI plugin installation and Cursor UI installation were not exercised. Same-repository packaging is established; each host’s execution dependency still needs a host check.
-- The source and archives are local. No public repository publication, public policy/support URLs, publisher verification, country/commerce declarations, portal scans, attestations, vendor review or live directory availability has been claimed.
-- Models can vary in routing and verbosity; schema/text validation cannot prove all prospecting outcomes. Scenario tests improve confidence within the recorded scope, not perfection.
+No actual recurring job was activated or run; no paid Actor run, outreach, CRM upload, background service, public repository publication or vendor submission occurred. Host scheduling references were refreshed from official Claude/Cursor docs, but installed runtime/secure data access must be checked in each intended host. Local credentials and files do not automatically exist in a remote job. Recurring budget/cursor/locking rules are host workflow instructions, not an executable distributed spend controller.
+
+The independent evaluation and automated/browser tests establish confidence in their recorded scope. They do not establish real conversion lift, future source health, cross-host installation, cached marketplace loading, cloud-task execution, SMTP/provider deliverability or vendor approval. Saved context is scoped readable files or optionally enabled host memory, not hidden training or automatic cross-host sync. A local feedback download is not a message sent to the developer.
 
 ## Reproduce
 
-From the source root, run `python3 -m unittest discover -s tests -v`, `python3 scripts/validate_package.py`, the native Claude validators, and `python3 scripts/package_release.py --output <directory-outside-source>`. Schema checks require the maintainer’s `jsonschema` library; the user-facing offline helper has only standard-library dependencies. Behavioral prompts live in `tests/behavior-cases.json`. Raw native-host evaluation output is outside the release tree; it is not included in archives or vault notes.
+Run `python3 -m unittest discover -s tests -v`, `python3 scripts/validate_package.py`, separate native manifest validators and `python3 scripts/package_release.py --output <directory-outside-source>`. Official schema checks use the maintainer's jsonschema library; user-facing helpers need only Python's standard library.
+
+Create the fictional report with `python3 skills/lead-reporting/scripts/lead_report.py tests/fixtures/report-demo.json --summary tests/fixtures/report-demo-summary.json --html <outside-source>/brief.html --markdown <outside-source>/brief.md --json <outside-source>/brief.json`. Check search/filter/feedback/print in a current browser; feedback should not upload, survive reload or include full contact rows. Model behavior cases live in tests/behavior-cases.json; not every listed future scenario was run. Raw host outputs and independent artifacts remain outside the public release tree.

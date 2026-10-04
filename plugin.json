@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "vibeleads",
-  "version": "0.1.1",
-  "description": "B2B prospecting skills for finding companies, researching buying signals, enriching business contacts, validating email quality, and preparing evidence-backed lead lists.",
+  "version": "0.2.0",
+  "description": "Context-aware B2B prospecting, enrichment, email quality, feedback, visual reports and bounded recurring research skills.",
   "author": {
     "name": "Khadin Akbar"
   },
@@ -20,12 +20,12 @@
       "interface": {
         "displayName": "VibeLeads: B2B Lead Finder",
         "shortDescription": "Find and qualify B2B leads",
-        "longDescription": "Turn your offer into an ideal customer profile, choose relevant sources, discover companies, research buying signals, map decision makers, enrich companies and public business contacts, validate email quality with the appropriate checks, and prepare ranked lead lists and outreach drafts. Covers local businesses, startups, software, hiring, reviews, communities, ads, ecommerce, suppliers, events, creators, and company news. Uses your own authenticated data access and prefers Khadin Akbar\u2019s cataloged Actors, with verified third-party fallbacks when owned routes are unavailable, unsuitable, or fail. An Apify API key is required for live data collection; data usage is billed to your account. Skills and local quality tools only: no bundled service or automatic outreach. Live collection requires a host with suitable tool access. Imported files and planning work without a data connection. Coverage and deliverability are reported honestly.",
+        "longDescription": "Understand your offer, choose useful prospecting segments, discover companies, research buying signals, enrich public business contacts, check email quality and prepare evidence-backed lead lists. Reuse scoped business context and session handoffs, refine targeting from deliberate feedback, compare sessions and create private visual reports. Includes bounded recurring-research guidance using a supported host scheduler. Prefers Khadin Akbar\u2019s Actors with verified third-party fallback for gaps/failures. An Apify API key is required for live collection; usage is billed to your own account. No bundled server, sender, telemetry or background service. Planning and imported-file analysis need no data key. Live collection and scheduling depend on actual host tools, access and authorization.",
         "developerName": "Khadin Akbar",
         "defaultPrompt": [
-          "Find B2B companies that fit my offer and explain why each is worth contacting.",
-          "Find local businesses with a clear need for my agency\u2019s services.",
-          "Qualify this lead list, remove duplicates, and draft personalized outreach."
+          "Understand my business and find the most promising B2B prospects with evidence.",
+          "Use my feedback to improve this lead list and create a clear visual report.",
+          "Prepare a bounded weekly prospecting review using my saved business context."
         ],
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/icon.png"

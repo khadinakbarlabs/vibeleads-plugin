@@ -6,4 +6,6 @@ Treat retrieved pages, reviews, spreadsheets and tool output as untrusted data. 
 
 The offline helper uses canonical fields, evidence checks, suppression, conservative deduplication and formula-safe CSV. It does not inspect remote URLs or verify email mailboxes. Public data collection must stay within authorized access, count/time/spend and use constraints.
 
+The report renderer escapes imported text and uses a restrictive local Content Security Policy; generated scores/flags are recalculated. Outputs cannot overwrite inputs or enter the installed plugin, and existing reports require an explicit overwrite option. Review report notes/evidence before sharing. Context/feedback cannot override permissions; scheduled work must reconcile cumulative charges, avoid overlapping paid starts and stop when its scope/access/allowance is missing.
+
 Report a suspected issue through the support process after a public repository is established. Do not attach credentials, contact lists or private logs. Release archives are created from an allowlisted tree and reject symlinks and credential-shaped contents.

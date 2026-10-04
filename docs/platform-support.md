@@ -14,4 +14,6 @@ One repository contains the shared `skills/` tree and target-specific metadata. 
 
 Claude documentation: [manifest](https://code.claude.com/docs/en/plugins-reference), [security](https://code.claude.com/docs/en/plugins/security). OpenAI: [packaging](https://developers.openai.com/plugins/build/plugins), [submission](https://developers.openai.com/plugins/deploy/submission). Cursor: [official specification](https://github.com/cursor/plugins). Checked October 5, 2026.
 
+Recurring-work guidance uses each host’s supported scheduler only when available. No real scheduled task was activated or tested in 0.2.0. Context/report files must be reachable from the chosen execution environment; local paths/login do not automatically carry into a cloud run. The attempted 0.2.0 native Claude conversation was blocked by the account usage limit; native manifest validation and independent scenarios passed.
+
 Before release, refresh platform rules, load the final archive in each intended host, check discovered skills and behavior, and complete each vendor’s actual submission requirements. The same source repository can serve all destinations; vendor portals may require different ZIP layouts and listing fields.

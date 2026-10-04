@@ -2,7 +2,7 @@
 
 Find the right companies, understand why they might buy, and prepare a lead list you can trust.
 
-VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecting process together: ideal customer profiles, source selection, buying signals, company research, company and public contact enrichment, email validation, qualification, list hygiene, account plans, and outreach drafts.
+VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecting process together: ideal customer profiles, source selection, buying signals, company research, company and public contact enrichment, email validation, qualification, list hygiene, account plans, and outreach drafts. It also reuses scoped business context, improves targeting from deliberate feedback, resumes sessions, prepares bounded recurring research and produces private visual reports.
 
 **An Apify API key is required for live collection.** Use your own account; data collection is billed there. Planning and working with files need no data connection. Setup details belong in the [connection guide](skills/lead-engine/references/connection-guide.md).
 
@@ -16,6 +16,10 @@ VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecti
 - “Validate these business emails and separate actual mailbox verdicts from basic syntax and MX checks.”
 - “Clean this CSV, preserve distinct contacts at one company, and flag unverified emails.”
 - “Draft three personal opening lines for the strongest accounts. Leave them ready for review.”
+- “Remember this business brief in my chosen workspace, then continue from it next session.”
+- “These leads are mostly chains. Improve the targeting and explain what you changed.”
+- “Make a visual report with evidence, uncertain emails, changes since last session and next actions.”
+- “Prepare a weekly review of my saved prospects. Use the host scheduler only when available.”
 
 The assistant uses existing context, asks only for material missing information, and prepares a small search plan. It explains the sources, exclusions, output, and any collection cost before a billable search. It respects previously authorized budgets.
 
@@ -28,6 +32,12 @@ A ranked company or contact list with source links, dates, fit reasons, buying s
 | Workflow | Skill |
 | --- | --- |
 | Guided prospecting from an offer to a lead list | `lead-engine` |
+| Understand the business and reuse a scoped brief | `business-context` |
+| Choose a useful next search from evidence and feedback | `adaptive-prospecting` |
+| Learn preferences from deliberate feedback | `feedback-learning` |
+| Resume sessions without repeating work or resetting spend | `session-continuity` |
+| Bounded recurring research and weekly reviews | `scheduled-prospecting` |
+| Interactive reports, comparisons and feedback download | `lead-reporting` |
 | ICP, territory, pains, disqualifiers, offer hypotheses | `ideal-customer-profile` |
 | Select sources and disclose coverage gaps | `source-planning` |
 | Local businesses and service opportunities | `local-business-prospecting` |
@@ -52,6 +62,16 @@ See the [source coverage guide](skills/lead-engine/references/source-coverage.md
 
 Cataloged schemas describe availability at inspection time; they do not prove every route produces working lead data. Apollo, ZoomInfo and similar branded databases are not implied by similarly named alternatives.
 
+## Better decisions across sessions
+
+VibeLeads uses the current host model to research your business and form a narrow, editable search hypothesis. It separates confirmed facts from assumptions, learns from explicit corrections, and recommends the next useful action. Saved business briefs and handoffs live in your chosen workspace; the plugin does not create invisible memory or need another model API key.
+
+The visual report includes search, quality filters, expandable evidence, budget status, session comparisons, deliberate feedback download and print/save-PDF. It recalculates qualification from canonical evidence. [Reporting guide](skills/lead-reporting/references/report-guide.md) · [Context guide](skills/business-context/references/context-protocol.md).
+
+![Fictional report preview](assets/report-preview.png)
+
+This preview uses fictional demonstration records. Scheduled research uses the host’s supported scheduler with explicit scope, timezone, run/period allowance and stop rules. No schedule starts on installation. Local credentials do not automatically work in a cloud runner. [Scheduling guide](skills/scheduled-prospecting/references/schedule-contract.md).
+
 ## Install from the same repository
 
 Claude Code: test with `claude --plugin-dir /absolute/path/to/vibeleads`, then use `/vibeleads:lead-engine` or natural language. For a local marketplace, run `/plugin marketplace add /absolute/path/to/vibeleads` followed by `/plugin install vibeleads@vibeleads-local` in Claude Code.
@@ -64,7 +84,7 @@ See [platform support](docs/platform-support.md) for tested and untested surface
 
 ## Development and testing
 
-Python 3.10+ is needed only for the optional offline quality helper and maintainer tools. No installation hooks, service, daemon, bundled data client, or background scheduler.
+Python 3.10+ is needed only for the optional offline quality helper and maintainer tools. No installation hooks, service, daemon, bundled data client, or background scheduler. Optional offline reports use only the Python standard library and embedded local browser scripts.
 
 ```sh
 python3 -m unittest discover -s tests -v

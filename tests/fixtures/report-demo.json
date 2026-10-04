@@ -1,0 +1,252 @@
+[
+  {
+    "company": "Cedar Dental Studio",
+    "domain": "cedar-dental.example",
+    "contact_name": "Practice manager",
+    "email": "office@cedar-dental.example",
+    "email_status": "valid",
+    "fit": true,
+    "problem": true,
+    "timing": true,
+    "business_channel": "https://cedar-dental.example/contact",
+    "evidence": [
+      {
+        "field": "fit",
+        "value": "Observed fit",
+        "url": "https://cedar-dental.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "problem",
+        "value": "Observed problem",
+        "url": "https://cedar-dental.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "timing",
+        "value": "Observed timing",
+        "url": "https://cedar-dental.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "business_channel",
+        "value": "https://cedar-dental.example/contact",
+        "url": "https://cedar-dental.example/contact",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "email",
+        "value": "office@cedar-dental.example",
+        "kind": "validator",
+        "url": "https://validator.example/check",
+        "observed_at": "2026-10-05T10:00:00Z"
+      }
+    ],
+    "location": "Austin, TX",
+    "contact_role": "Operations",
+    "notes": "Fictional demonstration record. Not collected from a live source."
+  },
+  {
+    "company": "Harbor Wellness Group",
+    "domain": "harbor-wellness.example",
+    "contact_name": "Practice manager",
+    "email": "office@harbor-wellness.example",
+    "email_status": "unknown",
+    "fit": true,
+    "problem": true,
+    "timing": true,
+    "business_channel": "https://harbor-wellness.example/contact",
+    "evidence": [
+      {
+        "field": "fit",
+        "value": "Observed fit",
+        "url": "https://harbor-wellness.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "problem",
+        "value": "Observed problem",
+        "url": "https://harbor-wellness.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "timing",
+        "value": "Observed timing",
+        "url": "https://harbor-wellness.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "business_channel",
+        "value": "https://harbor-wellness.example/contact",
+        "url": "https://harbor-wellness.example/contact",
+        "observed_at": "2026-10-05T10:00:00Z"
+      }
+    ],
+    "location": "Austin, TX",
+    "contact_role": "Operations",
+    "notes": "Fictional demonstration record. Not collected from a live source."
+  },
+  {
+    "company": "Elm Family Dentistry",
+    "domain": "elm-dental.example",
+    "contact_name": "Practice manager",
+    "email": "office@elm-dental.example",
+    "email_status": "unknown",
+    "fit": true,
+    "problem": true,
+    "timing": false,
+    "business_channel": "https://elm-dental.example/contact",
+    "evidence": [
+      {
+        "field": "fit",
+        "value": "Observed fit",
+        "url": "https://elm-dental.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "problem",
+        "value": "Observed problem",
+        "url": "https://elm-dental.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "timing",
+        "value": "Observed timing",
+        "url": "https://elm-dental.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "business_channel",
+        "value": "https://elm-dental.example/contact",
+        "url": "https://elm-dental.example/contact",
+        "observed_at": "2026-10-05T10:00:00Z"
+      }
+    ],
+    "location": "Austin, TX",
+    "contact_role": "Operations",
+    "notes": "Fictional demonstration record. Not collected from a live source."
+  },
+  {
+    "company": "Oak Street Clinic",
+    "domain": "oak-clinic.example",
+    "contact_name": "Practice manager",
+    "email": "office@oak-clinic.example",
+    "email_status": "unknown",
+    "fit": false,
+    "problem": true,
+    "timing": true,
+    "business_channel": "https://oak-clinic.example/contact",
+    "evidence": [
+      {
+        "field": "fit",
+        "value": "Observed fit",
+        "url": "https://oak-clinic.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "problem",
+        "value": "Observed problem",
+        "url": "https://oak-clinic.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "timing",
+        "value": "Observed timing",
+        "url": "https://oak-clinic.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "business_channel",
+        "value": "https://oak-clinic.example/contact",
+        "url": "https://oak-clinic.example/contact",
+        "observed_at": "2026-10-05T10:00:00Z"
+      }
+    ],
+    "location": "Austin, TX",
+    "contact_role": "Operations",
+    "notes": "Fictional demonstration record. Not collected from a live source."
+  },
+  {
+    "company": "Northline Dental",
+    "domain": "northline.example",
+    "contact_name": "Practice manager",
+    "email": "office@northline.example",
+    "email_status": "unknown",
+    "fit": true,
+    "problem": true,
+    "timing": true,
+    "business_channel": "https://northline.example/contact",
+    "evidence": [
+      {
+        "field": "fit",
+        "value": "Observed fit",
+        "url": "https://northline.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "problem",
+        "value": "Observed problem",
+        "url": "https://northline.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "timing",
+        "value": "Observed timing",
+        "url": "https://northline.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "business_channel",
+        "value": "https://northline.example/contact",
+        "url": "https://northline.example/contact",
+        "observed_at": "2026-10-05T10:00:00Z"
+      }
+    ],
+    "location": "Austin, TX",
+    "contact_role": "Operations",
+    "notes": "Fictional demonstration record. Not collected from a live source.",
+    "disqualifiers": [
+      "Chain excluded by demo preference"
+    ]
+  },
+  {
+    "company": "Summit Smile Studio",
+    "domain": "summit-smile.example",
+    "contact_name": "Practice manager",
+    "email": "office@summit-smile.example",
+    "email_status": "unknown",
+    "fit": true,
+    "problem": false,
+    "timing": true,
+    "business_channel": "https://summit-smile.example/contact",
+    "evidence": [
+      {
+        "field": "fit",
+        "value": "Observed fit",
+        "url": "https://summit-smile.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "problem",
+        "value": "Observed problem",
+        "url": "https://summit-smile.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "timing",
+        "value": "Observed timing",
+        "url": "https://summit-smile.example/about",
+        "observed_at": "2026-10-05T10:00:00Z"
+      },
+      {
+        "field": "business_channel",
+        "value": "https://summit-smile.example/contact",
+        "url": "https://summit-smile.example/contact",
+        "observed_at": "2026-10-05T10:00:00Z"
+      }
+    ],
+    "location": "Austin, TX",
+    "contact_role": "Operations",
+    "notes": "Fictional demonstration record. Not collected from a live source."
+  }
+]

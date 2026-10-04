@@ -1,7 +1,7 @@
 {
   "name": "vibeleads",
-  "version": "0.1.1",
-  "description": "B2B prospecting skills for finding companies, researching buying signals, enriching business contacts, validating email quality, and preparing evidence-backed lead lists.",
+  "version": "0.2.0",
+  "description": "Context-aware B2B prospecting, enrichment, email quality, feedback, visual reports and bounded recurring research skills.",
   "author": {
     "name": "Khadin Akbar"
   },

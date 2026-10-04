@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Continuity"
+  short_description: "Resume useful work without repeating it"
+  default_prompt: "Use $session-continuity for my B2B prospecting workflow."

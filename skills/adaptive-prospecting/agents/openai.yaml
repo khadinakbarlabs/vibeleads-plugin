@@ -1,0 +1,4 @@
+interface:
+  display_name: "Adaptive Prospecting"
+  short_description: "Choose a useful next search from evidence"
+  default_prompt: "Use $adaptive-prospecting for my B2B prospecting workflow."

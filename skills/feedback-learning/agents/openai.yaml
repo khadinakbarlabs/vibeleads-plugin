@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feedback Learning"
+  short_description: "Refine lead quality from deliberate feedback"
+  default_prompt: "Use $feedback-learning for my B2B prospecting workflow."

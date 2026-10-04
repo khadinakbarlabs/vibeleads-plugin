@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lead Reporting"
+  short_description: "Create clear visual prospecting briefs"
+  default_prompt: "Use $lead-reporting for my B2B prospecting workflow."

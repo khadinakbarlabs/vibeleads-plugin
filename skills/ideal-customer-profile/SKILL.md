@@ -10,6 +10,8 @@ Apply the [shared operating contract](../lead-engine/references/operating-contra
 
 Read the shared operating contract and prospecting framework. Inspect user-provided product/offer/customer context. Translate what is sold into a business outcome, who experiences the problem, who influences the purchase, and an observable reason to investigate now.
 
+Use [business-context](../business-context/SKILL.md) to reuse the scoped brief and research supplied websites/documents before asking. Current explicit corrections win; earlier hypotheses remain hypotheses. Deliberate feedback can refine a segment without authorizing new spend/source scope.
+
 Separate must-have filters from preferences and unknowns. Ask for offer and market only if unavailable; avoid a long onboarding questionnaire. Build an editable table: criterion, allowed values, evidence source, exclusion, and uncertainty. Add list grain, country/region, date window, target count and suppression scope.
 
 Create two or three segment hypotheses when appropriate: segment → visible problem → offer benefit → likely role → discovery source → verification step. Evidence of a bad website is a research trigger, not proof the owner wants a redesign. BANT/MEDDICC fields such as budget or authority remain discovery questions until supported.

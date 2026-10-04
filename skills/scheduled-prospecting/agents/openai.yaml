@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scheduled Prospecting"
+  short_description: "Plan bounded recurring research and reviews"
+  default_prompt: "Use $scheduled-prospecting for my B2B prospecting workflow."
