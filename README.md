@@ -74,7 +74,7 @@ This preview uses fictional demonstration records. Scheduled research uses the h
 
 ## Install from the same repository
 
-Claude Code: test with `claude --plugin-dir /absolute/path/to/vibeleads`, then use `/vibeleads:lead-engine` or natural language. For a local marketplace, run `/plugin marketplace add /absolute/path/to/vibeleads` followed by `/plugin install vibeleads@vibeleads-local` in Claude Code.
+Claude Code: install from GitHub with `/plugin marketplace add khadinakbarlabs/vibeleads-plugin`, then `/plugin install vibeleads@vibeleads-local`. For local development, test with `claude --plugin-dir /absolute/path/to/vibeleads`, then use `/vibeleads:lead-engine` or natural language. For a local marketplace, run `/plugin marketplace add /absolute/path/to/vibeleads` followed by `/plugin install vibeleads@vibeleads-local` in Claude Code.
 
 Codex/OpenAI: the root `plugin.json` uses the portable Agent Plugins format. Use the host’s supported local plugin flow. The package cannot make a local executable available to a cloud chat that lacks shell access.
 
@@ -99,4 +99,4 @@ The quality helper processes canonical, evidence-mapped records; it does not gue
 
 [Privacy](PRIVACY.md), [terms](TERMS.md), [security](SECURITY.md), [support](SUPPORT.md), [inspiration and attribution](THIRD-PARTY-NOTICES.md).
 
-This release is a local build. Public repository publication, marketplace submissions and vendor approval have their own release gates.
+The source is published at [khadinakbarlabs/vibeleads-plugin](https://github.com/khadinakbarlabs/vibeleads-plugin). Tagged packages are available from [GitHub Releases](https://github.com/khadinakbarlabs/vibeleads-plugin/releases). Vendor directory review and approval are separate from GitHub availability; see the [submission handoff](docs/submission-handoff.md) for observed status.

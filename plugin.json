@@ -28,8 +28,14 @@
           "Prepare a bounded weekly prospecting review using my saved business context."
         ],
         "logo": "./assets/icon.png",
-        "composerIcon": "./assets/icon.png"
+        "composerIcon": "./assets/icon.png",
+        "websiteURL": "https://github.com/khadinakbarlabs/vibeleads-plugin",
+        "supportURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/SUPPORT.md",
+        "privacyPolicyURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/khadinakbarlabs/vibeleads-plugin/blob/main/TERMS.md"
       }
     }
-  }
+  },
+  "homepage": "https://github.com/khadinakbarlabs/vibeleads-plugin",
+  "repository": "https://github.com/khadinakbarlabs/vibeleads-plugin"
 }
