@@ -1,0 +1,4 @@
+interface:
+  display_name: "Email Validation"
+  short_description: "Check business emails and preserve honest verdicts"
+  default_prompt: "Use $email-validation to check my business emails and separate verified from uncertain results."

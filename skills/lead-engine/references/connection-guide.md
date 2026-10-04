@@ -14,14 +14,14 @@ VibeLeads supplies skills, not an executable data engine. The agent uses the ind
 Current help is authoritative for installed syntax. `apify actors info` may include nested source files/environment in authenticated metadata: parse internally and emit only id, name, username, isPublic, selected build id/number, public pricing, required input keys and safe schema. Never save/print entire metadata/build responses.
 
 ```sh
-apify actors info <exact-owned-id> --input
+apify actors info <exact-verified-id> --input
 apify api --describe 'actors/{actorId}/runs'
 apify api --help
 apify runs info --help
 apify datasets get-items --help
 ```
 
-Catalog snapshots under `schemas/` are credential-free references with defaults/prefills removed. Refresh against the current default build. Do not pull private source or deploy changes. IDs are cataloged; friendly titles and lookalike names do not establish equivalence.
+Prefer the owned catalog; use the [Actor failover guide](actor-failover.md) to discover and verify another publisher when needed. Confirm exact identity and actual publisher for every route. Catalog snapshots under `schemas/` are credential-free references with defaults/prefills removed. Refresh against the current default build. Do not pull private source or deploy changes. IDs are cataloged; friendly titles and lookalike names do not establish equivalence.
 
 Create an input file using the current required fields, enums, bounds and cross-field conditions. Read the Actor’s README for semantic validation such as “search mode requires a query.” Add only supported item limits and optional flags; platform query controls do not belong in Actor input. Unknown input fields may be ignored, so validate rather than relying on apparent acceptance. Public URLs must not point to loopback, private networks, credential-bearing URLs or local files. Required provider credentials mean additional setup, never permission to share another secret.
 
@@ -32,7 +32,7 @@ Do not start without an authorized total spend and stage allocation. Inspect pri
 The installed CLI accepts authenticated requests with stdin JSON. After verifying current endpoint parameters and user authorization:
 
 ```sh
-apify api POST 'acts/<exact-owned-id>/runs' --body - --params '<verified-limit-query-JSON>' < input.json
+apify api POST 'acts/<exact-verified-id>/runs' --body - --params '<verified-limit-query-JSON>' < input.json
 ```
 
 `verified-limit-query-JSON` must contain supported `maxTotalChargeUsd` and `timeout`, plus a selected verified build when appropriate. Verify units and permitted build/memory values. Do not copy placeholder text into a real command. Use exact IDs and files through argument arrays; use the shell only with correct quoting. Default optional enrichment off. If a minimum charge exceeds the allocation, stop and revise the plan with the user.
@@ -57,7 +57,7 @@ Map the observed fields to the [record contract](record-contract.md) before qual
 | --- | --- |
 | CLI missing | Give official setup link; finish a source plan or analyze an import. |
 | Key expired or wrong account | Request reauthentication through secure settings/login; no credential echo. |
-| Exact Actor not public/owned/available | Mark route unavailable; use no third-party Actor fallback. |
+| Preferred owned Actor unavailable or unsuccessful | Verify a suitable fallback and continue within the remaining authorized budget; explain the publisher switch. |
 | Live schema differs | Rebuild input and validate; do not reuse the old request silently. |
 | Additional source key required | Explain setup requirement; optional feature stays off. |
 | Cap below minimum | Stop; do not raise the cap on your own. |

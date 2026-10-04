@@ -1,6 +1,6 @@
 # Submission handoff
 
-Listing name: **VibeLeads: B2B Lead Finder**. Subtitle: **Find and qualify B2B leads**. Short description: “Prospecting skills for finding companies, researching buying signals, qualifying public business contacts, and preparing evidence-backed lead lists.” Key disclosure: an Apify API key is required for live collection; data usage is billed to the user’s account.
+Listing name: **VibeLeads: B2B Lead Finder**. Subtitle: **Find and qualify B2B leads**. Short description: “Prospecting skills for finding companies, researching buying signals, enriching business contacts, validating email quality, and preparing evidence-backed lead lists.” Key disclosure: an Apify API key is required for live collection; data usage is billed to the user’s account.
 
 The source repository and archives are local release candidates. Not submitted or approved. No publisher verification, public repository URL, live legal/support URLs, country availability, commercial declarations or attestations have been invented. Support/privacy/terms documents describe this package, not a published legal commitment.
 

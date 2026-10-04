@@ -1,6 +1,6 @@
 # Owned source catalog
 
-Checked October 5, 2026 against public metadata and default-build input schemas. Only publisher `khadinakbar` is eligible. These checks did not execute lead collection or prove runtime/source health. Refresh metadata/schema/pricing before using a route. No private source files, tokens or runtime datasets are included.
+Checked October 5, 2026 against public metadata and default-build input schemas. Publisher `khadinakbar` is preferred. Verified third-party routes may fill coverage gaps or act as failover; see [Actor failover](actor-failover.md). These checks did not execute lead collection or prove runtime/source health. Refresh metadata/schema/pricing before using a route. No private source files, tokens or runtime datasets are included.
 
 There are 152 mapped Actor routes across 14 source families. These are routes, not 152 independent providers: several routes cover the same platform. See [coverage](source-coverage.md) for source gaps and [connection guide](connection-guide.md) for live execution.
 

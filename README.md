@@ -2,7 +2,7 @@
 
 Find the right companies, understand why they might buy, and prepare a lead list you can trust.
 
-VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecting process together: ideal customer profiles, source selection, buying signals, company research, public contact enrichment, qualification, list hygiene, account plans, and outreach drafts.
+VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecting process together: ideal customer profiles, source selection, buying signals, company research, company and public contact enrichment, email validation, qualification, list hygiene, account plans, and outreach drafts.
 
 **An Apify API key is required for live collection.** Use your own account; data collection is billed there. Planning and working with files need no data connection. Setup details belong in the [connection guide](skills/lead-engine/references/connection-guide.md).
 
@@ -12,6 +12,8 @@ VibeLeads is a skills-only plugin for your AI assistant. It brings the prospecti
 - “Find SaaS companies hiring their first growth marketer. Show the job date and the company behind it.”
 - “Find Product Hunt launches relevant to my onboarding service, then research the teams.”
 - “I asked for Apollo data. Tell me which exact route you can use before running anything.”
+- “Enrich these companies and contacts, prefer my Actors, and use a suitable fallback where needed.”
+- “Validate these business emails and separate actual mailbox verdicts from basic syntax and MX checks.”
 - “Clean this CSV, preserve distinct contacts at one company, and flag unverified emails.”
 - “Draft three personal opening lines for the strongest accounts. Leave them ready for review.”
 
@@ -38,13 +40,17 @@ A ranked company or contact list with source links, dates, fit reasons, buying s
 | Merchants, suppliers and public tenders | `commerce-prospecting` |
 | Events, communities and channel partnerships | `partnership-prospecting` |
 | Creator businesses and agencies | `creator-prospecting` |
+| Account and decision-maker enrichment | `company-enrichment` |
+| Mailbox validation and honest quality states | `email-validation` |
 | Public business contacts and email quality | `contact-enrichment` |
 | Account research and buying committee | `account-research` |
 | Qualification, suppression, deduplication and exports | `lead-list-quality` |
 | Evidence-based outreach drafts | `outreach-drafting` |
 | Pipeline handoff and prospecting experiments | `pipeline-handoff` |
 
-See the [source coverage guide](skills/lead-engine/references/source-coverage.md) and [source catalog](skills/lead-engine/references/source-catalog.md). Cataloged schemas describe availability at inspection time; they do not prove every route produces working lead data. Apollo, ZoomInfo and similar branded databases are not implied by similarly named alternatives.
+See the [source coverage guide](skills/lead-engine/references/source-coverage.md) and [source catalog](skills/lead-engine/references/source-catalog.md). Your Actors are preferred. If they are unavailable, do not cover the task, or fail, the assistant can use a verified Actor from another publisher, explain why, and stay within the remaining authorized budget. See [fallback guidelines](skills/lead-engine/references/actor-failover.md).
+
+Cataloged schemas describe availability at inspection time; they do not prove every route produces working lead data. Apollo, ZoomInfo and similar branded databases are not implied by similarly named alternatives.
 
 ## Install from the same repository
 

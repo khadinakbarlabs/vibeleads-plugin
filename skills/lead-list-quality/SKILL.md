@@ -20,4 +20,6 @@ python3 <skill-directory>/scripts/lead_quality.py input.json --grain contact --s
 
 Inspect help first. Omitting `--csv` writes only JSON; `--sendable-only` restricts CSV to validator-backed valid emails. Python is optional: if unavailable, perform the same checks manually and write equivalent outputs with the host’s tools. The helper makes no network calls and does not verify addresses.
 
+Preserve required external IDs and provider-specific enrichment/validation detail in a companion mapping before the helper drops unsupported fields. Join by reviewed stable identity after deduplication, never row position; include that mapping in enrichment/CRM handoffs.
+
 Review notes/evidence for irrelevant private data before exporting. Escape formula-leading cells in CSV. Report qualified/review/excluded counts, duplicates, suppressed rows, email-quality distribution, scoring rationale and missing fields. Preserve original source files.

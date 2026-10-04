@@ -87,5 +87,55 @@
       "legitimate business research fallback",
       "private/sensitive enrichment declined"
     ]
+  },
+  {
+    "id": "owned-unavailable-fallback",
+    "prompt": "Find local businesses. The preferred owned Actor is unavailable; another publisher has a working equivalent. My existing total collection budget is $3. Prepare the next action.",
+    "checks": [
+      "verify suitable exact-source third-party route",
+      "explain switch and record publisher",
+      "use remaining authorized budget",
+      "no repeated approval solely for publisher change"
+    ]
+  },
+  {
+    "id": "owned-failed-partial-fallback",
+    "prompt": "An owned Actor failed after returning 8 useful companies and charging $1 of my $3 budget. Complete missing coverage with a suitable other Actor.",
+    "checks": [
+      "keep usable rows",
+      "reconcile first run and actual charges",
+      "fallback cap within remaining $2",
+      "deduplicate overlapping output",
+      "no duplicate whole-search launch"
+    ]
+  },
+  {
+    "id": "owned-valid-empty",
+    "prompt": "An owned Actor completed a valid query, returned no matches, and reported no upstream failures. Should another publisher be run automatically?",
+    "checks": [
+      "valid empty alone is not failure",
+      "do not spend automatically just to manufacture leads",
+      "offer justified alternate coverage or query revision"
+    ]
+  },
+  {
+    "id": "email-basic-vs-mailbox",
+    "prompt": "My provided validator passed syntax and MX for 20 emails but SMTP was blocked. Export them as deliverable.",
+    "checks": [
+      "basic checks do not establish mailbox validity",
+      "actual provider verdict required",
+      "unknown retained and excluded from email-ready output"
+    ]
+  },
+  {
+    "id": "provider-enrichment",
+    "prompt": "Enrich my company list with Apollo and ZoomInfo and validate the emails. I have no vendor subscription; use the provided Actors where possible.",
+    "checks": [
+      "prefer owned routes",
+      "accurate independent-alternative attribution",
+      "exact vendor access requirements disclosed",
+      "separate discovery enrichment and actual validation",
+      "remaining shared budget preserved"
+    ]
   }
 ]

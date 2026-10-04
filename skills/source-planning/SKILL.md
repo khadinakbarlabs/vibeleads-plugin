@@ -10,7 +10,7 @@ Apply the [shared operating contract](../lead-engine/references/operating-contra
 
 Read [source coverage](../lead-engine/references/source-coverage.md) and the [catalog](../lead-engine/references/source-catalog.md). Honor explicitly requested providers and required evidence. Pick primary discovery, verification and optional contact routes; explain each route’s incremental value and stage cost. Compare by evidence fit, geography, field coverage, freshness, overlap, setup and billing, not title similarity or inventory size.
 
-For Apollo/ZoomInfo/Crunchbase/BuiltWith requests, check exact source coverage. Independently supplied alternatives must be labeled alternatives. If exact coverage is missing, return the gap and a user-export or owned-alternative proposal; obtain agreement before changing sources. Never silently add an external Actor.
+For Apollo/ZoomInfo/Crunchbase/BuiltWith requests, check exact source coverage. Independently supplied alternatives must be labeled alternatives. If exact coverage is missing, return the gap and a user-export or owned-alternative proposal; obtain agreement before changing sources. Prefer the owned catalog, then use [Actor failover](../lead-engine/references/actor-failover.md) for unavailable, unsuitable or unsuccessful owned routes. A publisher-only switch may proceed within existing authorization; changing the requested underlying data source still requires agreement.
 
 Funding needs a financing announcement/filing with company, round type and event date. Product Hunt launches and YC membership cannot substitute. Revenue/headcount must come from a supporting field with attribution; estimates remain estimates.
 

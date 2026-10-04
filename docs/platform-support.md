@@ -4,7 +4,7 @@ One repository contains the shared `skills/` tree and target-specific metadata. 
 
 | Surface | Package contract | Execution dependency | Evidence |
 | --- | --- | --- | --- |
-| Claude Code | `.claude-plugin/plugin.json`, skills, optional local marketplace | Host tools and user’s authenticated data access | Native validator + two source-directory prompt tests passed; cached installation untested. |
+| Claude Code | `.claude-plugin/plugin.json`, skills, optional local marketplace | Host tools and user’s authenticated data access | Native validators passed; source-directory prompt tests exercised prospecting, failover and enrichment. See validation report for observed repairs and limits; cached installation untested. |
 | Claude Cowork | Shared skills and compatible plugin metadata | Actual executable/network/filesystem access in that environment | Not tested; imports/planning remain supported instructions. |
 | Claude chat | Skills where supported | A local CLI is not available merely by installing skills | Live collection not asserted. |
 | OpenAI/Codex | Root Agent Plugins `plugin.json` and `extensions.com.openai` | Suitable host tool access | Portable schema checked; live host install not asserted unless recorded. |

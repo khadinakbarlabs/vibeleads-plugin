@@ -1,0 +1,4 @@
+interface:
+  display_name: "Company Enrichment"
+  short_description: "Enrich business leads with traceable evidence"
+  default_prompt: "Use $company-enrichment to improve my B2B lead list."

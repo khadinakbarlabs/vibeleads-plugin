@@ -10,7 +10,7 @@ Read [operating contract](references/operating-contract.md), then [prospecting f
 
 1. Establish offer, target segment/geography, exclusions, count, account/contact/branch grain and desired signal. State reasonable reversible assumptions. Ask once for a material missing offer or market.
 2. Read [source coverage](references/source-coverage.md), select relevant catalog routes, then prepare the exact search plan. Describe sources, fields, gaps, stage limits and proposed total budget. A requested count alone does not authorize paid collection.
-3. Check connection with [connection guide](references/connection-guide.md) only when data access is needed. Use current schema and exact owned identities. Run a small pilot within existing authorization, inspect usable rows, then scale only if relevant and within remaining budget.
+3. Check connection with [connection guide](references/connection-guide.md) only when data access is needed. Prefer owned routes, verify each selected identity/schema, and follow [Actor failover](references/actor-failover.md) when owned coverage is unavailable, unsuitable or unsuccessful. Run a small pilot within existing authorization, inspect usable rows, then scale only if relevant and within remaining budget.
 4. Route to the focused skill below when it changes the work. Read only the relevant reference, not the whole package. Merge source evidence at company level, map decision makers, and distinguish observation from hypotheses.
 5. Map records to [record contract](references/record-contract.md), apply quality/suppression and deliver the strongest accounts with traceable reasons. Offer a useful next research action or draft; no automatic outreach.
 
@@ -30,6 +30,8 @@ Read [operating contract](references/operating-contract.md), then [prospecting f
 | Sellers/suppliers/tenders | [commerce-prospecting](../commerce-prospecting/SKILL.md) |
 | Partners/events | [partnership-prospecting](../partnership-prospecting/SKILL.md) |
 | Creator businesses | [creator-prospecting](../creator-prospecting/SKILL.md) |
+| Company enrichment | [company-enrichment](../company-enrichment/SKILL.md) |
+| Email validation | [email-validation](../email-validation/SKILL.md) |
 | Contacts | [contact-enrichment](../contact-enrichment/SKILL.md) |
 | Deep research | [account-research](../account-research/SKILL.md) |
 | Clean/export | [lead-list-quality](../lead-list-quality/SKILL.md) |
