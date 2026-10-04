@@ -8,7 +8,7 @@ import tempfile
 import subprocess
 import unittest
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1] / "plugin"
 REPORT_SCRIPT = ROOT / 'skills/lead-reporting/scripts/lead_report.py'
 spec = importlib.util.spec_from_file_location('lead_report', REPORT_SCRIPT)
 reporter = importlib.util.module_from_spec(spec)

@@ -5,7 +5,7 @@ import io
 from pathlib import Path
 import unittest
 
-MODULE = Path(__file__).resolve().parents[1] / 'skills/lead-list-quality/scripts/lead_quality.py'
+MODULE = Path(__file__).resolve().parents[1] / 'plugin/skills/lead-list-quality/scripts/lead_quality.py'
 spec = importlib.util.spec_from_file_location('quality', MODULE)
 quality = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(quality)

@@ -6,8 +6,9 @@ import sys
 import tempfile
 import unittest
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'scripts'))
+REPOSITORY = Path(__file__).resolve().parents[1]
+ROOT = REPOSITORY / 'plugin'
+sys.path.insert(0, str(REPOSITORY / 'scripts'))
 from validate_package import validate
 from package_release import package
 
@@ -20,6 +21,12 @@ class PackageTests(unittest.TestCase):
 
     def tearDown(self): self.temp.cleanup()
 
+    def test_installable_tree_excludes_maintainer_tools(self):
+        self.assertFalse((ROOT / 'tests').exists())
+        self.assertFalse((ROOT / 'scripts').exists())
+        self.assertFalse((ROOT / 'assets/report-preview.png').exists())
+        self.assertEqual(len(list((ROOT / 'skills').glob('*/SKILL.md'))), 26)
+
     def test_roundtrip_both_layouts(self):
         report = package(self.root, Path(self.temp.name) / 'export')
         self.assertEqual(len(report['archives']), 2)
@@ -29,7 +36,7 @@ class PackageTests(unittest.TestCase):
         with self.assertRaises(ValueError): package(self.root, self.root / 'export')
 
     def test_private_csv_rejected(self):
-        (self.root / 'docs/private-contacts.csv').write_text('name,email\nprivate,private@example.test\n')
+        (self.root / 'skills/lead-engine/references/private-contacts.csv').write_text('name,email\nprivate,private@example.test\n')
         self.assertFalse(validate(self.root)['passed'])
 
     def test_auth_filename_and_key_rejected(self):
@@ -37,11 +44,11 @@ class PackageTests(unittest.TestCase):
         self.assertFalse(validate(self.root)['passed'])
 
     def test_secret_field_rejected_even_with_innocent_filename(self):
-        (self.root / 'docs/sample.json').write_text(json.dumps({'access_token': 'privatevalue'}))
+        (self.root / 'skills/lead-engine/references/sample.json').write_text(json.dumps({'access_token': 'privatevalue'}))
         self.assertFalse(validate(self.root)['passed'])
 
     def test_symlink_rejected(self):
-        (self.root / 'docs/extra.md').symlink_to(self.root / 'README.md')
+        (self.root / 'skills/lead-engine/references/extra.md').symlink_to(self.root / 'README.md')
         self.assertFalse(validate(self.root)['passed'])
 
     def test_manifest_name_cannot_escape(self):

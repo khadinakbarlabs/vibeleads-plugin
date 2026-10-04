@@ -6,14 +6,14 @@ import json
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1] / "plugin"
 SECRET = re.compile(r'apify_api_[A-Za-z0-9]{20,}|sk-(?:live-|proj-)?[A-Za-z0-9_-]{24,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')
 TOP_FILES = {'plugin.json', 'README.md', 'LICENSE', 'PRIVACY.md', 'TERMS.md',
              'SECURITY.md', 'SUPPORT.md', 'THIRD-PARTY-NOTICES.md', '.gitignore'}
 ALLOWED_EXTENSIONS = {'.md', '.json', '.py', '.yaml', '.png', '.svg'}
 PRIVATE_NAME = re.compile(r'^(?:auth|credentials?|secrets?|tokens?|private[-_].*)(?:\.|$)', re.I)
 SECRET_KEY = re.compile(r'^(?:api[_-]?key|.*api[_-]?key|access[_-]?token|auth[_-]?token|password|.*password|secret|.*secret)$', re.I)
-TOP_DIRS = {'skills', 'scripts', 'docs', 'tests', '.claude-plugin', '.cursor-plugin', 'assets'}
+TOP_DIRS = {'skills', '.claude-plugin', '.cursor-plugin', 'assets'}
 
 
 def release_files(root):
