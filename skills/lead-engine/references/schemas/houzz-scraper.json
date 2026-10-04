@@ -1,0 +1,54 @@
+{
+  "title": "Houzz Pros Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "category": {
+      "title": "Professional category",
+      "type": "string",
+      "description": "The Houzz professional type to search, e.g. 'general contractor', 'interior designer', 'kitchen and bathroom remodeler', 'architect', 'landscape architect'. Free text \u2014 slugified automatically to the Houzz directory. Leave blank only if you pass startUrls instead.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City and state/region to filter professionals, e.g. 'New York, NY' or 'Austin, TX'. Encoded to Houzz's 'City--ST' URL form automatically. Leave blank for a nationwide search. Ignored when startUrls are supplied.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs (advanced)",
+      "type": "array",
+      "description": "Optional list of exact Houzz URLs to scrape directly: professional directory listings (/professionals/...) or individual pro profiles (/professionals/...-pfvwus-pf~ID). When provided, these override category/location. Accepts plain strings or {\"url\": \"...\"} objects.",
+      "editor": "stringList"
+    },
+    "enrichDetails": {
+      "title": "Enrich from profile pages",
+      "type": "boolean",
+      "description": "Listing pages already include phone, address, rating, reviews and a description. Set this true to additionally open each pro's profile page for the official business website, services provided, areas served, awards, license number, a featured review, and a review-aspect breakdown (billed at the higher enriched-result rate). Default false \u2014 listing data alone is complete for basic lead-gen.",
+      "editor": "checkbox"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Hard cap on the number of professionals pushed (and charged) in one run. Range 1-2000, default 50. The run stops and never charges beyond this number. Use a small value first to preview output and cost.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "proxyCountry": {
+      "title": "Proxy country",
+      "type": "string",
+      "description": "Two-letter country code for the residential proxy exit, e.g. 'US', 'GB', 'CA', 'AU'. Defaults to 'US'. Match this to the Houzz market you want. Residential proxies are required \u2014 Houzz (PerimeterX) blocks datacenter IPs.",
+      "editor": "textfield"
+    },
+    "maxRequestRetries": {
+      "title": "Max request retries",
+      "type": "integer",
+      "description": "How many times a blocked or failed page is retried with a fresh session before giving up. Default 8 (Houzz uses PerimeterX, so retries matter). Range 1-15. Higher values raise reliability but also compute cost on hard blocks.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 15
+    }
+  },
+  "required": []
+}

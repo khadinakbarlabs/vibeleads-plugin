@@ -1,0 +1,46 @@
+{
+  "title": "LinkedIn Company Search Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "keywords": {
+      "title": "Keywords",
+      "type": "string",
+      "description": "Free-text company-search terms run against public LinkedIn company pages (e.g. 'fintech payments' or 'solar installer'). Combined with the other filters into one Google query. Defaults to empty. NOT a company URL \u2014 this searches for companies, it does not enrich a known page.",
+      "editor": "textfield"
+    },
+    "industry": {
+      "title": "Industry",
+      "type": "string",
+      "description": "Industry or sector to match in the company page (e.g. 'Software Development' or 'Renewable Energy'). Quoted automatically so multi-word industries stay intact. Defaults to empty. NOT a free-form description \u2014 keep it to a short industry phrase.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, region, or country the company is based in (e.g. 'San Francisco' or 'Berlin'). Used both in the search text and as the managed Google search geo hint. Defaults to empty. NOT a country code \u2014 use 'Country' for Google domain routing.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "Country",
+      "type": "string",
+      "description": "Two-letter country code used to route the Google domain and result language (e.g. 'us', 'gb', 'de'). Defaults to 'us'. NOT a free-text country name \u2014 must be an ISO 3166-1 alpha-2 code.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Max companies",
+      "type": "integer",
+      "description": "Maximum number of unique public company pages to return. Each company returned is billed as one 'company-found' event. Defaults to 25, max 500. Set lower to cap cost on exploratory searches.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "enrich": {
+      "title": "Deep enrich each company",
+      "type": "boolean",
+      "description": "When true, each found company is additionally fetched from its public LinkedIn page (industry, employee count, company size, headquarters, website, founded year, followers, specialties, description) via optional company enrichment and billed as one extra 'company-enriched' event. Defaults to false (search-only). Leave off for fast, cheap discovery.",
+      "editor": "checkbox"
+    }
+  },
+  "required": []
+}

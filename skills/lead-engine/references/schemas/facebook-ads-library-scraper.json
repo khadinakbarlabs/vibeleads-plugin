@@ -1,0 +1,184 @@
+{
+  "title": "Facebook Ads Library Scraper Input",
+  "description": "Scrape public Meta/Facebook Ad Library ads by keyword, advertiser, or ad ID. Requires the primary managed public-data route_API_KEY or the managed fallback route_API_KEY in actor environment variables.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "Scrape mode",
+      "type": "string",
+      "description": "Choose how to find ads. Auto uses ad IDs first, then company inputs, then keyword search.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "search",
+        "companyAds",
+        "adDetails"
+      ],
+      "enumTitles": [
+        "Auto",
+        "Keyword search",
+        "Company ads",
+        "Ad details"
+      ]
+    },
+    "searchTerms": {
+      "title": "Search terms",
+      "type": "array",
+      "description": "Keywords or exact phrases to search in the Meta Ad Library. Use this for competitor research by niche, offer, product category, or campaign theme.",
+      "editor": "stringList"
+    },
+    "companyPageIds": {
+      "title": "Company page IDs",
+      "type": "array",
+      "description": "Facebook Ad Library page IDs. Use the page_id returned by company search or provider docs examples.",
+      "editor": "stringList"
+    },
+    "companyNames": {
+      "title": "Company names",
+      "type": "array",
+      "description": "Company names to resolve to Facebook Ad Library page IDs before scraping ads. Page IDs are more reliable when you have them.",
+      "editor": "stringList"
+    },
+    "adIds": {
+      "title": "Ad IDs",
+      "type": "array",
+      "description": "Meta Ad Library archive IDs for direct detail lookup.",
+      "editor": "stringList"
+    },
+    "adUrls": {
+      "title": "Ad URLs",
+      "type": "array",
+      "description": "Direct public Facebook Ad Library URLs such as https://www.facebook.com/ads/library?id=3557423444566854. Login-only, restricted, or authorization-gated ads are skipped without being saved or billed.",
+      "editor": "stringList"
+    },
+    "country": {
+      "title": "Country",
+      "type": "string",
+      "description": "Two-letter country code such as US, GB, DE, or ALL. Meta Ad Library provider APIs accept one country per request.",
+      "editor": "textfield"
+    },
+    "status": {
+      "title": "Ad status",
+      "type": "string",
+      "description": "Whether to return active, inactive, or all ads.",
+      "editor": "select",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "ALL"
+      ]
+    },
+    "mediaType": {
+      "title": "Media type",
+      "type": "string",
+      "description": "Filter by creative media type exposed by the provider.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "IMAGE",
+        "VIDEO",
+        "MEME",
+        "IMAGE_AND_MEME",
+        "NONE"
+      ]
+    },
+    "adType": {
+      "title": "Ad type",
+      "type": "string",
+      "description": "Search all ads or only political and issue ads.",
+      "editor": "select",
+      "enum": [
+        "all",
+        "political_and_issue_ads"
+      ],
+      "enumTitles": [
+        "All ads",
+        "Political and issue ads"
+      ]
+    },
+    "searchType": {
+      "title": "Keyword match",
+      "type": "string",
+      "description": "Use unordered keyword matching for broad discovery or exact phrase matching for precise research.",
+      "editor": "select",
+      "enum": [
+        "keyword_unordered",
+        "keyword_exact_phrase"
+      ],
+      "enumTitles": [
+        "Keyword unordered",
+        "Exact phrase"
+      ]
+    },
+    "sortBy": {
+      "title": "Sort by",
+      "type": "string",
+      "description": "Sort keyword results by estimated impressions or recent relevance.",
+      "editor": "select",
+      "enum": [
+        "total_impressions",
+        "relevancy_monthly_grouped"
+      ],
+      "enumTitles": [
+        "Impressions high to low",
+        "Most recent relevance"
+      ]
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Optional two-letter language code such as EN, ES, or FR. Mostly useful for company ads.",
+      "editor": "textfield"
+    },
+    "startDate": {
+      "title": "Start date",
+      "type": "string",
+      "description": "Optional impression start date in YYYY-MM-DD format.",
+      "editor": "datepicker"
+    },
+    "endDate": {
+      "title": "End date",
+      "type": "string",
+      "description": "Optional impression end date in YYYY-MM-DD format.",
+      "editor": "datepicker"
+    },
+    "maxResults": {
+      "title": "Max ads",
+      "type": "integer",
+      "description": "Maximum number of ad records to save. This is the primary cost cap; each saved ad charges the ad-scraped event.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxPagesPerSearch": {
+      "title": "Max pages per target",
+      "type": "integer",
+      "description": "Maximum provider result pages per keyword, page ID, or company. Increase for bulk monitoring; keep low for fast canaries.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "enrichDetails": {
+      "title": "Fetch ad details",
+      "type": "boolean",
+      "description": "When enabled, opens each ad details endpoint after discovery to enrich creative fields. This uses additional provider credits and charges the detail-enriched event.",
+      "editor": "checkbox"
+    },
+    "includeRawData": {
+      "title": "Include raw data",
+      "type": "boolean",
+      "description": "Debug option. Includes the raw provider payload on each dataset item. Leave disabled for normal runs to keep output small.",
+      "editor": "checkbox"
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout",
+      "type": "integer",
+      "description": "Per-provider request timeout in seconds.",
+      "editor": "number",
+      "minimum": 5,
+      "maximum": 120
+    }
+  },
+  "required": []
+}

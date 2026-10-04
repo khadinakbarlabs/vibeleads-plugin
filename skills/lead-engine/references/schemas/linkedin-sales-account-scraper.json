@@ -1,0 +1,63 @@
+{
+  "title": "LinkedIn Sales Navigator Account Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Turn a LinkedIn Sales Navigator account (company) search into public LinkedIn company records. Paste an SN account-search URL, public company URLs, or industry/location filters. Cookieless, no Sales Navigator seat. Returns name, LinkedIn URL, industry, size, HQ, and website.",
+  "properties": {
+    "salesNavigatorUrl": {
+      "title": "Sales Navigator account search URL",
+      "type": "string",
+      "description": "Full URL from the address bar of a LinkedIn Sales Navigator Account search, for example https://www.linkedin.com/sales/search/company?query=(filters:List((type:INDUSTRY,values:List((text:Software Development,selectionType:INCLUDED))))). The actor decodes industry, location, company name, and keywords, then finds matching PUBLIC company pages via Google. SN-only filters such as headcount and revenue are skipped with a notice. NOT a people-search URL and NOT a /sales/company/{id} detail link.",
+      "editor": "textfield"
+    },
+    "industry": {
+      "title": "Industry",
+      "type": "string",
+      "description": "Manual filter used when you are NOT pasting a Sales Navigator URL. Industry phrase quoted on Google (e.g. Software Development). Combine with location or companyName to narrow. If salesNavigatorUrl is provided, that URL's industry filter takes precedence. NOT a NAICS code.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Headquarters / location",
+      "type": "string",
+      "description": "Manual filter: city, region, or country to match against public company pages (e.g. San Francisco or United Kingdom). Leave empty for worldwide. Overridden by a salesNavigatorUrl when one is supplied. NOT a postal code lookup.",
+      "editor": "textfield"
+    },
+    "companyName": {
+      "title": "Company name",
+      "type": "string",
+      "description": "Manual filter: company name to search for on public LinkedIn company pages (e.g. Stripe). Quoted as a phrase so Google matches it exactly. Overridden by a salesNavigatorUrl. NOT a LinkedIn company URL \u2014 put those in companyUrls.",
+      "editor": "textfield"
+    },
+    "keywords": {
+      "title": "Free-text keywords",
+      "type": "string",
+      "description": "Manual filter: extra keywords added to the Google query (e.g. fintech payments). Supports Google boolean operators. Merged with a salesNavigatorUrl's decoded keywords. NOT a Sales Navigator URL.",
+      "editor": "textfield"
+    },
+    "companyUrls": {
+      "title": "Direct company URLs",
+      "type": "array",
+      "description": "Optional list of public LinkedIn company page URLs (https://www.linkedin.com/company/<slug>). When provided and no salesNavigatorUrl is set, search is skipped and these pages are enriched directly. Use this for an exported account list you already have. NOT personal /in/ profiles and NOT /sales/company/{id} seat URLs.",
+      "editor": "stringList"
+    },
+    "enrichAccounts": {
+      "title": "Deep company enrichment",
+      "type": "boolean",
+      "description": "When true (default), each company is fetched for public firmographics: industry, employee count, size, headquarters, website, founded year, followers, description. When false, only search-level fields (name, URL, industry signal) are returned at the lower price. Enrichment is billed per successfully enriched account."
+    },
+    "maxResults": {
+      "title": "Max accounts",
+      "type": "integer",
+      "description": "Maximum number of company accounts to return (1-250). Caps both search depth and total event cost. Defaults to 25. Prefill is 3 so Apify quality tests finish inside five minutes. In direct-URL mode it caps how many of the supplied URLs are processed.",
+      "minimum": 1,
+      "maximum": 250
+    },
+    "resultsRegion": {
+      "title": "Google region",
+      "type": "string",
+      "description": "Two-letter country code for the Google search region (e.g. US, GB, DE). Affects which localized company pages surface. Defaults to US. NOT the company's headquarters filter \u2014 use the location field or Sales Navigator URL for that.",
+      "editor": "textfield"
+    }
+  },
+  "required": []
+}

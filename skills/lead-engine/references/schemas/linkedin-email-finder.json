@@ -1,0 +1,42 @@
+{
+  "title": "LinkedIn Email Finder",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "linkedinUrls": {
+      "title": "LinkedIn profile URLs",
+      "type": "array",
+      "description": "Public LinkedIn profile URLs to find a work email for, e.g. 'https://www.linkedin.com/in/williamhgates'. Each profile is resolved to a name + current company via the primary managed public-data route (the managed fallback route fallback), the company website domain is looked up, then an email is generated and verified. Defaults to empty. NOT a search query and NOT a company URL \u2014 for company-wide enumeration use a company scraper instead.",
+      "editor": "stringList"
+    },
+    "directLeads": {
+      "title": "Direct leads (name + company domain)",
+      "type": "array",
+      "description": "Skip LinkedIn lookup and find an email directly from a known person + company. Each item is an object like {\"fullName\": \"Jane Doe\", \"companyDomain\": \"acme.com\", \"companyName\": \"Acme\"}. Use this when you already know the company domain and only need email generation + SMTP verification. companyName is optional. Defaults to empty.",
+      "editor": "json"
+    },
+    "includeUnverified": {
+      "title": "Return best-guess when SMTP can't confirm",
+      "type": "boolean",
+      "description": "When true (default), if the mail server cannot be SMTP-probed (port 25 blocked) or is catch-all, the highest-probability pattern email is still returned with a confidence score and an honest emailStatus. When false, only mailbox-confirmed ('valid') emails are returned in the email field. Set false for strict deliverability-only output.",
+      "editor": "checkbox"
+    },
+    "maxResults": {
+      "title": "Max leads",
+      "type": "integer",
+      "description": "Hard cap on how many leads are processed and billed this run (across linkedinUrls + directLeads). Protects your budget on large inputs. Defaults to 100. Minimum 1.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "maxCandidatesPerLead": {
+      "title": "Max email patterns to test per lead",
+      "type": "integer",
+      "description": "How many ranked email permutations to verify per person before stopping (verification stops early once a mailbox is SMTP-confirmed). Higher = more thorough, slower. Defaults to 15. Range 1-15.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 15
+    }
+  },
+  "required": []
+}

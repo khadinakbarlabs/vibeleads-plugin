@@ -1,0 +1,47 @@
+{
+  "title": "ThomasNet Suppliers Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search keywords",
+      "type": "array",
+      "description": "Free-text searches run on ThomasNet's nsearch (e.g. 'cnc machining', 'sheet metal fabrication', 'plastic injection molding'). Each keyword is searched separately across the entire North America directory and paginated up to maxPagesPerQuery. Use this for product/service-led supplier discovery. NOT a URL \u2014 to scrape a specific category, state, or city page use startUrls instead.",
+      "editor": "stringList"
+    },
+    "startUrls": {
+      "title": "ThomasNet nsearch or profile URLs",
+      "type": "array",
+      "description": "Direct ThomasNet URLs. Supported: (1) nsearch results URLs \u2014 e.g. https://www.thomasnet.com/nsearch.html?cov=NA&searchterm=cnc%20machining (paginated like a search); (2) supplier profile URLs \u2014 e.g. https://www.thomasnet.com/company/fruehauf-manufacturing-30088334/profile (scraped as one enriched supplier). NOT supported: /products-suppliers/ or /suppliers/usa/{state} directory URLs (these are subcategory hubs, not supplier listings \u2014 use searchQueries with a keyword instead).",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max suppliers",
+      "type": "integer",
+      "description": "Hard cap on the total number of suppliers scraped and billed across all queries and URLs. The run stops once this is reached. Defaults to 20; max 5000. Primary cost control \u2014 at $0.005/supplier basic, 20 suppliers is about $0.10. With enrichDetails on, double the cost estimate.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxPagesPerQuery": {
+      "title": "Max pages per query",
+      "type": "integer",
+      "description": "How many listing pages (about 20-30 suppliers each) to paginate through for each keyword or listing URL before moving on. Defaults to 5; max 50. Lower it to sample top results; raise it for deep coverage. Bounded again by maxResults.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "enrichDetails": {
+      "title": "Scrape full supplier profiles",
+      "type": "boolean",
+      "description": "When true, every listing supplier is followed to its own ThomasNet profile to add full description, employee count, year founded, annual sales, certifications, products taxonomy, and additional contact details. Slower and costs an extra $0.003 per enriched supplier on top of the base $0.005. Leave false for fast listing-level data (name, phone, website, location, headline) only.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used for all requests. ThomasNet uses DataDome and blocks every datacenter IP \u2014 by default this actor uses Apify Residential pinned to the US for highest success rate. Override only if you have your own residential proxy; datacenter proxies will be blocked.",
+      "editor": "proxy"
+    }
+  }
+}

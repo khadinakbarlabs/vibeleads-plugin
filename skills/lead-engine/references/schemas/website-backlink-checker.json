@@ -1,0 +1,75 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Website Backlink Checker",
+  "description": "Check inbound backlinks for a domain or page URL. Owner API credentials are already configured. Returns referring pages, anchors, referring domains, or a one-row summary.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "targets": {
+      "title": "Targets",
+      "type": "array",
+      "description": "Domains or page URLs to check for inbound links. Example: [\"moz.com\"] or [\"https://moz.com/learn\"]. Protocol and www are stripped for domains; a path keeps page-level lookup. Duplicates collapse. Capped at 10 targets. This is NOT an API-key field.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "string",
+      "description": "Which inbound-link report to run. backlinks returns referring page URLs with anchor, dofollow, and first seen. referring_domains lists linking root hosts. anchors groups by anchor text. summary returns one overview row with backlink and referring-domain counts. Default backlinks. This is NOT a login or API key field.",
+      "editor": "select",
+      "enum": [
+        "backlinks",
+        "referring_domains",
+        "anchors",
+        "summary"
+      ],
+      "enumTitles": [
+        "Backlinks",
+        "Referring domains",
+        "Anchors",
+        "Summary"
+      ]
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum dataset rows to write per target (1-100). Defaults to 5 so quality tests and agent calls stay cheap. summary still writes at most one row per target. Raise this after you confirm the output shape.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "dofollowOnly": {
+      "title": "Dofollow only",
+      "type": "boolean",
+      "description": "When true, keep only dofollow inbound links in backlink, referring-domain, and anchor reports. Defaults to false so mixed follow types are returned. Ignored by summary mode.",
+      "editor": "checkbox"
+    },
+    "excludeLost": {
+      "title": "Exclude lost links",
+      "type": "boolean",
+      "description": "When true, drop inbound links that the index marks as lost. Defaults to true. summary mode still reports live counts for the target.",
+      "editor": "checkbox"
+    },
+    "includeSubdomains": {
+      "title": "Include subdomains",
+      "type": "boolean",
+      "description": "When true, inbound-link reports include subdomain data for the target. Defaults to true. Does not crawl the live website.",
+      "editor": "checkbox"
+    },
+    "excludeInternalBacklinks": {
+      "title": "Exclude internal backlinks",
+      "type": "boolean",
+      "description": "When true, summary and referring-domain reports drop internal subdomain links. Defaults to true. Helps keep the export focused on external referring hosts.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "targets"
+  ]
+}

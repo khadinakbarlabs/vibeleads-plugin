@@ -1,0 +1,75 @@
+{
+  "title": "Google Ads Transparency Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Advertiser Domain or Name",
+      "type": "string",
+      "description": "Use this field when the user provides a company domain (e.g. 'nike.com') or brand name (e.g. 'Nike'). Do NOT use this when passing a direct Ads Transparency URL \u2014 use startUrls instead. This is the primary way to find all ads a specific advertiser is running on Google.",
+      "editor": "textfield",
+      "sectionCaption": "Search Configuration",
+      "sectionDescription": "Define which advertiser's ads to extract"
+    },
+    "searchType": {
+      "title": "Search By",
+      "type": "string",
+      "description": "Use 'domain' when searchQuery is a website domain like 'example.com'. Use 'advertiserName' when searchQuery is a brand name like 'Nike'. Domain search is more precise; name search is broader.",
+      "editor": "select",
+      "enum": [
+        "domain",
+        "advertiserName"
+      ],
+      "enumTitles": [
+        "Domain (e.g. nike.com)",
+        "Advertiser Name (e.g. Nike)"
+      ]
+    },
+    "countryCode": {
+      "title": "Country / Region",
+      "type": "string",
+      "description": "Filter ads shown in this country. Uses ISO 2-letter country codes. Default is 'US'. Use 'ANY' to see ads from all regions.",
+      "editor": "textfield"
+    },
+    "adFormat": {
+      "title": "Ad Format Filter",
+      "type": "string",
+      "description": "Filter by ad creative format. 'ALL' returns every format. 'TEXT' returns text-only search ads. 'IMAGE' returns display/banner ads. 'VIDEO' returns YouTube video ads.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "enumTitles": [
+        "All Formats",
+        "Text Ads Only",
+        "Image/Display Ads Only",
+        "Video Ads Only"
+      ]
+    },
+    "maxResults": {
+      "title": "Max Ads to Scrape",
+      "type": "integer",
+      "description": "Maximum number of ads to extract per run. Each ad is one billable event at $0.003. Set to 50 for a quick competitive snapshot. Set to 200+ for comprehensive analysis.",
+      "minimum": 1,
+      "maximum": 1000,
+      "sectionCaption": "Limits"
+    },
+    "startUrls": {
+      "title": "Direct Advertiser URLs (Optional)",
+      "type": "array",
+      "description": "Use this field instead of searchQuery when you have specific Google Ads Transparency Center URLs for known advertisers (e.g. https://adstransparency.google.com/advertiser/AR12345). Leave empty to use the searchQuery field instead.",
+      "editor": "requestListSources",
+      "sectionCaption": "Advanced",
+      "sectionDescription": "Optional: directly target specific advertisers by URL"
+    },
+    "enrichDetails": {
+      "title": "Enrich with detail-page fields",
+      "type": "boolean",
+      "description": "When true, visits each ad's creative detail page after listing extraction to populate first_shown_date, last_shown_date, regions_shown, platforms, ad_headline, and ad_text. Set to false for fastest listing-only mode (these fields will be null/empty)."
+    }
+  },
+  "required": []
+}

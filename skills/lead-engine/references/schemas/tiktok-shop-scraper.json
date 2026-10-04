@@ -1,0 +1,41 @@
+{
+  "title": "TikTok Shop Scraper Input",
+  "description": "Provide one or more TikTok Shop product URLs. The actor extracts price, variants, seller, sold count, ratings, images, and (optionally) reviews. Search/shop/category modes are on the v0.2 roadmap.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "productUrls": {
+      "title": "Product URLs",
+      "type": "array",
+      "description": "Direct TikTok Shop product page URLs to scrape, one per line. Accepts shop.tiktok.com/view/product/<id> and shop.tiktok.com/<region>/pdp/<slug>/<id>. Returns full product details + variants + seller. Multiple URLs run in parallel.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "pattern": "^https?://(www\\.|shop\\.)?tiktok\\.com/.*\\d{15,20}.*$"
+      }
+    },
+    "includeReviews": {
+      "title": "Include reviews",
+      "type": "boolean",
+      "description": "When true, scrapes reviews for each product (capped by maxReviewsPerProduct). Adds $0.001 per review to the cost. Defaults to false. Set to true only when review text/ratings are needed downstream.",
+      "editor": "checkbox"
+    },
+    "maxReviewsPerProduct": {
+      "title": "Max reviews per product",
+      "type": "integer",
+      "description": "Cap on reviews extracted per product when includeReviews=true (1-1000). Reviews are returned newest-first. Defaults to 30. Ignored when includeReviews=false.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify proxy. Defaults to Residential US \u2014 required for reliable TikTok Shop scraping. Override only if you know your proxy passes TikTok's anti-bot.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "productUrls"
+  ]
+}

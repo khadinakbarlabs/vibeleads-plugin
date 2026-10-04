@@ -1,0 +1,82 @@
+{
+  "title": "LinkedIn Sales Navigator Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "salesNavigatorUrl": {
+      "title": "Sales Navigator search URL",
+      "type": "string",
+      "description": "Paste the full URL from the address bar of your LinkedIn Sales Navigator people search (e.g. 'https://www.linkedin.com/sales/search/people?query=...'). The actor decodes the title, company, location, school, industry and keyword filters from the URL and finds matching PUBLIC profiles via Google \u2014 no LinkedIn login or Sales Navigator seat is used. SN-only filters (headcount, seniority, function, intent) cannot be honored by public search and are skipped with a notice. NOT a profile URL \u2014 for that use 'profileUrls'.",
+      "editor": "textfield"
+    },
+    "jobTitle": {
+      "title": "Job title",
+      "type": "string",
+      "description": "Manual filter used when you are NOT pasting a Sales Navigator URL. Job title quoted as a phrase on Google (e.g. 'Head of Growth'). Combine with location/company/school to narrow. If a salesNavigatorUrl is provided, that URL's filters take precedence. NOT a free-text bio search \u2014 use the keywords field for that.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "Manual filter: city, region, or country to filter people by (e.g. 'San Francisco' or 'United Kingdom'). Matched against the public profile's location text. Leave empty for worldwide. Overridden by a salesNavigatorUrl when one is supplied. NOT a postal code.",
+      "editor": "textfield"
+    },
+    "currentCompany": {
+      "title": "Company",
+      "type": "string",
+      "description": "Manual filter: company name to filter people by (e.g. 'Stripe'). Quoted as a phrase so Google matches it exactly. Best-effort \u2014 public LinkedIn pages do not always expose the current employer. Overridden by a salesNavigatorUrl. NOT a company LinkedIn URL.",
+      "editor": "textfield"
+    },
+    "school": {
+      "title": "School / university",
+      "type": "string",
+      "description": "Manual filter: school or university name to filter alumni (e.g. 'Stanford University'). Quoted as a phrase on Google. Useful for alumni sourcing. Overridden by a salesNavigatorUrl. NOT a degree or field of study.",
+      "editor": "textfield"
+    },
+    "keywords": {
+      "title": "Free-text keywords",
+      "type": "string",
+      "description": "Manual filter: extra free-text keywords added to the Google query (e.g. 'fintech founder'). Supports Google boolean operators. Use alongside or instead of the structured filters. Merged with a salesNavigatorUrl's decoded keywords. NOT a LinkedIn profile URL.",
+      "editor": "textfield"
+    },
+    "profileUrls": {
+      "title": "Direct profile URLs (enrich a lead list)",
+      "type": "array",
+      "description": "Optional list of LinkedIn personal-profile URLs (https://www.linkedin.com/in/<slug>) \u2014 for example a lead list exported from Sales Navigator. When provided (and no salesNavigatorUrl is set), search is skipped and these profiles are enriched directly. Use when you already have URLs and just want full public data. NOT company or post URLs.",
+      "editor": "stringList"
+    },
+    "enrichProfiles": {
+      "title": "Deep profile enrichment",
+      "type": "boolean",
+      "description": "When true (default), each lead is fetched for full public data: about, experience, education, skills, follower/connection counts. When false, only fast search-level fields (name, headline, location, URL) are returned at the lower price. Enrichment is billed per lead."
+    },
+    "maxResults": {
+      "title": "Max leads",
+      "type": "integer",
+      "description": "Maximum number of leads to return (1-500). Caps both search depth and total cost. Defaults to 50. In direct-URL mode it caps how many of the supplied URLs are processed.",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "resultsRegion": {
+      "title": "Google region",
+      "type": "string",
+      "description": "Two-letter country code for the Google search region (e.g. 'US', 'GB', 'DE'). Affects which localized results surface. Defaults to 'US'. NOT the person's location filter \u2014 use the location field or Sales Navigator URL for that.",
+      "editor": "textfield"
+    },
+    "preferProvider": {
+      "title": "Primary data provider",
+      "type": "string",
+      "description": "Which data provider to try first for discovery and enrichment; the other is the automatic fallback if it errors or returns nothing. 'scrapecreators' (default) is broader and usually cheaper; 'sociavault' is the alternative. Leave on default unless you specifically want to route through SociaVault first. Both run cookieless with the same public data.",
+      "editor": "select",
+      "enum": [
+        "scrapecreators",
+        "sociavault"
+      ],
+      "enumTitles": [
+        "ScrapeCreators (default)",
+        "SociaVault"
+      ]
+    }
+  },
+  "required": []
+}

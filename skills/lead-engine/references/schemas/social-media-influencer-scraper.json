@@ -1,0 +1,90 @@
+{
+  "title": "Social Media Influencer Scraper Input",
+  "description": "Use this actor to discover or enrich public influencer profiles across Instagram, TikTok, and YouTube. It returns one normalized public profile per dataset row and never requests account cookies or login credentials.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "platforms": {
+      "title": "Platforms",
+      "type": "array",
+      "description": "Use this to choose which public social platforms to search. Select any combination of instagram, tiktok, and youtube; all three are the default. Discovery runs separately on each selected platform. This is not an account-login setting.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "instagram",
+          "tiktok",
+          "youtube"
+        ]
+      }
+    },
+    "searchQueries": {
+      "title": "Creator search queries",
+      "type": "array",
+      "description": "Use this when you want to discover public creators by niche, name, or brand query. Enter one query per line, for example 'fitness coach' or 'Miami food creator'. Leave it empty when enriching known profile URLs; an empty run uses a small health-check query. Accepts up to 20 terms. This is not a hashtag-post or video search.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "profileUrls": {
+      "title": "Known profile URLs or handles",
+      "type": "array",
+      "description": "Use this when you already know public creator profiles to enrich. Accepts profile URLs or tagged handles such as 'instagram:@natgeo' and 'youtube:@Apify'. Leave it empty for keyword discovery. This does not accept post, Reel, video, or private-profile URLs.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxProfilesPerQuery": {
+      "title": "Max profiles per query and platform",
+      "type": "integer",
+      "description": "Use this to cap returned profiles for every query-platform pair. Choose 5 for fast agent runs or up to 50 for deeper discovery. Defaults to 10 and is applied before the global run cap. This is not a follower-count filter.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "maxTotalProfiles": {
+      "title": "Max profiles for the whole run",
+      "type": "integer",
+      "description": "Use this to set a hard ceiling on profiles saved and charged in this run. Choose a number from 1 to 500; the default is 100. The actor stops gracefully when it reaches this cap. This is not a request-page count.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "minFollowerCount": {
+      "title": "Minimum audience size",
+      "type": "integer",
+      "description": "Use this to keep creators with at least a specified public follower or subscriber count. Enter a whole number such as 5000; 0 keeps every returned public profile. Defaults to 0 and applies after provider retrieval. This is not an engagement-rate threshold.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 2147483647
+    },
+    "verifiedOnly": {
+      "title": "Verified profiles only",
+      "type": "boolean",
+      "description": "Use this when a platform verification signal is required for the shortlist. Set true to keep only profiles whose provider response marks them verified. Defaults to false because verification coverage differs by platform. This is not an identity or brand-safety guarantee.",
+      "editor": "checkbox"
+    },
+    "excludePrivateAccounts": {
+      "title": "Exclude private accounts",
+      "type": "boolean",
+      "description": "Use this to remove profiles explicitly marked private by a data provider. It defaults to true so output remains useful for public influencer research. A missing privacy flag does not imply that an account is public. This is not a way to access private content.",
+      "editor": "checkbox"
+    },
+    "countryCode": {
+      "title": "YouTube search country",
+      "type": "string",
+      "description": "Use this to localize YouTube creator discovery with a two-letter country code. Enter values such as US, GB, or PK; the default is US. It affects YouTube search results only. This is not a creator-location filter.",
+      "editor": "textfield",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "includeRawData": {
+      "title": "Include provider raw data",
+      "type": "boolean",
+      "description": "Use this only for provider-schema diagnostics when you need the original public response alongside normalized fields. It defaults to false to keep dataset records compact for agents and CSV exports. Raw payloads can change without notice. This is not required for normal creator discovery.",
+      "editor": "checkbox"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Checkatrade Scraper input",
+  "description": "Find public Checkatrade tradesperson profiles by trade and UK location, or scrape copied Checkatrade search and profile URLs. Returns one validated business record per profile.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "trade": {
+      "title": "Trade or service",
+      "type": "string",
+      "description": "The Checkatrade trade to find, such as 'Plumber' or 'Electrician'. Pair it with a UK location to create a Checkatrade search URL. Defaults to 'Plumber'. This is not a profile URL; use directUrls for existing profiles.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "UK location or postcode",
+      "type": "string",
+      "description": "The UK town, city, postcode, or postcode area to search, such as 'London' or 'SW1A'. Combined with trade unless searchUrls is supplied. Defaults to 'London'. This is not a country selector or proxy setting.",
+      "editor": "textfield"
+    },
+    "searchUrls": {
+      "title": "Checkatrade search URLs",
+      "type": "array",
+      "description": "Optional Checkatrade search-result URLs copied from a browser, for example 'https://www.checkatrade.com/Search/Plumber/in/London'. Each URL is crawled and paginated. Leave empty to use trade and location. Do not paste profile URLs here; put those in directUrls.",
+      "editor": "stringList"
+    },
+    "directUrls": {
+      "title": "Checkatrade profile URLs",
+      "type": "array",
+      "description": "Optional individual Checkatrade tradesperson profile URLs, such as 'https://www.checkatrade.com/trades/exampleltd'. Each is scraped directly and bypasses search discovery. Leave empty for a trade/location search. Do not include URLs from other directories.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Maximum profiles",
+      "type": "integer",
+      "description": "Maximum validated tradesperson records to return across the entire run. Each persisted record is one billable tradesperson event. Defaults to 100 and accepts 1 through 1000. This is not a page limit because one page can contain multiple profiles.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "scrapeDetails": {
+      "title": "Scrape profile details",
+      "type": "boolean",
+      "description": "Controls full-profile enrichment for profiles discovered from Checkatrade search pages. Keep this enabled to return contact, service, rating, and review fields from the profile. Defaults to true. Direct profile URLs are always handled as detailed profiles."
+    },
+    "extractReviews": {
+      "title": "Include recent reviews",
+      "type": "boolean",
+      "description": "Include up to ten visible recent review objects for each returned profile. This adds review body, author when public, rating, and date when available. Defaults to false to keep items compact. This does not claim to return a profile's complete review history."
+    },
+    "requirePhone": {
+      "title": "Only profiles with phone numbers",
+      "type": "boolean",
+      "description": "When enabled, excludes profiles without a public phone number. Use it for phone-first outreach lists. Defaults to false so all valid public profiles remain eligible. It does not infer or enrich hidden contact information."
+    },
+    "minRating": {
+      "title": "Minimum rating",
+      "type": "number",
+      "description": "Minimum public Checkatrade rating from 0 to 10. Profiles without a rating or below this threshold are excluded when a value above zero is used. Defaults to 0. This is not a star rating out of five.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "minReviews": {
+      "title": "Minimum review count",
+      "type": "integer",
+      "description": "Minimum number of public reviews a profile must show before it is returned. Profiles without enough reviews are excluded when this is above zero. Defaults to 0. This is a filter, not the number of review objects to extract.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional Apify proxy configuration used for public Checkatrade requests. The default uses the RESIDENTIAL group for consistent UK directory access. Leave the default unless you operate an approved custom proxy. This does not alter the location searched above.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

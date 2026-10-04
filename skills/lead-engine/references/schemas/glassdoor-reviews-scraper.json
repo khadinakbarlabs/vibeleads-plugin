@@ -1,0 +1,86 @@
+{
+  "title": "Glassdoor Reviews Scraper Input",
+  "description": "Scrape public Glassdoor company review pages into structured employee review rows.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Glassdoor Review URLs",
+      "type": "array",
+      "description": "Use this when you already have Glassdoor company review URLs. Enter URLs like https://www.glassdoor.com/Reviews/Apify-Reviews-E3100324.htm. Defaults to a small Apify company review sample when no input is provided. This is not for job listing URLs or profile login pages.",
+      "editor": "requestListSources"
+    },
+    "companyNames": {
+      "title": "Company Names",
+      "type": "array",
+      "description": "Use this when you want the actor to search Glassdoor for company review pages first. Enter one company name per line, for example Apify or OpenAI. Defaults to empty and is less reliable than direct review URLs. This is not a general web search query field.",
+      "editor": "stringList"
+    },
+    "maxReviewsPerCompany": {
+      "title": "Max Reviews Per Company",
+      "type": "integer",
+      "description": "Use this to cap review rows collected from each Glassdoor company page. Accepts integers from 1 to 1000, with 25 as the default. Lower it for quick reputation samples and raise it for deeper analysis. This is a review count, not a page count.",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "maxResults": {
+      "title": "Max Total Reviews",
+      "type": "integer",
+      "description": "Use this to cap the total review rows saved across the whole run. Accepts integers from 1 to 5000, with 50 as the default. The actor stops before charging beyond this cap. This does not include diagnostic rows.",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "sortBy": {
+      "title": "Review Sort Order",
+      "type": "string",
+      "description": "Use this to prefer recent or popular Glassdoor reviews when the page exposes sorting controls. Choose recent for monitoring new employee feedback, popular for broad sentiment sampling, or default for Glassdoor's page order. Defaults to recent. This does not filter by rating.",
+      "editor": "select",
+      "enum": [
+        "recent",
+        "popular",
+        "default"
+      ],
+      "enumTitles": [
+        "Most recent",
+        "Popular",
+        "Glassdoor default"
+      ]
+    },
+    "includeSubRatings": {
+      "title": "Include Sub-Ratings",
+      "type": "boolean",
+      "description": "Use this to include culture, compensation, career, work-life, and management ratings when Glassdoor exposes them. Defaults to true for richer HR analysis. Disable it only when you need smaller rows. This does not infer ratings that are not visible."
+    },
+    "includeEmployerResponses": {
+      "title": "Include Employer Responses",
+      "type": "boolean",
+      "description": "Use this to include public employer reply text when Glassdoor shows a response under a review. Defaults to true for employer-brand monitoring. Disable it to reduce output size. This does not contact or enrich employer data outside Glassdoor."
+    },
+    "responseFormat": {
+      "title": "Response Format",
+      "type": "string",
+      "description": "Use this to choose compact or detailed rows for AI agents and analytics pipelines. concise keeps the core company, rating, title, pros, cons, and date fields. detailed includes sub-ratings, employment metadata, source snippets, and employer responses. Defaults to detailed.",
+      "editor": "select",
+      "enum": [
+        "detailed",
+        "concise"
+      ],
+      "enumTitles": [
+        "Detailed",
+        "Concise"
+      ]
+    },
+    "debug": {
+      "title": "Save Debug Snapshots",
+      "type": "boolean",
+      "description": "Use this when a run returns diagnostic rows and you need HTML or response samples for troubleshooting. Defaults to false to keep storage small. When enabled, the actor saves blocked HTML and response samples to KV storage. This is not needed for normal scraping."
+    },
+    "proxyConfiguration": {
+      "title": "Proxy Configuration",
+      "type": "object",
+      "description": "Use this only when you need to override the default residential proxy configuration. Defaults to Apify Residential proxies because Glassdoor uses Cloudflare protection. Keep the default for most runs. This is not where you put Glassdoor account cookies or passwords.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

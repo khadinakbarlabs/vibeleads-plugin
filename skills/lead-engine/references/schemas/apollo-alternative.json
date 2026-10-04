@@ -1,0 +1,75 @@
+{
+  "title": "Apollo Alternative: B2B Prospect Finder input",
+  "description": "Find public LinkedIn profiles through a bounded web-search workflow. It returns source-linked discovery records, not a private contact database, verified emails or phones, or an outbound campaign.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "jobTitles": {
+      "title": "Job titles",
+      "type": "array",
+      "description": "One to ten job titles to match in public LinkedIn search results, such as `Head of Growth` or `VP Marketing`. Each value becomes a bounded search plan and duplicates are removed. Use this for people roles, not a list of profile URLs or an email-search request.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxItems": 10
+    },
+    "keywords": {
+      "title": "Role or expertise keywords",
+      "type": "array",
+      "description": "Optional role, skill, or market phrases such as `B2B SaaS` or `demand generation`. They are combined with the public LinkedIn search query and deduplicated. This is not a free-form search of Apollo's proprietary database or a Boolean-email verifier.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxItems": 10
+    },
+    "companyNames": {
+      "title": "Companies",
+      "type": "array",
+      "description": "Optional company names to pair with titles or keywords, for example `Stripe` or `HubSpot`. The Actor makes one bounded role-company query per combination, with a maximum of ten query plans. This is not a company-domain enrichment or account-intent filter.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxItems": 10
+    },
+    "industry": {
+      "title": "Industry keyword",
+      "type": "string",
+      "description": "Optional industry phrase added to every public-search query, such as `cybersecurity` or `healthcare`. Defaults to empty and does not verify NAICS codes or buying intent. Use a short descriptive phrase rather than a location or job title.",
+      "editor": "textfield",
+      "maxLength": 100
+    },
+    "location": {
+      "title": "Location keyword",
+      "type": "string",
+      "description": "Optional city, region, or country context such as `San Francisco Bay Area` or `London`. It is retained with the request context; `country` controls Google-market context. This is not a guaranteed residence or employment-location filter or verification.",
+      "editor": "textfield",
+      "maxLength": 100
+    },
+    "country": {
+      "title": "Search country",
+      "type": "string",
+      "description": "Two-letter ISO country code used for public-search market context and the residential proxy, such as `US`, `GB`, or `PK`. Defaults to `US`; it does not guarantee that every profile belongs to this country. Do not enter a full country name here.",
+      "editor": "textfield",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "maxResults": {
+      "title": "Maximum prospects",
+      "type": "integer",
+      "description": "Hard cap on unique public prospect records persisted for this run. Defaults to 25 and accepts 1 through 100; each persisted record costs $0.02 plus platform usage. Start small to validate relevance before a larger run.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    }
+  },
+  "required": []
+}

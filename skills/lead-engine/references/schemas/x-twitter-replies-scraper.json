@@ -1,0 +1,69 @@
+{
+  "title": "X Twitter Replies Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "tweetUrls": {
+      "type": "array",
+      "title": "Tweet URLs or IDs",
+      "description": "Use this when you need public replies from specific X/Twitter posts. Enter full URLs like https://x.com/openai/status/1930000000000000000 or numeric tweet IDs. Defaults to one working public tweet example. This is not for keyword search or profile timelines.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 50
+    },
+    "rankingMode": {
+      "type": "string",
+      "title": "Reply ranking mode",
+      "description": "Use this when choosing how X should order replies for each tweet. Relevance returns the default conversation ranking, Recency returns newer replies first, and Likes prioritizes liked replies. Defaults to Relevance. This does not scrape quote tweets or retweeters.",
+      "editor": "select",
+      "enum": [
+        "Relevance",
+        "Recency",
+        "Likes"
+      ],
+      "enumTitles": [
+        "Relevance",
+        "Recency",
+        "Likes"
+      ]
+    },
+    "maxReplies": {
+      "type": "integer",
+      "title": "Maximum replies",
+      "description": "Use this to cap the total reply rows saved across all input tweets. The actor stops before charging beyond this limit. Defaults to 100 and supports up to 5000. This is a hard billing and dataset cap, not a per-tweet target.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxPagesPerTweet": {
+      "type": "integer",
+      "title": "Maximum pages per tweet",
+      "description": "Use this as a pagination safety valve for each tweet conversation. Higher values collect deeper reply pages when the provider returns a next cursor. Defaults to 10 and supports up to 100. This does not override maxReplies.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "startCursor": {
+      "type": "string",
+      "title": "Start cursor",
+      "description": "Use this when continuing one tweet from a previous RUN_SUMMARY nextCursors value. Paste the cursor string exactly as returned by the actor. Leave blank for a fresh run. This is not a tweet URL or tweet ID field.",
+      "editor": "textfield",
+      "maxLength": 500
+    },
+    "includeRaw": {
+      "type": "boolean",
+      "title": "Include raw response payload",
+      "description": "Use this for debugging provider field drift or building custom parsers. When enabled, each dataset row includes the raw the managed fallback route reply object. Defaults to false for smaller datasets. This is not needed for normal analytics exports.",
+      "editor": "checkbox"
+    },
+    "dedupeReplies": {
+      "type": "boolean",
+      "title": "Dedupe replies",
+      "description": "Use this to skip duplicate reply tweets across pages and input tweets. The actor dedupes by reply ID first, then reply URL or text fallback. Defaults to true. Disable only when you need to inspect provider pagination overlap.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "tweetUrls"
+  ]
+}

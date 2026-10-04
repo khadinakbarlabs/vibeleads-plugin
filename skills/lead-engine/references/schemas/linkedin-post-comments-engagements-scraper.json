@@ -1,0 +1,73 @@
+{
+  "title": "LinkedIn Post Comments & Engagements Scraper Input",
+  "description": "Scrape known public LinkedIn post URLs for post-level engagement metrics and visible comments. The actor uses the owner-configured the managed fallback route API key and does not ask users for LinkedIn cookies.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "postUrls": {
+      "title": "LinkedIn post URLs",
+      "type": "array",
+      "description": "One or more public LinkedIn post, feed update, or Pulse article URLs. Use this actor when you already know the post URLs and want comments, commenters, and engagement counts.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "pattern": "^https?://([a-z]{2,3}\\.)?(www\\.)?linkedin\\.com/.*$"
+      }
+    },
+    "maxPosts": {
+      "title": "Max posts",
+      "type": "integer",
+      "description": "Maximum number of unique post URLs to process from the input list. Use this to cap provider calls and PPE cost for large URL batches.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "maxCommentsPerPost": {
+      "title": "Max comments per post",
+      "type": "integer",
+      "description": "Maximum number of comment rows to save per post. The provider may expose fewer comments than this cap. Set to 0 when you only need post-level engagement rows.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "outputMode": {
+      "title": "Output mode",
+      "type": "string",
+      "description": "Choose whether to save post-level engagement summary rows, per-comment rows, or both. Both is recommended for CRM, lead research, and AI-agent workflows.",
+      "editor": "select",
+      "enum": [
+        "both",
+        "comments",
+        "posts"
+      ],
+      "enumTitles": [
+        "Post summaries and comments",
+        "Comments only",
+        "Post summaries only"
+      ]
+    },
+    "dedupeComments": {
+      "title": "Dedupe comments",
+      "type": "boolean",
+      "description": "Remove duplicate comments per post using comment URL, commenter profile URL, and text. Keep enabled for cleaner automation datasets.",
+      "editor": "checkbox"
+    },
+    "includeRawData": {
+      "title": "Include raw response data",
+      "type": "boolean",
+      "description": "Attach raw the managed fallback route post/comment payloads to dataset rows. Enable only for debugging or custom downstream parsing because it increases dataset size.",
+      "editor": "checkbox"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "How many post URLs to process in parallel. Keep the default for reliable provider usage and predictable cost tracking.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    }
+  },
+  "required": [
+    "postUrls"
+  ]
+}

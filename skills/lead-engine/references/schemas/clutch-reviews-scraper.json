@@ -1,0 +1,32 @@
+{
+  "title": "Clutch Reviews Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "profileUrls": {
+      "title": "Clutch profile URLs or slugs",
+      "type": "array",
+      "description": "One or more Clutch.co agency profiles to scrape reviews from. Accepts full URLs (e.g. 'https://clutch.co/profile/wedowebapps') or bare slugs (e.g. 'wedowebapps'). Each profile is paginated automatically to collect its review history. NOT a Clutch category or search URL \u2014 for company listings use the clutch-scraper actor instead.",
+      "editor": "stringList"
+    },
+    "maxReviews": {
+      "title": "Max reviews per run",
+      "type": "integer",
+      "description": "Maximum total number of reviews to scrape across all profiles in this run (e.g. 100). The run stops and billing ends once this cap is reached. Defaults to 100. This is a hard cost cap \u2014 see the Pricing tab for current per-review pricing.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "How many profile pages to load in parallel (e.g. 2). Higher values are faster but raise the chance of anti-bot blocks. Defaults to 2. Keep at 1-3 for reliability.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    }
+  },
+  "required": [
+    "profileUrls"
+  ]
+}

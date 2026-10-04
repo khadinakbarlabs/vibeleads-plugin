@@ -1,0 +1,67 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "ImportYeti Scraper input",
+  "description": "Search ImportYeti for US importers and foreign suppliers using ImportYeti's stable search API. Provide either searchQueries (company names or product keywords) or startUrls (direct ImportYeti profile URLs). Each unique match becomes one row in the dataset.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "Free-text company names or product keywords (e.g., 'Patagonia', 'YETI Coolers', 'phone case', 'lithium battery'). Each query is sent to the ImportYeti search API and paginated up to maxResultsPerQuery records. Leave empty if you only have direct profile URLs.",
+      "editor": "stringList",
+      "uniqueItems": true
+    },
+    "startUrls": {
+      "title": "ImportYeti profile URLs",
+      "type": "array",
+      "description": "Direct ImportYeti profile URLs (https://www.importyeti.com/company/{slug} or https://www.importyeti.com/supplier/{slug}). Each URL is resolved to a single matching record via the search API. NOT a search-results URL \u2014 use the canonical profile URL.",
+      "editor": "requestListSources"
+    },
+    "maxResultsPerQuery": {
+      "title": "Max profiles per search query",
+      "type": "integer",
+      "description": "Maximum profiles to return per searchQueries entry. The API returns 10 results per page; the actor paginates internally until this cap is hit or no more pages are available. Bounded 1\u2013500. Default 10. Each pushed profile is billed at the per-profile event price.",
+      "minimum": 1,
+      "maximum": 500,
+      "editor": "number"
+    },
+    "countryCode": {
+      "title": "Country code filter (optional)",
+      "type": "string",
+      "description": "Optional ISO-3166-1 alpha-2 country code (e.g., 'US', 'CN', 'VN') to restrict results to that country. Applied after fetching \u2014 filters out profiles registered in other countries. Leave empty for no country filter.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "typeFilter": {
+      "title": "Importer / supplier filter",
+      "type": "string",
+      "description": "Restrict results to US importers ('company') only, foreign suppliers ('supplier') only, or return both ('both'). Default 'both'.",
+      "editor": "select",
+      "enum": [
+        "both",
+        "company",
+        "supplier"
+      ],
+      "enumTitles": [
+        "Both importers & suppliers",
+        "US importers only",
+        "Foreign suppliers only"
+      ]
+    },
+    "minShipments": {
+      "title": "Minimum total shipments filter",
+      "type": "integer",
+      "description": "Drop records with fewer than this number of total bills-of-lading on file. Use to filter out inactive or tiny companies. Default 0 (no filter).",
+      "minimum": 0,
+      "editor": "number"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used to hit the ImportYeti API. Defaults to Apify residential US \u2014 the cleanest IP reputation. The API is rate-limited per IP, so rotating residential IPs maximizes throughput on long runs.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

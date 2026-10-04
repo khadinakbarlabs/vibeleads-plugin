@@ -1,0 +1,74 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Google Maps Email Extractor",
+  "description": "Enter a business keyword and city to extract verified email addresses from Google Maps. Email enrichment is ON by default \u2014 each business website is checked for a public email. Optionally filter out places without email to get an email-only list.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "\ud83d\udd0d Search keyword",
+      "type": "string",
+      "description": "Business type or niche to search Google Maps for (e.g., 'dentists', 'real estate agents', 'plumbers'). Combined with the location below into a Google Maps query. Defaults to 'dentists'. NOT a Google Maps URL \u2014 paste a URL into the 'Google Maps URLs' field instead.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "\ud83d\udccd City / region",
+      "type": "string",
+      "description": "City, region, or country to search in (e.g., 'Miami, FL' or 'London, UK'). Simple 'City, Country' or 'City, State' formats work best. Defaults to 'Miami, FL'. Leave empty only if pasting a full Google Maps URL that already contains the area.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "\ud83d\udcaf Max businesses to extract",
+      "type": "integer",
+      "description": "Maximum number of businesses to extract per search. Lower = faster and cheaper. Set 5-10 for testing, 50-200 for typical campaigns, 500+ for bulk lists. Hard cap at 2,000 per run \u2014 split larger jobs across cities for reliability.",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "skipWithoutEmail": {
+      "title": "\ud83d\udce7 Only return businesses with an email",
+      "type": "boolean",
+      "description": "When enabled, businesses without a verified email are dropped from the output \u2014 you pay only for records with emails. Useful when building targeted cold-outreach lists. When off, all businesses are returned (with or without email)."
+    },
+    "minRating": {
+      "title": "\u2b50 Minimum Google rating",
+      "type": "number",
+      "description": "Only include businesses with a Google rating >= this value (1.0 to 5.0). Set to 0 to include all businesses regardless of rating. Businesses with no rating are included when this is 0 and excluded otherwise.",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "skipClosedPlaces": {
+      "title": "\u23e9 Skip permanently closed businesses",
+      "type": "boolean",
+      "description": "Skip businesses marked as 'Permanently closed' on Google Maps. Recommended for cold outreach lists to avoid wasting effort on defunct businesses."
+    },
+    "language": {
+      "title": "\ud83c\udf0d Language",
+      "type": "string",
+      "description": "Language code for the Google Maps interface \u2014 affects business names, categories, and addresses. Use 'en' for English, 'es' for Spanish, 'fr' for French, etc. Only affects Google Maps UI, not the email extraction step.",
+      "enum": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "nl",
+        "pl",
+        "ru",
+        "ja",
+        "ko",
+        "zh-CN",
+        "ar",
+        "tr",
+        "hi"
+      ]
+    },
+    "startUrls": {
+      "title": "\ud83d\udd17 Google Maps URLs (optional \u2014 alternative to keyword search)",
+      "type": "array",
+      "description": "Paste HTTPS Google Maps search or place URLs on google.com, www.google.com, or maps.google.com with a /maps path. Regional Google domains and shortlinks are not supported; expand them to a supported full URL first. Credentials and custom ports are rejected. Each URL replaces one keyword search. Leave empty if using keyword + city.",
+      "editor": "requestListSources"
+    }
+  },
+  "required": []
+}

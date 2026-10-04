@@ -1,0 +1,70 @@
+{
+  "title": "LinkedIn Ad Library Search Scraper input",
+  "description": "Search the public LinkedIn Ad Library with provider-backed, no-cookie collection and normalized output.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "advertisers": {
+      "title": "Advertiser names",
+      "type": "array",
+      "description": "Use this when you know the company or advertiser whose public ads you want to review. Enter a list of display names such as Microsoft or HubSpot. Defaults to Microsoft only when neither advertisers nor keywords is supplied. This is not a LinkedIn company URL or a private Campaign Manager account ID.",
+      "editor": "stringList"
+    },
+    "keywords": {
+      "title": "Creative keywords",
+      "type": "array",
+      "description": "Use this when you want public ads whose creative matches a phrase instead of one known advertiser. Enter plain keywords such as CRM software or data warehouse. Defaults to no keyword searches, and each keyword becomes an independent search. This is not a Boolean LinkedIn profile query or a list of campaign IDs.",
+      "editor": "stringList"
+    },
+    "countries": {
+      "title": "Countries",
+      "type": "array",
+      "description": "Use this when results should be limited to countries reported by the Ad Library. Enter ISO alpha-2 codes such as US, DE, or GB. Defaults to no country filter, while supplied codes are sent together to each search. This is not a proxy location setting or a city-level targeting filter.",
+      "editor": "stringList"
+    },
+    "startDate": {
+      "title": "Start date",
+      "type": "string",
+      "description": "Use this when limiting ads by the beginning of their reported run window. Enter an ISO date such as 2026-01-01. Defaults to no lower date boundary and may be used with or without an end date. This is not a timestamp, a relative date phrase, or a campaign launch prediction.",
+      "editor": "textfield"
+    },
+    "endDate": {
+      "title": "End date",
+      "type": "string",
+      "description": "Use this when limiting ads by the end of their reported run window. Enter an ISO date such as 2026-06-30. Defaults to no upper date boundary and must not be before startDate when both are supplied. This is not an expiry estimate or a relative date phrase.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum ad records",
+      "type": "integer",
+      "description": "Use this to cap the number of normalized ad records saved and billed in this run. Enter an integer such as 20 between 1 and 100. Defaults to 20, which also caps the primary event charge before platform usage. This is not a page number or a guarantee that the Ad Library contains that many matches.",
+      "editor": "number"
+    },
+    "maxPagesPerSearch": {
+      "title": "Maximum pages per search",
+      "type": "integer",
+      "description": "Use this to bound provider pagination for every advertiser or keyword search. Enter an integer such as 2 between 1 and 10. Defaults to 1 page so the actor remains fast and cost-predictable. This is not an overall record limit because maxResults controls persisted ads.",
+      "editor": "number"
+    },
+    "fetchAdDetails": {
+      "title": "Fetch optional details",
+      "type": "boolean",
+      "description": "Use this when you need a second verified provider call per saved ad for richer public transparency data. Set true to request details and false to use the normalized search response only. Defaults to true and adds the documented detail-enrichment event only after a successful detail fetch. This is not a request for private advertiser, member, or Campaign Manager data.",
+      "editor": "checkbox"
+    },
+    "responseFormat": {
+      "title": "Response format",
+      "type": "string",
+      "description": "Use this to choose the token budget of each saved ad record. Select concise for core creative and transparency fields or detailed for bounded media and targeting arrays. Defaults to concise for agent-friendly output under the normal result cap. This is not a raw-provider-payload option and never exposes credentials.",
+      "editor": "select",
+      "enum": [
+        "concise",
+        "detailed"
+      ],
+      "enumTitles": [
+        "Concise",
+        "Detailed"
+      ]
+    }
+  }
+}

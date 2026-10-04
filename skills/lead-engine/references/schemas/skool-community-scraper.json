@@ -1,0 +1,47 @@
+{
+  "title": "Skool Community Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "communityUrls": {
+      "title": "Community URLs or slugs",
+      "type": "array",
+      "description": "Skool community URLs or bare slugs to look up directly (group mode). Accepts full links like 'https://www.skool.com/new-society' or just 'new-society'. Returns the full public profile of each community plus its owner. NOT a member roster \u2014 Skool gates individual member lists behind login, so this returns counts and the owner, not every member.",
+      "editor": "stringList"
+    },
+    "searchQueries": {
+      "title": "Discovery search keywords",
+      "type": "array",
+      "description": "Keywords to search Skool's public Discovery directory (discovery mode), e.g. 'real estate' or 'ai automation'. Each keyword is paginated and every matched community is returned. Use this to build lists of communities in a niche. Leave empty if you only want the specific communities in 'Community URLs or slugs'.",
+      "editor": "stringList"
+    },
+    "enrichDetails": {
+      "title": "Enrich discovery results with full details",
+      "type": "boolean",
+      "description": "When ON (default), each Discovery result is enriched via the Skool group API to add pricing, post/course counts, join questions, and the owner lead. When OFF, Discovery returns the lean directory card only (name, description, member count, logo) \u2014 faster and cheaper. Has no effect on direct 'Community URLs or slugs', which are always fully detailed."
+    },
+    "maxItems": {
+      "title": "Max communities",
+      "type": "integer",
+      "description": "Hard cap on the total number of communities returned across all inputs, for cost control. Each community is billed at $0.005. Defaults to 100. Set lower for a quick sample or higher to sweep a whole niche (Skool Discovery returns up to ~1000 per keyword).",
+      "minimum": 1,
+      "maximum": 100000,
+      "unit": "communities"
+    },
+    "maxPagesPerQuery": {
+      "title": "Max Discovery pages per keyword",
+      "type": "integer",
+      "description": "Upper bound on how many Discovery pages (30 communities each) to fetch per keyword before moving on. Defaults to 34, the full depth Skool exposes (~1000 results). Lower it to sample only the top results of each keyword. Ignored for direct community lookups.",
+      "minimum": 1,
+      "maximum": 34,
+      "editor": "number"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used for requests. Skool's public API is a clean JSON endpoint, so the default Apify Proxy (datacenter, US) is sufficient and cheapest. Override only if you hit regional issues. Residential is rarely needed.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

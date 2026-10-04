@@ -1,0 +1,58 @@
+{
+  "title": "Shopify All-in-One Scraper Input",
+  "description": "Extract products, collections, reviews, and merchant contact info from any Shopify store. Just enter a store domain \u2014 no API keys or login required.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "storeUrls": {
+      "title": "Shopify Store URLs / Domains",
+      "type": "array",
+      "description": "Use this field when the user provides a Shopify store URL or domain name. Accepts full URLs (https://gymshark.com) or bare domains (gymshark.com). Add multiple stores for batch scraping. Use this for specific known stores. Do NOT use this for keyword-based discovery \u2014 this actor scrapes stores you already know.",
+      "editor": "stringList",
+      "sectionCaption": "\ud83d\udce6 Target Stores",
+      "sectionDescription": "Which Shopify stores to scrape. Enter one store domain per line."
+    },
+    "scrapeProducts": {
+      "title": "Scrape Products",
+      "type": "boolean",
+      "description": "Use this when the user wants product data: titles, prices, discounts, variants, stock status, images, SKUs, or barcodes. Enables product extraction from /products.json. Charged at $0.003 per product.",
+      "sectionCaption": "\ud83c\udfaf Data Types to Extract",
+      "sectionDescription": "Choose what data to scrape. Each type is charged separately \u2014 only pay for what you use."
+    },
+    "scrapeCollections": {
+      "title": "Scrape Collections",
+      "type": "boolean",
+      "description": "Use this when the user wants product categories, collections, or store taxonomy. Extracts all collection handles, titles, descriptions, and product counts from /collections.json. Charged at $0.001 per collection."
+    },
+    "scrapeReviews": {
+      "title": "Scrape Customer Reviews",
+      "type": "boolean",
+      "description": "Use this when the user wants customer reviews, star ratings, verified buyer status, or review text. Auto-detects review platform (Judge.me, Yotpo). Each review is charged separately at $0.001. Use maxReviewsPerProduct to control volume."
+    },
+    "scrapeContactInfo": {
+      "title": "Scrape Merchant Contact Info",
+      "type": "boolean",
+      "description": "Use this when the user wants merchant emails, phone numbers, or social media links for B2B outreach, lead generation, or sales prospecting. Extracts live contact data from the store's pages. Charged at $0.005 per store (one record per store). This gives the highest ROI for sales teams."
+    },
+    "maxProductsPerStore": {
+      "title": "Max Products per Store",
+      "type": "integer",
+      "description": "Maximum number of products to extract from each store. Default 50 for quick tests; use higher values for full catalog extraction.",
+      "minimum": 1,
+      "sectionCaption": "\u2699\ufe0f Limits & Controls"
+    },
+    "maxCollectionsPerStore": {
+      "title": "Max Collections per Store",
+      "type": "integer",
+      "description": "Maximum number of collections to extract from each store when scrapeCollections is enabled. Default 250 for most stores; large fashion/home stores may have thousands.",
+      "minimum": 1
+    },
+    "maxReviewsPerProduct": {
+      "title": "Max Reviews per Product",
+      "type": "integer",
+      "description": "Maximum reviews to fetch per product when scrapeReviews is enabled. Applies per product, not total. Start with 50 for a sample; use higher values for full sentiment analysis.",
+      "minimum": 1
+    }
+  },
+  "required": []
+}

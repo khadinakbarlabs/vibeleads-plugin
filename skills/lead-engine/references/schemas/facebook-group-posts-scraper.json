@@ -1,0 +1,102 @@
+{
+  "title": "Facebook Groups Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "groupUrls": {
+      "title": "Facebook group URLs",
+      "type": "array",
+      "description": "One or more public Facebook group URLs, for example https://www.facebook.com/groups/homemakingtips/.",
+      "editor": "stringList"
+    },
+    "groupIds": {
+      "title": "Facebook group IDs",
+      "type": "array",
+      "description": "Optional numeric Facebook group IDs. Use this when you know the group ID and do not have a URL.",
+      "editor": "stringList"
+    },
+    "maxPosts": {
+      "title": "Maximum posts",
+      "type": "integer",
+      "description": "Maximum number of group post records to save across all groups.",
+      "minimum": 1,
+      "maximum": 3000
+    },
+    "maxPagesPerGroup": {
+      "title": "Max provider pages per group",
+      "type": "integer",
+      "description": "Provider APIs currently return up to 3 posts per request and paginate with a cursor.",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "startCursor": {
+      "title": "Start cursor",
+      "type": "string",
+      "description": "Optional provider pagination cursor. Use a cursor from RUN_SUMMARY.nextCursors to resume a group feed.",
+      "editor": "textfield"
+    },
+    "sortBy": {
+      "title": "Sort by",
+      "type": "string",
+      "description": "Provider-side Facebook group post ordering.",
+      "editor": "select",
+      "enum": [
+        "RECENT_ACTIVITY",
+        "TOP_POSTS",
+        "CHRONOLOGICAL",
+        "CHRONOLOGICAL_LISTINGS"
+      ],
+      "enumTitles": [
+        "Recent activity",
+        "Top posts",
+        "Chronological",
+        "Chronological listings"
+      ]
+    },
+    "dataSource": {
+      "title": "Data source",
+      "type": "string",
+      "description": "Auto tries configured providers first, then browser fallback when enabled. Provider only skips browser fallback. Browser only skips provider APIs.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "provider",
+        "browser"
+      ],
+      "enumTitles": [
+        "Auto",
+        "Provider only",
+        "Browser only"
+      ]
+    },
+    "useBrowserFallback": {
+      "title": "Use browser fallback",
+      "type": "boolean",
+      "description": "Try a Playwright browser scrape when provider APIs are unavailable, empty, or disabled."
+    },
+    "maxBrowserScrolls": {
+      "title": "Max browser scrolls",
+      "type": "integer",
+      "description": "Maximum page scrolls in browser fallback mode.",
+      "minimum": 0,
+      "maximum": 50
+    },
+    "facebookCookies": {
+      "title": "Facebook cookies",
+      "type": "string",
+      "description": "Optional JSON cookie array or raw Cookie header for browser fallback only. Use your own authorized session; do not use this for data you are not allowed to access.",
+      "editor": "textarea"
+    },
+    "proxy": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings for browser fallback.",
+      "editor": "json"
+    },
+    "includeRawData": {
+      "title": "Include raw response data",
+      "type": "boolean",
+      "description": "Include raw source objects in each dataset row for debugging and custom downstream parsing."
+    }
+  }
+}

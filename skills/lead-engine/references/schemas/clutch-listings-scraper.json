@@ -1,0 +1,93 @@
+{
+  "title": "Clutch Agencies Scraper input",
+  "description": "Choose one or more public Clutch.co agency directory pages, then optionally narrow the returned listing cards with rating, review, service, location, verification, and sponsorship filters.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchUrls": {
+      "title": "Agency directory URLs",
+      "type": "array",
+      "description": "Use this when you want to scrape one or several Clutch category, service, or location directory pages in the same run. Supply public listing pages rather than individual /profile/ pages. This list takes precedence over One agency directory URL. Leave the list empty to use that single-URL field or the built-in digital-marketing fallback.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "categoryUrl": {
+      "title": "One agency directory URL",
+      "type": "string",
+      "description": "Use this when you have one Clutch listing page and prefer a simple URL field. A full URL or path such as /it-services works. It is ignored whenever Agency directory URLs contains at least one entry. Omit both URL fields to use the built-in digital-marketing agencies directory.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Clutch geolocation",
+      "type": "string",
+      "description": "Use this when Clutch should narrow every supplied directory URL server-side. The value is added through Clutch's geolocation query parameter. Values such as United States or London are useful starting points. Leave it empty for the directory's default geography.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum agencies",
+      "type": "integer",
+      "description": "Use this to cap both returned agencies and scraped-listing event charges. The crawler stops after this many validated rows. A lower Apify run charge limit always takes precedence. Start with 20 to 50 agencies when testing a new directory.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxPages": {
+      "title": "Maximum pages per URL",
+      "type": "integer",
+      "description": "Use this to put a hard pagination boundary on each supplied directory URL. The limit applies independently to every starting URL. Lower it for quick samples. Raise it when a narrow client-side filter needs more source pages.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "minRating": {
+      "title": "Minimum agency rating",
+      "type": "number",
+      "description": "Use this when you only want agencies whose listing card has at least this Clutch star rating. Values from zero through five are accepted. Agencies without a visible rating are excluded when this filter is set. Leave the field unset to keep rated and unrated agencies.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "minReviews": {
+      "title": "Minimum agency reviews",
+      "type": "integer",
+      "description": "Use this when an agency must have at least a specific number of visible Clutch reviews. Zero and positive integers are accepted. Agencies without a visible review count are excluded when this filter is set. Leave the field unset to keep agencies regardless of review count.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "verifiedOnly": {
+      "title": "Require verified badge",
+      "type": "boolean",
+      "description": "Use this when your shortlist should contain only listing cards where a Clutch verification badge is visible. Verification is detected from the directory card rather than inferred from other fields. Keep it off to include verified and unverified agencies. Combine it with other filters to make a stricter shortlist.",
+      "editor": "checkbox"
+    },
+    "excludeSponsored": {
+      "title": "Remove sponsored agencies",
+      "type": "boolean",
+      "description": "Use this when you want an organic agency shortlist without sponsored or featured listing cards. Sponsored status is detected from the card and its tracked links. Keep it off when paid placements should remain in their displayed order. The output always includes is_sponsored for independent auditing.",
+      "editor": "checkbox"
+    },
+    "serviceKeyword": {
+      "title": "Required service keyword",
+      "type": "string",
+      "description": "Use this when at least one service shown on the listing card must contain a phrase such as mobile app or SEO. Matching is case-insensitive and uses substring logic. This filters collected cards; it is not a Clutch search query. Leave it empty to accept every visible service mix.",
+      "editor": "textfield"
+    },
+    "locationKeyword": {
+      "title": "Required location keyword",
+      "type": "string",
+      "description": "Use this when the location displayed on each agency card must contain a phrase such as New York or India. Matching is case-insensitive and uses substring logic. This filter runs after the cards are collected. For Clutch's server-side geography, use Clutch geolocation instead.",
+      "editor": "textfield"
+    },
+    "maxConcurrency": {
+      "title": "Parallel directory requests",
+      "type": "integer",
+      "description": "Use this advanced control to set how many Clutch directory requests run in parallel. Two is the reliability-oriented default. Higher values may finish faster but can trigger stricter rate limiting. Keep the default unless runtime matters more than conservative request pacing.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    }
+  },
+  "required": []
+}

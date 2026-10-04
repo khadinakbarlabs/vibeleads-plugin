@@ -1,0 +1,171 @@
+{
+  "title": "Naukri Jobs Scraper",
+  "description": "Scrape Naukri.com job listings by keyword, location, experience, and posting age, or paste Naukri search and job URLs.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "keyword": {
+      "title": "Keyword",
+      "type": "string",
+      "description": "Use this when you want to search Naukri by role, skill, or title. Enter a query such as 'software engineer', 'data analyst', or 'sales manager'. Defaults to 'software engineer'. This is not a Naukri URL, paste URLs into Start URLs instead.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "Use this to restrict the Naukri search to a city, region, or remote-style location phrase. Enter values like 'bengaluru', 'mumbai', 'delhi ncr', or 'remote'. Defaults to 'bengaluru'. Leave empty to search all locations.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Use this when you already have Naukri search-result pages or job-detail URLs to scrape. Accepts links from naukri.com search pages and /job-listings- detail pages. When provided, Keyword, Location, Experience, and Date posted are ignored for the first page. Do not paste non-Naukri URLs here.",
+      "editor": "requestListSources"
+    },
+    "experience": {
+      "title": "Experience",
+      "type": "string",
+      "description": "Use this to filter jobs by required years of experience. Choose 'any' or a starting year from 0 to 15, matching Naukri's search filter. Defaults to 'any'. This is not the extracted experience field returned in each job record.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "enumTitles": [
+        "Any experience",
+        "0 years",
+        "1 year",
+        "2 years",
+        "3 years",
+        "4 years",
+        "5 years",
+        "6 years",
+        "7 years",
+        "8 years",
+        "9 years",
+        "10 years",
+        "11 years",
+        "12 years",
+        "13 years",
+        "14 years",
+        "15 years"
+      ]
+    },
+    "jobAge": {
+      "title": "Date posted",
+      "type": "string",
+      "description": "Use this to restrict results to recently posted jobs. Allowed values are 'any', '1', '3', '7', '15', and '30', representing days back on Naukri search. Defaults to 'any'. This is a search filter, not the returned postedAgo text.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "1",
+        "3",
+        "7",
+        "15",
+        "30"
+      ],
+      "enumTitles": [
+        "Any time",
+        "Last 24 hours",
+        "Last 3 days",
+        "Last 7 days",
+        "Last 15 days",
+        "Last 30 days"
+      ]
+    },
+    "jobType": {
+      "title": "Job type",
+      "type": "string",
+      "description": "Use this to keep Naukri jobs whose employment type matches 'any', 'full-time', 'part-time', 'contract', or 'internship'. Naukri's search URL uses jobPostType for company vs consultant, not employment type, so this Actor filters the returned jobType/employmentType (and title) after a normal search. Defaults to 'any'. This is a search filter, not the returned jobType field on each row.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "full-time",
+        "part-time",
+        "contract",
+        "internship"
+      ],
+      "enumTitles": [
+        "Any job type",
+        "Full time",
+        "Part time",
+        "Contract",
+        "Internship"
+      ]
+    },
+    "workMode": {
+      "title": "Work mode",
+      "type": "string",
+      "description": "Use this to restrict Naukri results by workplace. Choose 'any', 'office', 'hybrid', or 'remote'. Defaults to 'any'. This is a search filter mapped to Naukri wfhType, not the extracted workMode field.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "office",
+        "hybrid",
+        "remote"
+      ],
+      "enumTitles": [
+        "Any work mode",
+        "Office",
+        "Hybrid",
+        "Remote"
+      ]
+    },
+    "company": {
+      "title": "Company",
+      "type": "string",
+      "description": "Use this to restrict the search to one hiring company name when Naukri exposes that filter. Example: 'Infosys'. Leave empty for any company. This is not a Naukri company profile URL.",
+      "editor": "textfield"
+    },
+    "maxItems": {
+      "title": "Maximum jobs",
+      "type": "integer",
+      "description": "Use this to cap how many job postings the actor returns and bills for. Defaults to 50 and stops cleanly when the limit is reached. One returned job costs $0.006 plus the tiny run-start event. Do not use this as a page count.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "enrichDetails": {
+      "title": "Fetch full job details",
+      "type": "boolean",
+      "description": "Use this when you need the richest detail-page description and structured fields. Defaults to false because Naukri's search API often returns enough data and detail pages cost more browser time. Enable it for smaller, high-value runs. It does not change the per-job PPE price.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Use this to control the proxy used for Naukri requests. Defaults to Apify Residential proxies in India because Naukri is protected by Akamai and commonly blocks datacenter traffic. Keep the default unless you know your proxy can pass Naukri. This is not an authentication or cookie field.",
+      "editor": "proxy"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "Use this to control how many browser pages run at once. Defaults to 2 to keep sessions consistent and reduce Naukri blocking. Increase only after successful canary runs on your proxy pool. This is not the result limit.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "debugDumpHtml": {
+      "title": "Debug: dump raw HTML",
+      "type": "boolean",
+      "description": "Internal troubleshooting flag that saves raw Naukri pages to the key-value store. Use this only when extraction returns zero jobs or the site layout changes. Defaults to false. Normal users should leave it disabled.",
+      "editor": "hidden"
+    }
+  },
+  "required": []
+}

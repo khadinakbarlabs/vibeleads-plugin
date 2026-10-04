@@ -1,0 +1,159 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "TikTok Ads Library Scraper input",
+  "description": "Use this Actor to search TikTok's public Ads Library for EEA, Swiss, and U.K. transparency research. It returns paid-ad records and optional public detail data; it does not scrape TikTok profiles, organic posts, Creative Center, or Ads Manager accounts.",
+  "type": "object",
+  "schemaVersion": 1,
+  "additionalProperties": false,
+  "properties": {
+    "libraryUrl": {
+      "title": "TikTok Ads Library URL",
+      "type": "string",
+      "description": "Use this when you already have a filtered https://library.tiktok.com/ads URL to reproduce exactly. Paste a URL containing region, date range, and advertiser or keyword filters, for example https://library.tiktok.com/ads?region=DE&adv_name=adidas&query_type=1. Its filters override the individual search fields. Do not paste a TikTok profile, ad-detail, Creative Center, or Ads Manager URL.",
+      "editor": "textfield",
+      "maxLength": 4096
+    },
+    "country": {
+      "title": "Ad target country",
+      "type": "string",
+      "description": "Use this when building a public Ads Library search rather than pasting libraryUrl. Select an EEA country, Switzerland, or the United Kingdom where TikTok exposes the ad record, for example DE for Germany. Defaults to DE and also selects a matching residential browser session. This is not the country where your own company is located.",
+      "editor": "select",
+      "enum": [
+        "AT",
+        "BE",
+        "BG",
+        "CH",
+        "CY",
+        "CZ",
+        "DE",
+        "DK",
+        "EE",
+        "ES",
+        "FI",
+        "FR",
+        "GB",
+        "GR",
+        "HR",
+        "HU",
+        "IE",
+        "IS",
+        "IT",
+        "LI",
+        "LT",
+        "LU",
+        "LV",
+        "MT",
+        "NL",
+        "NO",
+        "PL",
+        "PT",
+        "RO",
+        "SE",
+        "SI",
+        "SK"
+      ],
+      "enumTitles": [
+        "Austria",
+        "Belgium",
+        "Bulgaria",
+        "Switzerland",
+        "Cyprus",
+        "Czech Republic",
+        "Germany",
+        "Denmark",
+        "Estonia",
+        "Spain",
+        "Finland",
+        "France",
+        "United Kingdom",
+        "Greece",
+        "Croatia",
+        "Hungary",
+        "Ireland",
+        "Iceland",
+        "Italy",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Latvia",
+        "Malta",
+        "Netherlands",
+        "Norway",
+        "Poland",
+        "Portugal",
+        "Romania",
+        "Sweden",
+        "Slovenia",
+        "Slovakia"
+      ]
+    },
+    "searchQuery": {
+      "title": "Advertiser or keyword",
+      "type": "string",
+      "description": "Use this when searching the public library by advertiser name or words in an ad, for example adidas. It accepts one phrase and defaults to adidas for a working health-check search. Choose searchType to say whether the phrase is a keyword or advertiser-name search. This is not an ad ID, TikTok handle, or profile URL.",
+      "editor": "textfield",
+      "maxLength": 200
+    },
+    "searchType": {
+      "title": "Search interpretation",
+      "type": "string",
+      "description": "Use this to tell TikTok whether searchQuery is a keyword or an advertiser name. Choose keyword for words appearing in creatives and advertiser for a brand, for example adidas AG. Defaults to keyword and only changes the public library search interpretation. It does not perform an exact business-ID lookup; use advertiserBusinessId for that.",
+      "editor": "select",
+      "enum": [
+        "keyword",
+        "advertiser"
+      ],
+      "enumTitles": [
+        "Keyword",
+        "Advertiser name"
+      ]
+    },
+    "advertiserBusinessId": {
+      "title": "Advertiser business ID",
+      "type": "string",
+      "description": "Use this when you know TikTok's advertiser business ID and need an exact advertiser filter. Enter digits such as 6885261436319171329; it can be combined with searchQuery. Leave blank when you only know a brand name or keyword. This is not an ad ID or a TikTok user ID.",
+      "editor": "textfield",
+      "maxLength": 30,
+      "pattern": "^$|^[0-9]{1,30}$"
+    },
+    "dateFrom": {
+      "title": "First shown from",
+      "type": "string",
+      "description": "Use this to set the inclusive beginning of the public-library date range in YYYY-MM-DD format, for example 2026-01-01. If omitted, the actor uses the preceding 90 days to keep searches bounded and predictable. Use an earlier date only when the target country and advertiser need historical coverage. This is not a time zone, timestamp, or an ad creation-date guarantee.",
+      "editor": "datepicker",
+      "maxLength": 10,
+      "pattern": "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "dateTo": {
+      "title": "Last shown through",
+      "type": "string",
+      "description": "Use this to set the inclusive end of the public-library date range in YYYY-MM-DD format, for example 2026-03-31. If omitted, the actor uses the time the run starts. It must be on or after dateFrom. This is not a duration, a relative date phrase, or a future schedule.",
+      "editor": "datepicker",
+      "maxLength": 10,
+      "pattern": "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "maxResults": {
+      "title": "Maximum ads",
+      "type": "integer",
+      "description": "Use this to cap validated Ads Library records written to the dataset. Enter an integer from 1 to 200; the default is 20 and each saved record charges the ad-scraped event. Keep it small for a quick check and raise it only for a bounded research job. This is not a page count or a guarantee that TikTok has that many matches.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "includeDetails": {
+      "title": "Fetch public ad details",
+      "type": "boolean",
+      "description": "Use this when you need the public detail endpoint's advertiser, targeting, audience-size, and region breakdown fields. It defaults to false to keep runs fast and adds a detail-enriched event only after a detail response succeeds. Enable it for compliance or targeting analysis, not for a basic creative swipe file. It never accesses private advertiser or Ads Manager data.",
+      "editor": "checkbox"
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout seconds",
+      "type": "integer",
+      "description": "Use this to set the navigation and public-library request timeout in seconds. Enter a value from 20 to 120; the default is 60 and retries rotate the residential browser session. Increase it only for a slow target response, not to bypass an access block. This is not the overall Apify run timeout.",
+      "editor": "number",
+      "minimum": 20,
+      "maximum": 120
+    }
+  },
+  "required": []
+}

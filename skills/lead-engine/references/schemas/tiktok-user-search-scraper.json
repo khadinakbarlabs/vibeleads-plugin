@@ -1,0 +1,67 @@
+{
+  "title": "TikTok User Search Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Search TikTok users and creators by public keyword search. Returns normalized creator profile rows.",
+  "properties": {
+    "searchQueries": {
+      "title": "Search Queries",
+      "description": "Use this when you want to find TikTok users or creators by keyword, brand, niche, or person name. Accepts one query per line, for example Taylor Swift, beauty creator, or soccer coach. Defaults to the prefilled example for quick testing. Not for scraping videos, comments, followers, or profile feeds.",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxProfilesPerQuery": {
+      "title": "Max Profiles Per Query",
+      "description": "Use this to cap how many creator profile rows are saved for each search query. Accepts integers from 1 to 10000. Defaults to 50 and the prefill is 10 for fast tests. This is the main per-query billing guard.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "maxPagesPerQuery": {
+      "title": "Max Pages Per Query",
+      "description": "Use this as a safety cap for provider pagination on each TikTok user search. Accepts integers from 1 to 500. Defaults to 10 and the prefill is 1 for quick checks. Not a result limit by itself.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "maxTotalProfiles": {
+      "title": "Max Total Profiles",
+      "description": "Use this to cap the whole run across all search queries. Accepts integers from 1 to 50000. Defaults to 5000 and the prefill is 50. This prevents accidental overbilling on large keyword batches.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50000
+    },
+    "minFollowerCount": {
+      "title": "Minimum Follower Count",
+      "description": "Use this to keep only creator profiles at or above a follower threshold. Accepts 0 or any positive integer, for example 10000 for micro-influencer discovery. Defaults to 0, which keeps all returned profiles. This filter is applied after provider search and before billing the saved profile row.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "verifiedOnly": {
+      "title": "Verified Only",
+      "description": "Use this when you only want TikTok profiles that are marked verified or have a provider verification label. Defaults to false so discovery is broad. Set true for brand safety, public figures, or official creator research. Not all public profiles expose identical verification metadata across providers.",
+      "type": "boolean"
+    },
+    "excludePrivateAccounts": {
+      "title": "Exclude Private Accounts",
+      "description": "Use this to skip profiles marked private by TikTok or the provider response. Defaults to false because private-account metadata can still help discovery workflows. Set true when you only want public creator candidates. This does not bypass privacy settings or return private content.",
+      "type": "boolean"
+    },
+    "trim": {
+      "title": "Trim Provider Response",
+      "description": "Use this to request smaller provider payloads when supported. Defaults to false so profile fields such as bio and verification are preserved. Turn it on only for speed tests where compact profile rows are acceptable. This is not a result filter.",
+      "type": "boolean"
+    },
+    "includeRawData": {
+      "title": "Include raw response Data",
+      "description": "Use this when you need the original provider response attached to each dataset row. It helps debug field drift or build custom parsers. Defaults to false. Not recommended for AI-agent runs because raw payloads are large.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "searchQueries"
+  ]
+}

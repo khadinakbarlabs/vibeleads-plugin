@@ -1,0 +1,11 @@
+# Policy and data-use boundaries
+
+VibeLeads is for legitimate business discovery and research using authorized sources. Its catalog is not permission to scrape any service. Before collection, inspect the exact Actor/source access requirements and permitted use; paywall, account, licensing and platform terms can restrict collection or reuse. Do not evade access controls, conduct private-person dossiers, use breach data, infer sensitive traits, or turn general communities into indiscriminate email lists.
+
+Use public business information relevant to the user’s stated purpose. Minimize contact fields, preserve provenance, apply the user’s suppression/opt-out list, and keep personal/private contact data out. Profiles and reviews are evidence of public observations; they do not establish consent, purchase intent, health or financial characteristics, or protected traits. For clinic prospecting, research the clinic business, never patients.
+
+Outreach drafts should be truthful, relevant and respectful. Do not use fabricated familiarity, false claims, manipulative sensitive profiling, deceptive identities or compliance guarantees. An email validator does not establish lawful outreach. When legal eligibility is material, consult the current official rules for the relevant jurisdiction; do not assume that public contact details or B2B status satisfy them. Sending requires separate user authorization and an appropriate tool.
+
+No hosted VibeLeads service or telemetry is bundled. The host assistant and chosen data services process the content submitted to them under their own policies. Requested local outputs stay in the user’s workspace; service runs/datasets exist in the user’s data-provider account. Avoid unnecessary identifiers in request payloads. Retention/deletion is controlled through that workspace/account; the plugin does not promise to delete third-party copies.
+
+Anthropic policy and trust references checked October 5, 2026: [Usage Policy](https://www.anthropic.com/legal/aup), [plugin security](https://code.claude.com/docs/en/plugins/security). These are product controls aligned to the intended business workflow; this file is not a vendor certification or jurisdiction-specific legal opinion.

@@ -1,0 +1,56 @@
+{
+  "title": "Multiple Job Board Scraper input",
+  "description": "Use this when you need a single, normalized job dataset from several public job boards.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Use this when you want matching role or skill keywords.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "Use this to prefer jobs whose location text matches; Remote is accepted.",
+      "editor": "textfield"
+    },
+    "sources": {
+      "title": "Job boards",
+      "type": "array",
+      "description": "Use this to choose public job boards. Unavailable boards return a partial result without discarding other data.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "remoteok",
+          "remotive",
+          "arbeitnow"
+        ],
+        "enumTitles": [
+          "Remote OK",
+          "Remotive",
+          "Arbeitnow"
+        ]
+      }
+    },
+    "maxResults": {
+      "title": "Maximum jobs",
+      "type": "integer",
+      "description": "Use this to cap saved results and billable job events.",
+      "minimum": 1,
+      "maximum": 500,
+      "editor": "number"
+    },
+    "includeDescription": {
+      "title": "Include description",
+      "type": "boolean",
+      "description": "Use this to include a cleaned, capped job description.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "searchQuery"
+  ]
+}

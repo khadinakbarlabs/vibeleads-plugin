@@ -1,0 +1,100 @@
+{
+  "title": "Angi Home Services Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "category": {
+      "title": "Service category slug",
+      "type": "string",
+      "description": "Angi trade slug used in companylist URLs, for example plumbing, electrical, hvac, or roofing. Pair with city and state, or with zipCodes. Ignored when startUrls alone drive the run. NOT a free-text Google query.",
+      "editor": "textfield"
+    },
+    "city": {
+      "title": "City slug or name",
+      "type": "string",
+      "description": "US city for the Angi directory page, for example austin or New York. Requires state. Prefer this over ZIP for accurate companylist URLs. Ignored when only profile startUrls are supplied.",
+      "editor": "textfield"
+    },
+    "state": {
+      "title": "US state code",
+      "type": "string",
+      "description": "Two-letter US state code, for example tx, ca, or ny. Required with city. Case-insensitive.",
+      "editor": "textfield"
+    },
+    "zipCodes": {
+      "title": "ZIP codes",
+      "type": "array",
+      "description": "Optional US 5-digit ZIPs. Each ZIP is resolved to a city/state listing URL when category is set. Angi ZIP query params are often non-filtering \u2014 city slug remains authoritative.",
+      "editor": "stringList"
+    },
+    "startUrls": {
+      "title": "Angi listing or profile URLs",
+      "type": "array",
+      "description": "Direct angi.com companylist pages and/or business profile URLs (/business/..., companyreviews.htm?spid=, or *-reviews-{id}.htm). Overrides structured search when present. Non-angi URLs are ignored.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max providers",
+      "type": "integer",
+      "description": "Cap on unique billed provider rows for the run. Default 100. Prefill 3 keeps quality checks fast and cheap. You are billed per persisted provider.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "enrichDetails": {
+      "title": "Enrich profile details",
+      "type": "boolean",
+      "description": "When true (default), open each listing profile for phone, address, website, services, and badges. When false, return lighter listing cards only (cheaper provider-found event). Direct profile startUrls are always enriched.",
+      "editor": "checkbox"
+    },
+    "includeReviews": {
+      "title": "Include review previews",
+      "type": "boolean",
+      "description": "Attach up to maxReviewsPerProvider public review excerpts when Angi exposes them. Not a full review archive. Default false.",
+      "editor": "checkbox"
+    },
+    "maxReviewsPerProvider": {
+      "title": "Max reviews per provider",
+      "type": "integer",
+      "description": "Maximum review excerpts to attach when includeReviews is true. Default 5.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 25
+    },
+    "minRating": {
+      "title": "Minimum star rating",
+      "type": "number",
+      "description": "Skip providers below this average star rating (0\u20135). Default 0 (no filter). Providers with no published rating are excluded when a minimum is set.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "requirePhone": {
+      "title": "Require public phone",
+      "type": "boolean",
+      "description": "Skip profiles with no public phone number. Does not unlock Angi-gated numbers. Default false.",
+      "editor": "checkbox"
+    },
+    "maxPagesPerListing": {
+      "title": "Max listing pages",
+      "type": "integer",
+      "description": "Maximum companylist pages to paginate per seed URL. Default 5.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify RESIDENTIAL US is required. Datacenter proxies are Cloudflare-blocked on angi.com. Override only if you know what you are doing.",
+      "editor": "proxy"
+    },
+    "storeRawSample": {
+      "title": "Store raw page sample (debug)",
+      "type": "boolean",
+      "description": "Developer/debug option. Saves the first listing and profile HTML plus __NEXT_DATA__ to the key-value store. Leave off for normal runs.",
+      "editor": "checkbox"
+    }
+  },
+  "required": []
+}

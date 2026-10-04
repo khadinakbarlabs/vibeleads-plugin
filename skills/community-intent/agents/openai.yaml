@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Intent"
+  short_description: "Research and qualify relevant business prospects"
+  default_prompt: "Use $community-intent to help with my B2B prospecting workflow."

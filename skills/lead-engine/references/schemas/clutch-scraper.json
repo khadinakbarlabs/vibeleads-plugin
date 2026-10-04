@@ -1,0 +1,101 @@
+{
+  "title": "Clutch.co Scraper input",
+  "description": "Scrape Clutch.co category and directory listing pages into structured company lead records.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "categoryUrl": {
+      "title": "Single Clutch category URL",
+      "type": "string",
+      "description": "Use this when you have one Clutch.co category, service, or directory URL to scrape, such as https://clutch.co/it-services, /web-developers, or /agencies/digital-marketing. If searchUrls is set, searchUrls wins. This actor scrapes listing pages, not individual /profile/ review pages.",
+      "editor": "textfield",
+      "sectionCaption": "Target pages",
+      "sectionDescription": "Paste one or more public Clutch.co listing pages. The default run uses the IT services directory."
+    },
+    "searchUrls": {
+      "title": "Multiple Clutch listing URLs",
+      "type": "array",
+      "description": "Use this when you want to scrape several Clutch.co listing pages in one run. Each item should be a category, service, search, or location directory URL that shows company cards. Example: https://clutch.co/web-developers. Do not pass individual company profile URLs here.",
+      "editor": "stringList"
+    },
+    "startUrls": {
+      "title": "Advanced start URLs",
+      "type": "array",
+      "description": "Use this when calling from Apify integrations that provide request-list objects. Accepts Clutch.co listing URLs as strings or objects with a url field. Kept for backwards compatibility with older clutch-scraper integrations.",
+      "editor": "requestListSources"
+    },
+    "location": {
+      "title": "Clutch geolocation filter",
+      "type": "string",
+      "description": "Use this when you want Clutch to narrow the directory server-side with the geolocation query parameter. Examples: United States, London, India. Leave empty for global listings.",
+      "editor": "textfield",
+      "sectionCaption": "Filters",
+      "sectionDescription": "Filters are applied after loading listing cards, except geolocation, which is added to the Clutch URL."
+    },
+    "minRating": {
+      "title": "Minimum star rating",
+      "type": "number",
+      "description": "Use this when you only want companies with a Clutch star rating at or above the chosen value. Decimals are allowed, for example 4.5. Companies with no rating are dropped when this is set.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "minReviews": {
+      "title": "Minimum review count",
+      "type": "integer",
+      "description": "Use this when you only want companies with at least this many Clutch reviews. Companies with no visible review count are dropped when this is set.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "verifiedOnly": {
+      "title": "Verified companies only",
+      "type": "boolean",
+      "description": "Use this when you want only companies that show a Clutch verified badge. Defaults to false.",
+      "editor": "checkbox"
+    },
+    "excludeSponsored": {
+      "title": "Exclude sponsored listings",
+      "type": "boolean",
+      "description": "Use this when you want to drop paid or featured placements and keep only organic listing cards. Defaults to false.",
+      "editor": "checkbox"
+    },
+    "serviceKeyword": {
+      "title": "Service keyword",
+      "type": "string",
+      "description": "Use this when you want a case-insensitive filter against each company's displayed services. Example: mobile app, SEO, software. Leave empty to keep all services.",
+      "editor": "textfield"
+    },
+    "locationKeyword": {
+      "title": "Location keyword",
+      "type": "string",
+      "description": "Use this when you want a case-insensitive filter against each company's displayed location text. Example: New York or India. Leave empty to keep all locations.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Max companies",
+      "type": "integer",
+      "description": "Maximum company records to return and bill for. Pagination stops once this limit is reached. Bounds: 1 to 5000.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000,
+      "sectionCaption": "Run limits"
+    },
+    "maxPages": {
+      "title": "Max pages per URL",
+      "type": "integer",
+      "description": "Safety cap on listing pagination per start URL. Increase it for very large categories or restrictive filters. Defaults automatically from maxResults.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "Number of parallel browser pages. Keep 1-2 for best Cloudflare reliability; use 3-5 only when you accept more blocking risk.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    }
+  },
+  "required": []
+}

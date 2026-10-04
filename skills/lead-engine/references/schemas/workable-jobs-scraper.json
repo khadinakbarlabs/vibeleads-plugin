@@ -1,0 +1,58 @@
+{
+  "title": "Workable Jobs Scraper input",
+  "description": "Extract current public Workable job boards for recruiting, talent intelligence, and source-linked AI-agent workflows. It reads Workable's public Markdown career-board routes and never submits applications.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companies": {
+      "title": "Workable company slugs or careers URLs",
+      "type": "array",
+      "description": "Enter one Workable company slug or public careers URL per line, such as recurly or https://apply.workable.com/recurly/. The actor extracts up to 25 unique slugs. This is required and is not an arbitrary company website, login page, individual application form, or private ATS URL.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxJobsPerCompany": {
+      "title": "Maximum jobs per company",
+      "type": "integer",
+      "description": "Caps validated job records returned for each Workable company board. Enter an integer such as 25. It defaults to 30 and accepts 1 through 30 because Workable's current public Markdown listing route returns a bounded set. This is a per-company result cap, not a page count or global collection budget.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 30
+    },
+    "searchQuery": {
+      "title": "Workable listing query",
+      "type": "string",
+      "description": "Optional text passed to Workable's public jobs listing route, for example engineer. Use it to narrow a large board before extraction. Leave blank to request the board's current public listing. This is not a Boolean expression or a cross-company Workable search.",
+      "editor": "textfield"
+    },
+    "titleIncludes": {
+      "title": "Job title contains",
+      "type": "string",
+      "description": "Optionally retain only jobs whose public title contains this text, such as engineer. Matching is case-insensitive literal text and happens before a dataset record is written or billed. Leave blank to keep all titles. This does not search private application data or description text.",
+      "editor": "textfield"
+    },
+    "locationIncludes": {
+      "title": "Location contains",
+      "type": "string",
+      "description": "Optionally retain only jobs whose public Workable location contains this text, such as remote or london. Matching is case-insensitive literal text against the board's location column. Leave blank to keep all locations. This does not geocode roles or search office addresses.",
+      "editor": "textfield"
+    },
+    "departmentIncludes": {
+      "title": "Department contains",
+      "type": "string",
+      "description": "Optionally retain only jobs whose public Workable department contains this text, such as engineering. Matching is case-insensitive literal text and occurs before write and billing. Leave blank to keep all departments. This does not infer departments from a description.",
+      "editor": "textfield"
+    },
+    "includeDescriptions": {
+      "title": "Include job descriptions",
+      "type": "boolean",
+      "description": "Controls whether the actor reads each matched public Workable job detail route for description, requirements, benefits, workplace type, and apply URL. Set false for a smaller, faster listing-level dataset. It defaults to true. This does not access candidates, hiring notes, or application answers.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "companies"
+  ]
+}

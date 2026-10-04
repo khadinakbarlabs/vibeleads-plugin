@@ -1,0 +1,54 @@
+{
+  "title": "Career Site Job Listing Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Career page URLs",
+      "type": "array",
+      "description": "One or more company career-page URLs to scrape. Paste any career/jobs page and the actor auto-detects the ATS behind it \u2014 Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Recruitee, or Workable (e.g. 'https://boards.greenhouse.io/stripe', 'https://jobs.ashbyhq.com/posthog', 'https://acme.wd5.myworkdayjobs.com/en-US/careers', or a custom domain like 'https://careers.stripe.com' \u2014 it sniffs the embedded ATS). Accepts plain URL strings, one per line. NOT a job-board aggregator query (Indeed/LinkedIn) \u2014 this reads a single company's own career page.",
+      "editor": "stringList"
+    },
+    "maxResultsPerSite": {
+      "title": "Max jobs per career page",
+      "type": "integer",
+      "description": "Upper bound on how many job listings to return from each career page. Accepts a whole number (e.g. 200). Defaults to 200; set to a high value like 5000 to pull an entire board. Applied per URL, so total cost scales with URL count times this cap.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "enrichDescriptions": {
+      "title": "Enrich full descriptions",
+      "type": "boolean",
+      "description": "Fetch the complete job description for ATS platforms that do NOT return it in the listing call (SmartRecruiters, Workable, Workday, and Ashby boards without the inline posting API) via one extra request per job. Accepts true/false. Defaults to true. When false, those platforms return listing fields only; platforms that include descriptions inline (Greenhouse, Lever, Recruitee) are unaffected and always free.",
+      "editor": "checkbox"
+    },
+    "descriptionFormat": {
+      "title": "Description format",
+      "type": "string",
+      "description": "How to render the job description field. 'text' returns clean plain text (best for AI agents and resume-matching), 'html' returns the raw HTML, 'both' returns plain text plus a separate descriptionHtml field, and 'none' omits descriptions for the smallest, fastest output. Defaults to 'text'.",
+      "editor": "select",
+      "enum": [
+        "text",
+        "html",
+        "both",
+        "none"
+      ],
+      "enumTitles": [
+        "Plain text",
+        "HTML",
+        "Both (text + html)",
+        "None"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional proxy routing. ATS public JSON APIs are open and usually need no proxy, so this defaults to a direct connection. Enable Apify Proxy only if you hit rate limits or geo-restricted boards; set a countryCode for geo-specific listings.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "title": "Y Combinator Scraper Input",
+  "description": "Scrape the Y Combinator ecosystem \u2014 companies (5,700+), founders (8,000+), open jobs (3,000+), news mentions and YC Launch posts. Three ways to use it, pick any one:\n\n1. **Paste any YC URL** in **Start URLs** \u2014 works for `/companies?...filters`, `/companies/{slug}`, `/companies/{slug}/jobs/{jobSlug}`, or `/jobs?role=...`. Each URL is auto-routed to the right extractor.\n2. **Filter Companies** \u2014 leave Start URLs empty, set Mode = Companies, pick batches/industries/regions/etc.\n3. **Filter Jobs** \u2014 leave Start URLs empty, set Mode = Jobs, pick role/location/query.\n\nWhen Start URLs is non-empty, the filter fields below are ignored.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "\ud83d\udd17 Start URLs (paste any YC URL \u2014 auto-routed)",
+      "description": "Any Y Combinator URL. Mix and match company URLs, jobs URLs, filter URLs in the same run. The actor auto-detects which extractor to use per URL. Leave empty to use the Filter fields below. Example URLs: 'https://www.ycombinator.com/companies?batch=Spring%202026&industry=B2B', 'https://www.ycombinator.com/companies/airbnb', 'https://www.ycombinator.com/companies/stripe/jobs/jdBhPmD-frontend-engineer-identity', 'https://www.ycombinator.com/jobs?role=eng'.",
+      "type": "array",
+      "editor": "requestListSources"
+    },
+    "mode": {
+      "title": "\ud83c\udfaf Mode (used when Start URLs is empty)",
+      "description": "Pick a target surface. Companies runs an Algolia search with the filter fields below. Jobs paginates the `/jobs` board with role/location filters. Ignored when Start URLs is non-empty.",
+      "enum": [
+        "companies",
+        "jobs"
+      ],
+      "enumTitles": [
+        "\ud83c\udfe2 Companies \u2014 Algolia search by batch/industry/region/etc.",
+        "\ud83d\udcbc Jobs \u2014 paginated /jobs board with role/location"
+      ],
+      "type": "string"
+    },
+    "query": {
+      "title": "\ud83d\udd0e Free-text query",
+      "description": "Keyword search across company names, one-liners, descriptions (Companies mode) or job titles + descriptions (Jobs mode). Leave empty to skip keyword filtering. Example: 'developer tools', 'AI agents', 'fintech'. NOT a regex \u2014 Algolia matches partial words.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "batches": {
+      "title": "\ud83c\udfe2 Companies \u00b7 YC Batches",
+      "description": "Companies mode only. Pick one or more batches (cohorts). Leave empty for no batch filter. Example: ['Spring 2026', 'Winter 2026']. Spring/Summer/Fall/Winter naming follows YC's own taxonomy.",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Fall 2026",
+          "Summer 2026",
+          "Spring 2026",
+          "Winter 2026",
+          "Fall 2025",
+          "Summer 2025",
+          "Spring 2025",
+          "Winter 2025",
+          "Fall 2024",
+          "Summer 2024",
+          "Winter 2024",
+          "Summer 2023",
+          "Winter 2023",
+          "Summer 2022",
+          "Winter 2022",
+          "Summer 2021",
+          "Winter 2021",
+          "Summer 2020",
+          "Winter 2020",
+          "Summer 2019",
+          "Winter 2019",
+          "Summer 2018",
+          "Winter 2018",
+          "Summer 2017",
+          "Winter 2017",
+          "Summer 2016",
+          "Winter 2016",
+          "Summer 2015",
+          "Winter 2015",
+          "Summer 2014",
+          "Winter 2014",
+          "Summer 2013",
+          "Winter 2013",
+          "Summer 2012",
+          "Winter 2012",
+          "Summer 2011",
+          "Winter 2011",
+          "Summer 2010",
+          "Winter 2010",
+          "Summer 2009",
+          "Winter 2009",
+          "Summer 2008",
+          "Winter 2008",
+          "Summer 2007",
+          "Winter 2007",
+          "Summer 2006",
+          "Winter 2006",
+          "Summer 2005"
+        ]
+      }
+    },
+    "industries": {
+      "title": "\ud83c\udfe2 Companies \u00b7 Industries",
+      "description": "Companies mode only. Pick one or more industries. Empty = no industry filter. YC's top-level taxonomy: B2B, Consumer, Healthcare, Fintech, Engineering/Product/Design, Industrials, Education, Real Estate and Construction, Government.",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "B2B",
+          "Consumer",
+          "Healthcare",
+          "Fintech",
+          "Engineering, Product and Design",
+          "Industrials",
+          "Education",
+          "Real Estate and Construction",
+          "Government"
+        ]
+      }
+    },
+    "regions": {
+      "title": "\ud83c\udfe2 Companies \u00b7 HQ Regions",
+      "description": "Companies mode only. Pick one or more HQ regions. Empty = no region filter. Use 'Remote' or 'Fully Remote' for distributed teams.",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "United States of America",
+          "America / Canada",
+          "Canada",
+          "Mexico",
+          "Latin America",
+          "Europe",
+          "United Kingdom",
+          "Africa",
+          "Middle East and North Africa",
+          "South Asia",
+          "India",
+          "Southeast Asia",
+          "East Asia",
+          "Oceania",
+          "Remote",
+          "Fully Remote",
+          "Partly Remote"
+        ]
+      }
+    },
+    "topCompany": {
+      "title": "\ud83c\udfe2 Companies \u00b7 Top Companies Only",
+      "description": "Companies mode only. Limit results to companies flagged as 'Top' by Y Combinator (a curated subset, ~500 companies). Useful for VC sourcing and competitive landscape mapping.",
+      "type": "boolean"
+    },
+    "isHiring": {
+      "title": "\ud83c\udfe2 Companies \u00b7 Hiring Companies Only",
+      "description": "Companies mode only. Limit to companies currently marked as hiring on YC. Combine with `scrapeOpenJobs` to fetch the actual job postings.",
+      "type": "boolean"
+    },
+    "nonprofit": {
+      "title": "\ud83c\udfe2 Companies \u00b7 Nonprofits Only",
+      "description": "Companies mode only. Limit to companies marked as nonprofits. Leave off to include both commercial and nonprofit YC orgs.",
+      "type": "boolean"
+    },
+    "minTeamSize": {
+      "title": "\ud83c\udfe2 Companies \u00b7 Minimum Team Size",
+      "description": "Companies mode only. Smallest team size to include. Leave 0 for no minimum. Example: 10 returns companies with team_size >= 10.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "maxTeamSize": {
+      "title": "\ud83c\udfe2 Companies \u00b7 Maximum Team Size",
+      "description": "Companies mode only. Largest team size to include. Leave 0 for no maximum. Example: 50 returns companies with team_size <= 50.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "jobRole": {
+      "title": "\ud83d\udcbc Jobs \u00b7 Role",
+      "description": "Jobs mode only. Filter the YC jobs board by role category. Empty = all roles. Maps to YC's `/jobs?role=...` query string.",
+      "enum": [
+        "",
+        "eng",
+        "design",
+        "product",
+        "ops",
+        "marketing",
+        "sales",
+        "support",
+        "recruiting-hr",
+        "science"
+      ],
+      "enumTitles": [
+        "\ud83c\udf10 All roles",
+        "\ud83d\udcbb Engineering",
+        "\ud83c\udfa8 Design",
+        "\ud83d\udce6 Product",
+        "\u2699\ufe0f Operations",
+        "\ud83d\udce3 Marketing",
+        "\ud83d\udcb0 Sales",
+        "\ud83d\udedf Support",
+        "\ud83e\udd1d Recruiting / HR",
+        "\ud83d\udd2c Science"
+      ],
+      "type": "string"
+    },
+    "jobLocation": {
+      "title": "\ud83d\udcbc Jobs \u00b7 Location",
+      "description": "Jobs mode only. Filter by city slug or 'remote'. Empty = all locations. Common values: 'san-francisco', 'new-york', 'london', 'remote', 'india', 'seattle', 'los-angeles', 'austin'.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "scrapeFounders": {
+      "title": "\ud83d\udc65 Enrich \u00b7 Scrape Founders",
+      "description": "Companies mode only. Fetch `/companies/{slug}` for each company and add the `founders[]` array (name, title, bio, LinkedIn URL, Twitter URL, has_email flag, avatar). Adds one HTTP request per company. Each founder counts as one enrichment event ($0.001).",
+      "type": "boolean"
+    },
+    "scrapeOpenJobs": {
+      "title": "\ud83d\udcbc Enrich \u00b7 Scrape Open Jobs per Company",
+      "description": "Companies mode only. Adds the `openJobs[]` array to each company (title, salary, equity, visa, location, apply URL). If `scrapeFounders` is also true, both are populated from the same single HTTP fetch. Each job counts as one enrichment event ($0.001).",
+      "type": "boolean"
+    },
+    "scrapeJobDescriptions": {
+      "title": "\ud83d\udcdd Enrich \u00b7 Scrape Full Job Descriptions",
+      "description": "Jobs mode only. Fetch each job detail page (`/companies/{slug}/jobs/{slug}`) for the full long-form description, hiring manager, and related jobs. Slower (one HTTP per job) but produces the richest job records for downstream NLP. No enrichment event charged \u2014 already covered by the base $0.005/job.",
+      "type": "boolean"
+    },
+    "scrapeNewsAndLaunches": {
+      "title": "\ud83d\udcf0 Enrich \u00b7 Scrape News Mentions & YC Launch Posts",
+      "description": "Companies mode only. Adds `newsItems[]` (title, url, date) and `launches[]` (YC Launch posts) to each company. Same HTTP fetch as founders/jobs enrichment, so no extra requests if any company enrichment is already on.",
+      "type": "boolean"
+    },
+    "maxResults": {
+      "title": "\ud83d\udd22 Maximum Results",
+      "description": "Hard cap on number of records to return. The actor stops cleanly once this many records have been emitted. Set 0 for no cap (will scrape the full ecosystem \u2014 5,700+ companies or all open jobs). Pagination honors `startPage` and `pageLimit` regardless of this cap.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "startPage": {
+      "title": "\ud83d\udcc4 Pagination \u00b7 Start Page (0-based Algolia offset)",
+      "description": "Companies-mode + Jobs-mode (company iteration) pagination start. 0 = first page. 5 = skip first 500 companies, start from company 501. Useful for resuming long crawls or splitting work across runs. Each Algolia page = 100 companies. Ignored when paste-URL mode is used (URL-only routing).",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9999
+    },
+    "pageLimit": {
+      "title": "\ud83d\udcc4 Pagination \u00b7 Page Limit (max Algolia pages to crawl)",
+      "description": "Companies-mode + Jobs-mode (company iteration). Maximum number of 100-result Algolia pages to traverse. 0 = unlimited (will exhaust the result set up to Algolia's hard 1000-page server cap). Useful to scope a run: `pageLimit=10` = at most 1,000 companies enumerated. Ignored when paste-URL mode is used.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "monitoringMode": {
+      "title": "\ud83d\udef0\ufe0f Monitoring Mode (incremental scheduled runs)",
+      "description": "When true, persists every emitted company id / job id to the STATE key-value collection. On subsequent runs, only IDs not yet seen are emitted \u2014 perfect for scheduled cron runs that should only output 'what's new'. State is per Apify user/actor.",
+      "type": "boolean"
+    },
+    "proxyConfiguration": {
+      "title": "\ud83d\udee1\ufe0f Proxy Configuration (HTML enrichment only)",
+      "description": "Proxy used for HTML page fetches (`/companies/{slug}`, `/jobs`, `/jobs/{slug}`). YC's Algolia API is hit directly without proxy. Default uses Apify residential proxy for highest reliability against rate limits.",
+      "type": "object",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

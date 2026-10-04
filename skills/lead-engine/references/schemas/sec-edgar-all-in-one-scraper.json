@@ -1,0 +1,94 @@
+{
+  "title": "SEC EDGAR All-In-One Input",
+  "description": "Pass ANY of: ticker (AAPL), CIK (0000320193), accession URL, accession number (0000320193-25-000123), or free-text keyword query. The actor auto-detects intent and routes to the correct SEC endpoint. Set `mode` to override auto-detection.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "query": {
+      "title": "Query (ticker, CIK, URL, accession, or keyword)",
+      "type": "string",
+      "description": "What to fetch. Accepts: stock ticker (e.g. 'AAPL', 'MSFT'), 10-digit CIK (e.g. '0000320193'), SEC accession number (e.g. '0000320193-25-000123'), full filing URL (e.g. 'https://www.sec.gov/Archives/edgar/data/320193/...'), or free-text keyword for full-text search (e.g. 'climate risk'). Defaults to 'AAPL'. NOT for non-US filings \u2014 SEC EDGAR covers US-registered issuers only.",
+      "editor": "textfield"
+    },
+    "mode": {
+      "title": "Mode (auto-detect by default)",
+      "type": "string",
+      "description": "Override auto-detection. 'auto' = guess from query shape (recommended). 'company' = list filings for ticker/CIK. 'filing' = fetch one filing by accession/URL. 'search' = full-text keyword search across all filings. 'insider' = Form 3/4/5 insider trades for ticker/CIK. 'holdings' = 13F institutional positions for institution CIK. 'activist' = 13D/G beneficial-ownership stakes for company CIK. 'xbrl' = XBRL company facts (revenue, assets, EPS, etc.) for ticker/CIK. 'form-d' = Form D Reg D startup funding filings. 'recent' = latest global EDGAR feed.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "company",
+        "filing",
+        "search",
+        "insider",
+        "holdings",
+        "activist",
+        "xbrl",
+        "form-d",
+        "recent"
+      ],
+      "enumTitles": [
+        "Auto-detect (recommended)",
+        "Company filings",
+        "Single filing",
+        "Full-text search",
+        "Insider trades (Form 4)",
+        "13F institutional holdings",
+        "13D/G activist stakes",
+        "XBRL company facts",
+        "Form D startup funding",
+        "Recent global feed"
+      ]
+    },
+    "formTypes": {
+      "title": "Filter by form types",
+      "type": "array",
+      "description": "Filter results to specific SEC form types. Examples: ['10-K', '10-Q'] for annual + quarterly, ['8-K'] for current reports, ['4'] for Form 4 insider transactions. Leave empty for all forms. Applies to company, search, insider, recent modes. Ignored for other modes.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dateFrom": {
+      "title": "Filing date from (inclusive)",
+      "type": "string",
+      "description": "Lower-bound filing date in YYYY-MM-DD format (e.g. '2024-01-01'). Filters to filings on or after this date. Leave empty for no lower bound. Applies to company, search, insider, holdings, recent modes.",
+      "editor": "textfield"
+    },
+    "dateTo": {
+      "title": "Filing date to (inclusive)",
+      "type": "string",
+      "description": "Upper-bound filing date in YYYY-MM-DD format (e.g. '2026-05-28'). Filters to filings on or before this date. Leave empty for no upper bound (defaults to today). Applies to company, search, insider, holdings, recent modes.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Cap on total dataset items returned across all modes. Each item is one filing, XBRL fact, insider trade, 13F position, search hit, or feed entry \u2014 charged $0.005 each. Range 1-10000. Defaults to 100.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "includeFullText": {
+      "title": "Include full filing text",
+      "type": "boolean",
+      "description": "If true, fetches and includes the plain-text body of filings (HTML stripped) under `fullText` field. Increases run time and bandwidth substantially. Applies to filing and company modes when filings are fetched individually. Defaults to false.",
+      "editor": "checkbox"
+    },
+    "enableAiSummary": {
+      "title": "AI-summarize filings",
+      "type": "boolean",
+      "description": "If true, generates a structured AI summary per filing (key points, risks, financial highlights) using Gemini 2.5 Flash. Charged $0.03 per summary IN ADDITION to the $0.005 result fee. Applies to filing and company modes. Defaults to false.",
+      "editor": "checkbox"
+    },
+    "xbrlConcept": {
+      "title": "XBRL concept (us-gaap or dei tag)",
+      "type": "string",
+      "description": "Specific XBRL concept to fetch in xbrl mode (e.g. 'Revenues', 'Assets', 'NetIncomeLoss', 'EarningsPerShareBasic'). Leave empty to fetch all available concepts for the company. Applies to xbrl mode only. Uses us-gaap taxonomy by default.",
+      "editor": "textfield"
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

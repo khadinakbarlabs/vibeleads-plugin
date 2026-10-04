@@ -1,0 +1,72 @@
+{
+  "title": "Yandex Maps Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Free-text search run on Yandex Maps, exactly as you would type it in the search box (e.g. 'coffee Moscow' or '\u0434\u0430\u043d\u0442\u0438\u0441\u0442 \u041a\u0430\u0437\u0430\u043d\u044c'). Combine a business type and a place for best results. Leave empty if you instead use category + city or startUrls. NOT a URL \u2014 paste URLs into 'Start URLs' instead.",
+      "editor": "textfield"
+    },
+    "category": {
+      "title": "Category / business type",
+      "type": "string",
+      "description": "Business type to search for, used together with 'City' when you do not supply a full search query (e.g. 'restaurant', 'gym', '\u0430\u0432\u0442\u043e\u0441\u0435\u0440\u0432\u0438\u0441'). Combined internally as '<category> <city>'. Ignored if 'Search query' is set. Optional.",
+      "editor": "textfield"
+    },
+    "city": {
+      "title": "City / location",
+      "type": "string",
+      "description": "City or area to search within, paired with 'Category' (e.g. 'Saint Petersburg', 'Ankara'). Only used when 'Search query' is empty. Yandex auto-geocodes the place name. Optional.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Yandex Maps URLs to scrape directly: a search-results URL (.../maps/?text=...) scrapes its listing, an organisation URL (.../maps/org/<id>/) scrapes that one business. Use this when you already have specific Yandex Maps links. Accepts the standard Apify URL list. Leave empty when using a search query.",
+      "editor": "requestListSources"
+    },
+    "maxPlaces": {
+      "title": "Max places",
+      "type": "integer",
+      "description": "Maximum number of unique businesses to return across all queries/URLs. Each place is billed once. Defaults to 50; range 1\u20131000. Yandex caps a single listing around a few hundred results, so very large targets need multiple narrower queries.",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "includeReviews": {
+      "title": "Include reviews",
+      "type": "boolean",
+      "description": "When enabled, each place also gets its visible Yandex reviews scraped (author, rating, text, date) and billed per review. Adds significant runtime, so keep it off for fast lead lists. Defaults to false. Use 'Max reviews per place' to cap volume."
+    },
+    "maxReviewsPerPlace": {
+      "title": "Max reviews per place",
+      "type": "integer",
+      "description": "Upper limit of reviews fetched per business when 'Include reviews' is on. Defaults to 20; range 0\u2013200. Set to 0 to disable reviews even if the toggle is on. Ignored entirely when 'Include reviews' is off.",
+      "minimum": 0,
+      "maximum": 200
+    },
+    "language": {
+      "title": "Language / region",
+      "type": "string",
+      "description": "Yandex locale used for the search and for field text. 'ru_RU' uses yandex.ru (best coverage for Russia/CIS), 'en_US' uses yandex.com (English UI), 'tr_TR' uses yandex.com.tr (Turkey). Defaults to ru_RU. Does not translate review text \u2014 that stays in the original language.",
+      "enum": [
+        "ru_RU",
+        "en_US",
+        "tr_TR"
+      ],
+      "enumTitles": [
+        "Russian (yandex.ru)",
+        "English (yandex.com)",
+        "Turkish (yandex.com.tr)"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used for requests. Yandex Maps requires residential proxies to avoid SmartCaptcha; the default is Apify Residential in Russia. Change the country to match your target region (e.g. TR for Turkey). Keep 'Use Apify Proxy' enabled.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,163 @@
+{
+  "title": "Product Hunt Lead Generator Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "Scraping Mode",
+      "type": "string",
+      "description": "How to find products. Use 'leaderboard' for top-ranked products by time period. Use 'search' when the user provides a keyword. Use 'topic' for a ProductHunt topic slug. Use 'urls' for specific ProductHunt URLs.",
+      "enum": [
+        "leaderboard",
+        "search",
+        "topic",
+        "urls"
+      ],
+      "editor": "select"
+    },
+    "leaderboardPeriod": {
+      "title": "Leaderboard Period",
+      "type": "string",
+      "description": "Only used when mode='leaderboard'. Choose 'daily', 'weekly', 'monthly', or 'yearly'.",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly",
+        "yearly"
+      ],
+      "editor": "select"
+    },
+    "searchQuery": {
+      "title": "Search Query",
+      "type": "string",
+      "description": "Used when mode='search'. Filters products returned by Product Hunt's current official API window against name, tagline, description, and topics (for example 'AI writing tools').",
+      "editor": "textfield"
+    },
+    "topic": {
+      "title": "Topic Slug",
+      "type": "string",
+      "description": "Used when mode='topic'. The ProductHunt topic URL slug (e.g. 'artificial-intelligence', 'developer-tools', 'productivity').",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Used when mode='urls'. Accepts specific Product Hunt post/product-launch URLs and dated leaderboard URLs (for example /leaderboard/monthly/2026/7). Each URL is resolved through the official Product Hunt API, not by scraping Product Hunt pages.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Max Results",
+      "type": "integer",
+      "description": "Maximum number of products to return. Default is 100.",
+      "minimum": 1,
+      "maximum": 20000,
+      "editor": "number"
+    },
+    "excludeProductHuntUrls": {
+      "title": "Exclude Product Hunt Launch URLs",
+      "type": "array",
+      "description": "Optional resumable-run list. Products whose Product Hunt post or product-launch URL appears here are skipped before website or email enrichment and do not consume maxResults. Use URLs from an earlier dataset when a large week, month, or year reaches its result limit.",
+      "editor": "json",
+      "items": {
+        "type": "string"
+      }
+    },
+    "productHuntResumeCursor": {
+      "title": "Product Hunt Resume Cursor",
+      "type": "string",
+      "description": "Optional opaque cursor from RUN_SUMMARY.nextProductHuntCursor. Use it with the same mode, filters, date range, and exclusions to continue directly after a capped page without re-indexing all prior Product Hunt pages.",
+      "editor": "textfield"
+    },
+    "includeAllProducts": {
+      "title": "Include All Published Products",
+      "type": "boolean",
+      "description": "Enabled by default so date ranges and leaderboard URLs include featured and non-featured Product Hunt posts up to maxResults. Disable to request featured posts only.",
+      "editor": "checkbox"
+    },
+    "maxConcurrency": {
+      "title": "Max Concurrency",
+      "type": "integer",
+      "description": "Maximum concurrent product-enrichment jobs. Default is 3 to keep browser and website traffic bounded.",
+      "minimum": 1,
+      "maximum": 5,
+      "editor": "number"
+    },
+    "enrichEmails": {
+      "title": "Find Email Addresses",
+      "type": "boolean",
+      "description": "When enabled (the default), enriches each verified product website. It visits the homepage and up to four same-site contact, about, team, privacy, or terms pages linked from that homepage, then checks up to two public maker homepages and can use the managed contact finder if deliverable-email slots remain.",
+      "editor": "checkbox"
+    },
+    "resolveWebsites": {
+      "title": "Resolve Product Websites",
+      "type": "boolean",
+      "description": "Recommended and enabled by default. Resolves Product Hunt redirect-only links through redirect metadata, official maker sites and their product links, bounded domain hypotheses, then owner-managed search providers. Every candidate must pass product-identity and ownership checks before it is accepted.",
+      "editor": "checkbox"
+    },
+    "maxWebsitePages": {
+      "title": "Maximum Website Pages per Product",
+      "type": "integer",
+      "description": "Bounded public-site crawl limit. Default and maximum are 5 total pages: homepage plus up to four directly linked allowed pages.",
+      "minimum": 1,
+      "maximum": 5,
+      "editor": "number"
+    },
+    "maxEmailsPerProduct": {
+      "title": "Maximum Public Emails per Product",
+      "type": "integer",
+      "description": "Returns and bills for up to this many ranked public email addresses associated with the product or its listed makers. Default and maximum are 3.",
+      "minimum": 1,
+      "maximum": 3,
+      "editor": "number"
+    },
+    "verifyEmails": {
+      "title": "Verify Emails with EmailListVerify",
+      "type": "boolean",
+      "description": "Enabled by default. Verifies every selected public email with the Actor's managed EmailListVerify integration. Each result includes the exact provider status; invalid, disposable, and spam-trap results are never presented as verified emails.",
+      "editor": "checkbox"
+    },
+    "findContacts": {
+      "title": "Fill Missing Contacts",
+      "type": "boolean",
+      "description": "Enabled by default. After product-site and maker-homepage public discovery, use the managed EmailListVerify Contact Finder with a Product Hunt maker name first, then a domain-only fallback only if deliverable-email slots remain. Provider calls and credit ceilings remain bounded per product.",
+      "editor": "checkbox"
+    },
+    "websiteUrlOverrides": {
+      "title": "Approved External Website Overrides",
+      "type": "array",
+      "description": "Optional approved mapping for a Product Hunt product. Each item accepts productHuntUrl, productSlug, productName, or productId plus websiteUrl. A valid override takes priority over managed automatic website resolution.",
+      "editor": "json"
+    },
+    "startDate": {
+      "title": "Start Date (YYYY-MM-DD)",
+      "type": "string",
+      "description": "For leaderboard daily mode: query a specific date. Leave blank for today. Use with endDate to scrape a date range in one run (e.g. startDate=2026-03-01, endDate=2026-03-07 \u2192 full week).",
+      "editor": "textfield"
+    },
+    "endDate": {
+      "title": "End Date (YYYY-MM-DD)",
+      "type": "string",
+      "description": "Optional end date for multi-day scraping in one run. Only used in daily leaderboard mode. Example: startDate=2026-03-01, endDate=2026-03-07 returns all products launched across that 7-day window.",
+      "editor": "textfield"
+    },
+    "lookbackDays": {
+      "title": "Lookback Days",
+      "type": "integer",
+      "description": "Alternative to startDate: scrape the last N days from today. E.g. lookbackDays=7 pulls the last week. Ignored when startDate is provided.",
+      "minimum": 1,
+      "maximum": 365,
+      "editor": "number"
+    },
+    "outputMode": {
+      "title": "Output Mode",
+      "type": "string",
+      "description": "Controls what gets returned. 'full' = all fields (default). 'lean' = minimal fields optimized for LLM/AI agent context windows (name, tagline, website, upvotes, rank, emails, topics). 'leads' = full fields but only products where at least 1 email was found \u2014 perfect for outreach lists.",
+      "enum": [
+        "full",
+        "lean",
+        "leads"
+      ],
+      "editor": "select"
+    }
+  }
+}

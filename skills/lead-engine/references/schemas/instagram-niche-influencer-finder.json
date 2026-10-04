@@ -1,0 +1,107 @@
+{
+  "title": "Instagram Niche Influencer Finder Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "topics": {
+      "type": "array",
+      "title": "Niche topics",
+      "description": "Use this to describe the niche each influencer should match. Enter one or more plain phrases such as 'vegan skincare', 'home coffee brewing', or 'trail running gear'. The actor searches public Instagram profiles for each topic, enriches the strongest candidates, and scores how well each creator fits the topic. This is not a list of usernames, profile URLs, or hashtags; use a profile or hashtag scraper for those jobs.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxInfluencers": {
+      "type": "integer",
+      "title": "Maximum influencers",
+      "description": "Use this to cap the ranked influencer shortlist and its billable rows. Enter a whole number from 1 to 500; the default is 25. The actor enriches candidates until this many influencers pass the follower, engagement, and contact filters. This caps the total run, not the per-topic count.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "minFollowers": {
+      "type": "integer",
+      "title": "Minimum followers",
+      "description": "Use this to exclude small or spammy accounts from the shortlist. Enter a whole number such as 5000; the default is 1000, a common nano-influencer floor. Influencers below the threshold are filtered out before anything is written or charged. Combine with maxFollowers to target a specific creator tier.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "maxFollowers": {
+      "type": "integer",
+      "title": "Maximum followers",
+      "description": "Use this to keep the shortlist inside an affordable creator tier. Enter a whole number such as 100000; the default is 500000, which includes most mid-tier creators. Influencers above the threshold are filtered out before anything is written or charged. Set a high value when only the minimum matters.",
+      "editor": "number",
+      "minimum": 1
+    },
+    "minEngagementRatePct": {
+      "type": "number",
+      "title": "Minimum engagement rate (percent)",
+      "description": "Use this to drop creators whose audience rarely interacts. Enter a percentage such as 1.5; the default is 0, which keeps every influencer. The rate is average likes plus comments per recent post divided by followers. Records below the threshold are filtered out before anything is written or charged.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "requireEmail": {
+      "type": "boolean",
+      "title": "Only influencers with a public email",
+      "description": "Use this when outreach-ready contacts are required. Enable it to keep only influencers that expose an email in their public business contact field or biography; the default is off. The actor reads public data only and cannot discover hidden or direct-message contacts. Turn it off when the shortlist matters more than contactability.",
+      "editor": "checkbox"
+    },
+    "requireVerified": {
+      "type": "boolean",
+      "title": "Only verified influencers",
+      "description": "Use this when the blue check is a campaign requirement. Enable it to keep only publicly verified accounts; the default is off. Verified status comes from the public profile metadata returned by the data provider. It does not measure audience quality or fake followers.",
+      "editor": "checkbox"
+    },
+    "sortBy": {
+      "type": "string",
+      "title": "Rank shortlist by",
+      "description": "Use this to choose the order of the ranked shortlist. Choose engagement-rate for average interaction per follower, followers for raw audience size, or niche-score for the combined relevance ranking; the default is engagement-rate. Every record includes all three values regardless of this choice. This orders the output; it does not change which influencers are found.",
+      "editor": "select",
+      "enum": [
+        "engagement-rate",
+        "followers",
+        "niche-score"
+      ],
+      "enumTitles": [
+        "Engagement rate (highest first)",
+        "Follower count (highest first)",
+        "Niche relevance score (highest first)"
+      ]
+    },
+    "postsPerInfluencer": {
+      "type": "integer",
+      "title": "Recent posts analyzed per influencer",
+      "description": "Use this to tune how many recent posts feed the engagement average. Enter 6 to 24; the default is 12, about one page of posts. More posts give a steadier engagement rate but each extra page adds provider time and platform usage cost. This does not scrape post content into the output; only the aggregate metrics are kept.",
+      "editor": "number",
+      "minimum": 6,
+      "maximum": 24
+    },
+    "maxSearchPagesPerTopic": {
+      "type": "integer",
+      "title": "Maximum search pages per topic",
+      "description": "Use this advanced control to bound profile-search depth for each topic. Enter an integer from 1 to 10; the default is computed from maxInfluencers so the actor usually gathers about two to three candidates per saved influencer. Lower values are useful for cheap canaries; higher values help when strict filters reject many candidates. This limits discovery pages, not enrichment.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "outputMode": {
+      "type": "string",
+      "title": "Output mode",
+      "description": "Use this when selecting concise agent-friendly records or fuller research records. Choose compact for core scoring, count, and contact fields, or full for biography, links, and provider provenance fields; the default is full. Both modes return one row per influencer with identical scoring. This changes field breadth, not which influencers are found.",
+      "editor": "select",
+      "enum": [
+        "full",
+        "compact"
+      ],
+      "enumTitles": [
+        "Full research record",
+        "Compact agent record"
+      ]
+    }
+  },
+  "required": [
+    "topics"
+  ]
+}

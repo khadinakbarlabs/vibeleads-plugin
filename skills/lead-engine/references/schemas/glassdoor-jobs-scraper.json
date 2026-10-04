@@ -1,0 +1,66 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Glassdoor Jobs Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Glassdoor jobs URLs (optional)",
+      "type": "array",
+      "description": "Use this when you already have Glassdoor jobs search URLs (for example a copied https://www.glassdoor.com/Job/...SRCH_IL...htm results page). Each item is scraped directly and takes priority over searchQuery/location. Leave empty to build a search from the query and location below. This is not for company review or salary pages.",
+      "editor": "stringList"
+    },
+    "searchQuery": {
+      "title": "Job search query",
+      "type": "string",
+      "description": "Use this when you want Glassdoor jobs matching a role, skill, or company. Accepts plain text such as \"software engineer\", \"nurse practitioner\", or \"data analyst\". Defaults to \"software engineer\" for small health-check runs. This is not a company reviews, interview, or salary-only search.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Job location",
+      "type": "string",
+      "description": "Use this when you need jobs near a city, state, country, or remote-style location label. Accepted examples include \"New York, NY\", \"San Francisco, CA\", \"London\", or \"Remote\". Defaults to \"New York, NY\" for predictable canaries. This is not a postal address or radius field.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "Requested country",
+      "type": "string",
+      "description": "Use this to label the requested country in output records and summaries. Use a two-letter code such as \"US\", \"GB\", \"CA\", or \"AU\". Defaults to \"US\". Search targeting is primarily controlled by the location text.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum jobs",
+      "type": "integer",
+      "description": "Use this to cap how many job records and billable job-scraped events can be returned. Accepts 1 to 1000, with default 50. The actor stops charging and pushing data at this number. This is not a page count.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "daysOld": {
+      "title": "Posted within days",
+      "type": "integer",
+      "description": "Use this when you only want recent Glassdoor jobs. Accepts 1 to 30, for example 7 for jobs posted in the last week. Leave empty to let the backend return its default date range. This is not a timestamp or exact date.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 30
+    },
+    "includeNoSalaryJobs": {
+      "title": "Include jobs without salary",
+      "type": "boolean",
+      "description": "Use this when jobs without visible salary ranges are still useful. Defaults to true because many Glassdoor listings omit pay. Set false for compensation-only datasets. This does not estimate missing salary values.",
+      "editor": "checkbox"
+    },
+    "deduplicate": {
+      "title": "Remove duplicates",
+      "type": "boolean",
+      "description": "Use this to skip repeated Glassdoor jobs returned by the backend. Defaults to true and dedupes by job ID, URL, or a title-company-location hash. Set false only when you need raw backend-level evidence. This does not merge with old datasets from previous runs.",
+      "editor": "checkbox"
+    },
+    "debug": {
+      "title": "Debug mode",
+      "type": "boolean",
+      "description": "Use this only for troubleshooting. When true, the actor saves the first few captured Glassdoor JSON responses and any blocked-page HTML to the key-value store for inspection. Defaults to false. This does not change which jobs are scraped.",
+      "editor": "checkbox"
+    }
+  }
+}

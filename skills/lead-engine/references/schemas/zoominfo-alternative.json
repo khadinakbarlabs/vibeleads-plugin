@@ -1,0 +1,90 @@
+{
+  "title": "ZoomInfo Alternative company-enrichment input",
+  "description": "Enrich a caller-supplied list of company domains from each company\u2019s public website. It is a source-cited firmographic and published-business-contact workflow, not a people database, direct-dial finder, buyer-intent feed, or outreach tool.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companies": {
+      "title": "Companies to enrich",
+      "type": "array",
+      "description": "One to 100 companies already selected by you, each with a public website domain such as example.com. Optional companyName and externalId are carried into the result to make CRM matching auditable. This is not a free-text people search, a request to discover contacts, or an authorization to send outreach.",
+      "editor": "json",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Company website domain",
+            "type": "string",
+            "description": "The company\u2019s canonical public domain or homepage URL, for example example.com or https://example.com. The Actor visits only this domain and its standard about/contact pages. This is not a LinkedIn URL, a ZoomInfo URL, or a personal profile URL."
+          },
+          "companyName": {
+            "title": "Known company name",
+            "type": "string",
+            "description": "Optional caller-supplied company name, for example Example Ltd. It is retained beside website-derived evidence to help resolve a CRM record. It is not treated as independently verified identity."
+          },
+          "externalId": {
+            "title": "External record ID",
+            "type": "string",
+            "description": "Optional caller-owned CRM or spreadsheet identifier such as crm-001. It is copied unchanged into the output as the stable join key. It is not used to look up another database."
+          }
+        },
+        "required": [
+          "domain"
+        ]
+      }
+    },
+    "maxCompanies": {
+      "title": "Maximum companies to process",
+      "type": "integer",
+      "description": "Hard cap on distinct valid company domains processed in this run. Defaults to 25 and accepts 1 to 100, limiting maximum company-enriched event charges to $0.05 per processed company plus platform usage. This is a company-list cap, not a web crawl depth setting.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxPagesPerCompany": {
+      "title": "Maximum public pages per company",
+      "type": "integer",
+      "description": "How many standard public pages to inspect for each supplied domain: the homepage, then optional /about and /contact routes. Defaults to 3 and accepts 1 to 3, keeping collection bounded and source URLs reviewable. This does not crawl the public web, customer portals, or login-protected pages.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "includePublishedContacts": {
+      "title": "Include website-published contacts",
+      "type": "boolean",
+      "description": "Return business emails and telephone links visibly published on the company pages that were fetched. Defaults to true and preserves the exact source URLs for review. It does not guess email patterns, unmask protected data, validate mailbox ownership, or return private contact data.",
+      "editor": "checkbox"
+    },
+    "includeTechnologySignals": {
+      "title": "Include technology signals",
+      "type": "boolean",
+      "description": "Return a small list of named technologies whose public asset or script signatures were observed in fetched HTML. Defaults to true and labels each result as an observed website signal rather than a complete technology inventory. It does not infer subscriptions, spending, or buyer intent.",
+      "editor": "checkbox"
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout in seconds",
+      "type": "integer",
+      "description": "Maximum wait for each direct or fallback public-page request. Defaults to 20 seconds and accepts 5 to 60. Transient direct failures receive one bounded retry; this setting does not extend the overall Actor timeout.",
+      "editor": "number",
+      "minimum": 5,
+      "maximum": 60
+    },
+    "useApifyUnblockerFallback": {
+      "title": "Use Apify Unblocker fallback",
+      "type": "boolean",
+      "description": "After direct requests are clearly blocked or transiently unavailable, try the same public page once through Apify Unblocker. Defaults to true for higher reachability. Unblocker is Apify platform usage paid by the caller, not a third-party API subscription; disable it for a direct-only control run.",
+      "editor": "checkbox"
+    },
+    "preferApifyUnblocker": {
+      "title": "Prefer Apify Unblocker from the first request",
+      "type": "boolean",
+      "description": "Send each configured public page through Apify Unblocker first. If that one attempt is temporarily unavailable, the Actor makes one direct recovery attempt. Defaults to false. Use this higher-platform-usage mode only for domains you already know block cloud traffic; it requires Use Apify Unblocker fallback to remain enabled.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "companies"
+  ]
+}

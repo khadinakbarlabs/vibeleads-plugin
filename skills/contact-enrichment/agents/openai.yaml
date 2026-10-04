@@ -1,0 +1,4 @@
+interface:
+  display_name: "Contact Enrichment"
+  short_description: "Research and qualify relevant business prospects"
+  default_prompt: "Use $contact-enrichment to help with my B2B prospecting workflow."

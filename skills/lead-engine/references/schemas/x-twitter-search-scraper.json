@@ -1,0 +1,77 @@
+{
+  "title": "X Twitter Search Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "type": "array",
+      "title": "Search queries",
+      "description": "X/Twitter search queries, hashtags, usernames, or advanced operators. Examples: ai agents, #buildinpublic, from:openai min_faves:100, (marketing OR sales) lang:en.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 50,
+      "sectionCaption": "Search"
+    },
+    "searchType": {
+      "type": "string",
+      "title": "Search type",
+      "description": "Which X search tab to scrape. Top and Latest return tweet-like results. People returns account-like results. Photos and Media return media-heavy results.",
+      "editor": "select",
+      "enum": [
+        "Top",
+        "Latest",
+        "People",
+        "Photos",
+        "Media"
+      ],
+      "enumTitles": [
+        "Top",
+        "Latest",
+        "People",
+        "Photos",
+        "Media"
+      ]
+    },
+    "maxResults": {
+      "type": "integer",
+      "title": "Maximum results",
+      "description": "Maximum dataset records to save across all queries. This is also the hard cap for billable result events.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000,
+      "sectionCaption": "Limits"
+    },
+    "maxPagesPerQuery": {
+      "type": "integer",
+      "title": "Maximum pages per query",
+      "description": "Advanced pagination safety valve. Lower this for quick tests; increase it for deeper searches when the provider returns a next cursor.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "startCursor": {
+      "type": "string",
+      "title": "Start cursor",
+      "description": "Optional provider cursor from a previous run. Use this only when continuing one query/search type from RUN_SUMMARY.nextCursors.",
+      "editor": "textfield",
+      "maxLength": 500,
+      "sectionCaption": "Pagination"
+    },
+    "includeRaw": {
+      "type": "boolean",
+      "title": "Include raw provider payload",
+      "description": "Attach the raw provider item to each dataset record for debugging field drift. Leave disabled for smaller production datasets.",
+      "editor": "checkbox",
+      "sectionCaption": "Output"
+    },
+    "dedupeResults": {
+      "type": "boolean",
+      "title": "Dedupe results",
+      "description": "Skip duplicate tweet/account/list records across pages and queries.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

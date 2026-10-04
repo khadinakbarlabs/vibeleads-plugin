@@ -1,0 +1,93 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Public B2B Account Research",
+  "description": "Research caller-supplied company domains through a small set of public company-owned pages. Returns public account context, visibly published business emails, source URLs, and explicit collection outcomes; it does not access a private contact database or infer contact details.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "accounts": {
+      "title": "Known B2B accounts",
+      "type": "array",
+      "description": "Provide one to 20 known B2B company records to research from their public website. Each item needs companyDomain such as example.com and can retain a caller label, record ID, and up to five role keywords. The default is one stable public example and maxAccounts applies after validation. This is not a company-name search, contact-database lookup, or permission to submit private network targets.",
+      "editor": "json",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "companyDomain": {
+            "title": "Company domain",
+            "type": "string",
+            "description": "Public company website hostname or homepage URL to read, such as example.com or https://example.com. Private, local, IP-address, credentialed, non-HTTP(S), and non-standard-port targets are rejected. A hostname is normalized before collection. This is not a LinkedIn URL, a person profile, or an internal CRM address.",
+            "maxLength": 253
+          },
+          "accountName": {
+            "title": "Your account label",
+            "type": "string",
+            "description": "Optional company label returned unchanged so the record can reconnect to your account list. Use concise text such as Example Organization. It is limited to 200 characters and may be omitted. This is not a claim that the Actor verified the legal company name.",
+            "maxLength": 200
+          },
+          "externalId": {
+            "title": "Your record ID",
+            "type": "string",
+            "description": "Optional caller-owned ID returned unchanged for matching to a permitted workflow. Use a stable non-secret value such as crm-account-001. It is limited to 200 characters and is optional. This is not an Apify run ID, a credential, or a source-derived identifier.",
+            "maxLength": 200
+          },
+          "targetRoleKeywords": {
+            "title": "Role keywords to check",
+            "type": "array",
+            "description": "Optional role phrases to look for in public page text, such as VP Sales or Founder. Provide up to five phrases; each is matched literally without identity inference. Omit this field when company context alone is enough. This is not person discovery, title verification, or a contact-data filter.",
+            "maxItems": 5,
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            }
+          }
+        },
+        "required": [
+          "companyDomain"
+        ]
+      }
+    },
+    "maxAccounts": {
+      "title": "Maximum accounts to process",
+      "type": "integer",
+      "description": "Safety cap for valid account records after normalization and duplicate removal. Enter an integer such as 5; values range from 1 to 20. The default 5 keeps first runs bounded. This is not the number of pages or an instruction to discover additional companies.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "maxPagesPerAccount": {
+      "title": "Maximum public pages per account",
+      "type": "integer",
+      "description": "Bound the fixed public-page set checked for each account: homepage, contact, about, team, then leadership. Enter 1 through 5; the default is 3 pages. Lower values reduce runtime and event-charge exposure. This is not a site-wide crawl depth or a request to follow arbitrary links.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "requestTimeoutSecs": {
+      "title": "Per-page request timeout",
+      "type": "integer",
+      "description": "Maximum time allowed for one public-page HTTP request before it is classified for retry or a truthful source outcome. Enter seconds such as 15; supported values are 5 through 30. The default balances first-run reliability and bounded compute. This is not the total Actor timeout or an unlimited retry setting.",
+      "editor": "number",
+      "minimum": 5,
+      "maximum": 30
+    },
+    "useApifyUnblockerFallback": {
+      "title": "Use Apify Unblocker after a classified direct failure",
+      "type": "boolean",
+      "description": "Enable one Apify Unblocker recovery attempt only when a direct public-page request is blocked or transiently unavailable. The default is false, preserving direct collection as the primary route. Apify proxy usage may add platform charges when this option runs. This is not a guarantee of access or a bypass for authenticated or restricted pages.",
+      "editor": "checkbox"
+    },
+    "preferApifyUnblocker": {
+      "title": "Prefer Apify Unblocker before direct collection",
+      "type": "boolean",
+      "description": "Start with Apify Unblocker when a permitted public website has repeatedly blocked direct requests. It only applies when the fallback option is also enabled, and defaults to false. Direct collection remains the standard lower-cost route. This is not required for ordinary public sites or a substitute for collection authority.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "accounts"
+  ]
+}

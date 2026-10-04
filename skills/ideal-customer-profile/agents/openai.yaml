@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ideal Customer Profile"
+  short_description: "Research and qualify relevant business prospects"
+  default_prompt: "Use $ideal-customer-profile to help with my B2B prospecting workflow."

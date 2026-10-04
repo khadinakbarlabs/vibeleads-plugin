@@ -1,0 +1,45 @@
+{
+  "title": "LinkedIn Company Profile Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyUrls": {
+      "title": "LinkedIn companies",
+      "type": "array",
+      "description": "One or more public LinkedIn company pages to scrape. Each item is either a full URL (e.g. https://www.linkedin.com/company/stripe) or just the vanity name (e.g. stripe). University /school/ and /showcase/ pages are not supported. Not a LinkedIn person profile - for people use the linkedin-profile-details-scraper actor.",
+      "editor": "stringList"
+    },
+    "maxCompanies": {
+      "title": "Maximum companies",
+      "type": "integer",
+      "description": "Maximum number of company profiles to scrape and bill in this run. Accepts 1 to 1000; defaults to 100. Extra input URLs beyond this cap are ignored. Caps your spend at maxCompanies x the per-company price.",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "includeSimilarCompanies": {
+      "title": "Include similar companies",
+      "type": "boolean",
+      "description": "Attach the 'similar / also viewed' company pages LinkedIn lists on the profile (name, url, industry). Defaults to true. Set false for a leaner record. Does not add a separate charge."
+    },
+    "includeEmployeesSample": {
+      "title": "Include sample employees",
+      "type": "boolean",
+      "description": "Attach a small public sample of employees surfaced on the company page (name, title, profile URL, image). Defaults to false. This is a preview sample, not the full employee roster - for that use the linkedin-company-employee-scraper actor."
+    },
+    "maxEmployeesSample": {
+      "title": "Max sample employees",
+      "type": "integer",
+      "description": "How many sample employees to include when 'Include sample employees' is on. Accepts 1 to 100; defaults to 10. Ignored when the sample is disabled.",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "includeRawData": {
+      "title": "Include raw response data",
+      "type": "boolean",
+      "description": "Add the compact raw provider payload under rawData for debugging or custom parsing. Defaults to false. Increases record size noticeably; leave off for normal use."
+    }
+  },
+  "required": [
+    "companyUrls"
+  ]
+}

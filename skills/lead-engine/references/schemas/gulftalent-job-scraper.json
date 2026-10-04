@@ -1,0 +1,64 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "GulfTalent Job Scraper input",
+  "description": "Search public GulfTalent job APIs or process GulfTalent search URLs. The actor uses GulfTalent's structured public JSON endpoints and returns normalized public hiring records.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchUrls": {
+      "title": "GulfTalent search URLs",
+      "description": "Use this when you already have a public GulfTalent search page with filters set in the site. Add up to 10 https://www.gulftalent.com/jobs/... URLs. These URLs override Keyword and are not direct individual-job lookups.",
+      "type": "array",
+      "editor": "stringList"
+    },
+    "keyword": {
+      "title": "Job keyword",
+      "description": "Use this when you want the actor to build a standard public GulfTalent search. Enter one role or skill phrase, for example software engineer. This is ignored only when GulfTalent search URLs are supplied.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum jobs",
+      "description": "Use this when you need a predictable billable-result cap. The actor stores at most this many unique validated job records across all search pages; default 20 and maximum 200.",
+      "type": "integer",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "maxPages": {
+      "title": "Maximum search pages",
+      "description": "Use this when Keyword builds the search URLs automatically. The actor requests no more than this many public result pages; this field is ignored when GulfTalent search URLs are supplied.",
+      "type": "integer",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "includeJobDetails": {
+      "title": "Include job-page details",
+      "description": "Use this when you need each job's public description, disclosed salary, experience, and other page-level fields. Disable only for a faster search-card export with less complete data.",
+      "type": "boolean"
+    },
+    "proxyCountry": {
+      "title": "Residential proxy country",
+      "description": "Use this when the public GulfTalent API needs a nearby Gulf-region residential fallback route. Choose the proxy country closest to your search market; this is not a job-location filter.",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "AE",
+        "SA",
+        "QA",
+        "KW",
+        "BH",
+        "OM"
+      ],
+      "enumTitles": [
+        "United Arab Emirates",
+        "Saudi Arabia",
+        "Qatar",
+        "Kuwait",
+        "Bahrain",
+        "Oman"
+      ]
+    }
+  }
+}

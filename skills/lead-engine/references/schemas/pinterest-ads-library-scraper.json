@@ -1,0 +1,146 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Pinterest Ads Library search",
+  "description": "Search the public Pinterest Ads Repository for a bounded date range and supported market. The repository is an ad-transparency source; it does not access an advertiser's private Pinterest Ads Manager account.",
+  "type": "object",
+  "schemaVersion": 1,
+  "additionalProperties": false,
+  "properties": {
+    "country": {
+      "title": "Ad target market",
+      "type": "string",
+      "description": "Select the supported Pinterest repository market used to find disclosed ads, for example FR for France. Use a two-letter country code from the list. Defaults to FR for a working public repository search. This is not your billing country or proxy-location setting.",
+      "editor": "select",
+      "enum": [
+        "AT",
+        "BE",
+        "BG",
+        "BR",
+        "HR",
+        "CY",
+        "CZ",
+        "DK",
+        "EE",
+        "FI",
+        "FR",
+        "DE",
+        "GR",
+        "HU",
+        "IE",
+        "IT",
+        "LV",
+        "LT",
+        "LU",
+        "MT",
+        "NL",
+        "NO",
+        "PL",
+        "PT",
+        "RO",
+        "SK",
+        "SI",
+        "ES",
+        "SE",
+        "TR"
+      ]
+    },
+    "startDate": {
+      "title": "First repository date",
+      "type": "string",
+      "description": "Set the inclusive beginning of the public repository window in YYYY-MM-DD format, for example 2026-08-01. Defaults to seven days before the run begins when omitted. The maximum window is 31 calendar days. This is not a relative date phrase or an ad creation-date guarantee.",
+      "editor": "datepicker"
+    },
+    "endDate": {
+      "title": "Last repository date",
+      "type": "string",
+      "description": "Set the inclusive end of the public repository window in YYYY-MM-DD format, for example 2026-08-10. Defaults to the run date when omitted. It must be on or after startDate and within the 31-day window. This is not an overall Actor timeout.",
+      "editor": "datepicker"
+    },
+    "advertiserName": {
+      "title": "Advertiser name",
+      "type": "string",
+      "description": "Optionally narrow the public repository to a disclosed advertiser name, for example Tommy Hilfiger. Leave blank to browse the selected market and date window. Names are matched by Pinterest's repository and may not be exact. This is not a Pinterest username, ad ID, or private account ID.",
+      "editor": "textfield",
+      "maxLength": 200
+    },
+    "category": {
+      "title": "Ad category",
+      "type": "string",
+      "description": "Optionally filter by Pinterest's public ad category, for example HOME_DECOR. Defaults to ALL and only controls the repository filter. Use it for category-level creative research, not to classify the returned creative yourself. This is not a free-text keyword search.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "ANIMALS",
+        "ARCHITECTURE",
+        "ART",
+        "BEAUTY",
+        "CHILDRENS_FASHION",
+        "DESIGN",
+        "DIY_AND_CRAFTS",
+        "EDUCATION",
+        "ELECTRONICS",
+        "ENTERTAINMENT",
+        "EVENT_PLANNING",
+        "FINANCE",
+        "FOOD_AND_DRINKS",
+        "GARDENING",
+        "HEALTH",
+        "HOME_DECOR",
+        "MENS_FASHION",
+        "OTHER",
+        "PARENTING",
+        "QUOTES",
+        "SPORT",
+        "TRAVEL",
+        "VEHICLES",
+        "WEDDING",
+        "WOMENS_FASHION"
+      ]
+    },
+    "gender": {
+      "title": "Disclosed gender filter",
+      "type": "string",
+      "description": "Optionally apply the repository's disclosed gender filter: ALL, FEMALE, MALE, or UNSPECIFIED. Defaults to ALL. It reflects Pinterest's public ad-library filter rather than inferred user demographics. This is not a guarantee that every returned ad targets only that gender.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "FEMALE",
+        "MALE",
+        "UNSPECIFIED"
+      ]
+    },
+    "age": {
+      "title": "Disclosed age filter",
+      "type": "string",
+      "description": "Optionally apply Pinterest's public age-bucket filter, for example AGE_25_34. Defaults to ALL. Use the public filter values exactly as shown. This is not an inferred audience-age estimate or a free-text age range.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "AGE_18_24",
+        "AGE_25_34",
+        "AGE_35_44",
+        "AGE_45_49",
+        "AGE_50_54",
+        "AGE_55_64",
+        "AGE_65_PLUS"
+      ]
+    },
+    "maxResults": {
+      "title": "Maximum ads",
+      "type": "integer",
+      "description": "Cap the validated public ad records saved to the dataset. Enter an integer from 1 to 24; the default is 24 and each saved record charges the ad-scraped event. Keep it low for a quick evidence check. This is not a guarantee that Pinterest has that many matches.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 24
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout seconds",
+      "type": "integer",
+      "description": "Set the browser navigation and public repository request timeout in seconds. Enter 20 to 120; the default is 60. Increase it only for a slow public response, not to bypass access controls. This is not the whole Actor run timeout.",
+      "editor": "number",
+      "minimum": 20,
+      "maximum": 120
+    }
+  },
+  "required": []
+}

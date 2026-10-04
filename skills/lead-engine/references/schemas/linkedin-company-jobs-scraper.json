@@ -1,0 +1,124 @@
+{
+  "title": "LinkedIn Company Jobs Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "company": {
+      "title": "Company (LinkedIn URL, slug, or numeric ID)",
+      "type": "string",
+      "description": "The LinkedIn company whose job postings you want. Accepts a company URL (e.g. 'https://www.linkedin.com/company/stripe'), a bare slug ('stripe'), or a numeric LinkedIn company ID ('51737071'). A URL or slug is resolved to the numeric ID via the primary managed public-data route (primary) then the managed fallback route (fallback). NOT a job-search keyword and NOT a personal profile URL \u2014 for keyword job search use the linkedin-jobs-scraper actor.",
+      "editor": "textfield"
+    },
+    "keywords": {
+      "title": "Job title keywords (optional)",
+      "type": "string",
+      "description": "Optional free-text filter applied to the company's postings (e.g. 'engineer', 'product manager'). Matches LinkedIn's job-title search. Leave empty to return all open roles at the company. This filters WITHIN one company, it does not search across companies.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location filter (optional)",
+      "type": "string",
+      "description": "Optional geographic filter such as 'United States', 'London', or 'Remote'. Maps to LinkedIn's job location facet. Leave empty for all locations. This is a job-location filter, not the company headquarters.",
+      "editor": "textfield"
+    },
+    "datePosted": {
+      "title": "Date posted",
+      "type": "string",
+      "description": "Limit results by how recently a job was posted. 'any' returns all open postings; 'month'/'week'/'day' restrict to the last 30/7/1 days. Defaults to 'any'.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "month",
+        "week",
+        "day"
+      ],
+      "enumTitles": [
+        "Any time",
+        "Past month",
+        "Past week",
+        "Past 24 hours"
+      ]
+    },
+    "jobType": {
+      "title": "Employment type",
+      "type": "string",
+      "description": "Filter by employment type. 'any' returns all types. Maps to LinkedIn's job-type facet (F/P/C/T/I). Defaults to 'any'.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "full-time",
+        "part-time",
+        "contract",
+        "temporary",
+        "internship"
+      ],
+      "enumTitles": [
+        "Any",
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Temporary",
+        "Internship"
+      ]
+    },
+    "experienceLevel": {
+      "title": "Experience level",
+      "type": "string",
+      "description": "Filter by seniority. 'any' returns all levels. Maps to LinkedIn's experience facet. Defaults to 'any'.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "internship",
+        "entry",
+        "associate",
+        "mid-senior",
+        "director",
+        "executive"
+      ],
+      "enumTitles": [
+        "Any",
+        "Internship",
+        "Entry level",
+        "Associate",
+        "Mid-Senior level",
+        "Director",
+        "Executive"
+      ]
+    },
+    "remoteOnly": {
+      "title": "Remote jobs only",
+      "type": "boolean",
+      "description": "When true, returns only roles LinkedIn flags as remote. Defaults to false (all workplace types: on-site, hybrid, remote).",
+      "editor": "checkbox"
+    },
+    "maxResults": {
+      "title": "Max jobs",
+      "type": "integer",
+      "description": "Maximum number of job postings to return. LinkedIn's guest endpoint caps near 1000 per company-query. Defaults to 50. Each returned job is billed at the per-job rate.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "enrichJobDetails": {
+      "title": "Fetch full job details",
+      "type": "boolean",
+      "description": "When true, visits each job's detail page to add description text, applicant count, seniority, employment type, job function and industries. Slower and adds one request per job. Defaults to false (list-level fields only).",
+      "editor": "checkbox"
+    },
+    "enrichCompany": {
+      "title": "Attach company metadata",
+      "type": "boolean",
+      "description": "When true, attaches the company's industry, size, employee count, headquarters, followers, website and logo via managed public-data routes. Required and forced on when 'company' is a URL or slug (used to resolve the numeric ID). Set false only when you pass a numeric company ID and want jobs without company metadata. Defaults to true.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings. Defaults to Apify Residential US, which LinkedIn's job endpoints require. Override only if you know what you are doing.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "company"
+  ]
+}

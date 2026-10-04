@@ -1,0 +1,56 @@
+{
+  "title": "Salesforce AppExchange Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "listingUrls": {
+      "title": "Listing URLs or IDs",
+      "type": "array",
+      "description": "Specific AppExchange listings to scrape. Paste full detail URLs (e.g. 'https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000FguFBUAZ') or just the raw listing id ('a0N4V00000FguFBUAZ'). When this list is non-empty the actor scrapes exactly these and ignores browse settings below. Leave empty to browse the catalog by type instead.",
+      "editor": "stringList"
+    },
+    "listingType": {
+      "title": "Listing type (browse mode)",
+      "type": "string",
+      "description": "Which AppExchange catalog to enumerate when no Listing URLs are given. 'App' = solutions/apps under appxListingDetail (the main catalog, ~4,200 listings, richest data). 'Consulting' = partner consultants. Defaults to 'App'. Ignored when Listing URLs are provided.",
+      "enum": [
+        "App",
+        "Consulting"
+      ],
+      "enumTitles": [
+        "App / Solution",
+        "Consulting partner"
+      ],
+      "editor": "select"
+    },
+    "keyword": {
+      "title": "Keyword filter (browse mode)",
+      "type": "string",
+      "description": "Optional case-insensitive substring filter applied to each browsed listing's name, tagline, description, publisher and categories. Example: 'marketing'. This is a literal substring match over scraped data, NOT Salesforce's relevance-ranked search. Leave empty to return listings in catalog order.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of listings to return and bill for (one 'listing-scraped' charge each). Applies to both direct and browse modes. Defaults to 50; allowed range 1\u20135000. In keyword mode the actor stops as soon as this many matches are found.",
+      "minimum": 1,
+      "maximum": 5000,
+      "unit": "listings"
+    },
+    "maxScan": {
+      "title": "Max listings to scan (keyword mode)",
+      "type": "integer",
+      "description": "Only used in browse mode WITH a keyword: how many catalog listings to fetch and inspect while looking for matches. Higher values find more matches but cost more compute. Defaults to 400; allowed range up to 5000. Ignored when no keyword is set or when Listing URLs are provided.",
+      "minimum": 1,
+      "maximum": 5000,
+      "unit": "listings"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings. The default Apify datacenter (US) proxy is sufficient \u2014 AppExchange has no CAPTCHA, only light per-IP rate limiting that session rotation clears. Only switch to RESIDENTIAL if you see repeated blocking. Leave as default for best speed and cost.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,16 @@
+{
+  "name": "vibeleads-local",
+  "owner": {
+    "name": "Khadin Akbar"
+  },
+  "plugins": [
+    {
+      "name": "vibeleads",
+      "source": "./",
+      "description": "B2B prospecting skills for finding companies, spotting buying signals, qualifying contacts, and preparing evidence-backed lead lists."
+    }
+  ],
+  "metadata": {
+    "description": "Local catalog for VibeLeads B2B prospecting skills."
+  }
+}

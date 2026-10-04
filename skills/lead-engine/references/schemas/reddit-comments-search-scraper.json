@@ -1,0 +1,88 @@
+{
+  "title": "Reddit Comments Search Scraper",
+  "description": "Search public Reddit comments by keyword and return clean, one-row-per-comment data. Use this for social listening, product research, and discussion discovery. It does not fetch full threads, posts, profiles, private communities, or historical archives beyond Reddit search availability. Costs $0.004 per stored comment plus Apify platform usage.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Comment search queries",
+      "type": "array",
+      "description": "Use this when you need to find public Reddit comments containing one or more phrases. Pass phrases such as \"AI coding assistant\" or \"best standing desk\". Defaults to \"artificial intelligence\" and accepts at most 20 distinct phrases. This is not a Reddit URL, username, or full-thread request.",
+      "editor": "stringList"
+    },
+    "subreddit": {
+      "title": "Limit to a subreddit",
+      "type": "string",
+      "description": "Use this to search comments within one public subreddit. Pass a name such as \"MachineLearning\" or \"r/MachineLearning\". Defaults to all of Reddit and accepts only one community name. This is not a subreddit URL or a list of communities.",
+      "editor": "textfield"
+    },
+    "maxComments": {
+      "title": "Maximum comments",
+      "type": "integer",
+      "description": "Use this to cap unique comments saved across every query. Pass an integer such as 100. Defaults to 100 and accepts 1 through 1000, which also caps comment-event charges. This is not a number of comments per post or a request to retrieve a full thread.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "sort": {
+      "title": "Comment result order",
+      "type": "string",
+      "description": "Use this to choose Reddit's ordering for matching comments. Choose relevance, new, top, or comments; for example, \"new\" prioritizes recent matches. Defaults to relevance. This does not analyze sentiment or change Reddit's search match logic.",
+      "editor": "select",
+      "enum": [
+        "relevance",
+        "new",
+        "top",
+        "comments"
+      ],
+      "enumTitles": [
+        "Reddit relevance",
+        "Newest",
+        "Top scored",
+        "Most discussed posts"
+      ]
+    },
+    "time": {
+      "title": "Search time range",
+      "type": "string",
+      "description": "Use this to restrict comment search to a Reddit time window. Choose hour, day, week, month, year, or all; for example, \"month\". Defaults to all. This is not an exact date-range filter and Reddit may cap deep search pagination.",
+      "editor": "select",
+      "enum": [
+        "hour",
+        "day",
+        "week",
+        "month",
+        "year",
+        "all"
+      ],
+      "enumTitles": [
+        "Past hour",
+        "Past day",
+        "Past week",
+        "Past month",
+        "Past year",
+        "All available"
+      ]
+    },
+    "includeNsfw": {
+      "title": "Include NSFW comments",
+      "type": "boolean",
+      "description": "Use this only when adult-marked public Reddit content is appropriate for the research task. Pass true to retain a result explicitly marked NSFW. Defaults to false. This does not bypass Reddit safety controls or access private communities.",
+      "editor": "checkbox"
+    },
+    "responseFormat": {
+      "title": "Response detail",
+      "type": "string",
+      "description": "Use this to balance agent context size against diagnostic metadata. Choose concise for core text, authorship, score, and links, or detailed for moderation and award fields; for example, \"concise\". Defaults to concise. This does not alter matching, pagination, or comment-event billing.",
+      "editor": "select",
+      "enum": [
+        "concise",
+        "detailed"
+      ],
+      "enumTitles": [
+        "Concise",
+        "Detailed"
+      ]
+    }
+  }
+}

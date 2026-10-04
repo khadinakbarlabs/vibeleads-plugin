@@ -1,0 +1,56 @@
+{
+  "title": "Beehiiv Newsletter Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "publicationUrls": {
+      "title": "Publication URLs",
+      "type": "array",
+      "description": "Use this when you have Beehiiv newsletter homepage URLs (e.g. https://aibreakfast.beehiiv.com). The actor will scrape publication metadata and, based on scrapeMode, also enumerate and scrape posts. Use postUrls instead when you have direct post links.",
+      "editor": "requestListSources",
+      "sectionCaption": "Input Sources",
+      "sectionDescription": "Provide newsletter publication URLs and/or direct post URLs to scrape"
+    },
+    "postUrls": {
+      "title": "Post URLs",
+      "type": "array",
+      "description": "Use this when you have direct Beehiiv post URLs (e.g. https://aibreakfast.beehiiv.com/p/some-post-slug). Scrapes individual posts directly. Use publicationUrls instead to discover all posts from a newsletter homepage.",
+      "editor": "requestListSources",
+      "sectionCaption": "Input Sources"
+    },
+    "scrapeMode": {
+      "title": "Scrape Mode",
+      "type": "string",
+      "description": "Controls how much data to extract. 'metadata' = newsletter info only (fastest, cheapest). 'metadata_posts' = newsletter info + full post list with dates and previews (recommended for most use cases). 'full' = everything including full post content (best for LLM training, research, archiving).",
+      "editor": "select",
+      "enum": [
+        "metadata",
+        "metadata_posts",
+        "full"
+      ],
+      "enumTitles": [
+        "Metadata only \u2014 newsletter info, author, social links",
+        "Metadata + Post list \u2014 adds post titles, dates, previews (Recommended)",
+        "Full content \u2014 everything including full post text"
+      ],
+      "sectionCaption": "Scraping Options",
+      "sectionDescription": "Control what data to extract and how many results to return"
+    },
+    "maxPostsPerPublication": {
+      "title": "Max Posts Per Publication",
+      "type": "integer",
+      "description": "Maximum number of posts to scrape per newsletter publication. Lower values reduce cost and run time. Set to 500 for full archive scraping.",
+      "minimum": 1,
+      "maximum": 500,
+      "sectionCaption": "Scraping Options"
+    },
+    "maxResults": {
+      "title": "Max Total Results",
+      "type": "integer",
+      "description": "Maximum total number of records (newsletter + post records combined) to return across all input publications. The actor stops as soon as this limit is reached.",
+      "minimum": 1,
+      "maximum": 5000,
+      "sectionCaption": "Scraping Options"
+    }
+  }
+}

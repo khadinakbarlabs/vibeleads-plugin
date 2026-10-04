@@ -1,0 +1,57 @@
+{
+  "title": "Threads Search Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchType": {
+      "title": "Search type",
+      "type": "string",
+      "description": "What to search Meta Threads for. 'posts' searches the text of public Threads posts by keyword (e.g. 'ai agents'). 'users' searches for public Threads accounts by username keyword (e.g. 'openai'). Defaults to 'posts'. This is NOT a single-post URL scraper \u2014 it returns search-result lists.",
+      "editor": "select",
+      "enum": [
+        "posts",
+        "users"
+      ],
+      "enumTitles": [
+        "Posts by keyword",
+        "Users by username"
+      ]
+    },
+    "queries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "One or more search terms. For 'posts' these are content keywords or hashtags (e.g. 'ai agents', 'climate tech'); for 'users' these are username fragments (e.g. 'openai'). Each query is searched independently and results are merged + de-duplicated. Provide at least one. NOT post URLs or profile URLs.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max results (total)",
+      "type": "integer",
+      "description": "Hard cap on total results pushed across all queries, used for cost control. Each result is billed (see pricing). Defaults to 100. The actor stops once this many records are collected. Bounds: 1 and up.",
+      "editor": "number",
+      "minimum": 1
+    },
+    "maxResultsPerQuery": {
+      "title": "Max results per query",
+      "type": "integer",
+      "description": "Cap on results taken from each individual query before moving to the next. The provider search endpoint returns roughly 20-25 items per query, so values above ~25 rarely add more. Defaults to 25. Bounds: 1-100.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "startDate": {
+      "title": "Start date (posts only)",
+      "type": "string",
+      "description": "Optional earliest date filter for 'posts' search, format YYYY-MM-DD (e.g. '2026-01-01'). Ignored for 'users' search. Leave empty for no lower bound. Only honored by the primary managed public-data route provider.",
+      "editor": "textfield"
+    },
+    "endDate": {
+      "title": "End date (posts only)",
+      "type": "string",
+      "description": "Optional latest date filter for 'posts' search, format YYYY-MM-DD (e.g. '2026-06-30'). Ignored for 'users' search. Leave empty for no upper bound. Only honored by the primary managed public-data route provider.",
+      "editor": "textfield"
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

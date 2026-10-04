@@ -1,0 +1,68 @@
+{
+  "title": "Reddit Subreddit Search Scraper",
+  "description": "Search public Reddit communities by keyword and return compact, structured subreddit metadata. Use this for community research, audience discovery, and AI-agent workflow routing. It does not scrape Reddit posts, comments, profiles, or private communities. Costs $0.005 per processed query and $0.01 per returned subreddit, plus Apify platform usage.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Subreddit search queries",
+      "type": "array",
+      "description": "Use this when you need to discover public Reddit communities from keywords. Pass one or more phrases such as \"machine learning\" or \"personal finance\". Defaults to \"artificial intelligence\" and accepts at most 20 distinct phrases. This is not a subreddit URL, post URL, or Reddit username.",
+      "editor": "stringList"
+    },
+    "maxSubreddits": {
+      "title": "Maximum subreddits",
+      "type": "integer",
+      "description": "Use this to cap the total unique communities returned across every query. Pass an integer such as 25. Defaults to 25 and accepts 1 through 100, which also caps event charges. This is not a number of posts, comments, or results per query.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "minSubscribers": {
+      "title": "Minimum subscriber count",
+      "type": "integer",
+      "description": "Use this to filter out communities below a subscriber threshold. Pass an integer such as 10000. Defaults to 0 and accepts 0 through 1,000,000,000; communities with an unavailable count do not pass a positive threshold. This is not a sort order or a guaranteed active-user count.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "sort": {
+      "title": "Result order",
+      "type": "string",
+      "description": "Use this to choose how matching communities are ordered after deduplication. Choose relevance, subscribers, activity, or newest; for example, \"subscribers\" ranks the largest known communities first. Defaults to relevance. This does not change Reddit's matching logic or search inside post content.",
+      "editor": "select",
+      "enum": [
+        "relevance",
+        "subscribers",
+        "activity",
+        "newest"
+      ],
+      "enumTitles": [
+        "Reddit relevance",
+        "Most subscribers",
+        "Most active users",
+        "Newest community"
+      ]
+    },
+    "includeNsfw": {
+      "title": "Include NSFW communities",
+      "type": "boolean",
+      "description": "Use this only when adult-marked public communities are appropriate for the research task. Pass true to include a community whose Reddit metadata is marked NSFW, for example true. Defaults to false. This does not bypass Reddit safety controls or access private communities.",
+      "editor": "checkbox"
+    },
+    "responseFormat": {
+      "title": "Response detail",
+      "type": "string",
+      "description": "Use this to balance agent context size against metadata depth. Choose concise for identifiers, counts, URLs, and status, or detailed for descriptions and artwork URLs; for example, \"concise\". Defaults to concise. This does not affect matching, filtering, or billing per returned community.",
+      "editor": "select",
+      "enum": [
+        "concise",
+        "detailed"
+      ],
+      "enumTitles": [
+        "Concise",
+        "Detailed"
+      ]
+    }
+  }
+}

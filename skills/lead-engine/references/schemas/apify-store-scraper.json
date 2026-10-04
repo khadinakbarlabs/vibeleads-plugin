@@ -1,0 +1,75 @@
+{
+  "title": "Apify Store Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "categoryNames": {
+      "title": "Category Names",
+      "type": "array",
+      "description": "Filter by one or more store categories. Leave empty for ALL categories. E.g. 'AI', 'Lead Generation', 'Social Media', 'E-commerce', 'Developer Tools', 'Marketing', 'SEO Tools'.",
+      "editor": "json"
+    },
+    "sortBy": {
+      "title": "Sort By",
+      "type": "string",
+      "description": "Sort order. 'popularity' = most users first (default). 'newest' = recently published. 'lastUpdate' = recently updated. 'totalUsers' = by total user count. 'relevance' = relevance score.",
+      "editor": "select",
+      "enum": [
+        "popularity",
+        "newest",
+        "lastUpdate",
+        "totalUsers",
+        "relevance"
+      ],
+      "enumTitles": [
+        "Most popular",
+        "Newest first",
+        "Recently updated",
+        "Most users (all time)",
+        "Relevance"
+      ]
+    },
+    "pricingModels": {
+      "title": "Pricing Models",
+      "type": "string",
+      "description": "Filter by pricing. 'All' = both free and paid. 'FREE' = free actors only. 'PAID' = paid actors only.",
+      "editor": "select",
+      "enum": [
+        "All",
+        "FREE",
+        "PAID"
+      ]
+    },
+    "maintainedBy": {
+      "title": "Maintained By",
+      "type": "string",
+      "description": "'All Developers' = everyone (default). 'apify' = official Apify-built actors only.",
+      "editor": "select",
+      "enum": [
+        "All Developers",
+        "apify"
+      ]
+    },
+    "maxItems": {
+      "title": "Max Items",
+      "type": "integer",
+      "description": "Max actors to scrape. 0 = all (26,000+ actors). Set a smaller number for a quick sample.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "enrichDetails": {
+      "title": "Enrich with Detail Data",
+      "type": "boolean",
+      "description": "When true (default), fetches the full actor detail page per actor to add: publish date (created_at), last modified, current version, build number, memory/timeout defaults, SEO title/description, README summary. Slower but much richer output. Set false for a fast shallow scan."
+    },
+    "detailConcurrency": {
+      "title": "Detail Fetch Concurrency",
+      "type": "integer",
+      "description": "Parallel detail fetches per batch (1\u201320). Higher = faster. Default: 10.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20
+    }
+  },
+  "required": []
+}

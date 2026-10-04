@@ -1,0 +1,126 @@
+{
+  "title": "Companies House UK Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Look up UK Companies House companies, directors (officers), and persons with significant control (PSCs) through the official Public Data API. Pass company numbers, company names, officer names, or Companies House URLs. Nested officers and PSCs are included by default. This is a live register lookup, not a bulk snapshot dump of every UK company.",
+  "properties": {
+    "companyNumbers": {
+      "title": "Company numbers",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Exact UK company numbers to enrich, for example 00000006 or SC123456. Accepts 8-character Companies House numbers with optional SC/NI/OC prefixes. Use this when you already know the register number; do not put free-text company names here.",
+      "editor": "stringList",
+      "maxItems": 100,
+      "sectionCaption": "Lookups"
+    },
+    "companyNames": {
+      "title": "Company names / search queries",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Company name phrases to search on Companies House, for example TESCO PLC. Each query returns up to maxSearchResultsPerQuery matches that are then enriched. Use this for discovery when you do not have the company number yet.",
+      "editor": "stringList",
+      "maxItems": 50,
+      "sectionCaption": "Lookups"
+    },
+    "searchQueries": {
+      "title": "Alias: search queries",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Alias of companyNames for agents that prefer a generic searchQueries field. Same company-name search behavior.",
+      "editor": "stringList",
+      "maxItems": 50,
+      "sectionCaption": "Lookups"
+    },
+    "officerNames": {
+      "title": "Officer / director names",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Director or officer names to search, for example Jane Smith. Returns companies linked through officer appointments, then enriches those company profiles. This is not a personal-data enrichment tool beyond the public register.",
+      "editor": "stringList",
+      "maxItems": 50,
+      "sectionCaption": "Lookups"
+    },
+    "companyUrls": {
+      "title": "Companies House URLs",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Public Companies House company page URLs. The Actor extracts the company number from paths like /company/00000006. Invalid non-company URLs become INVALID_INPUT warnings.",
+      "editor": "stringList",
+      "maxItems": 100,
+      "sectionCaption": "Lookups"
+    },
+    "includeOfficers": {
+      "title": "Include directors / officers",
+      "type": "boolean",
+      "description": "When true (default), nest active officers on each company row. Turn off to save API quota when you only need the company profile and PSCs.",
+      "sectionCaption": "Enrichment"
+    },
+    "includePscs": {
+      "title": "Include PSCs",
+      "type": "boolean",
+      "description": "When true (default), nest persons with significant control on each company row. Some companies have no published PSC list and return an empty array.",
+      "sectionCaption": "Enrichment"
+    },
+    "includeResignedOfficers": {
+      "title": "Include resigned officers",
+      "type": "boolean",
+      "description": "When true, keep resigned directors in the nested officers list. Default false returns currently appointed officers only.",
+      "sectionCaption": "Enrichment"
+    },
+    "includeCeasedPscs": {
+      "title": "Include ceased PSCs",
+      "type": "boolean",
+      "description": "When true, keep ceased persons with significant control. Default false returns active PSC notifications only.",
+      "sectionCaption": "Enrichment"
+    },
+    "emitOfficerLeadRows": {
+      "title": "Emit flat officer lead rows",
+      "type": "boolean",
+      "description": "When true, also write one billed officer-lead dataset row per nested officer in addition to the company row. Default false keeps one company-shaped row.",
+      "sectionCaption": "Enrichment"
+    },
+    "maxResults": {
+      "title": "Max company results",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Hard cap on billed company-scraped rows for the run. Default 10 keeps KYB canaries cheap; raise toward 100 for batch enrichment.",
+      "sectionCaption": "Limits"
+    },
+    "maxSearchResultsPerQuery": {
+      "title": "Max search hits per query",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "description": "How many company or officer search hits to enrich for each name query before applying maxResults. Default 5.",
+      "sectionCaption": "Limits"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Reserved for future parallel enrichment. Current build processes jobs sequentially to respect the Companies House 600 requests / 5 minutes free quota.",
+      "sectionCaption": "Limits"
+    },
+    "companiesHouseApiKey": {
+      "title": "Companies House API key (optional BYOK)",
+      "type": "string",
+      "description": "Optional. The caller/user must supply their own Companies House Public Data API key for this run when they want the official API path. When omitted, the Actor uses the free public HTML register (zero-config). The value is never written to the dataset, output, or logs.",
+      "editor": "textfield",
+      "isSecret": true,
+      "sectionCaption": "Credentials"
+    }
+  },
+  "required": []
+}

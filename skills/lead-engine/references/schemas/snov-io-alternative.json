@@ -1,0 +1,84 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Business Email Evidence Finder",
+  "description": "Research company domains you are authorized to contact. The Actor returns only visibly published business emails with source URLs and never guesses addresses or checks private databases.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "targets": {
+      "title": "Company domains to research",
+      "type": "array",
+      "description": "Provide 1 to 25 public company domains you are authorized to research. Each item accepts a hostname such as 'example.com' and optional known business context. This reads the homepage plus directly linked same-site contact, about, team, legal, privacy, or terms pages. It is not a personal-email list, private database query, or mailbox login.",
+      "editor": "json",
+      "minItems": 1,
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "companyDomain": {
+            "title": "Company domain",
+            "type": "string",
+            "description": "Public company hostname or homepage URL, for example 'example.com' or 'https://www.example.com'. It must resolve publicly and cannot contain credentials, a private IP, localhost, or a non-standard port. The Actor normalizes the hostname before collection. This is not a LinkedIn URL, a private intranet address, or a personal email address.",
+            "maxLength": 253
+          },
+          "companyName": {
+            "title": "Company name",
+            "type": "string",
+            "description": "Optional company label returned with this result, for example 'Example Organization'. It is limited to 200 characters and does not change which pages are collected. Leave it blank when the domain is sufficient. This is not used to search third-party databases.",
+            "maxLength": 200
+          },
+          "fullName": {
+            "title": "Known business contact name",
+            "type": "string",
+            "description": "Optional known business contact name, for example 'Jane Smith'. The Actor only reports whether this text is visibly mentioned on the fetched company pages; it never generates an email pattern from the name. Leave blank for domain-level research. This is not a request to discover private contact data.",
+            "maxLength": 160
+          },
+          "externalId": {
+            "title": "Your record ID",
+            "type": "string",
+            "description": "Optional identifier returned unchanged, for example 'crm-001'. Use it to join results back to an authorized CRM or spreadsheet. It is limited to 200 characters. This value is not used for public-web searching.",
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "companyDomain"
+        ]
+      }
+    },
+    "maxTargets": {
+      "title": "Maximum domains to process",
+      "type": "integer",
+      "description": "Safety cap for accepted domain targets. Use 1 for a quick canary, and use up to 25 for one bounded batch. The default is 10 and values outside 1 to 25 are constrained. This is not a result-count or page-depth setting.",
+      "minimum": 1,
+      "maximum": 25
+    },
+    "maxPagesPerTarget": {
+      "title": "Maximum same-site pages per domain",
+      "type": "integer",
+      "description": "Maximum number of public same-site pages to inspect after the homepage, including the homepage. The Actor follows only directly linked contact, about, team, legal, privacy, or terms pages. The default is 3 and values are bounded from 1 to 5. This does not crawl a site broadly or invent URL paths.",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "requestTimeoutSecs": {
+      "title": "Per-page request timeout in seconds",
+      "type": "integer",
+      "description": "Time limit for one public page request, for example 20 seconds. The default is 20 and values are bounded from 5 to 45 seconds. Lower values make runs fail faster on unresponsive sites. This is not the whole-run timeout configured by Apify.",
+      "minimum": 5,
+      "maximum": 45
+    },
+    "useApifyUnblockerFallback": {
+      "title": "Use Apify Unblocker after a classified failure",
+      "type": "boolean",
+      "description": "Enable one Apify Unblocker retry only after a public direct request is blocked or transiently unavailable. The default is true and may add Apify proxy usage charges. Disable it for direct-only testing. This is not a guarantee that protected or private pages can be accessed."
+    },
+    "preferApifyUnblocker": {
+      "title": "Try Apify Unblocker before direct access",
+      "type": "boolean",
+      "description": "When true, try Apify Unblocker first for every public page; direct access remains the recovery route if proxy creation fails. The default is false because direct public HTTP is cheaper and preferred. Enable only for an authorized site with observed direct blocking. This is not a bypass for login, paywall, or access controls."
+    }
+  },
+  "required": [
+    "targets"
+  ]
+}

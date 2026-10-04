@@ -1,0 +1,46 @@
+{
+  "title": "LinkedIn Profile Details Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "profileUrls": {
+      "title": "LinkedIn profile URLs or handles",
+      "type": "array",
+      "description": "List of public LinkedIn person profiles to scrape. Accepts full URLs (https://www.linkedin.com/in/williamhgates/) or bare vanity handles (williamhgates). Each resolves to one output row. NOT company pages (/company/...) \u2014 those are skipped; for companies use the LinkedIn Company scrapers.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "maxProfiles": {
+      "title": "Max profiles",
+      "type": "integer",
+      "description": "Hard cap on how many profiles to scrape from profileUrls in one run, protecting your budget. Defaults to 1000 (the absolute max). Extra profiles beyond this cap are skipped and noted in the run summary. Does not add results that were not supplied in profileUrls.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "outputMode": {
+      "title": "Output detail level",
+      "type": "string",
+      "description": "How much per-profile data to return. 'full' (default) returns the complete experience, education, and published-articles arrays. 'compact' returns only the first 3 of each for smaller, agent-friendly records. Pricing is identical in both modes.",
+      "editor": "select",
+      "enum": [
+        "full",
+        "compact"
+      ],
+      "enumTitles": [
+        "Full (all fields)",
+        "Compact (smaller records)"
+      ]
+    },
+    "includeRawData": {
+      "title": "Include raw response payload",
+      "type": "boolean",
+      "description": "When true, each output row also includes the unmodified response JSON under rawProfile for debugging or accessing fields not yet mapped. Defaults to false to keep records small and agent-friendly. Turn on only when you need fields the normalized schema does not expose yet.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "profileUrls"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": "Software Reviews All-in-One Scraper \u2014 Input",
+  "description": "Scrape B2B software reviews across G2, Capterra, TrustRadius, SoftwareAdvice, GetApp. Provide startUrls (paste any product/reviews URL \u2014 platform auto-detected) OR searchQuery (find products across platforms by name).",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Product/reviews URLs",
+      "type": "array",
+      "description": "List of product or reviews URLs from G2, Capterra, TrustRadius, SoftwareAdvice, or GetApp. Platform is auto-detected from the domain. Use this when you already know the product page. NOT a search term \u2014 use 'searchQuery' for that.",
+      "editor": "requestListSources"
+    },
+    "searchQuery": {
+      "title": "Product name to search",
+      "type": "string",
+      "description": "Free-text software product name to find across platforms (e.g., 'Slack', 'HubSpot CRM', 'Notion'). Returns matching products from each enabled platform. Defaults to empty. NOT a URL \u2014 use 'startUrls' for direct product pages.",
+      "editor": "textfield"
+    },
+    "platforms": {
+      "title": "Platforms to search",
+      "type": "array",
+      "description": "Platforms used in search mode (ignored for startUrls \u2014 URL auto-detects). Defaults to G2, Capterra, TrustRadius. Add 'softwareadvice' or 'getapp' for the Gartner-family discovery sites. NOT used when startUrls is provided.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "g2",
+          "capterra",
+          "trustradius",
+          "softwareadvice",
+          "getapp"
+        ],
+        "enumTitles": [
+          "G2",
+          "Capterra",
+          "TrustRadius",
+          "SoftwareAdvice",
+          "GetApp"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "maxReviewsPerProduct": {
+      "title": "Max reviews per product",
+      "type": "integer",
+      "description": "Hard cap on reviews scraped per product (across all pages). Lower this to control PPE spend. Default 100. Range 1-5000. NOT total reviews across products \u2014 set this per-product.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxProductsPerSearch": {
+      "title": "Max products per search query",
+      "type": "integer",
+      "description": "Hard cap on products returned by each search per platform. Defaults to 10. Range 1-100. Only used in search mode.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "includeReviews": {
+      "title": "Scrape reviews",
+      "type": "boolean",
+      "description": "If true (default), scrapes individual reviews. If false, returns product summary cards only (name, rating, review count, URL) \u2014 cheaper for product discovery without review content. NOT a content filter \u2014 use 'maxReviewsPerProduct' to limit volume.",
+      "editor": "checkbox"
+    },
+    "sortReviewsBy": {
+      "title": "Sort reviews by",
+      "type": "string",
+      "description": "Review sort order. 'newest' returns most recent first, 'helpful' returns highest-voted first. Default 'newest'. NOT a filter \u2014 all matching reviews returned regardless of sort.",
+      "editor": "select",
+      "enum": [
+        "newest",
+        "helpful"
+      ],
+      "enumTitles": [
+        "Most recent",
+        "Most helpful"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify Proxy. Residential is strongly recommended \u2014 G2 and Capterra use Cloudflare/Gartner anti-bot that blocks datacenter IPs. Default: residential US.",
+      "editor": "proxy"
+    },
+    "debug": {
+      "title": "Debug dump (developer only)",
+      "type": "boolean",
+      "description": "When true, the first page of each product is dumped to the run's key-value store under 'DEBUG-<platform>-<slug>' for selector diagnostics. Leave OFF for production scrapes \u2014 it makes runs slower and clutters KV.",
+      "editor": "checkbox"
+    }
+  }
+}

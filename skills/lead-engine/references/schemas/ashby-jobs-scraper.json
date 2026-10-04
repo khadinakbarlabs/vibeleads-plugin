@@ -1,0 +1,58 @@
+{
+  "title": "Ashby Jobs Scraper input",
+  "description": "Extract public Ashby job boards for recruiting, hiring intelligence, job-market research, and structured AI-agent workflows. It reads Ashby's public Posting API and never submits applications.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "boardTokens": {
+      "title": "Ashby board tokens or URLs",
+      "type": "array",
+      "description": "Enter one public Ashby board token or jobs URL per line, such as notion or https://jobs.ashbyhq.com/notion. The actor extracts and deduplicates up to 25 boards. This is required and is not a company website URL, individual job URL, application form, or Ashby admin URL.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxResultsPerBoard": {
+      "title": "Maximum jobs per board",
+      "type": "integer",
+      "description": "Caps validated job records returned for each Ashby board. Enter an integer such as 100. It defaults to 100 and accepts 1 through 1,000. This is a per-board output cap, not a page count or a global budget across every board.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "titleIncludes": {
+      "title": "Job title contains",
+      "type": "string",
+      "description": "Optionally keep only jobs whose public title contains this text, such as engineer. Matching is case-insensitive and uses literal text. Leave blank to keep all titles. This is not a Boolean query or a full-text search across job descriptions.",
+      "editor": "textfield"
+    },
+    "locationIncludes": {
+      "title": "Location contains",
+      "type": "string",
+      "description": "Optionally keep only jobs whose public primary or secondary location contains this text, such as remote or london. Matching is case-insensitive against text supplied by Ashby. Leave blank to keep every location. This does not geocode jobs or search office addresses.",
+      "editor": "textfield"
+    },
+    "departmentIncludes": {
+      "title": "Department contains",
+      "type": "string",
+      "description": "Optionally keep only jobs whose public Ashby department contains this text, such as engineering. Matching is case-insensitive against the department field. Leave blank to keep all departments. This does not infer departments from job titles or descriptions.",
+      "editor": "textfield"
+    },
+    "remoteOnly": {
+      "title": "Remote jobs only",
+      "type": "boolean",
+      "description": "Keeps only jobs Ashby marks remote or with workplace type Remote. Set true for remote-role research or false to retain all listed roles. It defaults to false. This does not infer remote eligibility from a job description or location text.",
+      "editor": "checkbox"
+    },
+    "includeDescriptions": {
+      "title": "Include job descriptions",
+      "type": "boolean",
+      "description": "Controls whether each output record includes public Ashby description HTML and clean text. Set true for detailed recruiting and research data or false for smaller results. It defaults to true. This does not retrieve private hiring notes, candidates, or application answers.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "boardTokens"
+  ]
+}

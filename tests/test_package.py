@@ -1,0 +1,71 @@
+"""Adversarial release tests: private files, manifest paths and archive integrity."""
+import json
+from pathlib import Path
+import shutil
+import sys
+import tempfile
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from validate_package import validate
+from package_release import package
+
+
+class PackageTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='vibeleads-package-test-')
+        self.root = Path(self.temp.name) / 'source'
+        shutil.copytree(ROOT, self.root, ignore=shutil.ignore_patterns('.git', '__pycache__', '*.pyc'))
+
+    def tearDown(self): self.temp.cleanup()
+
+    def test_roundtrip_both_layouts(self):
+        report = package(self.root, Path(self.temp.name) / 'export')
+        self.assertEqual(len(report['archives']), 2)
+        self.assertTrue(all(row['roundtrip_passed'] for row in report['archives']))
+
+    def test_exports_cannot_enter_source_tree(self):
+        with self.assertRaises(ValueError): package(self.root, self.root / 'export')
+
+    def test_private_csv_rejected(self):
+        (self.root / 'docs/private-contacts.csv').write_text('name,email\nprivate,private@example.test\n')
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_auth_filename_and_key_rejected(self):
+        (self.root / 'skills/lead-engine/auth.json').write_text(json.dumps({'api_key': 'privatevalue'}))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_secret_field_rejected_even_with_innocent_filename(self):
+        (self.root / 'docs/sample.json').write_text(json.dumps({'access_token': 'privatevalue'}))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_symlink_rejected(self):
+        (self.root / 'docs/extra.md').symlink_to(self.root / 'README.md')
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_manifest_name_cannot_escape(self):
+        for relative in ['plugin.json', '.claude-plugin/plugin.json', '.cursor-plugin/plugin.json']:
+            path = self.root / relative; data = json.loads(path.read_text()); data['name'] = '../outside-export'; path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+        with self.assertRaises(ValueError): package(self.root, Path(self.temp.name) / 'export')
+
+    def test_version_must_be_safe_semver(self):
+        for relative in ['plugin.json', '.claude-plugin/plugin.json', '.cursor-plugin/plugin.json']:
+            path = self.root / relative; data = json.loads(path.read_text()); data['version'] = '../../outside'; path.write_text(json.dumps(data))
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_nonobject_manifest_rejected_without_crash(self):
+        (self.root / 'plugin.json').write_text('[]')
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_missing_listing_asset_rejected(self):
+        (self.root / 'assets/icon.png').unlink()
+        self.assertFalse(validate(self.root)['passed'])
+
+    def test_missing_resource_fails_release(self):
+        (self.root / 'skills/lead-engine/references/operating-contract.md').unlink()
+        self.assertFalse(validate(self.root)['passed'])
+
+
+if __name__ == '__main__': unittest.main()

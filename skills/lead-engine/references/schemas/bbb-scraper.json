@@ -1,0 +1,96 @@
+{
+  "title": "BBB Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchKeyword": {
+      "title": "Search keyword",
+      "type": "string",
+      "description": "Business type or name to search on bbb.org, e.g. 'plumber', 'hvac contractor', or a company name. Combine with 'location' to scope by city. Leave empty if you instead pass profile URLs in 'startUrls'. NOT a URL \u2014 for a single known business use 'startUrls'.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location (City, State)",
+      "type": "string",
+      "description": "Geographic area to scope the search, formatted as 'City, ST' for the US or 'City, Province' for Canada, e.g. 'Los Angeles, CA'. Optional \u2014 omit for a nationwide search. Ignored when only profile 'startUrls' are provided. NOT a ZIP code on its own.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "Country",
+      "type": "string",
+      "description": "Country directory to search: US (bbb.org USA) or CA (Canada). Defaults to US. Also pins the residential proxy region. Does not affect direct profile 'startUrls', which already encode their country.",
+      "editor": "select",
+      "enum": [
+        "US",
+        "CA"
+      ],
+      "enumTitles": [
+        "United States",
+        "Canada"
+      ]
+    },
+    "startUrls": {
+      "title": "BBB profile URLs",
+      "type": "array",
+      "description": "Direct bbb.org business profile URLs to scrape in depth, e.g. https://www.bbb.org/us/ca/los-angeles/profile/plumber/example-1216-907682 . Use instead of, or alongside, a keyword search. NOT search or category URLs \u2014 only '/profile/' pages are scraped here.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of businesses to return across the whole run. Defaults to 100. A single keyword+location search caps at 225 results on bbb.org; raise this and add more locations to collect more. Controls cost \u2014 you are billed per returned business.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "enrichDetails": {
+      "title": "Enrich with profile details",
+      "type": "boolean",
+      "description": "When true (default), each business found in search is opened and its full profile is scraped (accreditation date, years in business, hours, owner contacts). When false, only the lighter search-listing fields are returned, which is faster and cheaper. Ignored for direct profile 'startUrls' (always enriched).",
+      "editor": "checkbox"
+    },
+    "minRating": {
+      "title": "Minimum BBB rating",
+      "type": "string",
+      "description": "Only return businesses with at least this BBB letter rating (A+ is highest, F lowest). Defaults to 'Any' (no filter). Businesses with no published rating are excluded when a minimum is set. Applied after scraping each business.",
+      "editor": "select",
+      "enum": [
+        "Any",
+        "A+",
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ],
+      "enumTitles": [
+        "Any rating",
+        "A+ only",
+        "A and above",
+        "B and above",
+        "C and above",
+        "D and above",
+        "F and above"
+      ]
+    },
+    "accreditedOnly": {
+      "title": "BBB-accredited businesses only",
+      "type": "boolean",
+      "description": "When true, return only BBB-Accredited businesses and skip the rest. Defaults to false (return all). Useful for lead lists that require accreditation. Applied after each business is scraped.",
+      "editor": "checkbox"
+    },
+    "storeRawSample": {
+      "title": "Store raw page sample (debug)",
+      "type": "boolean",
+      "description": "Developer/debug option. When true, the first search and profile page's raw embedded JSON is saved to the key-value store for inspection. Defaults to false. Leave off for normal runs \u2014 it does not change the dataset output.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Advanced. Proxy settings. Defaults to Apify Residential proxy pinned to the chosen country, which is required to bypass bbb.org's Cloudflare protection. Override only if you know what you are doing \u2014 datacenter proxies are blocked by BBB.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

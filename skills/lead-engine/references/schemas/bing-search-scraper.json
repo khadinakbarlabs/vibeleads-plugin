@@ -1,0 +1,142 @@
+{
+  "title": "Bing Search Scraper input",
+  "description": "Configure Bing SERP scraping. Provide queries or direct Bing URLs; pick country/language/market for localized results.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Search queries or Bing URLs",
+      "type": "array",
+      "description": "List of free-text search queries (e.g., 'best crm software 2026') or full Bing search URLs (https://www.bing.com/search?q=...). Each query produces one or more result records. Defaults to a sample marketing query. NOT for Bing Maps URLs \u2014 use the bing-maps-scraper actor instead.",
+      "editor": "stringList"
+    },
+    "country": {
+      "title": "Country code",
+      "type": "string",
+      "description": "Two-letter ISO country code (e.g., 'US', 'GB', 'DE') used for IP geo-targeting via Apify residential proxy and Bing market hint. Defaults to 'US'. NOT a city name or 3-letter code.",
+      "editor": "select",
+      "enum": [
+        "US",
+        "GB",
+        "CA",
+        "AU",
+        "DE",
+        "FR",
+        "ES",
+        "IT",
+        "NL",
+        "BR",
+        "MX",
+        "IN",
+        "JP",
+        "CN",
+        "KR",
+        "RU",
+        "TR",
+        "AE",
+        "SG",
+        "ZA",
+        "SE",
+        "NO",
+        "DK",
+        "FI",
+        "PL",
+        "PT",
+        "ID",
+        "TH",
+        "VN",
+        "PH",
+        "MY",
+        "AR",
+        "CL"
+      ]
+    },
+    "language": {
+      "title": "Language code",
+      "type": "string",
+      "description": "Two-letter ISO language code for Bing UI/results filter (e.g., 'en', 'es', 'de'). Combines with country to form the Bing market parameter (e.g., en + US = en-US). Defaults to 'en'. NOT a locale string like 'en-US'.",
+      "editor": "select",
+      "enum": [
+        "en",
+        "es",
+        "de",
+        "fr",
+        "it",
+        "pt",
+        "nl",
+        "ru",
+        "ja",
+        "ko",
+        "zh",
+        "ar",
+        "tr",
+        "pl",
+        "sv",
+        "no",
+        "da",
+        "fi",
+        "id",
+        "th",
+        "vi",
+        "hi"
+      ]
+    },
+    "safeSearch": {
+      "title": "SafeSearch filter",
+      "type": "string",
+      "description": "Bing SafeSearch level: 'off' = no filter, 'moderate' = blur explicit images only, 'strict' = filter all adult content. Defaults to 'moderate'. NOT a content quality filter.",
+      "editor": "select",
+      "enum": [
+        "off",
+        "moderate",
+        "strict"
+      ]
+    },
+    "maxResultsPerQuery": {
+      "title": "Max results per query",
+      "type": "integer",
+      "description": "Hard cap on result records emitted per query, including organic, ads, Copilot answer, PAA, and related searches. Defaults to 50. Range 1-200. NOT the number of Bing result pages \u2014 pagination is automatic until this cap is reached.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "includeAds": {
+      "title": "Include sponsored ads",
+      "type": "boolean",
+      "description": "When true, paid ads at top/bottom of SERP are extracted as records with type='ad'. Defaults to true. NOT a setting for Microsoft Advertising API.",
+      "editor": "checkbox"
+    },
+    "includeCopilotAnswer": {
+      "title": "Include Microsoft Copilot AI answer",
+      "type": "boolean",
+      "description": "When true, the Copilot/AI Overview answer block above results is extracted as one record with type='copilot_answer'. Defaults to true. NOT a separate Copilot Chat API call.",
+      "editor": "checkbox"
+    },
+    "includeRelatedSearches": {
+      "title": "Include related searches & PAA",
+      "type": "boolean",
+      "description": "When true, 'People also ask' (PAA) questions and 'Related searches' suggestions are emitted as records with type='paa' or 'related'. Defaults to true. NOT scraping of PAA expanded answers \u2014 only the questions and related queries are returned.",
+      "editor": "checkbox"
+    },
+    "fallbackMode": {
+      "title": "Managed Bing fallback mode",
+      "type": "string",
+      "description": "Controls when the managed Bing search fallback runs. 'auto' (default) \u2014 Bing direct first; managed fallback only for queries the direct scrape returned zero records for. 'always' \u2014 skip Bing direct, use managed search for every query (most reliable, higher cost). 'never' \u2014 direct Bing only, no fallback. NOT a setting for the Microsoft Bing Search API.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "always",
+        "never"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify Proxy configuration. Defaults to residential proxy with country-targeted IP for reliable Bing access. Override only if you have a specific proxy strategy.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Trustpilot Company Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Company targets",
+      "type": "array",
+      "description": "Use this when you need Trustpilot company records from domains, company URLs, search terms, or category pages. Enter one item per line: 'apple.com' or 'https://www.trustpilot.com/review/apple.com' returns a company profile; '/categories/bank' returns a category leaderboard; 'online banks' runs company search. NOT for individual review text \u2014 use the trustpilot-reviews-scraper actor for reviews.",
+      "editor": "stringList"
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "string",
+      "description": "Use this when you want to force how every company target is interpreted. 'auto' detects profile, search, or category per item; 'profile' treats each item as a company domain or Trustpilot review URL; 'search' runs Trustpilot company search; 'category' treats each item as a category slug or URL. Defaults to auto and is NOT a review filter.",
+      "enum": [
+        "auto",
+        "profile",
+        "search",
+        "category"
+      ],
+      "enumTitles": [
+        "Auto-detect (recommended)",
+        "Company profile",
+        "Search",
+        "Category leaderboard"
+      ]
+    },
+    "country": {
+      "title": "Country (for search & category)",
+      "type": "string",
+      "description": "Use this when search or category results should be scoped to a Trustpilot market. Enter a two-letter ISO country code such as 'US', 'GB', 'DE', 'FR', or 'AU'; leave empty for global trustpilot.com. Ignored for profile mode because company profiles resolve to canonical pages. NOT a language or review-country filter.",
+      "editor": "textfield"
+    },
+    "maxResultsPerQuery": {
+      "title": "Max results per query",
+      "type": "integer",
+      "description": "Use this to cap how many company records are returned for each target. Profile targets always return at most 1 company; search and category targets paginate until this cap is reached or results run out. Defaults to 50 with a hard cap of 1000 per target to protect budget. NOT a review-count limit.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Use this to choose the outbound proxy for Trustpilot pages. Defaults to Apify Residential proxies because Trustpilot uses Cloudflare and often blocks datacenter IPs at the TLS-fingerprint level. Leave as default unless you have a specific residential pool. NOT needed for authentication; this actor does not log in.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Bulk Website Contact Extractor Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Website URLs to process",
+      "type": "array",
+      "description": "Use this field when the user provides a list of website URLs to extract emails, phone numbers, or contact information from. Each URL is crawled independently and returns one result record. Accepts both plain strings ('https://acme.com') and objects ({\"url\": \"https://acme.com\"}). Do NOT use for search queries \u2014 this requires direct URLs. Example triggers: 'extract emails from these sites', 'get contact info for this URL list', 'enrich these domains'.",
+      "editor": "requestListSources"
+    },
+    "maxPagesPerDomain": {
+      "title": "Max pages to crawl per URL",
+      "type": "integer",
+      "description": "How many pages to visit per input URL when hunting for contact info. The crawler always prioritises /contact, /about, /team, and /imprint pages before general pages. Higher values = more thorough extraction but more credits used. Use 1 to scan the homepage only. Default: 6.",
+      "minimum": 1,
+      "maximum": 20,
+      "editor": "number"
+    },
+    "maxResults": {
+      "title": "Max URLs to process",
+      "type": "integer",
+      "description": "Maximum number of input URLs to process. Use when the user says 'process only the first 100', 'limit to 50 websites', or 'stop after 200 results'. Set to 0 to process all input URLs. Default: 1000.",
+      "minimum": 0,
+      "editor": "number"
+    },
+    "followContactPages": {
+      "title": "Follow contact & about pages",
+      "type": "boolean",
+      "description": "When enabled, the crawler automatically discovers and follows links to /contact, /about, /team, /imprint, /support, and equivalent multilingual pages before extracting. Recommended: keep enabled for best email and phone discovery. Disable only if you want to scan the homepage URL only.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "HTTP proxy settings. Leave as default (Apify datacenter proxies) for most websites. Switch to residential proxies only if target sites block datacenter IPs \u2014 residential proxies are slower and cost more.",
+      "editor": "proxy",
+      "sectionCaption": "Advanced settings",
+      "sectionDescription": "Proxy and performance configuration"
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Dun & Bradstreet Companies Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "D&B directory URLs",
+      "type": "array",
+      "description": "Paste Dun & Bradstreet business-directory URLs. Accepts BOTH listing pages (e.g. https://www.dnb.com/business-directory/company-information.software_publishers.us.california.html) AND individual company-profile pages (e.g. https://www.dnb.com/business-directory/company-profiles.apple_inc.<hash>.html). The actor auto-detects each URL type. Leave empty to use the industry/country/region search fields instead.",
+      "editor": "stringList"
+    },
+    "industryPath": {
+      "title": "Industry path (search mode)",
+      "type": "string",
+      "description": "D&B industry slug used for structured search when no startUrls are given (e.g. 'software_publishers'). Find slugs on any industry-analysis URL or via D&B's industry list. Used together with Country and Region. NOT a free-text industry name \u2014 it must be the underscore slug exactly as it appears in a dnb.com URL.",
+      "editor": "textfield"
+    },
+    "countryIsoCode": {
+      "title": "Country (2-letter ISO)",
+      "type": "string",
+      "description": "Two-letter ISO country code for search mode (e.g. 'us', 'gb', 'de', 'ca'). Defaults to 'us'. Ignored when startUrls are provided. NOT a country name \u2014 use the ISO-3166 alpha-2 code.",
+      "editor": "textfield"
+    },
+    "regionName": {
+      "title": "Region / state (search mode)",
+      "type": "string",
+      "description": "Optional state or region to narrow search mode (e.g. 'california', 'texas', 'new_york'). Leave empty to search the whole country. Ignored when startUrls are provided. Use the lowercase underscore form as it appears in dnb.com listing URLs.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Max companies",
+      "type": "integer",
+      "description": "Maximum number of company records to return across all inputs. D&B caps any single industry+region listing at 1000 companies (20 pages of 50). Defaults to 50. Higher values cost more (see pricing).",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "enrichDetails": {
+      "title": "Enrich with full company profile",
+      "type": "boolean",
+      "description": "When true (default), each company from a listing is enriched with its full profile page (website, industries + NAICS, Fortune ranking, competitor industry, similar companies, contact/principal counts). Adds one extra request per company. Set false for a faster, listing-only run (name, DUNS, address, revenue).",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used for requests. Defaults to Apify datacenter (US). D&B sits behind Cloudflare but is reachable via browser-grade TLS fingerprints; datacenter proxy with IP rotation is normally sufficient. Switch to residential only if you observe blocks.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

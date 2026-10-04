@@ -1,0 +1,115 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Public Tenders Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Search published public procurement notices from EU TED, UK Contracts Finder, and UK Find a Tender. Pass a keyword plus optional CPV, country, and date filters. HTTP-only official APIs; no login or API key. US federal opportunities belong on sam-gov-scraper.",
+  "properties": {
+    "keyword": {
+      "title": "Keyword",
+      "type": "string",
+      "description": "Free-text query matched against notice titles and descriptions, for example 'software' or 'school catering'. TED uses expert FT~ search; UK Contracts Finder uses its keyword index. Leave empty to browse the date window only. This is not a CPV code \u2014 put codes in cpvCodes.",
+      "editor": "textfield"
+    },
+    "sources": {
+      "title": "Sources",
+      "type": "array",
+      "description": "Which official registers to query. ted is EU Tenders Electronic Daily. uk-contracts-finder is below-threshold UK notices. uk-find-a-tender is above-threshold UK notices. Default all three. This is not SAM.gov \u2014 use sam-gov-scraper for US federal RFPs.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ted",
+          "uk-contracts-finder",
+          "uk-find-a-tender"
+        ],
+        "enumTitles": [
+          "EU TED",
+          "UK Contracts Finder",
+          "UK Find a Tender"
+        ]
+      }
+    },
+    "countries": {
+      "title": "Buyer countries (TED)",
+      "type": "array",
+      "description": "ISO 3166-1 alpha-3 buyer countries for TED only, for example DEU or FRA. Leave empty for all TED countries. UK sources always stay GBR. Do not pass two-letter codes such as DE.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cpvCodes": {
+      "title": "CPV codes",
+      "type": "array",
+      "description": "Common Procurement Vocabulary codes, 2-8 digits, for example 72000000 for IT services. TED prefix-matches so 72 also covers 72000000 children. Leave empty for every sector. This is not a keyword.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "statusFilter": {
+      "title": "Notice status",
+      "type": "string",
+      "enum": [
+        "open",
+        "awarded",
+        "all"
+      ],
+      "enumTitles": [
+        "Open / active tenders",
+        "Awards only",
+        "All notices"
+      ],
+      "description": "Which procurement stage to keep. open (default) is active TED notices and Open UK Contracts Finder tenders. awarded is TED contract-award notices and Awarded UK rows. all includes planning. This is not a bid-win probability."
+    },
+    "datePreset": {
+      "title": "Date range",
+      "type": "string",
+      "enum": [
+        "last_24_hours",
+        "last_7_days",
+        "last_30_days",
+        "custom"
+      ],
+      "enumTitles": [
+        "Last 24 hours",
+        "Last 7 days",
+        "Last 30 days",
+        "Custom from/to dates"
+      ],
+      "description": "Publication-date window applied to TED, Contracts Finder, and Find a Tender. last_7_days is the default quality sample. Choose custom only when publishedFrom is set. This is publication date, not bid deadline."
+    },
+    "publishedFrom": {
+      "title": "Custom from date",
+      "type": "string",
+      "description": "Inclusive publication start date as YYYY-MM-DD, for example 2026-09-01. Used only when datePreset is custom. Ignored for last_7_days and other presets.",
+      "editor": "textfield"
+    },
+    "publishedTo": {
+      "title": "Custom to date",
+      "type": "string",
+      "description": "Inclusive publication end date as YYYY-MM-DD, for example 2026-09-17. Used only when datePreset is custom. Defaults to today when omitted.",
+      "editor": "textfield"
+    },
+    "expertQuery": {
+      "title": "TED expert query (override)",
+      "type": "string",
+      "description": "Native TED expert-search expression, for example buyer-country=DEU AND classification-cpv=72000000*. When set, it replaces the TED keyword/country/CPV/date query. Leave empty for normal use. UK sources ignore this field.",
+      "editor": "textarea"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 250,
+      "description": "Hard cap on billed dataset rows for the whole run. Default 25. Prefill 5 keeps the quality sample cheap: each saved notice is one $0.005 tender-found event. This is not a page number."
+    },
+    "language": {
+      "title": "TED language",
+      "type": "string",
+      "description": "TED language code for localized title and buyer fields, default ENG. Falls back to English then the first available translation. UK notices stay English. This is not a country filter.",
+      "editor": "textfield"
+    }
+  }
+}

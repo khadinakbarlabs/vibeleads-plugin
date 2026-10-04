@@ -1,0 +1,52 @@
+{
+  "title": "Greenhouse Jobs Scraper input",
+  "description": "Extract public Greenhouse job boards for recruiting, job-market research, and structured AI-agent workflows. It reads the public Greenhouse Job Board API and never submits applications.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "boardTokens": {
+      "title": "Greenhouse board tokens or URLs",
+      "type": "array",
+      "description": "Enter one public Greenhouse board token or board URL per line, such as stripe or https://job-boards.greenhouse.io/stripe. The actor extracts the token and accepts up to 25 unique boards. This is required and is not a company website URL, login URL, individual job URL, or application form.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxResultsPerBoard": {
+      "title": "Maximum jobs per board",
+      "type": "integer",
+      "description": "Caps validated job records returned for each Greenhouse board. Enter an integer such as 100. It defaults to 100 and accepts 1 through 1,000. This is a per-board result cap, not a page count or a global budget across every board.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "titleIncludes": {
+      "title": "Job title contains",
+      "type": "string",
+      "description": "Optionally keep only jobs whose public title contains this text, such as engineer. Matching is case-insensitive and uses literal text. Leave blank to keep all titles. This is not a Boolean query or a full-text search across descriptions.",
+      "editor": "textfield"
+    },
+    "locationIncludes": {
+      "title": "Location contains",
+      "type": "string",
+      "description": "Optionally keep only jobs whose public Greenhouse location contains this text, such as remote or london. Matching is case-insensitive and uses the location text supplied by the board. Leave blank to keep every location. This does not geocode jobs or search office addresses.",
+      "editor": "textfield"
+    },
+    "departmentIncludes": {
+      "title": "Department contains",
+      "type": "string",
+      "description": "Optionally keep only jobs assigned to a public Greenhouse department containing this text, such as engineering. Matching is case-insensitive across the public department names. Leave blank to keep all departments. This does not infer a department from the job description.",
+      "editor": "textfield"
+    },
+    "includeDescriptions": {
+      "title": "Include job descriptions",
+      "type": "boolean",
+      "description": "Controls whether each output record includes the public Greenhouse description in HTML and clean text. Set true for detailed recruiting and research data or false for a smaller, faster result. It defaults to true. This does not retrieve private hiring notes, candidates, or application answers.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "boardTokens"
+  ]
+}

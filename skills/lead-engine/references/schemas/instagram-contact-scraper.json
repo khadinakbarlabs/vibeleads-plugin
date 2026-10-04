@@ -1,0 +1,28 @@
+{
+  "title": "Instagram Contact Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "usernames": {
+      "title": "Instagram usernames or profile URLs",
+      "type": "array",
+      "description": "One or more Instagram accounts to extract contact info from. Accepts bare usernames ('nike'), @-handles ('@nasa'), or full profile URLs ('https://instagram.com/hubspot'). Business and creator accounts are most likely to have email/phone. Returns one record per profile.",
+      "editor": "stringList"
+    },
+    "onlyWithContact": {
+      "title": "Only save profiles with contact info",
+      "type": "boolean",
+      "description": "When true, only profiles that have at least one email or phone number are pushed to the dataset. Profiles with no contact data are silently skipped (not billed). Useful for lead-gen pipelines where you only want actionable rows. Default: false (all profiles saved)."
+    },
+    "maxItems": {
+      "title": "Max profiles to process",
+      "type": "integer",
+      "description": "Stop after processing this many profiles. Useful for budget control on large lists. Defaults to unlimited (all supplied usernames).",
+      "editor": "number",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "usernames"
+  ]
+}

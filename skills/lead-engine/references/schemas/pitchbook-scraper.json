@@ -1,0 +1,31 @@
+{
+  "title": "PitchBook Public Profile Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "profileUrls": {
+      "title": "Public PitchBook URLs",
+      "type": "array",
+      "description": "Use this when you already have public PitchBook profile, research, or news URLs. Enter up to 25 HTTPS URLs such as https://pitchbook.com/profiles/company/127635-40. When direct public HTML is unavailable, the optional Google fallback can recover only publicly indexed title and description metadata. The actor rejects login, dashboard, and private subscription URLs.",
+      "editor": "stringList"
+    },
+    "maxItems": {
+      "title": "Maximum records",
+      "type": "integer",
+      "description": "Use this when limiting cost and run time. Sets the number of accepted URLs to process, from 1 to 25; default 10. It is not a search-results limit because this actor does not discover or crawl private PitchBook pages.",
+      "minimum": 1,
+      "maximum": 25
+    },
+    "useApifyProxy": {
+      "title": "Use Apify Residential proxy",
+      "type": "boolean",
+      "description": "Use this for the initial direct request to a public PitchBook URL. The default true sends an ordinary unauthenticated request through Apify Residential proxy. It does not log in, persist cookies, solve CAPTCHAs, or circumvent access controls. Disable only when testing direct Apify-cloud access."
+    },
+    "useGoogleSearchFallback": {
+      "title": "Use public Google metadata fallback",
+      "type": "boolean",
+      "description": "Use this when PitchBook blocks the direct unauthenticated request. The default true queries the exact URL identifier through Apify's Google SERP proxy and accepts only a result whose destination exactly matches the supplied URL. It returns public indexed title and description metadata, not private PitchBook fields. Disable to require direct-page extraction only."
+    }
+  },
+  "required": []
+}

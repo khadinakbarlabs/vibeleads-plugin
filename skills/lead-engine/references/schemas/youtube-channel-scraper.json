@@ -1,0 +1,87 @@
+{
+  "title": "YouTube Channel Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "channelUrls": {
+      "title": "Channel URLs or handles",
+      "type": "array",
+      "description": "Use this when you know the YouTube channels to inspect. Accepts full URLs, @handles, /channel IDs, or bare handles such as @Apify. Defaults to one small Apify channel test. Not for keyword search; use youtube-search-scraper for discovery.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxVideosPerChannel": {
+      "title": "Max videos per channel",
+      "type": "integer",
+      "description": "Use this to include recent regular videos from each channel. Set 0 for channel profile only, 5 for fast agent calls, or up to 100 for deeper exports. Defaults to 5. Not a global row limit; it applies separately to each channel.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "includeShorts": {
+      "title": "Include Shorts",
+      "type": "boolean",
+      "description": "Use this when Shorts are part of the channel audit. If true, the actor also requests Shorts up to maxShortsPerChannel. Defaults to false for faster health checks. Not for global Shorts discovery; use youtube-shorts-scraper for that.",
+      "editor": "checkbox"
+    },
+    "maxShortsPerChannel": {
+      "title": "Max Shorts per channel",
+      "type": "integer",
+      "description": "Use this to cap Shorts collected when includeShorts is true. Accepts 0 to 50 and defaults to 0. Keep it small for MCP calls. Not used when includeShorts is false.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 50
+    },
+    "sortVideosBy": {
+      "title": "Video sort",
+      "type": "string",
+      "description": "Use this to choose how channel videos are listed. Accepted values are latest or popular, with latest as the default. The setting applies to regular videos and provider-backed Shorts when supported. Not a relevance search sort.",
+      "editor": "select",
+      "enum": [
+        "latest",
+        "popular"
+      ],
+      "enumTitles": [
+        "Latest",
+        "Popular"
+      ]
+    },
+    "providerMode": {
+      "title": "Provider mode",
+      "type": "string",
+      "description": "Use this to control the managed provider path. auto tries managed public-data routes when the owner secret is configured and falls back to direct YouTube. direct skips providers. providerOnly soft-exits if no provider key is available.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "direct",
+        "providerOnly"
+      ],
+      "enumTitles": [
+        "Auto",
+        "Direct only",
+        "Provider only"
+      ]
+    },
+    "country": {
+      "title": "Country",
+      "type": "string",
+      "description": "Use this to localize YouTube responses with a two-letter country code. Example: US, GB, PK, or DE. Defaults to US. Not a filter for channels by country.",
+      "editor": "textfield",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Use this to localize text labels returned by YouTube. Example: en, es, de, or fr. Defaults to en. Not a translation feature for channel descriptions.",
+      "editor": "textfield",
+      "minLength": 2,
+      "maxLength": 8
+    }
+  },
+  "required": [
+    "channelUrls"
+  ]
+}

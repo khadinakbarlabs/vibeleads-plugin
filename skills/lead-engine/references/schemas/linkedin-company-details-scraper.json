@@ -1,0 +1,28 @@
+{
+  "title": "LinkedIn Company Details Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyUrls": {
+      "title": "LinkedIn company URLs or slugs",
+      "type": "array",
+      "description": "List of LinkedIn company pages to scrape. Each item is either a full company URL (e.g. 'https://www.linkedin.com/company/shopify') or a bare company slug (e.g. 'shopify'). Defaults to none \u2014 at least one is required. NOT for personal profiles, posts, or schools; use the matching profile/posts actor for those.",
+      "editor": "stringList"
+    },
+    "includePosts": {
+      "title": "Include recent company posts",
+      "type": "boolean",
+      "description": "When true, each company record includes a 'recentPosts' array (post URL, date, text) published by the company page. Defaults to false to keep records small and cheap for AI agents. Does NOT change the per-company price."
+    },
+    "maxCompanies": {
+      "title": "Max companies",
+      "type": "integer",
+      "description": "Hard ceiling on how many companies to scrape this run, after de-duplication. Accepts 1 to 1000. Defaults to 100. Caps both work and PPE spend \u2014 extra input URLs beyond this limit are ignored.",
+      "minimum": 1,
+      "maximum": 1000
+    }
+  },
+  "required": [
+    "companyUrls"
+  ]
+}

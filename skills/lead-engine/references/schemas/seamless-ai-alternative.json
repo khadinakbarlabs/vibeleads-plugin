@@ -1,0 +1,84 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Public Contact Research",
+  "description": "Provide people you already know and their company domains. The Actor only reads public company pages; it does not search private contact databases or infer email addresses.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "contacts": {
+      "title": "Known contacts and company domains",
+      "type": "array",
+      "description": "1\u201325 caller-supplied contacts. companyDomain is required. fullName helps locate a public mention on the company site, but is optional.",
+      "editor": "json",
+      "minItems": 1,
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fullName": {
+            "title": "Full name",
+            "type": "string",
+            "description": "Known business contact name used only to identify public mentions on the supplied company website.",
+            "maxLength": 160
+          },
+          "companyDomain": {
+            "title": "Company domain",
+            "type": "string",
+            "description": "Public company website hostname, such as example.com. Do not provide private, local, or IP-address hosts.",
+            "maxLength": 253
+          },
+          "companyName": {
+            "title": "Company name",
+            "type": "string",
+            "description": "Optional label returned unchanged in the result.",
+            "maxLength": 200
+          },
+          "externalId": {
+            "title": "Your record ID",
+            "type": "string",
+            "description": "Optional identifier returned unchanged so results can be matched to your workflow.",
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "companyDomain"
+        ]
+      }
+    },
+    "maxContacts": {
+      "title": "Maximum contacts to process",
+      "type": "integer",
+      "description": "Safety cap applied after validation. Use a lower number for a small canary run.",
+      "minimum": 1,
+      "maximum": 25
+    },
+    "maxPagesPerContact": {
+      "title": "Maximum public pages per contact",
+      "type": "integer",
+      "description": "The Actor tries the homepage, /contact, /about, and /team in a fixed bounded order.",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "requestTimeoutSecs": {
+      "title": "Per-page request timeout (seconds)",
+      "type": "integer",
+      "description": "Time limit for each public-page request.",
+      "minimum": 5,
+      "maximum": 45
+    },
+    "useApifyUnblockerFallback": {
+      "title": "Use Apify Unblocker after a classified direct failure",
+      "type": "boolean",
+      "description": "When enabled, a single Apify Unblocker retry is attempted only after a direct fetch is blocked or transiently unavailable. This can add Apify proxy usage charges."
+    },
+    "preferApifyUnblocker": {
+      "title": "Prefer Apify Unblocker before a direct request",
+      "type": "boolean",
+      "description": "Off by default. Enable only if a customer-authorized site consistently blocks direct public requests."
+    }
+  },
+  "required": [
+    "contacts"
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Eventbrite Events Scraper",
+  "description": "Scrape Eventbrite events by URL, free-text search, or filter combinations (city + category + date + format). Provide ONE of: searchQuery, location, or startUrls.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Free-text keyword to search Eventbrite (e.g., 'tech conference', 'jazz concert', 'startup meetup'). Combined with location and date filters when provided. Leave empty when using startUrls or browsing by category alone. NOT an event ID and NOT an Eventbrite URL \u2014 for those use startUrls instead.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City or country slug used by Eventbrite (e.g., 'ny--new-york', 'ca--san-francisco', 'united-kingdom--london', 'united-states', 'online'). Format is two letters for state/region, double hyphen, then city name in lowercase with hyphens. Defaults to 'united-states' when omitted. NOT a free-text city name \u2014 must be the URL slug.",
+      "editor": "textfield"
+    },
+    "category": {
+      "title": "Category",
+      "type": "string",
+      "description": "Eventbrite category slug to filter results (e.g., 'music', 'business', 'food-and-drink', 'health', 'arts', 'sports-and-fitness'). Leave empty for all categories. NOT a custom keyword \u2014 use searchQuery for that. See https://www.eventbrite.com/d/online/all-events/ for full list.",
+      "editor": "select",
+      "enum": [
+        "",
+        "music",
+        "business",
+        "food-and-drink",
+        "community",
+        "arts",
+        "film-and-media",
+        "sports-and-fitness",
+        "health",
+        "science-and-tech",
+        "travel-and-outdoor",
+        "charity-and-causes",
+        "spirituality",
+        "family-and-education",
+        "seasonal",
+        "government",
+        "fashion",
+        "home-and-lifestyle",
+        "auto-boat-and-air",
+        "hobbies",
+        "school-activities",
+        "other"
+      ],
+      "enumTitles": [
+        "All categories",
+        "Music",
+        "Business",
+        "Food & Drink",
+        "Community & Culture",
+        "Performing & Visual Arts",
+        "Film, Media & Entertainment",
+        "Sports & Fitness",
+        "Health & Wellness",
+        "Science & Technology",
+        "Travel & Outdoor",
+        "Charity & Causes",
+        "Religion & Spirituality",
+        "Family & Education",
+        "Holiday & Seasonal",
+        "Government & Politics",
+        "Fashion",
+        "Home & Lifestyle",
+        "Auto, Boat & Air",
+        "Hobbies & Special Interest",
+        "School Activities",
+        "Other"
+      ]
+    },
+    "dateFilter": {
+      "title": "Date filter",
+      "type": "string",
+      "description": "Date-range filter applied on top of search results. One of the predefined Eventbrite ranges (e.g., 'today', 'this-weekend', 'next-month'). Leave empty to include all upcoming events. NOT a YYYY-MM-DD date \u2014 Eventbrite browse pages only support predefined ranges.",
+      "editor": "select",
+      "enum": [
+        "",
+        "today",
+        "tomorrow",
+        "this-weekend",
+        "this-week",
+        "next-week",
+        "this-month",
+        "next-month"
+      ],
+      "enumTitles": [
+        "Any date",
+        "Today",
+        "Tomorrow",
+        "This weekend",
+        "This week",
+        "Next week",
+        "This month",
+        "Next month"
+      ]
+    },
+    "format": {
+      "title": "Event format",
+      "type": "string",
+      "description": "Event format filter (e.g., 'conference', 'festival', 'class', 'networking'). Combined with category and location filters. Leave empty to include all formats. NOT an online-only flag \u2014 use the 'onlineOnly' boolean for that.",
+      "editor": "select",
+      "enum": [
+        "",
+        "class",
+        "conference",
+        "festival",
+        "performance",
+        "screening",
+        "seminar",
+        "tournament",
+        "convention",
+        "expo",
+        "game",
+        "party",
+        "rally",
+        "tour",
+        "race",
+        "attraction",
+        "camp-trip-or-retreat",
+        "dinner-or-gala",
+        "networking",
+        "appearance-or-signing",
+        "other"
+      ],
+      "enumTitles": [
+        "All formats",
+        "Class, Training, or Workshop",
+        "Conference",
+        "Festival or Fair",
+        "Performance",
+        "Screening",
+        "Seminar or Talk",
+        "Tournament",
+        "Convention",
+        "Expo",
+        "Game or Competition",
+        "Party or Social Gathering",
+        "Rally",
+        "Tour",
+        "Race or Endurance Event",
+        "Attraction",
+        "Camp, Trip, or Retreat",
+        "Dinner or Gala",
+        "Networking",
+        "Appearance or Signing",
+        "Other"
+      ]
+    },
+    "priceFilter": {
+      "title": "Price filter",
+      "type": "string",
+      "description": "Filter by free or paid events only. Leave empty to include both. NOT a numeric price range \u2014 Eventbrite browse pages do not support arbitrary price ranges.",
+      "editor": "select",
+      "enum": [
+        "",
+        "free",
+        "paid"
+      ],
+      "enumTitles": [
+        "Both free and paid",
+        "Free events only",
+        "Paid events only"
+      ]
+    },
+    "onlineOnly": {
+      "title": "Online events only",
+      "type": "boolean",
+      "description": "Restrict results to virtual/online events. When true, location is ignored. Defaults to false (both in-person and online included)."
+    },
+    "startUrls": {
+      "title": "Start URLs (advanced)",
+      "type": "array",
+      "description": "Direct Eventbrite browse URLs or event page URLs to scrape. Use this for custom search filters not exposed by this Actor's inputs, or to scrape specific event detail pages. Any URL parameters are preserved (e.g., '?page=2'). Mutually exclusive with searchQuery and location \u2014 provide either startUrls OR the filter inputs, not both.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of events to return. Eventbrite browse pages return 20 events per page with up to 49 pages per query (~1,000 events max per filter combination). Default 50 keeps run cost low for typical agent calls. Set higher for bulk extraction.",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "includeDetails": {
+      "title": "Include detail-page enrichment",
+      "type": "boolean",
+      "description": "Fetch each event's detail page to extract full description, organizer name and profile URL, ticket tiers with prices, and structured pricing currency. When false, returns only browse-page fields (still 25+ fields). Adds one HTTP request per event but no extra event charge."
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify proxy settings. Defaults to RESIDENTIAL group for reliability against Cloudflare image CDN. Datacenter works for low-volume runs but may get rate-limited at scale.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

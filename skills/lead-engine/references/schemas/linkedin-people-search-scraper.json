@@ -1,0 +1,62 @@
+{
+  "title": "LinkedIn People Search Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "jobTitle": {
+      "title": "Job title",
+      "type": "string",
+      "description": "Job title to search for, quoted as a phrase on Google (e.g. 'Head of Growth'). Use this when sourcing people by role. Combine with location/company/school to narrow. NOT a free-text bio search \u2014 for that use the keywords field.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, region, or country to filter people by (e.g. 'San Francisco' or 'Germany'). Matched against the public profile's location text in Google results. Leave empty for worldwide. NOT a postal code.",
+      "editor": "textfield"
+    },
+    "currentCompany": {
+      "title": "Company",
+      "type": "string",
+      "description": "Company name to filter people by (e.g. 'Stripe'). Quoted as a phrase so Google matches it exactly. Best-effort \u2014 LinkedIn public pages do not always expose the current employer. NOT a company LinkedIn URL.",
+      "editor": "textfield"
+    },
+    "school": {
+      "title": "School / university",
+      "type": "string",
+      "description": "School or university name to filter alumni (e.g. 'Stanford University'). Quoted as a phrase on Google. Useful for alumni sourcing. NOT a degree or field of study.",
+      "editor": "textfield"
+    },
+    "keywords": {
+      "title": "Free-text keywords",
+      "type": "string",
+      "description": "Extra free-text keywords added to the Google query (e.g. 'fintech founder'). Supports Google operators. Use alongside or instead of the structured filters. NOT a LinkedIn profile URL.",
+      "editor": "textfield"
+    },
+    "profileUrls": {
+      "title": "Direct profile URLs (skip search)",
+      "type": "array",
+      "description": "Optional list of LinkedIn personal-profile URLs (https://www.linkedin.com/in/<slug>). When provided, search is skipped and these profiles are enriched directly. Use this when you already have URLs and just want full public data. NOT company or post URLs.",
+      "editor": "stringList"
+    },
+    "enrichProfiles": {
+      "title": "Deep profile enrichment",
+      "type": "boolean",
+      "description": "When true (default), each found profile is fetched for full public data: About section, work history with company links, education entries and follower count. When false, only the fast search-level fields (name, headline, location, URL) are returned at the lower price. Enrichment is billed per profile."
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of people to return (1-500). Caps both search depth and total cost. Defaults to 50. In direct-URL mode it caps how many of the supplied URLs are processed.",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "resultsRegion": {
+      "title": "Google region",
+      "type": "string",
+      "description": "Two-letter country code for the Google search region (e.g. 'US', 'GB', 'DE'). Affects which localized results surface. Defaults to 'US'. NOT the person's location filter \u2014 use the location field for that.",
+      "editor": "textfield"
+    }
+  },
+  "required": []
+}

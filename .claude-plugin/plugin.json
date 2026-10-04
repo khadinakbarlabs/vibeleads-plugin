@@ -1,0 +1,10 @@
+{
+  "name": "vibeleads",
+  "version": "0.1.0",
+  "description": "B2B prospecting skills for finding companies, spotting buying signals, qualifying contacts, and preparing evidence-backed lead lists.",
+  "author": {
+    "name": "Khadin Akbar"
+  },
+  "license": "MIT",
+  "displayName": "VibeLeads: B2B Lead Finder"
+}

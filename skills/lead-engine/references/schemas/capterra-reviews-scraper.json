@@ -1,0 +1,68 @@
+{
+  "title": "Capterra Reviews Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Capterra product URLs",
+      "type": "array",
+      "description": "Capterra product or reviews URLs to scrape, one record per review returned. Each must look like https://www.capterra.com/p/{id}/{slug}/reviews/ (e.g. https://www.capterra.com/p/135003/Slack/reviews/); the /reviews/ suffix is optional and added automatically. Defaults to none \u2014 provide this OR searchQuery. NOT a Capterra category, search, or comparison URL.",
+      "editor": "requestListSources"
+    },
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Product name or keyword to search on Capterra, then scrape the matching products' reviews. Free text, e.g. 'project management software' or 'Slack'. Defaults to empty \u2014 provide this OR startUrls. NOT a URL; paste URLs into startUrls instead.",
+      "editor": "textfield"
+    },
+    "maxReviewsPerProduct": {
+      "title": "Max reviews per product",
+      "type": "integer",
+      "description": "Upper bound on how many reviews to extract for each product, newest or most-helpful first. Accepts 1\u20135000. Defaults to 50. This is per product, not a run-wide total \u2014 total cost scales with this times the number of products.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxProductsPerSearch": {
+      "title": "Max products per search",
+      "type": "integer",
+      "description": "In search mode, how many matching products to take from the Capterra search results. Accepts 1\u2013100. Defaults to 5. Ignored when you pass startUrls instead of a searchQuery.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "includeReviews": {
+      "title": "Scrape reviews in search mode",
+      "type": "boolean",
+      "description": "When true (default), search mode visits each matched product and scrapes its reviews. When false, search mode returns only product summary cards (name, rating, review count, URL) \u2014 cheaper for discovery. Has no effect in URL mode, which always scrapes reviews.",
+      "editor": "checkbox"
+    },
+    "sortReviewsBy": {
+      "title": "Sort reviews by",
+      "type": "string",
+      "description": "Order in which Capterra returns reviews before the per-product cap is applied. 'newest' fetches the most recent reviews first; 'helpful' fetches the most-upvoted first. Defaults to 'newest'. Affects which reviews you get when maxReviewsPerProduct is smaller than the total.",
+      "editor": "select",
+      "enum": [
+        "newest",
+        "helpful"
+      ],
+      "enumTitles": [
+        "Newest first",
+        "Most helpful first"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used to reach Capterra. Residential proxies are required \u2014 Capterra runs enterprise Cloudflare and blocks datacenter IPs. Defaults to Apify Residential, US. Change the country if you target a regional Capterra TLD (e.g. capterra.co.uk).",
+      "editor": "proxy"
+    },
+    "debug": {
+      "title": "Debug mode",
+      "type": "boolean",
+      "description": "When true, writes a per-product diagnostic dump (JSON-LD nodes, selector hits, HTML head) to the key-value store for troubleshooting extraction. Defaults to false. Leave off for normal runs \u2014 it adds no review data and slightly slows the run.",
+      "editor": "checkbox"
+    }
+  },
+  "required": []
+}

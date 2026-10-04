@@ -1,0 +1,77 @@
+{
+  "title": "BuiltWith Alternative Website Audit Input",
+  "description": "Configure a current public website technology audit with this focused BuiltWith alternative. It returns source-evidenced point-in-time results rather than historical or reverse technology data.",
+  "type": "object",
+  "schemaVersion": 1,
+  "required": [
+    "startUrls"
+  ],
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Public website URLs to audit, for example `https://example.com`. The Actor normalizes each URL to its domain and checks the selected same-site paths. Submit up to 50 entries; Maximum domains controls how many are processed. Use public HTTP(S) websites rather than technology names or reverse-search queries.",
+      "editor": "requestListSources",
+      "maxItems": 50
+    },
+    "dataMode": {
+      "title": "Technology coverage",
+      "type": "string",
+      "description": "Choose `live_only` for the $0.005 current public-page audit, or `hybrid_premium` for a $0.06 result that combines live evidence with the owner-managed the keyword-data API Domain Technologies catalog. Premium catalog results include provider freshness provenance and can rescue a domain when its live pages are unavailable. If the provider fails but live evidence succeeds, the Actor automatically persists and bills only the base audit.",
+      "editor": "select",
+      "enum": [
+        "live_only",
+        "hybrid_premium"
+      ],
+      "enumTitles": [
+        "Live pages only \u2014 $0.005/domain",
+        "Hybrid premium catalog \u2014 $0.06/domain"
+      ]
+    },
+    "pathsToInspect": {
+      "title": "Same-site paths to inspect",
+      "type": "array",
+      "description": "Relative public paths inspected for every supplied domain, for example `/`, `/pricing`, and `/contact`. The default samples several common pages because a homepage alone can miss payment or support integrations. This is not a list of external URLs and cross-site paths are rejected.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      }
+    },
+    "maxPagesPerDomain": {
+      "title": "Maximum pages per domain",
+      "type": "integer",
+      "description": "Hard cap for same-site public pages inspected per domain, from 1 to 4. Defaults to 3 and uses the earliest valid entries from Same-site paths to inspect. This is not a website-depth crawl or a limit on technology detections.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "maxDomains": {
+      "title": "Maximum domains",
+      "type": "integer",
+      "description": "Hard cap for distinct domain audits from Start URLs, from 1 to 50. Defaults to 10 so a run remains predictable even when a larger URL list is supplied. This is not a pagination setting or a reverse technology search limit.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "useApifyProxy": {
+      "title": "Use Apify Residential Proxy",
+      "type": "boolean",
+      "description": "Use Apify Residential Proxy for public-page requests to improve access consistency on websites that restrict direct cloud traffic. Defaults to enabled and can add platform proxy usage charges in addition to the per-domain event price. This does not bypass logins, paywalls, CAPTCHA challenges, or website access controls.",
+      "editor": "checkbox"
+    },
+    "responseFormat": {
+      "title": "Response format",
+      "type": "string",
+      "description": "Choose `detailed` to return technology evidence with the public signal that matched, or `concise` for only name, categories, and confidence. Defaults to detailed for auditability and is best for reviews or migration research. This setting does not change which pages are requested or which signatures are available.",
+      "editor": "select",
+      "enum": [
+        "detailed",
+        "concise"
+      ]
+    }
+  }
+}

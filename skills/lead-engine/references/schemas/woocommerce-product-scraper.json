@@ -1,0 +1,96 @@
+{
+  "title": "WooCommerce Product Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "storeUrls": {
+      "title": "WooCommerce store URLs",
+      "type": "array",
+      "description": "Use this when you need a public WooCommerce store catalog, such as 'https://porterandyork.com'. Add a homepage URL or a store installed in a subdirectory, and the actor calls its public Store API. The actor extracts published product data only and accepts up to 100 stores. Do not use product, order, customer, checkout, or WordPress admin URLs here.",
+      "editor": "stringList"
+    },
+    "maxProducts": {
+      "title": "Maximum products per run",
+      "type": "integer",
+      "description": "Use this to set one hard product cap across every requested store, such as 100. It accepts whole numbers from 1 through 10,000 and defaults to 100. Billing and Store API pagination stop after this many validated product rows. It is not a per-store cap and does not count pages, categories, or variants separately.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10000,
+      "unit": "products"
+    },
+    "search": {
+      "title": "Product search query",
+      "type": "string",
+      "description": "Use this to ask the WooCommerce Store API for products matching a text phrase, such as 'organic coffee'. It accepts up to 200 characters and is empty by default, which returns the full catalog. Store search behavior is supplied by each target store and may not match its storefront search exactly. It is not a Google query or a product URL.",
+      "editor": "textfield",
+      "maxLength": 200
+    },
+    "categoryIds": {
+      "title": "WooCommerce category IDs",
+      "type": "array",
+      "description": "Use this to limit output to public WooCommerce category IDs, for example [12, 27]. It accepts positive numeric IDs and defaults to an empty list, which applies no category filter. IDs are store-specific, so obtain them from the store's public Store API or product data first. This is not a list of category names or URL slugs.",
+      "editor": "json",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "stockStatuses": {
+      "title": "Stock-status filter",
+      "type": "array",
+      "description": "Use this to return products in one or more public stock states, such as 'instock'. It accepts instock, outofstock, and onbackorder and defaults to an empty list, which applies no stock filter. Multiple values are sent to the official Store API as an array filter. It is not an exact inventory-count filter.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "instock",
+          "outofstock",
+          "onbackorder"
+        ]
+      }
+    },
+    "onSale": {
+      "title": "Only products on sale",
+      "type": "boolean",
+      "description": "Use this when you need only products that the public Store API marks as on sale. Set true to apply the filter; false is the default and leaves the catalog unfiltered by sale status. The value is sent directly to the Store API rather than inferred from price comparisons. It does not guarantee that a store's promotion has a regular-price field.",
+      "editor": "checkbox"
+    },
+    "featured": {
+      "title": "Only featured products",
+      "type": "boolean",
+      "description": "Use this when you need only catalog items that WooCommerce marks as featured. Set true to apply the filter; false is the default and leaves the catalog unfiltered by featured status. The flag is read from the public Store API and can differ from a theme's visual merchandising. It is not a filter for best-selling or newest products.",
+      "editor": "checkbox"
+    },
+    "sortBy": {
+      "title": "Sort products by",
+      "type": "string",
+      "description": "Use this to choose the Store API sorting field, for example price. It accepts date, price, popularity, or rating and defaults to date. Set sortOrder separately to choose ascending or descending results. It does not sort output after retrieval or bypass the maximum product cap.",
+      "editor": "select",
+      "enum": [
+        "date",
+        "price",
+        "popularity",
+        "rating"
+      ]
+    },
+    "sortOrder": {
+      "title": "Sort direction",
+      "type": "string",
+      "description": "Use this to choose ascending or descending order for the selected Store API sort field. It accepts asc or desc and defaults to desc. The setting applies to the target API before pagination begins. It is not a way to order multiple stores relative to each other.",
+      "editor": "select",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Apify Proxy configuration",
+      "type": "object",
+      "description": "Use this only if a public Store API blocks the default direct request path. Set useApifyProxy to true and optionally choose a proxy group or two-letter country code. It defaults to direct HTTP requests because the public WooCommerce Store API is usually accessible without a proxy. This setting never accepts third-party credentials, cookies, or authorization tokens.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "storeUrls"
+  ]
+}

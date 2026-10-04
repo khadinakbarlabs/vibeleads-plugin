@@ -1,0 +1,52 @@
+{
+  "title": "LinkedIn Company Posts Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyUrls": {
+      "title": "LinkedIn company URLs",
+      "type": "array",
+      "description": "One or more public LinkedIn company page URLs, for example https://www.linkedin.com/company/shopify.",
+      "editor": "stringList"
+    },
+    "maxPosts": {
+      "title": "Maximum posts",
+      "type": "integer",
+      "description": "Maximum number of post records to save across all company URLs.",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "startPage": {
+      "title": "Start page",
+      "type": "integer",
+      "description": "the primary managed public-data route company-post pages are numbered from 1.",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "maxPagesPerCompany": {
+      "title": "Max pages per company",
+      "type": "integer",
+      "description": "the primary managed public-data route currently exposes up to 7 company-post pages because of LinkedIn public-page limits.",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "includeCompanyProfile": {
+      "title": "Include company profile",
+      "type": "boolean",
+      "description": "When the managed fallback route is available, attach public company metadata such as name, handle, followers, industry, logo, and website."
+    },
+    "enrichPosts": {
+      "title": "Enrich post details",
+      "type": "boolean",
+      "description": "Fetch each post detail with the managed fallback route when available to add engagement counts and author/comment previews. This costs one provider request per post."
+    },
+    "includeRawData": {
+      "title": "Include raw response data",
+      "type": "boolean",
+      "description": "Include compact raw provider payloads for debugging and downstream custom parsing."
+    }
+  },
+  "required": [
+    "companyUrls"
+  ]
+}

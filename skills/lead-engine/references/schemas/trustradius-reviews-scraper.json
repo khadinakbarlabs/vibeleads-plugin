@@ -1,0 +1,122 @@
+{
+  "title": "TrustRadius Reviews Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "TrustRadius product URLs",
+      "type": "array",
+      "description": "TrustRadius product or reviews URLs to scrape. Each must look like https://www.trustradius.com/products/{slug}/reviews (product root URLs are normalized). Provide this OR productSlugs OR searchQuery.",
+      "editor": "requestListSources"
+    },
+    "productSlugs": {
+      "title": "Product slugs",
+      "type": "array",
+      "description": "TrustRadius product slugs without the full URL, e.g. slack or hubspot. Provide this OR startUrls OR searchQuery.",
+      "editor": "stringList"
+    },
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Product name or keyword to search on TrustRadius, then scrape matching products. Free text such as Slack or CRM. Provide this OR startUrls OR productSlugs.",
+      "editor": "textfield"
+    },
+    "maxReviewsPerProduct": {
+      "title": "Max reviews per product",
+      "type": "integer",
+      "description": "Upper bound on reviews extracted per product (1-5000). Defaults to 50. Prefill uses 1 for a cheap health check.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxProductsPerSearch": {
+      "title": "Max products per search",
+      "type": "integer",
+      "description": "In search mode, how many matching products to take (1-100). Defaults to 5. Ignored for startUrls/productSlugs.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "includeReviews": {
+      "title": "Scrape reviews in search mode",
+      "type": "boolean",
+      "description": "When true (default), search mode scrapes reviews for each matched product. When false, search returns product cards only (product-found billing).",
+      "editor": "checkbox"
+    },
+    "includeProductSummary": {
+      "title": "Include product summary row (URL mode)",
+      "type": "boolean",
+      "description": "When true and includeReviews is false, URL/slug mode may emit a product card. Leave false for review-only runs.",
+      "editor": "checkbox"
+    },
+    "sortReviewsBy": {
+      "title": "Sort reviews by",
+      "type": "string",
+      "description": "TrustRadius sort before the per-product cap: newest maps to most-recent; helpful maps to most-helpful.",
+      "editor": "select",
+      "enum": [
+        "newest",
+        "helpful"
+      ],
+      "enumTitles": [
+        "Newest first",
+        "Most helpful first"
+      ]
+    },
+    "starRating": {
+      "title": "Star rating filter (1-5)",
+      "type": "array",
+      "description": "Optional market-style 1-5 star filter mapped to TrustRadius 0-10 bands (5 stars approx 8-10). Empty means no filter.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "enumTitles": [
+          "1 star",
+          "2 stars",
+          "3 stars",
+          "4 stars",
+          "5 stars"
+        ]
+      }
+    },
+    "companySize": {
+      "title": "Company size filter",
+      "type": "array",
+      "description": "Optional reviewer company-size filter: small / medium / large (best-effort from public firmographics).",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "enumTitles": [
+          "Small",
+          "Medium",
+          "Large"
+        ]
+      }
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used to reach TrustRadius. Residential is required. Defaults to Apify Residential US.",
+      "editor": "proxy"
+    },
+    "debug": {
+      "title": "Debug mode",
+      "type": "boolean",
+      "description": "When true, writes a first-page diagnostic dump to the key-value store. Leave off for normal runs.",
+      "editor": "checkbox"
+    }
+  },
+  "required": []
+}

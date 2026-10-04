@@ -1,0 +1,74 @@
+{
+  "title": "Yelp Scraper \u2014 All-in-One",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search Query",
+      "type": "string",
+      "description": "Use this when the user provides a keyword, business type, or category (e.g. 'restaurants', 'dentists', 'coffee shops', 'auto repair'). Do NOT use this when the user provides specific Yelp URLs \u2014 use Start URLs for that instead.",
+      "editor": "textfield",
+      "sectionCaption": "Search Settings",
+      "sectionDescription": "Search Yelp by keyword + location. Leave Start URLs empty to use this mode."
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, state, ZIP code, or address to search in. Examples: 'New York, NY', 'Los Angeles, CA', '90210', 'Chicago Downtown'. Paired with Search Query. Ignored when Start URLs are provided.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Use this when the user provides direct Yelp business page URLs (e.g. https://www.yelp.com/biz/joes-pizza-new-york). Do NOT use this for keyword searches \u2014 use Search Query instead. Accepts multiple URLs.",
+      "editor": "requestListSources",
+      "sectionCaption": "Direct URL Mode",
+      "sectionDescription": "Provide specific Yelp business URLs to scrape directly. Overrides Search Query if provided."
+    },
+    "maxResults": {
+      "title": "Max Results",
+      "type": "integer",
+      "description": "Maximum number of businesses to scrape and return. Each business = 1 billable event at $0.003. Start with 10\u201350 to test before scaling.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000,
+      "unit": "businesses",
+      "sectionCaption": "Limits & Pricing"
+    },
+    "includeReviews": {
+      "title": "Include Reviews",
+      "type": "boolean",
+      "description": "Extract up to N recent user reviews per business. Each review contains: author name, star rating, date, and review text. Adds 1\u20132 seconds per business but significantly enriches the output.",
+      "editor": "checkbox",
+      "sectionCaption": "Data Options",
+      "sectionDescription": "Control which data fields are extracted."
+    },
+    "maxReviewsPerBusiness": {
+      "title": "Max Reviews Per Business",
+      "type": "integer",
+      "description": "How many reviews to extract per business page (1\u201320). Only applies when Include Reviews is enabled. Reviews are returned newest-first as shown on Yelp.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20,
+      "unit": "reviews"
+    },
+    "proxyType": {
+      "title": "Proxy Type",
+      "type": "string",
+      "description": "Proxy strategy for scraping. Yelp blocks shared datacenter IPs heavily, so residential is the default direct-scrape path. Use datacenter only for small tests, and 'none' for local testing only.",
+      "editor": "select",
+      "enum": [
+        "datacenter",
+        "residential",
+        "none"
+      ],
+      "enumTitles": [
+        "Datacenter \u2014 Fast, often blocked",
+        "Residential \u2014 Recommended for Yelp",
+        "None \u2014 No proxy (local testing only)"
+      ],
+      "sectionCaption": "Proxy Settings",
+      "sectionDescription": "Yelp requires proxies to scrape reliably at scale."
+    }
+  }
+}

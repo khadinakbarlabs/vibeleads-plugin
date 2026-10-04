@@ -1,0 +1,73 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.json",
+  "title": "Email Address Validator",
+  "description": "Validate one or many email addresses. Returns syntax check, MX record lookup, SMTP RCPT TO result, disposable/role/free flags, typo suggestion, optional catch-all detection, and a 0\u2013100 deliverability score per address.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "emails": {
+      "title": "Email addresses",
+      "type": "array",
+      "description": "List of email addresses to validate. Pass a single address as a one-item array. Each entry is normalized to lowercase before validation. Example: [\"jane@example.com\", \"info@acme.io\"]. NOT a CSV file path or a domain \u2014 supply individual full addresses.",
+      "editor": "stringList",
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "maxEmails": {
+      "title": "Maximum emails to validate",
+      "type": "integer",
+      "description": "Hard cap for unique emails processed and charged in this run. Use 1000 for the largest supported batch or a smaller number to control event cost. Defaults to 1000. NOT a pagination offset; duplicate addresses are removed before this cap is applied.",
+      "minimum": 1,
+      "maximum": 1000,
+      "editor": "number"
+    },
+    "verificationTier": {
+      "title": "Verification tier",
+      "type": "string",
+      "description": "Choose standard for the built-in preflight signals or premium for a deeper, owner-managed verification result. Premium runs are capped at 100 unique emails to keep the maximum charge predictable.",
+      "enum": [
+        "standard",
+        "premium"
+      ],
+      "enumTitles": [
+        "Standard",
+        "Premium"
+      ],
+      "editor": "select"
+    },
+    "checkSmtp": {
+      "title": "Run live SMTP probe (experimental)",
+      "type": "boolean",
+      "description": "When true, attempts a live SMTP RCPT TO probe to confirm the mailbox accepts mail. NOTE: most cloud platforms (Apify included, since it runs on AWS) block outbound port 25, so SMTP probes from Apify usually return 'unknown'. The actor still works perfectly without SMTP \u2014 syntax + MX + disposable/role/free/typo checks already catch 60\u201380% of bad addresses. Leave OFF unless you self-host. Default: false.",
+      "editor": "checkbox",
+      "groupCaption": "Verification depth"
+    },
+    "checkCatchAll": {
+      "title": "Detect catch-all domains",
+      "type": "boolean",
+      "description": "When true and checkSmtp=true, probes a random non-existent address on the same domain to detect catch-all servers. Same cloud-port-25 caveat applies as checkSmtp. Default: false.",
+      "editor": "checkbox",
+      "groupCaption": "Verification depth"
+    },
+    "concurrency": {
+      "title": "Concurrent validations",
+      "type": "integer",
+      "description": "How many emails to validate in parallel. Higher = faster but may hit per-host rate limits and cause 'unknown' SMTP results. Recommended 5\u201315 for most lists. Maximum 50. Default: 10.",
+      "minimum": 1,
+      "maximum": 50,
+      "editor": "number"
+    },
+    "timeoutMs": {
+      "title": "SMTP timeout (milliseconds)",
+      "type": "integer",
+      "description": "Per-connection timeout for the SMTP probe. Strict mailservers can take 5\u201310s. Lower values increase 'unknown' verdicts; higher values increase run time. Default: 8000 (8 seconds). Range: 1000\u201330000.",
+      "minimum": 1000,
+      "maximum": 30000,
+      "editor": "number"
+    }
+  },
+  "required": [
+    "emails"
+  ]
+}

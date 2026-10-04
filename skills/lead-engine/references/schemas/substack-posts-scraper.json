@@ -1,0 +1,83 @@
+{
+  "title": "Substack Posts Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Substack publication or post URLs",
+      "type": "array",
+      "description": "One or more Substack publication URLs. Accepts publication roots (e.g. 'https://platformer.substack.com' or custom domain 'https://www.lennysnewsletter.com') and single post URLs ('https://.../p/some-post'). Each publication is paginated up to maxPosts. NOT a keyword search input \u2014 this actor scrapes by publication URL.",
+      "editor": "requestListSources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL",
+            "description": "A Substack publication or post URL, e.g. https://platformer.substack.com"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    "maxPosts": {
+      "title": "Max posts per publication",
+      "type": "integer",
+      "description": "Hard cap on the number of posts scraped and billed per publication. Each post counts as one billable result. Defaults to 50. Set lower for cheap test runs.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "includeBodyHtml": {
+      "title": "Include full body HTML",
+      "type": "boolean",
+      "description": "When true (default), fetches each post's detail page to capture the complete article HTML. Public posts return full HTML; paid posts return metadata + paywall signal only. Adds one HTTP request per post.",
+      "editor": "checkbox"
+    },
+    "includeBodyText": {
+      "title": "Include plain text body",
+      "type": "boolean",
+      "description": "When true (default), includes a plain-text version of the article body (derived from the HTML). Public posts return full text; paid posts return the teaser only. Disable to reduce payload size.",
+      "editor": "checkbox"
+    },
+    "publishedAfter": {
+      "title": "Published after (ISO date)",
+      "type": "string",
+      "description": "Optional ISO 8601 date or datetime. Only posts published on or after this date are returned, e.g. '2026-01-01' or '2026-06-01T00:00:00Z'. Leave empty for no lower bound.",
+      "editor": "textfield"
+    },
+    "publishedBefore": {
+      "title": "Published before (ISO date)",
+      "type": "string",
+      "description": "Optional ISO 8601 date or datetime. Only posts published on or before this date are returned. Leave empty for no upper bound.",
+      "editor": "textfield"
+    },
+    "audience": {
+      "title": "Audience filter",
+      "type": "string",
+      "description": "Filter posts by paywall audience. 'all' (default) returns every post; 'free' returns only free posts; 'paid' returns only paid/paywalled posts (metadata + teaser).",
+      "editor": "select",
+      "enum": [
+        "all",
+        "free",
+        "paid"
+      ],
+      "enumTitles": [
+        "All posts",
+        "Free posts only",
+        "Paid posts only"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy (optional)",
+      "type": "object",
+      "description": "Optional Apify proxy. Substack's public JSON API works without one, so leave this off unless you hit a transient network block.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "title": "TikTok Shop Creators Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Find public TikTok creators by keyword and verify whether they expose TikTok Shop showcase products.",
+  "properties": {
+    "searchQueries": {
+      "title": "Search Queries",
+      "description": "Use this when you want to find TikTok creators by niche, product category, brand, or creator style. Accepts one query per line, for example tiktok shop finds, beauty creator, or kitchen gadgets. Defaults to the prefilled example for quick testing. Not for scraping videos, comments, followers, or Creator Marketplace private data.",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxProfilesPerQuery": {
+      "title": "Max Profiles Per Query",
+      "description": "Use this to cap how many TikTok user-search profiles are inspected for each query. Accepts integers from 1 to 10000. Defaults to 50 and the prefill is 25 for fast tests. This is a scan cap, not the final saved creator count.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "maxPagesPerQuery": {
+      "title": "Max Pages Per Query",
+      "description": "Use this as a safety cap for provider pagination on each TikTok user search. Accepts integers from 1 to 500. Defaults to 10 and the prefill is 1 for quick checks. Not a result limit by itself.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "maxProfilesScanned": {
+      "title": "Max Profiles Scanned",
+      "description": "Use this to cap public showcase checks across the whole run. Accepts integers from 1 to 50000. Defaults to 500 and the prefill is 25. This is the main billing guard for showcase lookup costs.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50000
+    },
+    "maxTotalCreators": {
+      "title": "Max Total Creators",
+      "description": "Use this to cap saved TikTok Shop creator rows across all queries. Accepts integers from 1 to 50000. Defaults to 50 and the prefill is 10. This prevents accidental overbilling on broad keyword batches.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50000
+    },
+    "requireShowcaseProducts": {
+      "title": "Require Showcase Products",
+      "description": "Use this to save only creators with public TikTok Shop showcase products. Defaults to true because this actor is for TikTok Shop creator discovery. Set false to save searched creator profiles even when no showcase products are found. This does not fetch full product reviews.",
+      "type": "boolean"
+    },
+    "minFollowerCount": {
+      "title": "Minimum Follower Count",
+      "description": "Use this to keep only creator profiles at or above a follower threshold. Accepts 0 or any positive integer, for example 10000 for micro-influencer discovery. Defaults to 0, which keeps all returned profiles. This filter is applied before showcase lookup when follower data is available.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "verifiedOnly": {
+      "title": "Verified Only",
+      "description": "Use this when you only want TikTok profiles marked verified or with a provider verification label. Defaults to false so discovery is broad. Set true for brand safety, public figures, or official creator research. Not all public profiles expose identical verification metadata.",
+      "type": "boolean"
+    },
+    "excludePrivateAccounts": {
+      "title": "Exclude Private Accounts",
+      "description": "Use this to skip profiles marked private by TikTok or the provider response. Defaults to true because private accounts are weak TikTok Shop outreach candidates. Set false if private-account metadata still helps your research. This does not bypass privacy settings or return private content.",
+      "type": "boolean"
+    },
+    "maxShowcaseProductsPerCreator": {
+      "title": "Max Showcase Products Per Creator",
+      "description": "Use this to cap showcase products attached to each creator. Accepts integers from 1 to 50. Defaults to 5 for campaign shortlisting. This controls row size and does not change how many profiles are checked.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "maxShowcasePagesPerCreator": {
+      "title": "Max Showcase Pages Per Creator",
+      "description": "Use this to cap provider pagination for each creator showcase. Accepts integers from 1 to 5. Defaults to 1 for predictable cost. Increase only when you need more public product examples per creator. This is not a product-detail scraper.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "showcaseRegion": {
+      "title": "Showcase Region",
+      "description": "Use this to choose the TikTok Shop region for public showcase product enrichment. Accepts supported shop regions such as US, GB, DE, FR, IT, ID, MY, MX, PH, SG, ES, TH, VN, BR, JP, or IE. Defaults to US. Not a creator-location filter.",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "IT",
+        "ID",
+        "MY",
+        "MX",
+        "PH",
+        "SG",
+        "ES",
+        "TH",
+        "VN",
+        "BR",
+        "JP",
+        "IE"
+      ]
+    },
+    "trim": {
+      "title": "Trim Provider Response",
+      "description": "Use this to request smaller user-search payloads when supported. Defaults to false so profile fields such as bio and verification are preserved. Turn it on only for speed tests where compact profile rows are acceptable. This is not a result filter.",
+      "type": "boolean"
+    },
+    "includeRawData": {
+      "title": "Include raw response Data",
+      "description": "Use this when you need the original user-search provider response attached to each dataset row. It helps debug field drift or build custom parsers. Defaults to false. Not recommended for AI-agent runs because raw payloads are large.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "searchQueries"
+  ]
+}

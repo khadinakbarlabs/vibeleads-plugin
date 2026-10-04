@@ -1,0 +1,69 @@
+{
+  "title": "Yellow Pages UAE Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "categories": {
+      "title": "Categories",
+      "type": "array",
+      "description": "Business categories to scrape from yello.ae, as slugs or plain names (e.g. 'restaurants', 'estate-agents', 'doctors and clinics'). Each is resolved to a yello.ae category listing and paginated. Leave empty if you provide Start URLs instead. NOT a free-text keyword search - use a real directory category.",
+      "editor": "stringList"
+    },
+    "city": {
+      "title": "Emirate / City filter",
+      "type": "string",
+      "description": "Optional emirate or city to restrict category results to (applied as a yello.ae city filter). Pick one value; leave empty to scrape all of the UAE. Only applies to the Categories input above, not to direct company Start URLs. Example: 'dubai'.",
+      "editor": "select",
+      "enum": [
+        "",
+        "dubai",
+        "abu-dhabi",
+        "sharjah",
+        "ajman",
+        "ras-al-khaimah",
+        "fujairah",
+        "umm-al-quwain",
+        "al-ain",
+        "jebel-ali-free-zone"
+      ],
+      "enumTitles": [
+        "All UAE",
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah",
+        "Ajman",
+        "Ras Al Khaimah",
+        "Fujairah",
+        "Umm Al Quwain",
+        "Al Ain",
+        "Jebel Ali Free Zone"
+      ]
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Direct yello.ae URLs to scrape, one per line: category pages (https://www.yello.ae/category/<slug>), location pages (https://www.yello.ae/location/<emirate>), or company pages (https://www.yello.ae/company/<id>/<slug>). Category and location URLs are paginated; company URLs are scraped directly. Use this for precise control. NOT for non-yello.ae domains.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of business records to return across the whole run (hard cap on billing). The run stops and finishes gracefully once this many businesses are scraped. Defaults to 1000; set lower for a quick test. Counts final business records, not intermediate listing pages.",
+      "editor": "number",
+      "minimum": 1
+    },
+    "enrichDetails": {
+      "title": "Enrich from detail pages",
+      "type": "boolean",
+      "description": "When true (default), each business's own page is visited to extract full data (phone, website, address, geo, working hours, established year) from its JSON-LD block. When false, only the lighter listing-page fields (name, profile URL, address) are returned - faster and cheaper but less complete. Keep true for lead-generation use cases.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings for outbound requests. Defaults to Apify datacenter proxy, which is sufficient because yello.ae has no anti-bot protection. Leave as default unless you have a specific network requirement.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

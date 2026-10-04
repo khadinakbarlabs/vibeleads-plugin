@@ -1,0 +1,79 @@
+{
+  "title": "Bloomberg News Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sections": {
+      "title": "Bloomberg sections",
+      "type": "array",
+      "description": "Bloomberg news sections to pull through a public news index (e.g. 'markets', 'technology', 'crypto'). Select one or more. Defaults to 'markets'. This returns recent indexed Bloomberg articles, not a search of the full archive.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "markets",
+          "technology",
+          "politics",
+          "business",
+          "economics",
+          "wealth",
+          "green",
+          "crypto",
+          "pursuits",
+          "industries",
+          "citylab",
+          "equality",
+          "businessweek"
+        ],
+        "enumTitles": [
+          "Markets",
+          "Technology",
+          "Politics",
+          "Business",
+          "Economics",
+          "Wealth",
+          "Green",
+          "Crypto",
+          "Pursuits",
+          "Industries",
+          "CityLab",
+          "Equality",
+          "Businessweek"
+        ]
+      }
+    },
+    "searchKeywords": {
+      "title": "Keyword filter",
+      "type": "array",
+      "description": "Optional case-insensitive keywords to keep only articles whose headline or indexed summary contains at least one of them (e.g. ['AI','Fed','oil']). Leave empty to return all recent indexed articles in the selected sections.",
+      "editor": "stringList"
+    },
+    "tickers": {
+      "title": "Ticker filter",
+      "type": "array",
+      "description": "Optional stock tickers to keep only articles whose headline or indexed summary mentions at least one symbol (e.g. ['AAPL','IREN','TSLA']). Leave empty to disable ticker filtering.",
+      "editor": "stringList"
+    },
+    "sinceHours": {
+      "title": "Only articles newer than (hours)",
+      "type": "integer",
+      "description": "Optional recency window. If set to e.g. 24, only indexed articles published within the last 24 hours are returned. Use 0 (default) for all currently indexed results.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "maxItems": {
+      "title": "Max articles",
+      "type": "integer",
+      "description": "Hard cap on the number of articles scraped and billed across all selected sections. Each article counts as one billable result. Defaults to 100. Set lower for cheap test runs.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "proxyConfiguration": {
+      "title": "Proxy (optional)",
+      "type": "object",
+      "description": "Optional Apify proxy. The public news index normally works without one, so leave this off unless you hit a transient network block.",
+      "editor": "proxy"
+    }
+  }
+}

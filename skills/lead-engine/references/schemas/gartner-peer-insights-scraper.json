@@ -1,0 +1,94 @@
+{
+  "title": "Gartner Peer Insights Scraper \u2014 Input",
+  "description": "Scrape public Gartner Peer Insights product profiles, ratings, market listings, and review samples. Provide product URLs/slugs and/or market URLs. Optional sessionCookie unlocks paginated api3 reviews when you have a logged-in Peer Insights session.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "productUrls": {
+      "title": "Product / reviews URLs",
+      "type": "array",
+      "description": "Gartner Peer Insights product page URLs. Accepts short form https://www.gartner.com/reviews/product/{slug} or long market/vendor/product/reviews URLs. Use this when you already know the product page. NOT a free-text search \u2014 use searchTerms or productSlugs for that.",
+      "editor": "stringList"
+    },
+    "marketUrls": {
+      "title": "Market category URLs",
+      "type": "array",
+      "description": "Gartner market/category listing URLs such as https://www.gartner.com/reviews/market/meeting-solutions. Returns product cards (name, rating, review count, SEO slug). NOT individual product review pages \u2014 use productUrls for those.",
+      "editor": "stringList"
+    },
+    "productSlugs": {
+      "title": "Product SEO slugs",
+      "type": "array",
+      "description": "Product SEO names without a full URL (e.g. zoom-meetings, salesforce-sales-cloud). Converted to /reviews/product/{slug}. Prefer productUrls when you have the canonical link.",
+      "editor": "stringList"
+    },
+    "searchTerms": {
+      "title": "Product name hints",
+      "type": "array",
+      "description": "Free-text product names slugified into /reviews/product/{slug} lookups (e.g. Zoom Meetings \u2192 zoom-meetings). Best-effort public slug resolution; prefer exact productUrls when known. NOT a full Gartner site search API.",
+      "editor": "stringList"
+    },
+    "startUrls": {
+      "title": "Start URLs (legacy)",
+      "type": "array",
+      "description": "Optional requestListSources-style URL list. Same classification as productUrls/marketUrls. Prefer productUrls or marketUrls for clarity.",
+      "editor": "requestListSources"
+    },
+    "maxReviewsPerProduct": {
+      "title": "Max reviews per product",
+      "type": "integer",
+      "description": "Hard cap on review/highlight rows saved per product. Public pages usually expose a small sample; larger values matter mainly when sessionCookie unlocks api3 pagination. Default 5 for quality tests. Range 1-500.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "maxProducts": {
+      "title": "Max products per market",
+      "type": "integer",
+      "description": "Hard cap on product cards saved from each market URL. Default 20. Range 1-200.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "includeProductSummary": {
+      "title": "Include product summary row",
+      "type": "boolean",
+      "description": "If true (default), saves one product profile row (ratings, vendor, description) per product URL in addition to review rows.",
+      "editor": "checkbox"
+    },
+    "includeReviewHighlights": {
+      "title": "Include likes/dislikes highlights",
+      "type": "boolean",
+      "description": "If true (default), also saves public likes/dislikes highlight snippets as review-highlight rows when present on the product page.",
+      "editor": "checkbox"
+    },
+    "sort": {
+      "title": "Review sort (authenticated mode)",
+      "type": "string",
+      "description": "Sort used for authenticated api3 pagination when a Peer Insights cookie is provided. Ignored for public page samples. Default most helpful.",
+      "editor": "select",
+      "enum": [
+        "helpful",
+        "newest"
+      ],
+      "enumTitles": [
+        "Most helpful",
+        "Most recent"
+      ]
+    },
+    "sessionCookie": {
+      "title": "Peer Insights session cookie (optional)",
+      "type": "string",
+      "description": "Optional Cookie header from a logged-in Gartner Peer Insights browser session. Caller-provided / user-provided: supply your own secret for the run. Enables api3 pagination for fuller review catalogs. Leave empty for public-only scraping. This value is never written to the dataset, output, or logs.",
+      "editor": "textarea",
+      "isSecret": true
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify Proxy. UNBLOCKER is strongly recommended \u2014 Gartner sits behind Cloudflare. Default: UNBLOCKER.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Bayt Jobs Scraper \u2014 Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search keyword",
+      "type": "string",
+      "description": "Free-text job search keyword to run on Bayt.com (e.g., 'senior accountant', 'odoo developer'). Used with `country` to build the listing URL. Defaults to 'software engineer'. NOT a Bayt category slug \u2014 for category-based scraping leave this empty and set `jobCategory`.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "Country / market",
+      "type": "string",
+      "description": "Bayt MENA market to search. Determines locale and currency in results. Defaults to 'international' (cross-region). Country-specific slugs hit each country's localized Bayt subsite. Ignored when `startUrls` is set.",
+      "editor": "select",
+      "enum": [
+        "international",
+        "uae",
+        "saudi-arabia",
+        "qatar",
+        "kuwait",
+        "bahrain",
+        "oman",
+        "egypt",
+        "lebanon",
+        "jordan",
+        "iraq",
+        "morocco",
+        "tunisia",
+        "algeria"
+      ],
+      "enumTitles": [
+        "International (all MENA)",
+        "United Arab Emirates",
+        "Saudi Arabia",
+        "Qatar",
+        "Kuwait",
+        "Bahrain",
+        "Oman",
+        "Egypt",
+        "Lebanon",
+        "Jordan",
+        "Iraq",
+        "Morocco",
+        "Tunisia",
+        "Algeria"
+      ]
+    },
+    "jobCategory": {
+      "title": "Job category (optional)",
+      "type": "string",
+      "description": "Optional Bayt category slug for category-based scraping (e.g., 'accounting', 'sales', 'engineering'). When set, overrides `searchQuery`. Leave empty to use keyword search. NOT a free-text field \u2014 must be a real Bayt category slug.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs (advanced)",
+      "type": "array",
+      "description": "Optional list of Bayt listing or job-detail URLs to scrape directly. When provided, overrides `searchQuery`, `country`, and `jobCategory`. Each URL must be a Bayt.com page (e.g., https://www.bayt.com/en/uae/jobs/sales-jobs/). Listing URLs auto-paginate up to `maxResults`; detail URLs extract a single job.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Hard cap on jobs returned per run. Pricing is billed per job-found. Defaults to 50. Maximum 500. Set lower for budget caps; set higher for backfills.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify proxy settings. Bayt blocks datacenter IPs \u2014 RESIDENTIAL is required. Leave the default unless you have a specific reason to change groups.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,36 @@
+{
+  "title": "Quora Scraper",
+  "description": "Scrape Quora questions, answers, and profiles. Paste Quora URLs \u2014 question, profile, space, or topic. The Actor auto-detects each URL's type and returns flat, structured records.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Quora URLs",
+      "type": "array",
+      "description": "List of Quora URLs to scrape. Each may be a question page (https://www.quora.com/What-is-the-best-way-to-learn-programming), a profile (https://www.quora.com/profile/Adam-DAngelo), a space (https://www.quora.com/q/<space>), or a topic (https://www.quora.com/topic/<topic>). The type is auto-detected from the URL. At least one URL is required.",
+      "editor": "stringList"
+    },
+    "maxItemsPerTarget": {
+      "title": "Max records per target",
+      "type": "integer",
+      "description": "Maximum number of records to return for each URL or keyword. The Actor scrolls to paginate until this cap, then stops, so it doubles as your cost ceiling (each record is one billable event). Defaults to 50. Lower it for cheaper test runs.",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "maxConcurrency": {
+      "title": "Max concurrent browsers",
+      "type": "integer",
+      "description": "How many target pages to scrape in parallel. Higher is faster but uses more proxy IPs and memory; lower is gentler on anti-bot defenses. Defaults to 5 (max 10). Leave default unless you hit blocking.",
+      "minimum": 1,
+      "maximum": 10,
+      "editor": "number"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings. Residential proxies are strongly recommended \u2014 Quora is protected by Cloudflare and datacenter IPs are often challenged. Defaults to Apify Proxy automatic. Override to select residential proxies or a specific country for reliable access.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

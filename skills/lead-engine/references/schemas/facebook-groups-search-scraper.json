@@ -1,0 +1,37 @@
+{
+  "title": "Facebook Groups Search Scraper input",
+  "description": "Use this when you need to discover Google-indexed Facebook groups from one or more keywords. This actor returns search-discovered group records; it does not access private content or scrape posts/comments.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Facebook group search queries",
+      "type": "array",
+      "description": "Use this when you want to discover Google-indexed Facebook groups for one or more topics. Provide short natural-language phrases such as 'real estate investors' or 'small business owners London'. The actor searches Google for Facebook group URLs and deduplicates results across queries. This is not a Facebook group URL input and does not access private content.",
+      "editor": "stringList"
+    },
+    "maxResultsPerQuery": {
+      "title": "Maximum groups per query",
+      "type": "integer",
+      "description": "Use this when you need to cap the number of unique public Facebook groups returned for each search query. Enter an integer from 1 to 100; the default is 20. A lower number reduces both event charges and result-review time. This is not a guaranteed number of matching groups because a query may have fewer indexed public results.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "countryCode": {
+      "title": "Search country code",
+      "type": "string",
+      "description": "Use this when the group search should be localized to a country. Enter a two-letter uppercase country code such as 'US', 'GB', or 'CA'; the default is 'US'. This affects the search provider's regional results, not Facebook group membership or visibility. This is not a city or language field.",
+      "editor": "textfield"
+    },
+    "includeRawData": {
+      "title": "Include raw search response",
+      "type": "boolean",
+      "description": "Use this when you need the original provider result alongside the normalized group fields for debugging. Defaults to false to keep dataset rows compact and agent-friendly. Raw response shapes can change without notice and should not be used as a stable contract. This does not include private Facebook data.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "searchQueries"
+  ]
+}

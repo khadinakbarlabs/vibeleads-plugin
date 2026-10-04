@@ -1,0 +1,179 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "10times Events Scraper",
+  "description": "Scrape trade shows, conferences, exhibitions, and workshops from 10times.com. Provide ONE input mode: startUrls (direct 10times URLs), searchQuery (free-text), or city (slug). Optional filters apply on top.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Direct 10times URLs to scrape. Accepts event detail pages (e.g. 'https://10times.com/ces-las-vegas'), city listing pages ('https://10times.com/berlin', 'https://10times.com/new-york-us'), category listings ('https://10times.com/conferences', 'https://10times.com/technology-events'), or search URLs ('https://10times.com/?query=fintech'). Mutually exclusive with searchQuery and city \u2014 use this for fully custom filtering 10times exposes in its UI but this Actor's inputs do not surface.",
+      "editor": "requestListSources"
+    },
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Free-text keyword to search 10times (e.g. 'fintech', 'medical devices', 'sustainability'). Combined with country and eventType filters when provided. Leave empty when using startUrls or browsing by city alone. NOT an event slug and NOT a full URL \u2014 for those use startUrls.",
+      "editor": "textfield"
+    },
+    "city": {
+      "title": "City slug",
+      "type": "string",
+      "description": "10times city slug used in URLs (e.g. 'berlin', 'new-york-us', 'london-uk', 'singapore', 'dubai-ae', 'sao-paulo-br'). Combined with eventType, category, and date filters. Leave empty when using startUrls or searchQuery. NOT a free-text city name \u2014 must be the URL slug 10times uses on its city pages.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "Country",
+      "type": "string",
+      "description": "Two-letter ISO country code to scope a search query to one country (e.g. 'US', 'DE', 'GB', 'IN', 'AE'). Use 'WW' or leave blank for worldwide. Ignored when city is set (city already implies country). NOT a country name \u2014 must be the ISO 3166-1 alpha-2 code.",
+      "editor": "select",
+      "enum": [
+        "WW",
+        "US",
+        "GB",
+        "DE",
+        "FR",
+        "ES",
+        "IT",
+        "NL",
+        "AU",
+        "CA",
+        "JP",
+        "IN",
+        "BR",
+        "MX",
+        "CN",
+        "SG",
+        "AE",
+        "ZA",
+        "KR",
+        "ID",
+        "TH"
+      ],
+      "enumTitles": [
+        "Worldwide",
+        "United States",
+        "United Kingdom",
+        "Germany",
+        "France",
+        "Spain",
+        "Italy",
+        "Netherlands",
+        "Australia",
+        "Canada",
+        "Japan",
+        "India",
+        "Brazil",
+        "Mexico",
+        "China",
+        "Singapore",
+        "United Arab Emirates",
+        "South Africa",
+        "South Korea",
+        "Indonesia",
+        "Thailand"
+      ]
+    },
+    "eventType": {
+      "title": "Event type",
+      "type": "string",
+      "description": "Filter by event format. 'tradeshow' = exhibitions and trade fairs, 'conference' = paid speaker conferences, 'workshop' = hands-on training, 'festival' = public/cultural events. Applied client-side on discovered events. Defaults to 'all'.",
+      "editor": "select",
+      "enum": [
+        "all",
+        "tradeshow",
+        "conference",
+        "workshop",
+        "festival"
+      ],
+      "enumTitles": [
+        "All event types",
+        "Trade shows / exhibitions",
+        "Conferences",
+        "Workshops",
+        "Festivals"
+      ]
+    },
+    "category": {
+      "title": "Industry category",
+      "type": "string",
+      "description": "Industry filter applied to event categories and description tags. Leave 'all' to include every industry. Use this with city/searchQuery to narrow by sector (e.g. 'technology' + 'berlin' = Berlin tech events). NOT a free-text industry name \u2014 must be one of the listed slugs.",
+      "editor": "select",
+      "enum": [
+        "all",
+        "technology",
+        "it",
+        "business",
+        "medical",
+        "health",
+        "education",
+        "industrial",
+        "building",
+        "auto",
+        "banking",
+        "food",
+        "entertainment",
+        "apparel",
+        "science",
+        "sports",
+        "travel"
+      ],
+      "enumTitles": [
+        "All industries",
+        "Technology",
+        "IT & software",
+        "Business services",
+        "Medical & pharma",
+        "Health & wellness",
+        "Education",
+        "Industrial engineering",
+        "Building & construction",
+        "Auto & transport",
+        "Banking & finance",
+        "Food & beverage",
+        "Entertainment & arts",
+        "Apparel & fashion",
+        "Science & research",
+        "Sports & leisure",
+        "Travel & tourism"
+      ]
+    },
+    "startDate": {
+      "title": "Start date (YYYY-MM-DD)",
+      "type": "string",
+      "description": "Only return events starting on or after this date. Format YYYY-MM-DD (e.g. '2026-06-01'). Leave empty for all upcoming events. NOT a date range \u2014 pair with endDate to bound on both sides.",
+      "editor": "textfield"
+    },
+    "endDate": {
+      "title": "End date (YYYY-MM-DD)",
+      "type": "string",
+      "description": "Only return events starting on or before this date. Format YYYY-MM-DD (e.g. '2026-12-31'). Leave empty for no upper bound. Pair with startDate for a bounded date window.",
+      "editor": "textfield"
+    },
+    "onlineOnly": {
+      "title": "Online events only",
+      "type": "boolean",
+      "description": "Restrict results to virtual/online events. Defaults to false (both in-person and online included)."
+    },
+    "maxItems": {
+      "title": "Max events",
+      "type": "integer",
+      "description": "Maximum number of events to return. 10times listing pages show ~30 events per page; this Actor paginates until maxItems is met or the listing is exhausted. Default 50 keeps run cost low for typical agent calls (~$0.25). Set higher for bulk extraction. Hard ceiling 10000.",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "includeDetails": {
+      "title": "Include detail-page enrichment",
+      "type": "boolean",
+      "description": "Fetch each event's detail page to extract full description, organizer details, visitor/exhibitor estimates, and rating. When false, returns only listing-page fields (still includes name, dates, venue, URL). Adds one HTTP request per event but no extra event charge."
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify proxy settings. Defaults to RESIDENTIAL group \u2014 10times sits behind Cloudflare and datacenter IPs are reliably blocked. Override only if you have a tested alternative.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,114 @@
+{
+  "title": "Yelp Reviews Scraper Input",
+  "description": "Scrape business reviews from Yelp. Provide one or more business URLs or slugs.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Yelp business URLs",
+      "type": "array",
+      "description": "List of Yelp business pages to scrape reviews from. Each entry is a full Yelp URL (e.g., `https://www.yelp.com/biz/molinari-delicatessen-san-francisco`). Up to 50 entries per run. NOT a search URL or category URL \u2014 this actor scrapes reviews of a SPECIFIC business, not lists of businesses (for that use yelp-scraper-all-in-one). For bare slugs, use the businessSlugs field instead.",
+      "editor": "requestListSources"
+    },
+    "businessSlugs": {
+      "title": "Yelp business slugs (alternative input)",
+      "type": "array",
+      "description": "Alternative to startUrls: pass bare Yelp business slugs (e.g., `molinari-delicatessen-san-francisco`) \u2014 one per line. Combined with startUrls if both provided. Useful when integrating from spreadsheets or databases that store slugs only.",
+      "editor": "stringList"
+    },
+    "maxReviewsPerBusiness": {
+      "title": "Max reviews per business",
+      "type": "integer",
+      "description": "Hard cap on reviews returned per business. Yelp displays up to thousands of reviews on popular businesses; 100 is a good default for monitoring. Range 1-5000. Affects PPE cost: each review = $0.0005, so 100 reviews = $0.05 per business.",
+      "minimum": 1,
+      "maximum": 5000,
+      "editor": "number"
+    },
+    "sortBy": {
+      "title": "Sort reviews by",
+      "type": "string",
+      "description": "How Yelp orders the returned reviews. `relevance_desc` (Yelp default) surfaces highest-engagement reviews first. `date_desc` returns newest first \u2014 best for monitoring fresh feedback. `rating_asc` surfaces 1-star complaints, `rating_desc` surfaces 5-star praise.",
+      "enum": [
+        "relevance_desc",
+        "date_desc",
+        "date_asc",
+        "rating_asc",
+        "rating_desc",
+        "elites_desc"
+      ],
+      "enumTitles": [
+        "Relevance (Yelp default)",
+        "Newest first",
+        "Oldest first",
+        "Lowest rating first",
+        "Highest rating first",
+        "Yelp Elites first"
+      ],
+      "editor": "select"
+    },
+    "language": {
+      "title": "Review language filter",
+      "type": "string",
+      "description": "Two-letter ISO code (e.g., `en`, `es`, `fr`, `de`, `it`, `pt`, `nl`, `ja`) to filter reviews by language. Leave as `en` for English-only. Set to `all` for every language. Yelp does its own language detection \u2014 non-matching reviews may still slip through.",
+      "enum": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "nl",
+        "ja",
+        "tr",
+        "ar",
+        "pl",
+        "ru",
+        "zh",
+        "ko",
+        "all"
+      ],
+      "enumTitles": [
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Italian",
+        "Portuguese",
+        "Dutch",
+        "Japanese",
+        "Turkish",
+        "Arabic",
+        "Polish",
+        "Russian",
+        "Chinese",
+        "Korean",
+        "All languages"
+      ],
+      "editor": "select"
+    },
+    "dateFrom": {
+      "title": "Date from (YYYY-MM-DD)",
+      "type": "string",
+      "description": "Earliest review date to include (inclusive). Format YYYY-MM-DD, e.g., `2025-01-01`. Leave empty for no lower bound. Filtered client-side after fetch \u2014 applies AFTER Yelp's sort.",
+      "editor": "textfield"
+    },
+    "dateTo": {
+      "title": "Date to (YYYY-MM-DD)",
+      "type": "string",
+      "description": "Latest review date to include (inclusive). Format YYYY-MM-DD, e.g., `2026-06-18`. Leave empty for no upper bound.",
+      "editor": "textfield"
+    },
+    "includeBusinessSummary": {
+      "title": "Push a business summary record",
+      "type": "boolean",
+      "description": "When true, push one extra dataset item per business with aggregate metadata (name, url, total review count, average rating, address, categories). Useful for joining reviews to business context. Does NOT add a charge \u2014 business resolution is already billed once per URL.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify proxy settings. Defaults to the actor owner's USA proxy pool. If you have access to Apify RESIDENTIAL, switch to it for higher reliability against Yelp's DataDome protection.",
+      "editor": "proxy"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "title": "LinkedIn Jobs Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Scrape LinkedIn job listings by keyword + location, or pass direct job search URLs. No LinkedIn login required.",
+  "properties": {
+    "searchQueries": {
+      "title": "Job Search Queries",
+      "type": "array",
+      "description": "Use this field when the user provides job titles, roles, or keywords to search. E.g. ['Software Engineer', 'Product Manager']. Use startUrls instead when the user provides direct LinkedIn search URLs. Supports multiple queries \u2014 each is run against every location.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "locations": {
+      "title": "Locations",
+      "type": "array",
+      "description": "List of locations to search in. Each query is cross-searched against each location. Use city names, states, or countries. E.g. ['New York', 'Remote', 'London']. Use 'United States' for nationwide US results.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Use this field instead of searchQueries when the user provides direct LinkedIn job search URLs (e.g. copied from linkedin.com/jobs/search). Open linkedin.com/jobs in an incognito window, apply your filters, and paste the URL here. Overrides searchQueries + locations when provided.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Maximum Results",
+      "type": "integer",
+      "description": "Maximum number of job listings to return across all queries and locations combined. LinkedIn limits each search to ~1000 results. Use multiple queries to get more.",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "datePosted": {
+      "title": "Date Posted",
+      "type": "string",
+      "description": "Filter jobs by how recently they were posted. 'Any time' returns all available jobs. Use 'Past 24 hours' for fresh postings.",
+      "enum": [
+        "any",
+        "r86400",
+        "r604800",
+        "r2592000"
+      ],
+      "enumTitles": [
+        "Any time",
+        "Past 24 hours",
+        "Past week",
+        "Past month"
+      ]
+    },
+    "jobType": {
+      "title": "Job Type",
+      "type": "array",
+      "description": "Filter by employment contract type. Leave empty to return all types. F=Full-time, P=Part-time, C=Contract, T=Temporary, I=Internship.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "F",
+          "P",
+          "C",
+          "T",
+          "I",
+          "O"
+        ],
+        "enumTitles": [
+          "Full-time",
+          "Part-time",
+          "Contract",
+          "Temporary",
+          "Internship",
+          "Other"
+        ]
+      }
+    },
+    "experienceLevel": {
+      "title": "Experience Level",
+      "type": "array",
+      "description": "Filter by required experience level. Leave empty to return all levels. 1=Internship, 2=Entry level, 3=Associate, 4=Mid-Senior, 5=Director, 6=Executive.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "enumTitles": [
+          "Internship",
+          "Entry level",
+          "Associate",
+          "Mid-Senior level",
+          "Director",
+          "Executive"
+        ]
+      }
+    },
+    "workType": {
+      "title": "Work Type",
+      "type": "array",
+      "description": "Filter by on-site, remote, or hybrid work arrangement. Leave empty to return all. 1=On-site, 2=Remote, 3=Hybrid.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3"
+        ],
+        "enumTitles": [
+          "On-site",
+          "Remote",
+          "Hybrid"
+        ]
+      }
+    },
+    "salaryBase": {
+      "title": "Minimum Salary (USD/yr)",
+      "type": "string",
+      "description": "Filter to only show jobs above a minimum annual salary. Note: LinkedIn only shows salary on a subset of postings.",
+      "enum": [
+        "40000",
+        "60000",
+        "80000",
+        "100000",
+        "120000"
+      ],
+      "enumTitles": [
+        "$40,000+",
+        "$60,000+",
+        "$80,000+",
+        "$100,000+",
+        "$120,000+"
+      ]
+    }
+  },
+  "required": []
+}

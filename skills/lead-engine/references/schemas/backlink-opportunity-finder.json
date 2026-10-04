@@ -1,0 +1,86 @@
+{
+  "title": "Backlink Opportunity Finder",
+  "description": "Find public, contextually relevant link prospects through live Google organic-search footprints.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "keywords": {
+      "type": "array",
+      "title": "Keywords or topics",
+      "description": "Use this when you need relevant link prospects for one or more topics. Add up to 10 phrases, for example \"project management software\" or \"remote team collaboration\". The actor combines each phrase with the selected prospect footprints.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 10,
+      "sectionCaption": "Prospecting target",
+      "sectionDescription": "Define the topical context for the pages you want to discover."
+    },
+    "targetDomain": {
+      "type": "string",
+      "title": "Your domain to exclude",
+      "description": "Use this when you want to avoid returning pages from your own website. Enter a hostname or URL such as example.com. Leave blank if you do not have a domain to exclude.",
+      "editor": "textfield"
+    },
+    "opportunityTypes": {
+      "type": "array",
+      "title": "Prospect types",
+      "description": "Use this when you want specific public-page footprints. Choose resource pages, guest-post guidelines, listicles, directories, podcasts, or expert roundups. If empty, the actor searches resource pages, guest posts, and listicles.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "resource_page",
+          "guest_post",
+          "listicle",
+          "directory",
+          "podcast",
+          "expert_roundup"
+        ]
+      }
+    },
+    "excludeDomains": {
+      "type": "array",
+      "title": "Domains to exclude",
+      "description": "Use this when known competitors, marketplaces, or irrelevant publishers should be excluded. Enter hostnames such as competitor.com; subdomains are also excluded. Filtering happens before dataset events are charged.",
+      "editor": "stringList"
+    },
+    "countryCode": {
+      "type": "string",
+      "title": "Search country",
+      "description": "Use this when you need Google results localized to a two-letter country code. Enter values such as US, GB, or AU. The default is US; it affects result localization, not a publisher's verified location.",
+      "editor": "textfield"
+    },
+    "languageCode": {
+      "type": "string",
+      "title": "Search language",
+      "description": "Use this when you need results in a specific language. Enter a language code such as en, de, or es. The default is en; it does not translate page text.",
+      "editor": "textfield"
+    },
+    "maxResultsPerKeyword": {
+      "type": "integer",
+      "title": "Maximum prospects per keyword",
+      "description": "Use this when you need a strict per-keyword cap on saved, billable prospects. Enter 1 to 100; the default is 25. Duplicate, excluded, and low-relevance results do not count toward this cap.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxPagesPerQuery": {
+      "type": "integer",
+      "title": "Maximum Google pages per footprint",
+      "description": "Use this advanced limit to control SERP coverage and provider requests. Enter 1 to 5; the default is 1. This is a query-page cap, not a guaranteed number of returned prospects.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "minimumRelevanceScore": {
+      "type": "integer",
+      "title": "Minimum relevance score",
+      "description": "Use this when you want to discard weaker text matches before they are saved or charged. Enter 0 to 100; the default is 35. The score is a transparent heuristic based on keyword overlap, footprint cues, and result position, not a domain-authority metric.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 100
+    }
+  },
+  "required": [
+    "keywords"
+  ]
+}

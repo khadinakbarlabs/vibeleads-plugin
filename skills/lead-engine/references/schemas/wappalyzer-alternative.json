@@ -1,0 +1,53 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Wappalyzer Alternative \u2014 Website Technology Profiler",
+  "description": "Analyze known public website URLs with a managed technology catalog and current HTML/HTTP-header evidence. Every accepted URL produces at most one report with source and freshness fields. The Actor does not use login sessions, crawl subpages, or inspect browser-only network activity.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Website URLs",
+      "type": "array",
+      "description": "Public website URLs or domains to profile. Enter a hostname such as apify.com or a complete http(s) URL. The Actor follows normal redirects and records the final URL. Use only URLs you are authorized to analyze.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 25,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048
+      }
+    },
+    "maxUrls": {
+      "title": "Maximum URLs to process",
+      "type": "integer",
+      "description": "Hard cap for this run after invalid URLs and duplicates are removed. Defaults to 10 and can never exceed 25. Lower this value to keep a pilot run tightly bounded.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 25
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout in seconds",
+      "type": "integer",
+      "description": "Maximum wait for each current public website response. Defaults to 25 seconds and can never exceed 60 seconds. A timed-out live page becomes a source warning while provider catalog evidence can still return a report.",
+      "editor": "number",
+      "minimum": 5,
+      "maximum": 60
+    },
+    "useProviderCatalog": {
+      "title": "Use managed technology catalog",
+      "type": "boolean",
+      "description": "Combine the keyword-data API's domain technology catalog with current public-page evidence. Defaults to true for broader coverage and keeps provider credentials owner-managed. Turn it off for a live-page-only observation that makes no provider request; the report event price is unchanged.",
+      "editor": "checkbox"
+    },
+    "useApifyProxyFallback": {
+      "title": "Use Apify Residential Proxy fallback",
+      "type": "boolean",
+      "description": "Retry through Apify Residential Proxy after a direct request is clearly blocked or temporarily unavailable. Defaults to true to improve current public-page reachability. Apify proxy traffic is platform usage paid by the caller; catalog evidence can still return when live access is unavailable.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

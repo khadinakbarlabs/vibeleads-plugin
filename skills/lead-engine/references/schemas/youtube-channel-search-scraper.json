@@ -1,0 +1,107 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "YouTube Channel Search Scraper input",
+  "description": "Search public YouTube channels by free-text keyword. Returns channel cards (name, handle, subscribers, video count, verified). Optional About-page enrich. Not a mixed video SERP and not a known-URL channel scrape.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "Free-text YouTube search terms used to find public channels, for example 'personal finance' or 'fitness coach'. Each query is searched independently and unique channels are merged. Prefills one example query. This is not a channel URL or @handle \u2014 for a known channel use youtube-channel-scraper.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      }
+    },
+    "searchUrls": {
+      "title": "YouTube results URLs",
+      "type": "array",
+      "description": "Optional youtube.com/results URLs that already contain a search_query, for example 'https://www.youtube.com/results?search_query=lofi'. The Actor extracts the keyword and runs a channel-only search. Defaults to empty. This is not a /channel or @handle URL.",
+      "editor": "stringList"
+    },
+    "maxResultsPerQuery": {
+      "title": "Max channels per query",
+      "type": "integer",
+      "description": "Maximum unique channels saved for each search query after pagination. Example: 10. Range 1\u2013200; default 10. This is not a global run cap \u2014 see maxResultsTotal.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "maxResultsTotal": {
+      "title": "Max channels per run",
+      "type": "integer",
+      "description": "Hard cap on unique channels billed and saved across every query in this run. Example: 50. Range 1\u2013500; default 50. Extra matches after the cap are skipped. This is not the per-query limit.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "minSubscribers": {
+      "title": "Minimum subscribers",
+      "type": "integer",
+      "description": "Keep channels whose public subscriber count is at least this number, for example 10000. Default 0 (no floor). Channels that hide subscriber counts are kept. This is not a YouTube API quota.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "maxSubscribers": {
+      "title": "Maximum subscribers",
+      "type": "integer",
+      "description": "Keep channels whose public subscriber count is at most this number, for example 1000000. Default 0 means no ceiling. Hidden counts are kept. This is not a billing cap.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "verifiedOnly": {
+      "title": "Verified channels only",
+      "type": "boolean",
+      "description": "When true, keep only search cards that show YouTube's verified badge. Default false returns verified and unverified public channels. This does not confirm official brand ownership beyond the public badge.",
+      "editor": "checkbox"
+    },
+    "country": {
+      "title": "Country (gl)",
+      "type": "string",
+      "description": "Two-letter ISO country code used as YouTube geo context (gl) and residential proxy country, for example 'US' or 'GB'. Defaults to 'US'. This is not a language code \u2014 see language.",
+      "editor": "textfield"
+    },
+    "language": {
+      "title": "Language (hl)",
+      "type": "string",
+      "description": "Two-letter ISO language code used as YouTube interface language (hl), for example 'en' or 'es'. Defaults to 'en'. This is not a country code \u2014 see country.",
+      "editor": "textfield"
+    },
+    "enrichProfiles": {
+      "title": "Enrich channel profiles",
+      "type": "boolean",
+      "description": "When true, each found channel is fetched for About-page fields (description, total views, joined date, country, links) and billed as one extra channel-enriched event. Default false returns search-card fields only. Leave off for cheap discovery.",
+      "editor": "checkbox"
+    },
+    "fallbackMode": {
+      "title": "Managed fallback mode",
+      "type": "string",
+      "description": "Controls when the managed fallback runs after direct YouTube HTTP. 'auto' (default) uses residential YouTube first and falls back only if blocked. 'never' stays on direct HTTP. 'always' skips direct scraping. This is not a proxy group setting.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "never",
+        "always"
+      ],
+      "enumTitles": [
+        "Auto (direct first, managed fallback last resort)",
+        "Never (direct only)",
+        "Always (managed fallback only)"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings for the direct YouTube HTTP scrape. Residential proxies are enabled by default because datacenter IPs are blocked. Country follows the country field unless overridden. This is not the managed fallback.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "searchQueries"
+  ]
+}

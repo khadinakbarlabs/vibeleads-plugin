@@ -1,0 +1,53 @@
+{
+  "title": "Gelbe Seiten Business Scraper",
+  "description": "Extract public German business listings from Gelbe Seiten by business type and location, or from existing Gelbe Seiten search and business URLs.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searches": {
+      "title": "Business searches",
+      "type": "array",
+      "description": "Business-type and location pairs to search on Gelbe Seiten. Example: [{\"query\":\"Zahnarzt\",\"location\":\"Berlin\"}]. Defaults to a Berlin dentist search. This is not a list of URLs; use Gelbe Seiten URLs for an existing results or business page.",
+      "editor": "json",
+      "items": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "title": "Business type",
+            "type": "string",
+            "description": "Business type or service to find, for example 'Zahnarzt' or 'Steuerberater'."
+          },
+          "location": {
+            "title": "Location",
+            "type": "string",
+            "description": "German city, district, or postal code, for example 'Berlin' or '10115'."
+          }
+        },
+        "required": [
+          "query",
+          "location"
+        ]
+      }
+    },
+    "startUrls": {
+      "title": "Gelbe Seiten URLs",
+      "type": "array",
+      "description": "Existing Gelbe Seiten search-result or business-detail URLs. Example: https://www.gelbeseiten.de/branchen/zahnarzt/berlin. Use this to preserve a search URL's filters; URLs outside gelbeseiten.de are rejected.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Maximum businesses",
+      "type": "integer",
+      "description": "Maximum unique business records to return across every input. Example: 50. Defaults to 50 and accepts 1 through 500. This is a business-row cap, not a page count, and it also caps billable business-found events.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "enrichDetails": {
+      "title": "Enrich business details",
+      "type": "boolean",
+      "description": "Visit each listed business page to collect additional publicly displayed contact and opening-hour data. Example: true. Defaults to true; disable it for faster list-card-only output. This does not discover private contact information.",
+      "editor": "checkbox"
+    }
+  }
+}

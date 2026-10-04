@@ -1,0 +1,119 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Google Maps Reviews Scraper",
+  "description": "Extract reviews from any Google Maps place. Provide Google Maps URLs, Place IDs, CIDs, or a business name plus location. Use this tool for reputation monitoring, sentiment analysis, and competitive review research. Do NOT use for business contact info \u2014 see khadinakbar/google-maps-leads-scraper.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "\ud83d\udd17 Google Maps URLs",
+      "type": "array",
+      "description": "List of Google Maps URLs to scrape reviews from. Accepts place URLs (https://www.google.com/maps/place/...), search URLs, CID URLs (?cid=...), and shortened maps.app.goo.gl links. Each URL yields reviews for one place. Do NOT paste Google Search result URLs \u2014 only maps.google.com / google.com/maps URLs are supported.",
+      "editor": "requestListSources"
+    },
+    "placeIds": {
+      "title": "\ud83d\uddc2 Place IDs",
+      "type": "array",
+      "description": "Google Place IDs (format ChIJ... or 0x...:0x...). Each is resolved to a place page and its reviews are scraped. Example: 'ChIJLU7jZClu5kcR4PcOOO_ouTY' for Eiffel Tower. Leave empty if you are providing startUrls \u2014 either input works.",
+      "editor": "stringList"
+    },
+    "dataIds": {
+      "title": "Google Maps data IDs / CIDs",
+      "type": "array",
+      "description": "Google Maps internal data IDs in 0x...:0x... format. Use this when you already have a Maps CID/data ID and want the most reliable direct extraction path. Example: 0x89c259a9b3117469:0xd134e199a405a163. Not a Google Place ID starting with ChIJ \u2014 use Place IDs for that format.",
+      "editor": "stringList"
+    },
+    "searchQuery": {
+      "title": "\ud83d\udd0d Search Query (alternative to URLs)",
+      "type": "string",
+      "description": "Free-text business name or keyword (e.g., 'Joe's Pizza Manhattan' or 'Apple Store Regent Street'). Used with the location field to find one place and scrape its reviews. Leave empty if you are providing startUrls or placeIds \u2014 do NOT use this for broad searches, use a specific business name.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "\ud83d\udccd Location (with searchQuery)",
+      "type": "string",
+      "description": "City, region, or country used to disambiguate the searchQuery (e.g., 'New York, NY' or 'London, UK'). Ignored when startUrls or placeIds are provided. Leave empty for global search on searchQuery.",
+      "editor": "textfield"
+    },
+    "maxReviews": {
+      "title": "\u2b50 Max reviews per place",
+      "type": "integer",
+      "description": "Maximum reviews to scrape per place. Use 10\u201350 for testing, 100\u2013500 for typical monitoring, 1000+ for deep analysis. Google usually caps accessible reviews at around 4000 even for high-volume places. Billing is per review scraped, so set this to match your budget.",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "reviewsSort": {
+      "title": "\ud83d\udcc5 Sort reviews by",
+      "type": "string",
+      "description": "Order in which reviews are fetched from Google. 'newest' is best for monitoring recent feedback, 'mostRelevant' matches Google's default, 'highestRanking' / 'lowestRanking' for best/worst first. Affects which reviews you hit the maxReviews cap on.",
+      "enum": [
+        "newest",
+        "mostRelevant",
+        "highestRanking",
+        "lowestRanking"
+      ],
+      "enumTitles": [
+        "Newest first",
+        "Most relevant (Google default)",
+        "Highest rating first",
+        "Lowest rating first"
+      ]
+    },
+    "reviewSearchQuery": {
+      "title": "Review keyword filter",
+      "type": "string",
+      "description": "Optional keyword to search inside Google Maps reviews before extraction. Use this when you only need reviews mentioning a phrase such as 'parking' or 'refund'. Defaults to no keyword filter. Not a business search query \u2014 use Search Query above to find the place itself.",
+      "editor": "textfield"
+    },
+    "language": {
+      "title": "\ud83c\udf0d Language",
+      "type": "string",
+      "description": "Language for the Google Maps UI and for review translations. 'en' returns English UI, reviews stay in their original language. Affects Google's 'N reviews' parsing and the text of the 'a month ago' date labels.",
+      "enum": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "nl",
+        "pl",
+        "ru",
+        "ja",
+        "ko",
+        "zh-CN",
+        "ar",
+        "tr",
+        "hi",
+        "id",
+        "vi",
+        "th",
+        "sv",
+        "no",
+        "da",
+        "fi",
+        "cs",
+        "el",
+        "he"
+      ]
+    },
+    "countryCode": {
+      "title": "Country hint",
+      "type": "string",
+      "description": "Two-letter Google region hint used for Maps review requests. Use this when review ordering or place resolution should match a specific market, for example US, GB, DE, or PK. Defaults to US. Not a proxy country selector by itself.",
+      "editor": "textfield"
+    },
+    "includePersonalData": {
+      "title": "\ud83d\udd12 Include reviewer personal data (GDPR)",
+      "type": "boolean",
+      "description": "When true, includes reviewer name, profile URL, and profile photo URL. When false (default), these are nulled out and only a stable reviewer hash is returned. Personal data is regulated by GDPR in the EU \u2014 keep disabled unless you have a legitimate purpose and documented basis. reviewId is always returned regardless of this setting."
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used to scrape Google Maps. Defaults to Apify Residential proxy which bypasses most Google bot checks. Do not override unless you know your proxy can handle Google.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

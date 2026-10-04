@@ -1,0 +1,42 @@
+{
+  "title": "Ecommerce Store Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Store or Product URLs",
+      "type": "array",
+      "description": "One or more ecommerce URLs to scrape. Paste a store homepage (e.g. 'https://allbirds.com') to crawl its entire catalog, or paste individual product page URLs for targeted extraction. Supports Shopify, WooCommerce, and generic ecommerce sites \u2014 the scraper auto-detects the platform. Do NOT use this field for keyword or category search \u2014 pass full URLs only.",
+      "editor": "requestListSources",
+      "sectionCaption": "What to scrape",
+      "sectionDescription": "Provide one or more store URLs. The scraper auto-detects Shopify, WooCommerce, and generic stores."
+    },
+    "maxProducts": {
+      "title": "Max products per run",
+      "type": "integer",
+      "description": "Upper limit on the number of products returned in this run. Accepts integers from 1 to 10000. Defaults to 50. Each product counts as one billable 'product-scraped' event at $0.003. Set high for full catalog extraction.",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "includeVariants": {
+      "title": "Include product variants",
+      "type": "boolean",
+      "description": "If true, every product record includes a 'variants' array with individual size/color/style entries, each with its own price, SKU, and availability. If false, the 'variants' array is always empty. Defaults to true. Does NOT affect billing \u2014 one product is one event either way.",
+      "editor": "checkbox"
+    },
+    "includeDescription": {
+      "title": "Include product description",
+      "type": "boolean",
+      "description": "If true, every record includes the full product description text (HTML stripped to plain text). If false, the 'description' field is set to null. Defaults to true. Disable this for smaller payloads when you only care about price and stock.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Advanced: Apify proxy configuration. Leave as default unless you have a specific proxy requirement. Residential proxies are enabled by default for best compatibility with anti-bot systems.",
+      "editor": "proxy",
+      "sectionCaption": "Advanced settings"
+    }
+  },
+  "required": []
+}

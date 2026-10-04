@@ -1,0 +1,145 @@
+{
+  "title": "Meetup Events Scraper",
+  "description": "Scrape public Meetup.com events three ways: keyword + location search, a group's full event list, or a single event URL/ID. Modes auto-detect from the inputs you fill.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search keywords",
+      "type": "array",
+      "description": "Keyword searches run on Meetup events, one entry per term (e.g. 'technology', 'yoga', 'startup networking'). Pair with a location (city, zip, or lat+lon) \u2014 Meetup search is location-scoped. Leave empty if you only want group or event URLs. NOT a group or event URL.",
+      "editor": "stringList"
+    },
+    "city": {
+      "title": "City",
+      "type": "string",
+      "description": "City to scope the keyword search to (e.g. 'New York'). Combine with state/country for accuracy. Ignored for group-URL and event-URL modes. NOT a venue name.",
+      "editor": "textfield"
+    },
+    "state": {
+      "title": "State / region",
+      "type": "string",
+      "description": "State or region code for the search location (e.g. 'NY'). Optional refinement on top of city. Ignored outside search mode. NOT a country.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "Country code",
+      "type": "string",
+      "description": "Two-letter country code for the search location (e.g. 'us', 'gb'). Optional. Ignored outside search mode.",
+      "editor": "textfield"
+    },
+    "zip": {
+      "title": "ZIP / postal code",
+      "type": "string",
+      "description": "Postal code to scope the search (e.g. '10001'). Alternative to city. Ignored outside search mode.",
+      "editor": "textfield"
+    },
+    "lat": {
+      "title": "Latitude",
+      "type": "number",
+      "description": "Latitude for a precise geo-scoped search (e.g. 40.7128). Use with lon and radius for map-bounded searches. Optional. Ignored outside search mode.",
+      "editor": "number"
+    },
+    "lon": {
+      "title": "Longitude",
+      "type": "number",
+      "description": "Longitude for a precise geo-scoped search (e.g. -74.006). Use with lat and radius. Optional. Ignored outside search mode.",
+      "editor": "number"
+    },
+    "radius": {
+      "title": "Radius (miles)",
+      "type": "number",
+      "description": "Search radius in miles around the lat/lon or city (e.g. 50). Defaults to Meetup's default when omitted. Ignored outside search mode.",
+      "editor": "number"
+    },
+    "eventType": {
+      "title": "Event type filter",
+      "type": "string",
+      "description": "Restrict search results to a single format. PHYSICAL = in-person, ONLINE = virtual, HYBRID = both. Leave as 'Any' for all formats. Ignored outside search mode.",
+      "editor": "select",
+      "enum": [
+        "ANY",
+        "PHYSICAL",
+        "ONLINE",
+        "HYBRID"
+      ],
+      "enumTitles": [
+        "Any",
+        "In-person (physical)",
+        "Online",
+        "Hybrid"
+      ]
+    },
+    "startDate": {
+      "title": "Start date (from)",
+      "type": "string",
+      "description": "Only return search events starting on or after this ISO 8601 datetime (e.g. '2026-07-01T00:00:00Z'). Optional. Ignored outside search mode.",
+      "editor": "textfield"
+    },
+    "endDate": {
+      "title": "Start date (to)",
+      "type": "string",
+      "description": "Only return search events starting on or before this ISO 8601 datetime (e.g. '2026-08-01T00:00:00Z'). Optional. Ignored outside search mode.",
+      "editor": "textfield"
+    },
+    "minRsvpCount": {
+      "title": "Minimum RSVPs",
+      "type": "integer",
+      "description": "Only return search events with at least this many RSVPs (e.g. 10) \u2014 filters out tiny events. Optional. Ignored outside search mode.",
+      "editor": "number"
+    },
+    "sortField": {
+      "title": "Sort search by",
+      "type": "string",
+      "description": "Order search results by RELEVANCE (Meetup's match score) or DATETIME (chronological). Defaults to RELEVANCE. Ignored outside search mode.",
+      "editor": "select",
+      "enum": [
+        "RELEVANCE",
+        "DATETIME"
+      ],
+      "enumTitles": [
+        "Relevance",
+        "Date/time"
+      ]
+    },
+    "groupUrls": {
+      "title": "Group URLs",
+      "type": "array",
+      "description": "Meetup group URLs or urlnames to pull every event from (e.g. 'https://www.meetup.com/nyc-tech/' or just 'nyc-tech'). Returns the group's upcoming or past events (see groupEventStatus). NOT an event URL.",
+      "editor": "stringList"
+    },
+    "groupEventStatus": {
+      "title": "Group events: upcoming or past",
+      "type": "string",
+      "description": "For group-URL mode, choose which events to return: upcoming (future, ascending) or past (history, most-recent first). Defaults to upcoming. Only applies to groupUrls.",
+      "editor": "select",
+      "enum": [
+        "upcoming",
+        "past"
+      ],
+      "enumTitles": [
+        "Upcoming",
+        "Past"
+      ]
+    },
+    "eventUrls": {
+      "title": "Event URLs or IDs",
+      "type": "array",
+      "description": "Specific Meetup event URLs or numeric event IDs to fetch directly (e.g. 'https://www.meetup.com/nyc-tech/events/315015546/' or '315015546'). Best for enriching a known list of events. NOT a group URL.",
+      "editor": "stringList"
+    },
+    "maxItems": {
+      "title": "Max events",
+      "type": "integer",
+      "description": "Hard cap on total unique events returned across all modes (e.g. 200). Stops pagination and charging once reached. Defaults to 200. Raise for deep crawls.",
+      "editor": "number",
+      "minimum": 1
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used for Meetup's GraphQL backend. Apify datacenter (default) is fast and cheap for this cookieless API; switch to RESIDENTIAL only if you hit blocks.",
+      "editor": "proxy"
+    }
+  }
+}

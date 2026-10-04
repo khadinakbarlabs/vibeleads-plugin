@@ -1,0 +1,56 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Lead Finder PRO input",
+  "description": "Find public business websites for one or more B2B searches, then optionally collect contact routes displayed on their homepages.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Business search terms",
+      "type": "array",
+      "description": "One to ten business categories or ICP phrases to discover, such as [\"web design agencies\", \"B2B SaaS consultants\"]. Each term is combined with Location when supplied. This is not a list of URLs or a person-name lookup.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "Optional city, state, country, or region that narrows each business search, for example \"Austin, TX\". Leave blank for location-independent search terms. This is search context, not a precise map-radius filter.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum unique business leads",
+      "type": "integer",
+      "description": "Maximum number of unique company domains returned across the entire run. Choose an integer from 1 to 100; the default is 10. This cap applies after duplicate and directory filtering, not per search term.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "enrichContacts": {
+      "title": "Collect homepage contact routes",
+      "type": "boolean",
+      "description": "When enabled, visits each discovered business homepage and records public email addresses and a likely contact page link when present. It does not verify deliverability, guess emails, or enrich private personal data. Default is enabled.",
+      "editor": "checkbox"
+    },
+    "includeDirectories": {
+      "title": "Include directory and social results",
+      "type": "boolean",
+      "description": "Include results from directories and social networks such as LinkedIn or Yelp. Default is disabled so the output favors the company\u2019s own website. Enable only when directory pages are useful to your workflow.",
+      "editor": "checkbox"
+    },
+    "excludeDomains": {
+      "title": "Domains to exclude",
+      "type": "array",
+      "description": "Optional domains to omit, for example [\"competitor.com\", \"agency-directory.com\"]. Subdomains are also excluded. Do not include URLs, paths, or wildcard syntax.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "searchQueries"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "title": "Apple Maps Business Data Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Scrape public Apple Maps businesses by keyword and location, Apple Maps URLs, or place links. Returns name, phone, website, address, and coordinates from MapKit search. Optional website email enrich. Charged $0.004 per place-scraped and $0.006 per email-enriched.",
+  "required": [],
+  "properties": {
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Business category or keyword to search on Apple Maps, such as coffee shops or dentists. Combine with location or latitude/longitude for best coverage. Prefer a short category phrase over a full sentence. This is Apple Maps search, not Google Maps \u2014 use google-maps-leads-scraper for Google.",
+      "editor": "textfield"
+    },
+    "searchQueries": {
+      "title": "Search queries",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional list of additional Apple Maps search keywords processed in the same run. Merged with searchQuery after dedupe. Use for related categories in one city (for example cafes and bakeries). Each unique place is still billed once.",
+      "editor": "stringList"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, region, or address text that centers the Apple Maps search, such as San Francisco, CA. Used with searchQuery when latitude/longitude are not set. Leave empty when providing exact coordinates or Apple Maps search URLs. Improves local NAP coverage for territory lists.",
+      "editor": "textfield"
+    },
+    "latitude": {
+      "title": "Latitude",
+      "type": "number",
+      "description": "Optional map center latitude in decimal degrees. Pair with longitude for precise geocentering without relying on geocoded location text. When set with searchQuery, adaptiveGrid can expand nearby cells. Ignored for place URL lookups that already include coordinates.",
+      "editor": "number"
+    },
+    "longitude": {
+      "title": "Longitude",
+      "type": "number",
+      "description": "Optional map center longitude in decimal degrees. Pair with latitude for precise geocentering. Use WGS84 values from Apple Maps share links or a known venue. Leave empty when location text or searchUrls already define the area.",
+      "editor": "number"
+    },
+    "placeUrls": {
+      "title": "Apple Maps place URLs",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Direct Apple Maps place links (maps.apple.com/place or place-id/auid query params). Each valid place is fetched and billed as place-scraped when persisted. Invalid non-Apple URLs are skipped with a warning. Prefer place URLs when you already have listing links.",
+      "editor": "stringList"
+    },
+    "searchUrls": {
+      "title": "Apple Maps search URLs",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Apple Maps search share URLs that include a query (and optional center/span). The Actor extracts the query and optional map center, then runs MapKit search. Place URLs pasted here are treated as place lookups. Non-Apple URLs are ignored.",
+      "editor": "stringList"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Hard cap on unique places saved after dedupe and filters. Defaults to 20. Prefill 5 keeps quality tests fast and cheap. Maximum 500. Each persisted place costs $0.004 as place-scraped.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "enrichEmails": {
+      "title": "Enrich emails from websites",
+      "type": "boolean",
+      "description": "When true, visit the business website and likely contact pages to find a public email address. Emails are charged separately as email-enriched at $0.006 only when found. Defaults to false. Does not invent or pattern-generate emails.",
+      "editor": "checkbox"
+    },
+    "requireWebsite": {
+      "title": "Require website",
+      "type": "boolean",
+      "description": "When true, keep only places that expose a website URL in the MapKit payload. Useful for outbound lists that need a domain before enrichment. Defaults to false so phone-only listings remain. Filtered-out places are not billed.",
+      "editor": "checkbox"
+    },
+    "requirePhone": {
+      "title": "Require phone",
+      "type": "boolean",
+      "description": "When true, keep only places that expose a public telephone number. Useful for call-center or SMS workflows. Defaults to false. Filtered-out places are not billed as place-scraped.",
+      "editor": "checkbox"
+    },
+    "adaptiveGrid": {
+      "title": "Adaptive grid search",
+      "type": "boolean",
+      "description": "When true and a map center is known, expand search across nearby grid cells to improve coverage for dense categories. Defaults to true. Disable for a single-point probe or when searchUrls already encode a tight span. Extra cells stop once maxResults is reached.",
+      "editor": "checkbox"
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Locale for MapKit requests, such as en-US. Affects category and address language when Apple returns localized fields. Defaults to en-US. Use a BCP-47 style tag Apple Maps accepts for your market.",
+      "editor": "textfield"
+    },
+    "countryCode": {
+      "title": "Country code",
+      "type": "string",
+      "description": "ISO country hint for MapKit search, such as US. Helps disambiguate city names that exist in multiple countries. Defaults to US. Does not replace location or coordinates when those are set.",
+      "editor": "textfield"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional Apify proxy settings for MapKit and website enrichment HTTP. Leave off for the default direct path. Enable Apify Residential if Apple or business sites return 403/429. This is not an Apple ID session and does not unlock private Maps data.",
+      "editor": "proxy"
+    }
+  }
+}

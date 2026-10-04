@@ -1,0 +1,56 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "HiringCafe Jobs Scraper Input",
+  "description": "Extract public HiringCafe job-search results. Start with a keyword search for broad discovery or paste an exact public HiringCafe search URL when you need filters configured on the site.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Job search query",
+      "type": "string",
+      "description": "Free-text terms sent to HiringCafe, for example 'senior data engineer'. Use a role, skill, or phrase; the default is 'software engineer'. It accepts up to 120 characters. This is not a job URL or an employer-only lookup.",
+      "editor": "textfield"
+    },
+    "searchUrls": {
+      "title": "HiringCafe search URLs",
+      "type": "array",
+      "description": "Optional public HiringCafe search URLs, for example 'https://hiringcafe.com/?searchState=%7B%22searchQuery%22%3A%22data%20engineer%22%7D'. When supplied, these URLs override the keyword field and preserve the filters selected on HiringCafe. Leave this empty for the standard keyword mode. This is not for individual job or external application URLs.",
+      "editor": "requestListSources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "title": "HiringCafe search URL",
+            "type": "string",
+            "description": "A public HiringCafe search page URL, for example 'https://hiringcafe.com/?searchState=%7B%22searchQuery%22%3A%22data%20engineer%22%7D'. Do not enter an individual job page or an external application link."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    "maxResults": {
+      "title": "Maximum job records",
+      "type": "integer",
+      "description": "Hard cap on persisted job records and job-record event charges. Enter an integer from 1 to 200, for example 25. The default is 25 and collection stops once the cap is reached. This is not a page count and cannot return more than 200 records.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "maxPages": {
+      "title": "Maximum search pages",
+      "type": "integer",
+      "description": "Maximum HiringCafe result pages examined for each search URL, for example 3. The default is 3 and each page is fetched sequentially to keep collection bounded. Raise it only when the result cap requires more coverage. This is not a request-concurrency control.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "useUnblockerFallback": {
+      "title": "Retry blocked public pages through Apify Unblocker",
+      "type": "boolean",
+      "description": "When HiringCafe blocks the direct stateless HTML request, retry that public search page once through Apify Unblocker. This is only used after a classified block and can add separate platform usage. Defaults to true.",
+      "editor": "checkbox"
+    }
+  }
+}

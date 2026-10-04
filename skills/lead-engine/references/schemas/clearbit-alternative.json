@@ -1,0 +1,84 @@
+{
+  "title": "Clearbit Alternative company-enrichment input",
+  "description": "Enrich a caller-supplied domain list from each company\u2019s public website. This is a source-cited company-profile workflow, not a proprietary people graph, private-email finder, buyer-intent feed, or outreach tool.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companies": {
+      "title": "Companies to enrich",
+      "type": "array",
+      "description": "Provide one to 100 companies you already selected, each with a public website domain such as apify.com. Optional companyName and externalId are carried through for an auditable CRM join. This is not a free-text person search, a LinkedIn profile list, or permission to send outreach.",
+      "editor": "json",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Company website domain",
+            "type": "string",
+            "description": "Enter the company\u2019s public domain or homepage URL, for example apify.com or https://apify.com. The Actor visits this site plus a few standard public routes and rejects private-network targets. This is not a LinkedIn, Clearbit, HubSpot, or personal-profile URL."
+          },
+          "companyName": {
+            "title": "Known company name",
+            "type": "string",
+            "description": "Optionally provide the company name already present in your CRM, for example Apify Technologies s.r.o. It is retained beside public website evidence and is not independently verified when the site does not state a name. This is not used to search a third-party people or company database."
+          },
+          "externalId": {
+            "title": "External record ID",
+            "type": "string",
+            "description": "Optionally provide your CRM or spreadsheet join key, for example crm-001. It is returned unchanged with the enrichment result so you can merge it safely. This field is not sent to public websites or used as a database lookup key."
+          }
+        },
+        "required": [
+          "domain"
+        ]
+      }
+    },
+    "maxCompanies": {
+      "title": "Maximum companies to process",
+      "type": "integer",
+      "description": "Set the hard cap on distinct valid company domains in this run, from 1 through 100. It defaults to 10, so company-enriched event charges cannot exceed the selected count plus platform usage. This is a result cap, not a request to crawl the wider web.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxPagesPerCompany": {
+      "title": "Maximum public pages per company",
+      "type": "integer",
+      "description": "Choose how many standard public routes to inspect: the homepage and then /about, /contact, and /team. It defaults to 3 and accepts 1 through 4 so source URLs stay bounded and reviewable. It does not enter portals, logins, or unrelated sites.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "includePublishedContacts": {
+      "title": "Include website-published business contacts",
+      "type": "boolean",
+      "description": "When enabled, return business email and phone links visibly published on the fetched public company pages. It defaults to true and preserves supporting source URLs for review. It never guesses email patterns, unmask protected data, or validate a mailbox owner.",
+      "editor": "checkbox"
+    },
+    "includeTechnologySignals": {
+      "title": "Include observed technology signals",
+      "type": "boolean",
+      "description": "When enabled, return a small list of technologies whose public HTML asset signatures were observed during the fetch. It defaults to true and labels these as page-level observations, not a complete technology inventory. It does not infer contracts, spending, buyer intent, or internal systems.",
+      "editor": "checkbox"
+    },
+    "useProxyFallback": {
+      "title": "Use a managed proxy only after a block",
+      "type": "boolean",
+      "description": "Allow one Apify Residential proxy retry only after the direct request is blocked or transiently unavailable. It defaults to true to improve resilience while keeping direct public-site collection as the primary route. Proxy usage is additional platform usage and is not a bypass for private or restricted content.",
+      "editor": "checkbox"
+    },
+    "requestTimeoutSecs": {
+      "title": "Per-page request timeout seconds",
+      "type": "integer",
+      "description": "Set the timeout for one public webpage request, from 5 through 40 seconds. It defaults to 20 seconds and is applied independently to every bounded route and retry. This does not extend the overall Actor timeout or allow unbounded retries.",
+      "editor": "number",
+      "minimum": 5,
+      "maximum": 40
+    }
+  },
+  "required": [
+    "companies"
+  ]
+}

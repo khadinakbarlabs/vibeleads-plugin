@@ -1,0 +1,145 @@
+{
+  "title": "RocketReach Alternative work-email enrichment input",
+  "description": "Find or validate work email for known B2B contacts, or search public professional profiles by an explicit professional query. Work-email routes use EmailListVerify; public-profile search uses HarvestAPI and returns only public profile fields with provenance. Neither route discovers personal emails, phone numbers, or supports outreach.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "operation": {
+      "title": "Operation",
+      "type": "string",
+      "description": "Choose work_email_enrichment for caller-supplied known contacts, or public_profile_search for a bounded public professional-profile search. Public-profile search is available only after its separately priced event becomes active; it never returns email or phone data.",
+      "editor": "select",
+      "enum": [
+        "work_email_enrichment",
+        "public_profile_search"
+      ]
+    },
+    "contacts": {
+      "title": "Known B2B contacts",
+      "type": "array",
+      "description": "Required for work_email_enrichment: one to 200 contacts you already know, each with fullName and companyDomain. An optional externalId is preserved for CRM matching and optional linkedInUrl is stored only as supplied provenance. Leave empty for public_profile_search.",
+      "editor": "json",
+      "minItems": 1,
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "title": "Full name",
+            "type": "string",
+            "description": "The known professional contact's full name, for example Ada Lovelace."
+          },
+          "companyDomain": {
+            "title": "Company domain",
+            "type": "string",
+            "description": "The employer's registrable website domain, for example example.com, not a profile URL."
+          },
+          "companyName": {
+            "title": "Company name",
+            "type": "string",
+            "description": "Optional employer name carried through to the result, for example Example Ltd."
+          },
+          "externalId": {
+            "title": "External ID",
+            "type": "string",
+            "description": "Optional caller-owned CRM or spreadsheet key carried through unchanged, for example crm-001."
+          },
+          "linkedInUrl": {
+            "title": "Provided LinkedIn URL",
+            "type": "string",
+            "description": "Optional public LinkedIn /in/ URL already known to you; it is retained as caller-provided provenance and is not fetched."
+          },
+          "email": {
+            "title": "Known work email",
+            "type": "string",
+            "description": "Optional work email to validate in verify_supplied_email mode, for example ada@example.com. The provider tests deliverability and returns a result; it does not authorize outreach. Leave empty when find_and_verify should search within the supplied employer domain."
+          }
+        },
+        "required": [
+          "fullName",
+          "companyDomain"
+        ]
+      }
+    },
+    "publicProfileSearch": {
+      "title": "Public professional-profile search",
+      "type": "object",
+      "description": "Required for public_profile_search: provide a professional search query or a public LinkedIn company URL, with optional title and location filters. Results are public profile name, headline, URL, and location only; no email, phone, personal contact data, or outreach capability is returned.",
+      "editor": "json",
+      "properties": {
+        "query": {
+          "title": "Professional query",
+          "type": "string",
+          "description": "Optional professional search text such as sales operations or data engineering. Supply this or currentCompany."
+        },
+        "currentCompany": {
+          "title": "Current LinkedIn company URL",
+          "type": "string",
+          "description": "Optional public LinkedIn company URL used as an employer filter. Supply this or query."
+        },
+        "title": {
+          "title": "Professional title",
+          "type": "string",
+          "description": "Optional public professional-title filter, such as Director of Sales."
+        },
+        "location": {
+          "title": "Location",
+          "type": "string",
+          "description": "Optional public professional-location filter, such as New York."
+        }
+      }
+    },
+    "maxProfiles": {
+      "title": "Maximum public profiles",
+      "type": "integer",
+      "description": "For public_profile_search, process one to 25 returned public profiles. Each accepted complete profile is charged only after the separately priced public-profile event has become active. Defaults to 10.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 25
+    },
+    "enrichmentMode": {
+      "title": "Enrichment mode",
+      "type": "string",
+      "description": "Choose find_and_verify to find a work email from the known name and employer domain, verify_supplied_email to validate contact.email, or candidate_only for DNS-backed conventional patterns. The default uses the owner-configured EmailListVerify route. Verification modes require the EMAIL_LIST_VERIFY_API_KEY Actor secret and return explicit provider outcomes. candidate_only preserves an MX-backed candidate boundary without asserting mailbox delivery.",
+      "editor": "select",
+      "enum": [
+        "find_and_verify",
+        "verify_supplied_email",
+        "candidate_only"
+      ]
+    },
+    "fallbackPolicy": {
+      "title": "Verification fallback policy",
+      "type": "string",
+      "description": "Choose strict to fail truthfully without billing when the required verification provider is unavailable. Choose dns_candidate to return the MX-backed candidate route when provider verification cannot complete. The default strict policy keeps provider availability distinct from a completed verification. The fallback never labels a conventional candidate as mailbox-verified.",
+      "editor": "select",
+      "enum": [
+        "strict",
+        "dns_candidate"
+      ]
+    },
+    "maxResults": {
+      "title": "Maximum contact enrichments",
+      "type": "integer",
+      "description": "Hard cap on contacts processed in one run. Defaults to 25 and accepts 1 to 200 contacts, limiting maximum event charges to $0.12 per completed enrichment plus platform usage. This is not a search-result page limit because the Actor does not search a people database.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "maxCandidatesPerContact": {
+      "title": "Maximum candidates per contact",
+      "type": "integer",
+      "description": "Number of common work-email patterns returned for an MX-capable employer domain. Defaults to 3 and accepts 1 to 5 patterns, ordered by conventional pattern priority. This does not verify that a specific mailbox exists or that the person currently works there.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "includeMxValidatedCandidates": {
+      "title": "Include MX-valid email candidates",
+      "type": "boolean",
+      "description": "Return candidate work-email strings only when the supplied company domain advertises an MX mail host. Defaults to true; turning it off still returns the enrichment status and DNS provenance without email strings. This is not mailbox, SMTP, ownership, or personal-email verification.",
+      "editor": "checkbox"
+    }
+  },
+  "required": []
+}

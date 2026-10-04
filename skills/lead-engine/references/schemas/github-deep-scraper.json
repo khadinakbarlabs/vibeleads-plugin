@@ -1,0 +1,130 @@
+{
+  "title": "GitHub Deep Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "Scraping mode",
+      "type": "string",
+      "description": "Which GitHub surface to scrape. One actor, 11 modes. Pick exactly one. 'repo' = full metadata for one repo (50+ fields). 'repo-search' = keyword/qualifier search. 'issues'/'prs' = list issues/PRs for a repo with comments, labels, reviews. 'code-search' = search code across GitHub (REQUIRES GITHUB_TOKEN env var). 'contributors' = repo contributors with profile data. 'releases' = release history with assets. 'readme' = full README markdown + rendered text. 'commits' = commit history with author, files, stats. 'user' = user/org profile + their repos. 'trending' = trending repos by language and timeframe. NOT for private repos or GitHub Enterprise.",
+      "editor": "select",
+      "enum": [
+        "repo",
+        "repo-search",
+        "issues",
+        "prs",
+        "code-search",
+        "contributors",
+        "releases",
+        "readme",
+        "commits",
+        "user",
+        "trending"
+      ],
+      "enumTitles": [
+        "Single repo (full metadata)",
+        "Search repos by query",
+        "Issues for a repo",
+        "Pull requests for a repo",
+        "Code search (PAT required)",
+        "Contributors for a repo",
+        "Releases for a repo",
+        "README of a repo",
+        "Commit history of a repo",
+        "User or organization profile",
+        "Trending repos"
+      ]
+    },
+    "repo": {
+      "title": "Repository (owner/name)",
+      "type": "string",
+      "description": "GitHub repository in 'owner/name' format (e.g., 'facebook/react'). Required for modes: repo, issues, prs, contributors, releases, readme, commits. Accepts full URL too \u2014 'https://github.com/facebook/react' is normalised. NOT used for repo-search, code-search, user, trending modes.",
+      "editor": "textfield"
+    },
+    "query": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Free-text query with GitHub search qualifiers (e.g., 'language:typescript stars:>1000 web framework'). Used by modes: repo-search, code-search. Supports all GitHub search operators (language:, stars:, forks:, user:, org:, path:, extension:, in:). NOT a repository identifier \u2014 for that use the 'repo' field.",
+      "editor": "textfield"
+    },
+    "user": {
+      "title": "User or organization login",
+      "type": "string",
+      "description": "GitHub user or organization login (e.g., 'torvalds' or 'apify'). Required for mode 'user'. Returns profile, repos, organizations, and (if available) social accounts. NOT a repo path \u2014 for that use 'repo' field.",
+      "editor": "textfield"
+    },
+    "language": {
+      "title": "Programming language filter",
+      "type": "string",
+      "description": "Optional language filter for trending mode (e.g., 'python', 'rust', 'typescript'). Lowercase, hyphenated for multi-word. For repo-search use 'language:python' inside the query field instead. Empty = all languages.",
+      "editor": "textfield"
+    },
+    "timeframe": {
+      "title": "Trending timeframe",
+      "type": "string",
+      "description": "Time window for trending mode. 'daily' = today's trending repos, 'weekly' = this week, 'monthly' = this month. GitHub publishes these lists at github.com/trending. Only used by mode 'trending'. Default: daily.",
+      "editor": "select",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "enumTitles": [
+        "Today (daily)",
+        "This week (weekly)",
+        "This month (monthly)"
+      ]
+    },
+    "state": {
+      "title": "Issue / PR state",
+      "type": "string",
+      "description": "Filter issues or PRs by state. 'open' = only open, 'closed' = only closed, 'all' = both. Only used by modes 'issues' and 'prs'. Default: open. GitHub's UI default is open, so leave as 'open' for most agent use.",
+      "editor": "select",
+      "enum": [
+        "open",
+        "closed",
+        "all"
+      ],
+      "enumTitles": [
+        "Open only",
+        "Closed only",
+        "All"
+      ]
+    },
+    "since": {
+      "title": "Since (ISO 8601 date)",
+      "type": "string",
+      "description": "Only return items updated/created at or after this ISO 8601 date (e.g., '2026-01-01' or '2026-01-01T00:00:00Z'). Used by modes 'issues', 'prs', 'commits'. Empty = no lower bound.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum results",
+      "type": "integer",
+      "description": "Maximum number of records to return. Each record = one PPE 'result' ($0.005) or 'deep-result' ($0.01) charge. Default 50. Hard cap 1000 to keep one run under $10 for x402 agents. Set lower to control cost; the actor will stop early when it reaches the cap.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "includeComments": {
+      "title": "Include comments (issues/PRs)",
+      "type": "boolean",
+      "description": "When true, fetches comments for each issue or PR (extra API call per item). Increases run cost but gives the full conversation thread. Only affects modes 'issues' and 'prs'. Default: false. Set true when an agent needs sentiment, decisions, or context from threads.",
+      "editor": "checkbox"
+    },
+    "includeReviews": {
+      "title": "Include reviews (PRs)",
+      "type": "boolean",
+      "description": "When true, fetches reviews and review comments for each PR (extra API call per PR). Returns reviewer login, state (APPROVED/REQUEST_CHANGES/COMMENTED), submitted_at, body. Only affects mode 'prs'. Default: false. Set true when an agent needs review-status or reviewer breakdown.",
+      "editor": "checkbox"
+    },
+    "includeFiles": {
+      "title": "Include file diffs (commits)",
+      "type": "boolean",
+      "description": "When true, includes the list of files changed per commit with additions/deletions/status. Charged as 'deep-result' ($0.01) instead of 'result'. Only affects mode 'commits'. Default: false. Set true when an agent needs to reason about diffs.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "mode"
+  ]
+}

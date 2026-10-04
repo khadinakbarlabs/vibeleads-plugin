@@ -1,0 +1,81 @@
+{
+  "title": "Instagram User Search Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search keywords",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Keywords used to find public Instagram users, one keyword phrase per entry (e.g., \"fitness coach\" or \"vegan bakery london\"). Plain natural-language phrases work best; avoid hashtags and URLs. Runs each keyword independently and deduplicates users found across keywords.",
+      "editor": "stringList",
+      "maxItems": 50
+    },
+    "maxResultsPerQuery": {
+      "title": "Maximum results per keyword",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "unit": "users",
+      "editor": "number",
+      "description": "Upper bound on unique users saved for each keyword after filters are applied. Defaults to 20 and cannot exceed 100. Lower it to cap Pay per event charges for exploratory runs."
+    },
+    "maxResults": {
+      "title": "Maximum total results",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "unit": "users",
+      "editor": "number",
+      "description": "Global cap on unique users saved across all keywords in one run. Defaults to 200. The actor stops early once this many users have been saved, even if keywords remain."
+    },
+    "minimumFollowers": {
+      "title": "Minimum followers",
+      "type": "integer",
+      "minimum": 0,
+      "unit": "followers",
+      "editor": "number",
+      "description": "Excludes users with fewer than this many followers, e.g., 10000 keeps accounts with 10K or more. Defaults to 0, which keeps everyone. Use with maximumFollowers to define an audience-size band."
+    },
+    "maximumFollowers": {
+      "title": "Maximum followers",
+      "type": "integer",
+      "minimum": 0,
+      "unit": "followers",
+      "editor": "number",
+      "description": "Excludes users with more than this many followers, e.g., 100000 keeps accounts under 100K. Defaults to 0, which sets no upper bound. Useful for finding micro-influencers instead of celebrities."
+    },
+    "verifiedOnly": {
+      "title": "Verified accounts only",
+      "type": "boolean",
+      "editor": "checkbox",
+      "description": "Keeps only Instagram-verified accounts (blue check) in the results. Defaults to false so unverified niche accounts are included. Turn on when assembling brand-safe partnership shortlists."
+    },
+    "accountType": {
+      "title": "Account type",
+      "type": "string",
+      "enum": [
+        "any",
+        "personal",
+        "business",
+        "professional"
+      ],
+      "editor": "select",
+      "description": "Filters by Instagram account class: any keeps all, personal keeps non-professional profiles, business keeps business accounts, professional keeps creator and professional accounts. Defaults to any. Category detail for professional accounts is returned in the category field of each result."
+    },
+    "includePrivateProfiles": {
+      "title": "Include private profiles",
+      "type": "boolean",
+      "editor": "checkbox",
+      "description": "Also saves private (locked) accounts when they match the keyword. Defaults to false because private accounts hide most public data. Turn on only when the username itself is the deliverable."
+    },
+    "parseContacts": {
+      "title": "Parse email and phone from bios",
+      "type": "boolean",
+      "editor": "checkbox",
+      "description": "Extracts public email addresses and phone numbers found in each user's bio text and bio links into separate contact fields. Defaults to true; parsing is text-only and never guesses missing values. Contacts are optional nulls when a bio has none."
+    }
+  }
+}

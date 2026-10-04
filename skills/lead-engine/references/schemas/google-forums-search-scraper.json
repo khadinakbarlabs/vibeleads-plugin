@@ -1,0 +1,85 @@
+{
+  "title": "Google Forums Search Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Forum search queries",
+      "type": "array",
+      "description": "One or more phrases to search in Google's Forums tab. Each query returns public discussion threads only, not ordinary web results.",
+      "editor": "stringList",
+      "minItems": 1,
+      "maxItems": 50
+    },
+    "countryCode": {
+      "title": "Country (gl)",
+      "type": "string",
+      "description": "Two-letter lowercase country code used for Google result localization, such as us, gb, or de.",
+      "editor": "textfield",
+      "pattern": "^[a-z]{2}$"
+    },
+    "languageCode": {
+      "title": "Language (hl)",
+      "type": "string",
+      "description": "Two-letter lowercase Google interface and result language code, such as en, de, or es.",
+      "editor": "textfield",
+      "pattern": "^[a-z]{2}$"
+    },
+    "device": {
+      "title": "Device",
+      "type": "string",
+      "description": "Google Forums layout to request. Desktop is the default; mobile can return a different ranking.",
+      "editor": "select",
+      "enum": [
+        "desktop",
+        "mobile",
+        "tablet"
+      ]
+    },
+    "maxResultsPerQuery": {
+      "title": "Maximum results per query",
+      "type": "integer",
+      "description": "Maximum public thread records to save for each query. The Actor fetches only the pages necessary to reach this cap.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "dateRange": {
+      "title": "Date range",
+      "type": "string",
+      "description": "Optional Google date filter. This limits Google results by recency; it does not modify the returned date text.",
+      "editor": "select",
+      "enum": [
+        "anytime",
+        "hour",
+        "day",
+        "week",
+        "month",
+        "year"
+      ]
+    },
+    "includeAnswerPreviews": {
+      "title": "Include answer previews",
+      "type": "boolean",
+      "description": "When Google returns answer previews under a forum result, include their public snippet, link, and labels. Defaults to true.",
+      "editor": "checkbox"
+    },
+    "includeDomains": {
+      "title": "Only these forum domains (optional)",
+      "type": "array",
+      "description": "Optional bare domains to include, such as reddit.com or stackoverflow.com. The Actor adds Google site: filters and keeps the original query in output. Do not include URLs, paths, or wildcards.",
+      "editor": "stringList",
+      "maxItems": 20
+    },
+    "excludeDomains": {
+      "title": "Exclude forum domains (optional)",
+      "type": "array",
+      "description": "Optional bare domains to exclude. The Actor adds Google -site: filters. A domain cannot be both included and excluded.",
+      "editor": "stringList",
+      "maxItems": 20
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

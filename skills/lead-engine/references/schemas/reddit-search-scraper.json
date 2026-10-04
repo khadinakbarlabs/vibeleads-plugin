@@ -1,0 +1,67 @@
+{
+  "title": "Reddit Search Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Use this when the user wants to search public Reddit posts by keyword, topic, brand, phrase, or question. Accepts plain text such as 'OpenAI API pricing' or 'CRM recommendations for startups'. Required; blank strings return an INVALID_INPUT summary. Do not put subreddit URLs here \u2014 use withinSubreddit to scope a keyword search.",
+      "editor": "textfield"
+    },
+    "withinSubreddit": {
+      "title": "Limit search to subreddit",
+      "type": "string",
+      "description": "Optional subreddit scope for the search query. Accepts a subreddit name with or without r/ prefix, such as 'learnpython' or 'r/MachineLearning'. Leave blank to search across Reddit. This is not a post URL field.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum search results",
+      "type": "integer",
+      "description": "Maximum number of Reddit search result records to return. Each saved result is charged as one result event. Defaults to 25, minimum 1, maximum 10000. Use small values for smoke tests and larger values for monitoring or research exports.",
+      "minimum": 1,
+      "maximum": 10000,
+      "editor": "number"
+    },
+    "sortBy": {
+      "title": "Sort search results by",
+      "type": "string",
+      "description": "How to sort Reddit search results. Use 'relevance' for the closest keyword match, 'new' for recent posts, 'top' for highly scored posts, or 'comments' for heavily discussed posts. Defaults to relevance. This affects search ranking only, not comment extraction.",
+      "enum": [
+        "relevance",
+        "new",
+        "top",
+        "comments"
+      ],
+      "editor": "select"
+    },
+    "timeFilter": {
+      "title": "Time filter",
+      "type": "string",
+      "description": "Time window for Reddit search results. Use 'day', 'week', 'month', 'year', or 'all'. Defaults to month for useful recent monitoring results. This is a search filter, not a post creation date guarantee.",
+      "enum": [
+        "day",
+        "week",
+        "month",
+        "year",
+        "all"
+      ],
+      "editor": "select"
+    },
+    "postDateLimit": {
+      "title": "Ignore posts older than date",
+      "type": "string",
+      "description": "Optional post creation cutoff applied after provider search results are returned. Use ISO 8601 format such as '2026-01-01' or '2026-01-01T00:00:00Z'. Leave blank to keep all provider results. Invalid dates are ignored and reported as a PARTIAL warning.",
+      "editor": "textfield"
+    },
+    "includeNsfw": {
+      "title": "Include NSFW results",
+      "type": "boolean",
+      "description": "When enabled, includes Reddit posts marked NSFW in the dataset. Disabled by default to keep monitoring and business research outputs safer. This does not bypass private, quarantined, deleted, or login-only content. NSFW filtering depends on provider metadata.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "searchQuery"
+  ]
+}

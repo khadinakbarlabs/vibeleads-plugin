@@ -1,0 +1,137 @@
+{
+  "title": "Alibaba Listings Scraper",
+  "description": "Search Alibaba.com B2B listings by keyword (or paste search/category URLs) and export product cards with price range, MOQ, supplier name, country, years on Alibaba, verified / gold-supplier / trade-assurance flags, and ratings. Built-in filters for price, MOQ, supplier country, verified-only, trade-assurance-only, supplier years, rating, and orders.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search keyword",
+      "type": "string",
+      "description": "Free-text keyword to search Alibaba B2B products (e.g. 'wireless earbuds'). The Actor opens the Alibaba search-results page and collects every product listing card across pages. Leave empty if you instead provide startUrls. NOT a single product URL \u2014 this Actor searches and returns many products, it does not scrape one product-detail page.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs (search/category pages)",
+      "type": "array",
+      "description": "Optional list of Alibaba search or category URLs to scrape directly (e.g. https://www.alibaba.com/trade/search?SearchText=led+strip or a /catalog/ URL). Use this instead of, or together with, searchQuery. Product-detail URLs (/product-detail/...) and non-Alibaba URLs are ignored \u2014 this Actor only scrapes search/category result pages.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Max products",
+      "type": "integer",
+      "description": "Maximum number of product records to return. The Actor auto-paginates until this cap is reached, then stops, so it doubles as your cost ceiling (each product is one billable event). Defaults to 100. Set higher for bulk sourcing research.",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "sortBy": {
+      "title": "Sort results by",
+      "type": "string",
+      "description": "Order in which Alibaba returns the search results. 'relevance' is Alibaba Best Match (default); 'transactionDesc' surfaces high-transaction suppliers; 'responseRate' surfaces fast-responding suppliers; 'priceAsc'/'priceDesc' sort by price; 'newest' shows recently listed items. Applies to keyword searches; for startUrls the URL's own sort is respected.",
+      "enum": [
+        "relevance",
+        "transactionDesc",
+        "responseRate",
+        "priceAsc",
+        "priceDesc",
+        "newest"
+      ],
+      "enumTitles": [
+        "Best match (relevance)",
+        "Most transactions (best-selling supplier)",
+        "Highest response rate",
+        "Price: low to high",
+        "Price: high to low",
+        "Newest"
+      ]
+    },
+    "minPrice": {
+      "title": "Minimum unit price (USD)",
+      "type": "integer",
+      "description": "Only return products whose unit price (minimum of the price range) is at or above this value in USD. Applied as an Alibaba URL filter and as a safety re-check on the parsed price. Leave empty for no minimum.",
+      "minimum": 0,
+      "unit": "USD",
+      "editor": "number"
+    },
+    "maxPrice": {
+      "title": "Maximum unit price (USD)",
+      "type": "integer",
+      "description": "Only return products whose unit price (maximum of the price range) is at or below this value in USD. Applied as an Alibaba URL filter and as a safety re-check on the parsed price. Leave empty for no maximum.",
+      "minimum": 0,
+      "unit": "USD",
+      "editor": "number"
+    },
+    "minMoq": {
+      "title": "Minimum MOQ to allow (lower bound)",
+      "type": "integer",
+      "description": "Server-side MOQ floor passed to Alibaba's search URL. Combine with maxMoq to bracket a target MOQ window. Leave empty for no MOQ lower bound.",
+      "minimum": 1,
+      "editor": "number"
+    },
+    "maxMoq": {
+      "title": "Maximum MOQ to allow (upper bound)",
+      "type": "integer",
+      "description": "Drop products whose minimum order quantity (MOQ) is above this value (e.g. 100 keeps only products requiring up to 100 pieces minimum). Useful for small-volume sourcing. Applied client-side after extraction; products with unknown MOQ are dropped when this bound is set. Leave empty for no upper bound.",
+      "minimum": 1,
+      "editor": "number"
+    },
+    "verifiedOnly": {
+      "title": "Verified / Gold Supplier only",
+      "type": "boolean",
+      "description": "When enabled, keep only products from Verified or Gold Suppliers (Alibaba's supplier vetting tiers). Filtered products are not billed. Default false."
+    },
+    "tradeAssuranceOnly": {
+      "title": "Trade Assurance only",
+      "type": "boolean",
+      "description": "When enabled, keep only products offering Alibaba Trade Assurance (escrow + dispute protection). Filtered products are not billed. Default false."
+    },
+    "minSupplierYears": {
+      "title": "Minimum supplier years on Alibaba",
+      "type": "integer",
+      "description": "Drop products from suppliers with fewer than this many years on Alibaba (e.g. 3 keeps suppliers with 3+ years). Useful to skip brand-new sellers. Products with unknown years are dropped when this bound is set. Filtered products are not billed. Leave empty to keep all.",
+      "minimum": 0,
+      "editor": "number"
+    },
+    "supplierCountries": {
+      "title": "Supplier country codes (ISO-2)",
+      "type": "array",
+      "description": "Optional whitelist of supplier countries as ISO-3166 alpha-2 codes (e.g. ['CN','VN','IN','PK']). Only products whose supplier is based in one of these countries are kept. Products with unknown supplier country are dropped when this filter is set. Leave empty to allow all countries.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "minRating": {
+      "title": "Minimum supplier rating",
+      "type": "integer",
+      "description": "Drop products whose supplier average rating (0\u20135) is below this value, or whose rating is unknown. Useful to keep only well-reviewed suppliers. Filtered products are not billed. Leave empty to keep all ratings.",
+      "minimum": 0,
+      "maximum": 5,
+      "editor": "number"
+    },
+    "minOrders": {
+      "title": "Minimum orders / transactions",
+      "type": "integer",
+      "description": "Drop products with fewer than this many recorded orders/transactions, or with unknown order count. Useful to surface proven listings. Filtered products are not billed. Leave empty to keep all.",
+      "minimum": 0,
+      "editor": "number"
+    },
+    "site": {
+      "title": "Alibaba domain",
+      "type": "string",
+      "description": "Which Alibaba domain to search. Defaults to the global English site 'www.alibaba.com'.",
+      "enum": [
+        "www.alibaba.com"
+      ],
+      "enumTitles": [
+        "Global (www.alibaba.com)"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings. Residential proxies are strongly recommended \u2014 Alibaba blocks most datacenter IPs. The Actor automatically prefers Apify residential when your account has it, and gracefully falls back to Apify datacenter when it does not \u2014 so leaving this at the default works on any plan. Override only for a specific proxy requirement.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

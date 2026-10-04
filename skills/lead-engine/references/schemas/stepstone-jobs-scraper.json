@@ -1,0 +1,89 @@
+{
+  "title": "StepStone Jobs Scraper",
+  "description": "Scrape job postings from StepStone.de by keyword + location, or by pasting StepStone search / job-detail URLs.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "keyword": {
+      "title": "Keyword",
+      "type": "string",
+      "description": "Free-text job search run on StepStone.de (e.g. 'data engineer' or 'pflegefachkraft'). Builds the search URL /work/{keyword}/in-{location}. Defaults to 'data engineer' when empty and no Start URLs are given. This is NOT a StepStone job-detail URL \u2014 paste those into Start URLs instead.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City or region in German spelling (e.g. 'Berlin', 'M\u00fcnchen', 'Nordrhein-Westfalen'). Combined with Keyword to build /work/{keyword}/in-{location}. Defaults to all of Germany ('deutschland') when empty. Ignored when Start URLs is provided.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Optional list of StepStone.de search-result or job-detail URLs to scrape as-is. When set, Keyword, Location, and the filters below are ignored. Accepts /jobs/... and /work/... search pages and /stellenangebote--...-inline.html detail links. Example: https://www.stepstone.de/work/java/in-berlin.",
+      "editor": "requestListSources"
+    },
+    "postedWithin": {
+      "title": "Date posted",
+      "type": "string",
+      "description": "Restrict results to jobs posted within the last N days, applied as StepStone's age facet. Allowed values: 'any', '1', '3', '7', '14', '30'. Defaults to 'any' (no date limit). Ignored when Start URLs is provided.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "1",
+        "3",
+        "7",
+        "14",
+        "30"
+      ],
+      "enumTitles": [
+        "Any time",
+        "Last 24 hours",
+        "Last 3 days",
+        "Last 7 days",
+        "Last 14 days",
+        "Last 30 days"
+      ]
+    },
+    "workFromHomeOnly": {
+      "title": "Remote / work-from-home only",
+      "type": "boolean",
+      "description": "When enabled, returns only jobs that offer remote / work-from-home, using StepStone's wfh facet. Defaults to false (all jobs). Applies only to keyword/location searches, not to Start URLs.",
+      "editor": "checkbox"
+    },
+    "maxItems": {
+      "title": "Maximum jobs",
+      "type": "integer",
+      "description": "Maximum number of job postings to return and bill for in this run (1 job = $0.003). Defaults to 100. The run stops once this many jobs are collected, even across multiple result pages. Increase for bulk exports.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "enrichDetails": {
+      "title": "Fetch full job details",
+      "type": "boolean",
+      "description": "When enabled (default), each job's detail page is fetched to add the full description, employment type, and structured salary from StepStone's JobPosting data. Disable for a faster, leaner run returning only fields visible on the search page. Does not change the per-job price.",
+      "editor": "checkbox"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy used to reach StepStone. Defaults to Apify Residential proxies in Germany, which are required \u2014 StepStone is protected by Akamai Bot Manager and blocks datacenter IPs. Leave as default unless you have a specific reason to change it.",
+      "editor": "proxy"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "Maximum number of pages fetched in parallel. Defaults to 10. Lower it if you hit blocks; raise it for faster large runs on a healthy proxy pool. Most users should leave this at the default.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "debugDumpHtml": {
+      "title": "Debug: dump raw HTML",
+      "type": "boolean",
+      "description": "Internal debugging flag. When enabled, raw HTML and parsed JSON candidates are saved to the key-value store for extraction troubleshooting. Leave off for normal runs.",
+      "editor": "hidden"
+    }
+  },
+  "required": []
+}

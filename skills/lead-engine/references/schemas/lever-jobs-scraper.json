@@ -1,0 +1,58 @@
+{
+  "title": "Lever Jobs Scraper input",
+  "description": "Extract public Lever job boards for recruiting, job-market research, and structured AI-agent workflows. It reads Lever's public postings API and never submits applications.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "boardTokens": {
+      "title": "Lever board tokens or URLs",
+      "type": "array",
+      "description": "Use this when you know a company's public Lever board, for example lever or https://jobs.lever.co/lever. Enter up to 25 unique board tokens or root public board URLs. This field is required. It is not a company website, an individual job URL, a login page, or an application form.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxResultsPerBoard": {
+      "title": "Maximum jobs per board",
+      "type": "integer",
+      "description": "Use this to cap validated jobs returned from each supplied Lever board. Enter an integer such as 100. It defaults to 100 and accepts 1 through 1,000. This is a per-board result cap, not a page count or a global charge budget.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "titleIncludes": {
+      "title": "Job title contains",
+      "type": "string",
+      "description": "Use this when you need jobs whose public title contains literal text, for example engineer. Matching is case-insensitive. Leave it blank to retain every public title. This is not Boolean search and does not search the description.",
+      "editor": "textfield"
+    },
+    "locationIncludes": {
+      "title": "Location contains",
+      "type": "string",
+      "description": "Use this when you need jobs whose public Lever location contains literal text, for example remote or london. Matching is case-insensitive across the primary and alternate public locations. Leave it blank to retain every location. This does not geocode a job or infer location from its description.",
+      "editor": "textfield"
+    },
+    "teamIncludes": {
+      "title": "Team contains",
+      "type": "string",
+      "description": "Use this when you need a public Lever team containing literal text, for example engineering. Matching is case-insensitive against Lever's public team category. Leave it blank to retain every team. This does not infer a team from title words or job description text.",
+      "editor": "textfield"
+    },
+    "commitmentIncludes": {
+      "title": "Employment type contains",
+      "type": "string",
+      "description": "Use this when you need a public Lever commitment such as full-time, contract, or internship. Matching is case-insensitive against the board's commitment field. Leave it blank to retain every employment type. This is not a date filter or a candidate availability filter.",
+      "editor": "textfield"
+    },
+    "includeDescriptions": {
+      "title": "Include job descriptions",
+      "type": "boolean",
+      "description": "Use this to include the public Lever description and additional text in HTML and clean-text fields. Set true for detailed recruiting and research output or false for a smaller result. It defaults to true. This does not retrieve private hiring notes, candidate data, or application responses.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "boardTokens"
+  ]
+}

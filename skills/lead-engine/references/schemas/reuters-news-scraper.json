@@ -1,0 +1,116 @@
+{
+  "title": "Reuters News Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sections": {
+      "title": "Reuters sections",
+      "type": "array",
+      "description": "Reuters sections to pull from the public Google News sitemap (headline, publish time, image, tags, URL). Select one or more. Use \"latest\" for all English paths. reuters.com HTML is DataDome-blocked \u2014 this Actor returns sitemap/search metadata only (bodyText is always null).",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "latest",
+          "world",
+          "business",
+          "markets",
+          "legal",
+          "sports",
+          "technology",
+          "science",
+          "sustainability",
+          "lifestyle",
+          "commentary",
+          "podcasts"
+        ],
+        "enumTitles": [
+          "Latest (all English)",
+          "World",
+          "Business",
+          "Markets",
+          "Legal",
+          "Sports",
+          "Technology",
+          "Science",
+          "Sustainability",
+          "Lifestyle",
+          "Commentary",
+          "Podcasts"
+        ]
+      }
+    },
+    "searchKeywords": {
+      "title": "Keyword filter",
+      "type": "array",
+      "description": "Optional case-insensitive keywords. Keep only articles whose headline, summary, or keywords contain at least one term (e.g. ['Fed','oil']). Leave empty to keep all items from selected sections.",
+      "editor": "stringList"
+    },
+    "searchQuery": {
+      "title": "Keyword search (Bing News site:reuters.com)",
+      "type": "string",
+      "description": "Optional topic search via Bing News RSS filtered to reuters.com. Use when section sitemap browsing is too broad. Returns headline + snippet + URL. Leave empty to skip.",
+      "editor": "textfield"
+    },
+    "articleUrls": {
+      "title": "Article URLs",
+      "type": "array",
+      "description": "Optional list of reuters.com article URLs. Matched against the public news sitemap when possible; otherwise a URL-derived title/date row is returned. Does not scrape article HTML (DataDome) and does not return full body text.",
+      "editor": "stringList"
+    },
+    "languages": {
+      "title": "Languages",
+      "type": "array",
+      "description": "Language/locale filter from the URL path. Default is English only (en). Add de/es/fr/pt for localized Reuters editions, or \"all\" to keep every locale present in the sitemap pages fetched.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "en",
+          "de",
+          "es",
+          "fr",
+          "pt",
+          "all"
+        ],
+        "enumTitles": [
+          "English",
+          "German",
+          "Spanish",
+          "French",
+          "Portuguese",
+          "All locales"
+        ]
+      }
+    },
+    "sinceHours": {
+      "title": "Only articles newer than (hours)",
+      "type": "integer",
+      "description": "Optional recency window. If set to e.g. 24, only articles with publishedAt within the last 24 hours are kept. Use 0 (default) for all currently returned sitemap/search items.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "maxItems": {
+      "title": "Max articles",
+      "type": "integer",
+      "description": "Hard cap on articles scraped and billed across all sources. Each accepted article is one billable article-found event. Defaults to 50. Prefill 10 for cheap quality tests.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "maxSitemapPages": {
+      "title": "Max sitemap pages",
+      "type": "integer",
+      "description": "How many Reuters news-sitemap pages to fetch (~50 URLs each, offset by 100). Default 4 (~200 candidate URLs before section/language filters). Raise only when maxItems is large.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 8
+    },
+    "proxyConfiguration": {
+      "title": "Proxy (optional)",
+      "type": "object",
+      "description": "Optional Apify proxy. The public news sitemap and Bing News RSS usually work without a proxy. Enable only if your environment blocks outbound XML/RSS.",
+      "editor": "proxy"
+    }
+  }
+}

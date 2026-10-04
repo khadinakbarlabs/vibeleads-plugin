@@ -1,0 +1,106 @@
+{
+  "title": "Remote Jobs Aggregator",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Collect public remote jobs from seven specialty boards into one deduplicated dataset. Keyword search is optional; omit it to take the latest listings. This is not a LinkedIn, Indeed, or Glassdoor scrape.",
+  "properties": {
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Optional keyword filter applied to title, company, tags, location, and snippet. Example: 'python developer'. Every word must match. Leave empty for the latest listings. This is not a LinkedIn Jobs URL.",
+      "editor": "textfield"
+    },
+    "sources": {
+      "title": "Job boards",
+      "type": "array",
+      "description": "Public remote-job boards to query. Default is all seven. Omit the field to use every board. An empty array is invalid. These are specialty remote boards, not LinkedIn or Indeed.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "remoteok",
+          "remotive",
+          "himalayas",
+          "jobicy",
+          "arbeitnow",
+          "workingnomads",
+          "weworkremotely"
+        ],
+        "enumTitles": [
+          "RemoteOK",
+          "Remotive",
+          "Himalayas",
+          "Jobicy",
+          "Arbeitnow (remote rows)",
+          "Working Nomads",
+          "We Work Remotely"
+        ]
+      }
+    },
+    "maxItems": {
+      "title": "Maximum jobs",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500,
+      "description": "Hard cap on unique dataset rows for this run. Default 25 keeps MCP calls cheap. Each saved job is one remote-job event. This is a cost ceiling, not pagination into a previous run."
+    },
+    "postedWithinDays": {
+      "title": "Posted within days",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 365,
+      "description": "Keep jobs whose posted date is within this many days. 0 (default) disables the filter. Rows without a parseable date are dropped when this filter is on. This is not a board-native freshness SLA."
+    },
+    "jobTypes": {
+      "title": "Job types",
+      "type": "array",
+      "description": "Keep normalized employment types such as full-time or contract. Empty means every type. Jobs without a type are dropped when this filter is set. This is not visa or salary filtering.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "full-time",
+          "part-time",
+          "contract",
+          "freelance",
+          "internship"
+        ],
+        "enumTitles": [
+          "Full-time",
+          "Part-time",
+          "Contract",
+          "Freelance",
+          "Internship"
+        ]
+      }
+    },
+    "locationKeywords": {
+      "title": "Location keywords",
+      "type": "array",
+      "description": "Keep jobs whose location mentions at least one term, such as Europe, USA, or Germany. Worldwide/remote locations always pass. Leave empty for no geo filter. This is eligibility text from the board, not a work-authorization check.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "excludeKeywords": {
+      "title": "Exclude keywords",
+      "type": "array",
+      "description": "Drop jobs containing any of these terms in title, company, tags, location, or snippet. Example: 'unpaid'. Excluded rows are never billed. This is a client-side filter, not a board search operator.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "includeDescription": {
+      "title": "Include full description",
+      "type": "boolean",
+      "description": "When off (default), each row keeps a 500-character descriptionSnippet for agent token budgets. Turn on to add descriptionText up to 4,000 characters. Boards that omit descriptions still return the other fields."
+    },
+    "dedupe": {
+      "title": "Deduplicate across boards",
+      "type": "boolean",
+      "description": "When on (default), the same title+company on several boards becomes one row. The richer copy wins and the others appear in alsoFoundOn. Turn off to emit every board copy separately. Duplicate rows are never billed twice when this is on."
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.json",
+  "title": "Email Validator \u2014 ZeroBounce Alternative Workflow",
+  "description": "Validate up to 1,000 full email addresses for list hygiene. Each run returns syntax and DNS MX signals, disposable, role and free-provider flags, typo suggestions, an optional SMTP probe, and a 0\u2013100 score per address. This is a focused alternative for programmatic list validation, not a replacement for a deliverability suite or proprietary activity data.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "emails": {
+      "title": "Email addresses",
+      "type": "array",
+      "description": "List of 1\u20131,000 full email addresses to validate. Use a JSON array such as [\"jane@example.com\", \"info@acme.io\"] and pass a single address as a one-item array. Entries are normalized to lowercase and normalized duplicates are removed without a charge. This field is not a CSV path, a domain list, or a mailbox-login credential.",
+      "editor": "stringList",
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "checkSmtp": {
+      "title": "Run live SMTP probe (experimental)",
+      "type": "boolean",
+      "description": "When enabled, the Actor attempts an SMTP RCPT TO probe after syntax and MX checks. Set true only when you need the additional SMTP signal; the default is false. Cloud hosts commonly restrict port 25, so an attempted probe can truthfully return unknown rather than a mailbox verdict. This toggle does not send email and does not provide proprietary deliverability, trap, or activity data.",
+      "editor": "checkbox",
+      "groupCaption": "Verification depth"
+    },
+    "checkCatchAll": {
+      "title": "Detect catch-all domains",
+      "type": "boolean",
+      "description": "When enabled with the SMTP probe, the Actor tests a random address at the same domain for catch-all behavior. Set true only with checkSmtp=true; the default is false. Inconclusive SMTP responses remain null rather than being inferred as catch-all. This control does not identify individual mailbox owners or recipient engagement.",
+      "editor": "checkbox",
+      "groupCaption": "Verification depth"
+    },
+    "verificationTier": {
+      "title": "Verification tier",
+      "type": "string",
+      "description": "standard uses this Actor's native syntax, DNS, classification, typo, and optional SMTP signals. premium uses an owner-managed EmailListVerify credential and adds a provider verdict when the Actor's Premium email verified event is active. No provider key is requested from you. Until the Premium event appears as active on this Actor's Pricing tab, premium returns an availability message and does not contact the provider; normal Actor Start and platform-usage billing can still apply.",
+      "enum": [
+        "standard",
+        "premium"
+      ],
+      "enumTitles": [
+        "Standard \u2014 native validation",
+        "Premium \u2014 provider-backed verification"
+      ],
+      "editor": "select"
+    },
+    "maxEmails": {
+      "title": "Maximum emails to process",
+      "type": "integer",
+      "description": "Optional per-run cap from 1 to 1,000. The Actor processes the first normalized unique addresses only; later addresses are skipped and not charged.",
+      "minimum": 1,
+      "maximum": 1000,
+      "editor": "number"
+    },
+    "concurrency": {
+      "title": "Concurrent validations",
+      "type": "integer",
+      "description": "Number of addresses validated concurrently, from 1 to 50. Use 5\u201315 for routine lists; the default is 10. Higher settings can produce more inconclusive SMTP responses when a mail host rate-limits probes. This value is not a result limit or a way to exceed the 1,000-address run cap.",
+      "minimum": 1,
+      "maximum": 50,
+      "editor": "number"
+    },
+    "timeoutMs": {
+      "title": "SMTP timeout (milliseconds)",
+      "type": "integer",
+      "description": "Maximum wait per SMTP connection, from 1,000 to 30,000 milliseconds. Use 8,000 milliseconds by default; strict mail servers can take 5\u201310 seconds. Lower values can produce more unknown SMTP outcomes, while higher values extend run time. This setting affects only the optional SMTP probe, not syntax or MX lookup.",
+      "minimum": 1000,
+      "maximum": 30000,
+      "editor": "number"
+    }
+  },
+  "required": [
+    "emails"
+  ]
+}

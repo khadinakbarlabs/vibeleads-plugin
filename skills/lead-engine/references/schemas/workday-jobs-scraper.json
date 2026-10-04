@@ -1,0 +1,43 @@
+{
+  "title": "Workday Jobs Scraper Input",
+  "description": "Use this actor to collect public job listings from one or more Workday-powered career boards. It calls the public job-search and optional detail endpoints, then returns one validated record per persisted job. It does not sign in, submit applications, or access applicant or employee data.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "careerSiteUrls": {
+      "title": "Workday career-site URLs",
+      "type": "array",
+      "description": "Use this when you know the public Workday board to scrape. Provide one or more HTTPS myworkdayjobs.com URLs, for example 'https://baincapital.wd1.myworkdayjobs.com/External_Public'. The default is one public example board and at most 25 boards are accepted. This is not a company homepage, login URL, or private Workday tenant endpoint.",
+      "editor": "stringList"
+    },
+    "searchText": {
+      "title": "Job search text",
+      "type": "string",
+      "description": "Use this when the public Workday board should be narrowed by job keywords. Enter ordinary search text, for example 'senior data analyst', or leave it blank to collect the board's available jobs. The default is blank and the maximum length is 160 characters. This is not a Boolean expression, location filter, or job URL.",
+      "editor": "textfield"
+    },
+    "maxResultsPerSite": {
+      "title": "Maximum job records per site",
+      "type": "integer",
+      "description": "Use this when you need to cap records and pay-per-event charges for each board. Enter an integer from 1 to 500, for example 50; the default is 25. The run-start message shows the maximum job-event cost across all supplied boards. This is not a page count and does not allow more than 500 records from one board.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "includeJobDetails": {
+      "title": "Include public job details",
+      "type": "boolean",
+      "description": "Use this when you want fuller public job descriptions, work type, and apply URLs from each Workday detail endpoint. Set true for richer hiring data or false to retain only search-result fields more quickly. The default is true. This does not bypass a login wall or access applicant, employee, or internal-recruiting data.",
+      "editor": "checkbox"
+    },
+    "useApifyProxy": {
+      "title": "Use residential proxy",
+      "type": "boolean",
+      "description": "Use this when you want the actor to route public Workday requests through Apify Residential Proxy. Set true for a more resilient public-board route or false only when direct access is specifically required. The default is true. This is not a field for pasting your own proxy URL or credentials.",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "careerSiteUrls"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "vibeleads",
+  "version": "0.1.0",
+  "description": "B2B prospecting skills for finding companies, spotting buying signals, qualifying contacts, and preparing evidence-backed lead lists.",
+  "author": {
+    "name": "Khadin Akbar"
+  },
+  "license": "MIT",
+  "keywords": [
+    "b2b",
+    "lead-generation",
+    "prospecting",
+    "sales",
+    "account-research",
+    "agent-skills"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "VibeLeads: B2B Lead Finder",
+        "shortDescription": "Find and qualify B2B leads",
+        "longDescription": "Turn your offer into an ideal customer profile, choose relevant sources, discover companies, research buying signals, map decision makers, enrich public business contacts, and prepare ranked lead lists and outreach drafts. Covers local businesses, startups, software, hiring, reviews, communities, ads, ecommerce, suppliers, events, creators, and company news. Uses your own authenticated data access and only Khadin Akbar\u2019s cataloged Actors. An Apify API key is required for live data collection; data usage is billed to your account. Skills and local quality tools only: no bundled service or automatic outreach. Live collection requires a host with suitable tool access. Imported files and planning work without a data connection. Coverage and deliverability are reported honestly.",
+        "developerName": "Khadin Akbar",
+        "defaultPrompt": [
+          "Find B2B companies that fit my offer and explain why each is worth contacting.",
+          "Find local businesses with a clear need for my agency\u2019s services.",
+          "Qualify this lead list, remove duplicates, and draft personalized outreach."
+        ],
+        "logo": "./assets/icon.png",
+        "composerIcon": "./assets/icon.png"
+      }
+    }
+  }
+}

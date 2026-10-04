@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local Business Prospecting"
+  short_description: "Research and qualify relevant business prospects"
+  default_prompt: "Use $local-business-prospecting to help with my B2B prospecting workflow."

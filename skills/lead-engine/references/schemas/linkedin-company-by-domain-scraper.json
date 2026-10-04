@@ -1,0 +1,40 @@
+{
+  "title": "LinkedIn Company by Domain Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Paste company domains or homepage URLs to resolve each one to its public LinkedIn company page.",
+  "properties": {
+    "domains": {
+      "title": "Company domains or URLs",
+      "type": "array",
+      "description": "One domain or homepage URL per line \u2014 e.g. stripe.com, https://www.hubspot.com. Accepts bare domains, www URLs, or https links.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "maxResultsPerDomain": {
+      "title": "Max LinkedIn matches per domain",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "How many LinkedIn company candidates to return per domain (1\u20135). Use 1 for enrichment lists; raise it when a domain may map to multiple entities."
+    },
+    "includeSerpEvidence": {
+      "title": "Include SERP evidence",
+      "type": "boolean",
+      "description": "Attach the Google Search query, rank, title, and snippet that produced each match \u2014 useful for audits and agent debugging."
+    },
+    "minConfidence": {
+      "title": "Minimum confidence threshold",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Minimum match confidence (0\u20131) required to bill a row as FOUND. Lower values accept more matches; higher values reduce false positives."
+    }
+  },
+  "required": [
+    "domains"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Indeed Job Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Job Search Query",
+      "type": "string",
+      "description": "Use this field when the user provides a job title, skill, keyword, or role to search for (e.g. 'software engineer', 'nurse', 'marketing manager', 'data analyst'). Use startUrls instead when the user provides a direct Indeed.com search URL.",
+      "editor": "textfield",
+      "sectionCaption": "Search Settings",
+      "sectionDescription": "Define what jobs to search for. Use either a keyword search query OR direct Indeed URLs \u2014 not both at once."
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, state, ZIP code, or 'Remote' to filter jobs geographically (e.g. 'Austin, TX', 'New York', 'Remote', '10001'). Leave empty to search all locations.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Direct Indeed URLs",
+      "type": "array",
+      "description": "Use this field when the user provides specific Indeed.com job search URLs (e.g. https://www.indeed.com/jobs?q=nurse&l=Chicago). Do NOT use this when the user provides keywords or a role name \u2014 use searchQuery for that instead.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Maximum Results",
+      "type": "integer",
+      "description": "Maximum number of job listings to scrape and return. Each result costs $0.002 (= $2 per 1,000 jobs). Default is 50. Set to 100\u20131000 for bulk collection.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000,
+      "sectionCaption": "Limits"
+    },
+    "country": {
+      "title": "Country Domain",
+      "type": "string",
+      "description": "Which Indeed country site to scrape. Use 'www' for United States (default). Change for country-specific job markets.",
+      "editor": "select",
+      "enum": [
+        "www",
+        "uk",
+        "ca",
+        "au",
+        "in",
+        "de",
+        "fr",
+        "sg",
+        "nz"
+      ],
+      "enumTitles": [
+        "\ud83c\uddfa\ud83c\uddf8 United States (www.indeed.com)",
+        "\ud83c\uddec\ud83c\udde7 United Kingdom (uk.indeed.com)",
+        "\ud83c\udde8\ud83c\udde6 Canada (ca.indeed.com)",
+        "\ud83c\udde6\ud83c\uddfa Australia (au.indeed.com)",
+        "\ud83c\uddee\ud83c\uddf3 India (in.indeed.com)",
+        "\ud83c\udde9\ud83c\uddea Germany (de.indeed.com)",
+        "\ud83c\uddeb\ud83c\uddf7 France (fr.indeed.com)",
+        "\ud83c\uddf8\ud83c\uddec Singapore (sg.indeed.com)",
+        "\ud83c\uddf3\ud83c\uddff New Zealand (nz.indeed.com)"
+      ],
+      "sectionCaption": "Search Settings"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy Configuration",
+      "type": "object",
+      "description": "Proxy settings for bypassing Cloudflare protection on Indeed. Residential proxies are strongly recommended and set by default. Datacenter proxies may get blocked.",
+      "editor": "proxy",
+      "sectionCaption": "Advanced Settings",
+      "sectionDescription": "Proxy and performance settings. Safe to leave as defaults."
+    }
+  }
+}

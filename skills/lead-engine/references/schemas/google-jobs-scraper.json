@@ -1,0 +1,81 @@
+{
+  "title": "Google Jobs Scraper Input",
+  "description": "Configure your Google Jobs search. Provide search queries (e.g. \"software engineer New York\") and optional filters to extract structured job listings.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search Queries",
+      "type": "array",
+      "description": "Use this field when the user provides job titles, skills, or keyword phrases to search. Accepts multiple queries \u2014 the actor runs them all in one go. Example: [\"software engineer New York\", \"product manager remote\"]. Use startUrls instead when the user provides a direct Google Jobs URL.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Use this field when the user provides a specific Google Jobs URL (e.g. https://www.google.com/search?q=nurse&ibp=htl;jobs). Do NOT use this when the user describes a job role or keyword \u2014 use searchQueries instead.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Max Results",
+      "type": "integer",
+      "description": "Maximum total number of job listings to extract across all queries. Must be between 1 and 500. Default: 50. Each result costs $0.003 \u2014 so 100 results costs $0.30.",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "datePosted": {
+      "title": "Date Posted Filter",
+      "type": "string",
+      "description": "Filter jobs by how recently they were posted. 'any' returns all results. 'today' returns jobs posted in the last 24 hours. 'week' returns jobs from the past 7 days.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "today",
+        "3days",
+        "week",
+        "month"
+      ],
+      "enumTitles": [
+        "Any time",
+        "Today",
+        "Last 3 days",
+        "Last week",
+        "Last month"
+      ]
+    },
+    "employmentType": {
+      "title": "Employment Type",
+      "type": "string",
+      "description": "Filter by job type. Use 'FULLTIME' for permanent full-time roles, 'PARTTIME' for part-time, 'CONTRACTOR' for contract/freelance work, 'INTERN' for internships. Use 'any' to return all types.",
+      "editor": "select",
+      "enum": [
+        "any",
+        "FULLTIME",
+        "PARTTIME",
+        "CONTRACTOR",
+        "INTERN"
+      ],
+      "enumTitles": [
+        "Any type",
+        "Full-time",
+        "Part-time",
+        "Contract / Freelance",
+        "Internship"
+      ]
+    },
+    "remoteOnly": {
+      "title": "Remote Jobs Only",
+      "type": "boolean",
+      "description": "When enabled, appends 'remote' to all search queries and marks all results as is_remote: true. Enable this when the user asks specifically for remote, work-from-home, or WFH jobs."
+    },
+    "proxyCountry": {
+      "title": "Proxy Country",
+      "type": "string",
+      "description": "2-letter country code for residential proxy location (e.g. 'US', 'GB', 'CA'). Controls which Google region is scraped. Default: US. Change this to target job markets in other countries.",
+      "editor": "textfield"
+    }
+  }
+}

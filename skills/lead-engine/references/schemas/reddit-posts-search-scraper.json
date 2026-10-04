@@ -1,0 +1,115 @@
+{
+  "title": "Reddit Posts Search Scraper",
+  "description": "Search Reddit posts globally or inside selected subreddits. Perfect for SEO, social listening, AI agents, MCP workflows, trend research, and market research.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "Keywords, phrases, brands, competitors, products, pain points, or natural-language topics to search on Reddit. AI agents should put the main user request here.",
+      "editor": "stringList"
+    },
+    "subreddits": {
+      "title": "Limit to subreddits (optional)",
+      "type": "array",
+      "description": "Optional subreddit names or URLs. Leave empty for global Reddit search. When set, every query is searched inside each subreddit. Accepts r/SEO, SEO, or https://www.reddit.com/r/SEO.",
+      "editor": "stringList"
+    },
+    "sort": {
+      "title": "Search sort",
+      "type": "string",
+      "description": "How Reddit orders matching posts. Relevance is best for research and AI agents, new is best for monitoring, top is best for high-signal historical posts, comments finds active discussions, and hot finds currently trending matches.",
+      "enum": [
+        "relevance",
+        "new",
+        "top",
+        "comments",
+        "hot"
+      ],
+      "enumTitles": [
+        "Relevance",
+        "New",
+        "Top",
+        "Most comments",
+        "Hot"
+      ]
+    },
+    "timeRange": {
+      "title": "Time range",
+      "type": "string",
+      "description": "Time window for search results. Use week or month for current market research, year or all for evergreen SEO research.",
+      "enum": [
+        "hour",
+        "day",
+        "week",
+        "month",
+        "year",
+        "all"
+      ],
+      "enumTitles": [
+        "Past hour",
+        "Past day",
+        "Past week",
+        "Past month",
+        "Past year",
+        "All time"
+      ]
+    },
+    "maxPosts": {
+      "title": "Max posts",
+      "type": "integer",
+      "description": "Maximum number of unique post records to return across all queries and subreddits. Billing stops when this cap is reached.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200000
+    },
+    "includeTopComments": {
+      "title": "Include top comment previews",
+      "type": "boolean",
+      "description": "When true, each post record includes a compact topComments array. Use this for AI summaries and sentiment analysis. Leave off for faster, cheaper post-only extraction."
+    },
+    "maxTopCommentsPerPost": {
+      "title": "Max top comments per post",
+      "type": "integer",
+      "description": "Maximum number of top comments to embed in each post when includeTopComments is enabled.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "postDateLimit": {
+      "title": "Ignore posts older than",
+      "type": "string",
+      "description": "Optional ISO date. Example: 2026-01-01. Posts older than this are skipped after retrieval.",
+      "editor": "textfield"
+    },
+    "includeNsfw": {
+      "title": "Include NSFW posts",
+      "type": "boolean",
+      "description": "Disabled by default for business research and AI-agent workflows. Enable only when you intentionally need NSFW Reddit content."
+    },
+    "proxy": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings. Defaults to Apify Residential proxies because Reddit often blocks datacenter IPs. Leave unchanged unless you know your target and plan requirements.",
+      "editor": "proxy"
+    },
+    "redditClientId": {
+      "title": "Reddit client ID (optional)",
+      "type": "string",
+      "editor": "textfield",
+      "isSecret": true,
+      "description": "Optional Reddit app client ID. Leave blank to use owner-managed access when configured. Create a free app at reddit.com/prefs/apps if you want to use your own credentials."
+    },
+    "redditClientSecret": {
+      "title": "Reddit client secret (optional)",
+      "type": "string",
+      "editor": "textfield",
+      "isSecret": true,
+      "description": "Optional Reddit app client secret paired with redditClientId. This is not your Reddit password."
+    }
+  },
+  "required": [
+    "queries"
+  ]
+}

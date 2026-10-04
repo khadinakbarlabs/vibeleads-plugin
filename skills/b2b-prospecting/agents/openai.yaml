@@ -1,0 +1,4 @@
+interface:
+  display_name: "B2B Prospecting"
+  short_description: "Research and qualify relevant business prospects"
+  default_prompt: "Use $b2b-prospecting to help with my B2B prospecting workflow."

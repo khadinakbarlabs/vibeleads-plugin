@@ -1,0 +1,50 @@
+{
+  "title": "Website Tech Stack Detector",
+  "type": "object",
+  "schemaVersion": 1,
+  "description": "Detect technology stacks on public website URLs using owned HTTP fingerprinting. No provider API keys. Each successfully analyzed URL is billed as tech-stack-detected.",
+  "required": [],
+  "properties": {
+    "websiteUrls": {
+      "title": "Website URLs",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Public website URLs or bare domains to fingerprint. Example: https://www.shopify.com or shopify.com. Only http(s) public hosts are accepted \u2014 no localhost, private IPs, or credentialed URLs. Prefer full https URLs. Duplicate URLs are deduped. Each successful detection costs $0.01.",
+      "editor": "stringList",
+      "maxItems": 50
+    },
+    "startUrls": {
+      "title": "Start URLs (alias)",
+      "type": "array",
+      "description": "Optional alias for websiteUrls using Apify request-list objects. Prefer websiteUrls for agents. Each entry needs a public http(s) url field. Merged and deduped with websiteUrls.",
+      "editor": "requestListSources"
+    },
+    "maxUrls": {
+      "title": "Max URLs per run",
+      "type": "integer",
+      "description": "Hard cap on unique URLs processed after dedupe. Defaults to 25. Maximum 50. Lower this to bound spend. Each successful detection costs $0.01 plus platform usage.",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "includeEvidence": {
+      "title": "Include evidence excerpts",
+      "type": "boolean",
+      "description": "When true, each technology includes a short public-signal evidence excerpt (HTML/header snippet). Defaults to true. Set false for smaller rows when only names and categories are needed."
+    },
+    "requestTimeoutSecs": {
+      "title": "Per-URL request timeout (seconds)",
+      "type": "integer",
+      "description": "HTTP timeout per URL attempt. Defaults to 25. Range 5\u201360. Does not change pricing. Increase only for slow origins; prefer proxies for blocks.",
+      "minimum": 5,
+      "maximum": 60
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional Apify proxy. Leave off for the default direct HTTPS path. Enable Apify Residential when a target returns 403/429 or Cloudflare challenges. This is not a third-party tech-catalog API.",
+      "editor": "proxy"
+    }
+  }
+}

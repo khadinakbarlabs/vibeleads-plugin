@@ -1,0 +1,53 @@
+{
+  "title": "Yellow Pages US Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchTerms": {
+      "title": "Search terms",
+      "type": "string",
+      "description": "Business type or name to search (e.g. \"plumber\", \"pizza\", \"auto repair\"). Combine with \"location\" for best results.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "City, state, or ZIP code to narrow the search (e.g. \"Los Angeles, CA\", \"90210\"). Leave blank to search nationwide.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Start URLs (optional)",
+      "type": "array",
+      "description": "Direct yellowpages.com search URLs or business profile URLs (/mip/...). Overrides searchTerms + location when provided.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of business listings to return. Each result costs $0.005.",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxPagesPerSearch": {
+      "title": "Max pages per search",
+      "type": "integer",
+      "description": "Max search result pages to paginate through (~30 businesses/page). Increase for broader coverage.",
+      "minimum": 1,
+      "maximum": 40
+    },
+    "enrichDetails": {
+      "title": "Enrich with detail pages",
+      "type": "boolean",
+      "description": "Visit each business profile page to extract email addresses, business hours, and description. Slower but more complete data."
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings. yellowpages.com requires residential proxies \u2014 Apify RESIDENTIAL group recommended. The actor includes a the managed proxy route residential fallback for reliability.",
+      "editor": "proxy"
+    }
+  }
+}

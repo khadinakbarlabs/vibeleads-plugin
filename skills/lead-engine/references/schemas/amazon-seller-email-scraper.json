@@ -1,0 +1,121 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Amazon Seller Email Scraper \u2014 Input",
+  "description": "Use this Actor to find contact emails that sellers publicly disclose on Amazon seller pages or their own official websites. It does not infer addresses or verify mailbox deliverability.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sellerIds": {
+      "title": "Amazon seller IDs",
+      "type": "array",
+      "description": "Use this when you know Amazon merchant IDs. Enter 13\u201314 uppercase characters such as A1ODG4ICFE5MU3. The selected marketplace determines the seller profile URL. This is not a 10-character ASIN or a website domain.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{13,14}$"
+      }
+    },
+    "startUrls": {
+      "title": "Amazon seller, storefront, or product URLs",
+      "type": "array",
+      "description": "Use this when you already have Amazon URLs. Accepted examples include https://www.amazon.com/sp?seller=A1ODG4ICFE5MU3, storefront URLs with me=, and product /dp/ASIN URLs. Product pages resolve their third-party seller before inspection. This is not for company websites; use companyWebsites for those.",
+      "editor": "requestListSources"
+    },
+    "marketplace": {
+      "title": "Amazon marketplace",
+      "type": "string",
+      "description": "Use this for seller IDs that do not include an Amazon URL. Select the marketplace, for example DE for amazon.de; a supplied Amazon URL always overrides it. Defaults to US. This setting is not a proxy-country selector.",
+      "enum": [
+        "US",
+        "UK",
+        "DE",
+        "FR",
+        "CA",
+        "ES",
+        "IT",
+        "JP",
+        "AU",
+        "IN",
+        "MX",
+        "BR",
+        "NL",
+        "SE",
+        "PL",
+        "TR",
+        "AE",
+        "SG"
+      ],
+      "enumTitles": [
+        "United States",
+        "United Kingdom",
+        "Germany",
+        "France",
+        "Canada",
+        "Spain",
+        "Italy",
+        "Japan",
+        "Australia",
+        "India",
+        "Mexico",
+        "Brazil",
+        "Netherlands",
+        "Sweden",
+        "Poland",
+        "Turkey",
+        "United Arab Emirates",
+        "Singapore"
+      ]
+    },
+    "discoverWebsiteEmails": {
+      "title": "Discover emails on official seller websites",
+      "type": "boolean",
+      "description": "Use this to follow a seller website that Amazon itself links, or a matching URL supplied in companyWebsites, when the seller page has no email. The Actor scans the homepage and a few same-site contact pages. Defaults to true. It never searches the open web or guesses addresses from company names."
+    },
+    "companyWebsites": {
+      "title": "Known official seller websites",
+      "type": "array",
+      "description": "Use this to supply an official company website for a specific seller ID when Amazon does not link one. Each item needs a sellerId and a full HTTPS URL, for example {\"sellerId\":\"A1ODG4ICFE5MU3\",\"url\":\"https://example.com\"}. It is optional and only used when website discovery is enabled. This is not a list of email addresses or a general web-search query.",
+      "editor": "json",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sellerId": {
+            "type": "string",
+            "title": "Seller ID",
+            "description": "Amazon merchant ID to which this official website belongs. Use 13\u201314 uppercase characters, for example A1ODG4ICFE5MU3. It must also appear in sellerIds or resolve from a start URL. This is not an ASIN or a company registration number."
+          },
+          "url": {
+            "type": "string",
+            "title": "Official website URL",
+            "description": "Full public company website URL to inspect for the mapped seller. Use an HTTPS URL such as https://example.com. The actor stays on this site and only follows a few contact-oriented pages. This is not an email address, social-media profile, or Amazon URL."
+          }
+        },
+        "required": [
+          "sellerId",
+          "url"
+        ]
+      }
+    },
+    "maxResults": {
+      "title": "Maximum seller profiles",
+      "type": "integer",
+      "description": "Use this to cap the number of Amazon seller profiles inspected in one run. Enter a whole number from 1 to 100; each returned public email is charged at $0.20 and the actor stops adding new seller work at this cap. Defaults to 10. This is a seller-profile cap, not an email-list size target.",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxContactPages": {
+      "title": "Maximum official website pages per seller",
+      "type": "integer",
+      "description": "Use this to limit extra official-site crawling for a seller without an Amazon-page email. The homepage is included, followed by same-site contact, support, imprint, or legal pages. Defaults to 3 and accepts 1\u20135. This does not crawl social networks, marketplaces, or arbitrary external links.",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Use this to configure Apify Proxy for Amazon access. Automatic Apify Proxy is the default; residential proxies are recommended for larger or blocked runs. The Actor keeps a session consistent across requests. This field is not a way to supply website credentials.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

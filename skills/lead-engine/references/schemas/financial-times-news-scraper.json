@@ -1,0 +1,93 @@
+{
+  "title": "Financial Times News Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sections": {
+      "title": "FT RSS sections",
+      "type": "array",
+      "description": "Financial Times public RSS sections to scrape (headlines, standfirsts, images, publish times). Select one or more. Defaults to International home + Markets. Returns public feed metadata \u2014 not full paywalled article body text.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "home",
+          "homeUk",
+          "markets",
+          "companies",
+          "world",
+          "us",
+          "technology",
+          "climate",
+          "opinion",
+          "china",
+          "europe",
+          "asia",
+          "emergingMarkets",
+          "personalFinance",
+          "lifeArts",
+          "workCareers",
+          "htsi"
+        ],
+        "enumTitles": [
+          "Home (International)",
+          "Home (UK)",
+          "Markets",
+          "Companies",
+          "World",
+          "US",
+          "Technology",
+          "Climate",
+          "Opinion",
+          "China",
+          "Europe",
+          "Asia",
+          "Emerging Markets",
+          "Personal Finance",
+          "Life & Arts",
+          "Work & Careers",
+          "HTSI / How To Spend It"
+        ]
+      }
+    },
+    "searchKeywords": {
+      "title": "Keyword filter",
+      "type": "array",
+      "description": "Optional case-insensitive keywords. Keep only articles whose headline, standfirst, or keywords contain at least one term (e.g. ['Fed','oil']). Leave empty to keep all items from selected sections.",
+      "editor": "stringList"
+    },
+    "searchQuery": {
+      "title": "Keyword search (Bing News site:ft.com)",
+      "type": "string",
+      "description": "Optional topic search via Bing News RSS filtered to ft.com. Use this instead of FT site search (robots.txt disallows /search). Returns headline + snippet + URL. Leave empty to skip.",
+      "editor": "textfield"
+    },
+    "articleUrls": {
+      "title": "Article URLs",
+      "type": "array",
+      "description": "Optional list of ft.com /content/{uuid} URLs. Each URL is enriched from public Open Graph / meta tags only when HTML is reachable. Often blocked by Cloudflare without Residential proxy. Does not bypass the FT paywall or return subscription-only full text.",
+      "editor": "stringList"
+    },
+    "sinceHours": {
+      "title": "Only articles newer than (hours)",
+      "type": "integer",
+      "description": "Optional recency window. If set to e.g. 24, only articles with publishedAt within the last 24 hours are kept. Use 0 (default) for all currently returned feed/search items.",
+      "editor": "number",
+      "minimum": 0
+    },
+    "maxItems": {
+      "title": "Max articles",
+      "type": "integer",
+      "description": "Hard cap on articles scraped and billed across all sources. Each accepted article is one billable article-found event. Defaults to 50. Set lower for cheap test runs.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "proxyConfiguration": {
+      "title": "Proxy (optional)",
+      "type": "object",
+      "description": "Optional Apify proxy. Official FT RSS feeds normally work without one. Enable Residential only if HTML URL enrich is Cloudflare-blocked.",
+      "editor": "proxy"
+    }
+  }
+}

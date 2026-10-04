@@ -1,0 +1,105 @@
+{
+  "title": "Trustpilot Reviews Scraper",
+  "description": "Extract Trustpilot reviews for any company. Enter domains (e.g. apple.com), full Trustpilot URLs, or company names.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyIdentifiers": {
+      "title": "Companies to Scrape",
+      "type": "array",
+      "description": "Use this field when the user provides domains (e.g. 'apple.com'), Trustpilot review URLs (e.g. 'https://www.trustpilot.com/review/apple.com'), or company names (e.g. 'Apple'). Enter one per line. Accepts all three formats \u2014 the actor resolves each to the correct Trustpilot page automatically.",
+      "editor": "stringList",
+      "sectionCaption": "Target Companies",
+      "sectionDescription": "Enter domains, Trustpilot URLs, or company names \u2014 one per line."
+    },
+    "maxReviewsPerCompany": {
+      "title": "Max Reviews Per Company",
+      "type": "integer",
+      "description": "Maximum number of reviews to scrape per company. Set to 0 for unlimited (scrapes all available reviews). Default is 100.",
+      "minimum": 0,
+      "sectionCaption": "Scraping Limits"
+    },
+    "filterStars": {
+      "title": "Filter by Star Rating",
+      "type": "array",
+      "description": "Only scrape reviews with these star ratings. Leave empty to scrape all ratings. Use when the user wants only positive reviews (4-5 stars) or only negative reviews (1-2 stars).",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "enumTitles": [
+          "1 Star (Terrible)",
+          "2 Stars (Poor)",
+          "3 Stars (Average)",
+          "4 Stars (Great)",
+          "5 Stars (Excellent)"
+        ]
+      },
+      "sectionCaption": "Review Filters",
+      "sectionDescription": "Narrow down which reviews to collect."
+    },
+    "filterLanguage": {
+      "title": "Filter by Language",
+      "type": "string",
+      "description": "Only scrape reviews written in this language. Use ISO 639-1 codes: 'en' for English, 'de' for German, 'fr' for French, 'es' for Spanish, 'nl' for Dutch. Leave empty for all languages.",
+      "editor": "textfield"
+    },
+    "filterDateRange": {
+      "title": "Filter by Date Range",
+      "type": "string",
+      "description": "Only scrape reviews published within this date range. Leave empty to scrape all dates.",
+      "editor": "select",
+      "enum": [
+        "",
+        "last30days",
+        "last3months",
+        "last6months",
+        "last12months"
+      ],
+      "enumTitles": [
+        "All time",
+        "Last 30 days",
+        "Last 3 months",
+        "Last 6 months",
+        "Last 12 months"
+      ]
+    },
+    "sortBy": {
+      "title": "Sort Reviews By",
+      "type": "string",
+      "description": "Sort order for reviews. 'recency' returns newest first. 'relevance' returns most helpful first (Trustpilot default).",
+      "editor": "select",
+      "enum": [
+        "recency",
+        "relevance"
+      ],
+      "enumTitles": [
+        "Most Recent",
+        "Most Relevant"
+      ]
+    },
+    "onlyVerified": {
+      "title": "Verified Reviews Only",
+      "type": "boolean",
+      "description": "When enabled, only scrape reviews from verified purchases or verified invitations. Reduces quantity but improves data quality for market research.",
+      "sectionCaption": "Advanced Filters"
+    },
+    "onlyWithReplies": {
+      "title": "Reviews With Company Reply Only",
+      "type": "boolean",
+      "description": "When enabled, only scrape reviews that have received a reply from the company. Useful for analyzing how companies handle customer feedback."
+    },
+    "includeCompanyInfo": {
+      "title": "Include Company Profile Data",
+      "type": "boolean",
+      "description": "When enabled, each review record includes company metadata: trust score, total review count, categories, and domain. Disable to reduce output size when only review content is needed."
+    }
+  },
+  "required": []
+}

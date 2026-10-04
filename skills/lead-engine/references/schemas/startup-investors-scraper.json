@@ -1,0 +1,58 @@
+{
+  "title": "Startup Investors Scraper (OpenVC)",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "lists": {
+      "title": "Investor lists",
+      "type": "array",
+      "description": "OpenVC lists to scrape. Pass a sector keyword (ai \u2192 ai-investors), a full slug (fintech-investors), or a full https://www.openvc.app/investor-lists/... URL. Each list yields public investor rows with check size and thesis.",
+      "editor": "stringList"
+    },
+    "investorTypes": {
+      "title": "Investor type filter",
+      "type": "array",
+      "description": "Optional. Keep investors whose type contains one of these strings (e.g. VC firm, Angel, Family office, Accelerator).",
+      "editor": "stringList"
+    },
+    "stages": {
+      "title": "Funding stage filter",
+      "type": "array",
+      "description": "Optional. Keep investors covering a stage that contains one of these (e.g. Prototype, Early Revenue, Scaling, Seed, Series A).",
+      "editor": "stringList"
+    },
+    "geographies": {
+      "title": "Geography filter",
+      "type": "array",
+      "description": "Optional. Keep investors targeting a country/region that contains one of these (e.g. USA, France, Europe).",
+      "editor": "stringList"
+    },
+    "checkSizeContains": {
+      "title": "Check size contains",
+      "type": "array",
+      "description": "Optional. Keep investors whose check-size text contains one of these (e.g. $500k, $1M).",
+      "editor": "stringList"
+    },
+    "leadOnly": {
+      "title": "Lead investors only",
+      "type": "boolean",
+      "description": "If true, keep only investors that lead rounds (Lead = Yes/Always/Sometimes \u2014 excludes Never/No)."
+    },
+    "maxInvestors": {
+      "title": "Max investors",
+      "type": "integer",
+      "description": "Maximum investor rows to return across all lists. Each persisted row charges $0.025. Prefill 10 keeps quality tests cheap.",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional Apify Proxy override. Default uses Unblocker then Residential the managed browser route for Cloudflare.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "lists"
+  ]
+}

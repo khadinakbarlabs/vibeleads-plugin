@@ -1,0 +1,112 @@
+{
+  "title": "Shopify App Store Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "Free-text keywords searched on the Shopify App Store, one app niche per line (e.g. 'email marketing', 'product reviews'). Each query returns a paginated list of matching app cards. Leave empty if you are passing app, category, or review URLs in 'Start URLs' instead. NOT an app URL \u2014 to scrape one specific app use 'Start URLs'.",
+      "editor": "stringList"
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Direct apps.shopify.com URLs; the mode is auto-detected per URL. App page (apps.shopify.com/klaviyo-email-marketing) returns full app detail; a /reviews URL returns merchant reviews; a /categories/<slug> URL returns the category app list; a /search?q= URL runs a search. Use this for precise targets instead of free-text 'Search queries'.",
+      "editor": "requestListSources"
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "string",
+      "description": "Forces a scraping mode instead of auto-detecting from the URL. 'auto' (default) detects search vs category vs app_detail vs reviews from each input. Set explicitly only to override detection (e.g. force 'reviews' on a bare app URL). Most users should leave this on 'auto'.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "search",
+        "category",
+        "app_detail",
+        "reviews"
+      ],
+      "enumTitles": [
+        "Auto-detect (recommended)",
+        "Search",
+        "Category",
+        "App detail",
+        "Reviews"
+      ]
+    },
+    "scrapeReviews": {
+      "title": "Also scrape reviews for each app",
+      "type": "boolean",
+      "description": "When scraping app detail pages (or apps found via search/category with 'Enrich details' on), also paginate that app's merchant reviews and emit one record per review. Adds review-scraped charges. Defaults to false. Ignored when the input is already a /reviews URL."
+    },
+    "enrichDetails": {
+      "title": "Enrich search/category results with full detail",
+      "type": "boolean",
+      "description": "For search and category modes, visit each app's detail page to add full metadata (description, pricing plans, developer, works-with, languages) instead of just the listing card. Slower and adds one app-scraped charge per app. Defaults to false (fast card-level listing only)."
+    },
+    "maxApps": {
+      "title": "Max apps per query/category",
+      "type": "integer",
+      "description": "Hard cap on how many apps to return per search query or category, across pagination. Caps the app-scraped charge so cost stays predictable. Defaults to 50; set 0 or leave default for typical runs. Does not limit reviews \u2014 use 'Max reviews per app' for that.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "maxReviews": {
+      "title": "Max reviews per app",
+      "type": "integer",
+      "description": "Hard cap on reviews scraped per app (10 reviews per page). Caps the review-scraped charge. Defaults to 100. Only applies when scraping reviews (a /reviews URL, or 'Also scrape reviews' enabled).",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20000
+    },
+    "reviewSort": {
+      "title": "Review sort order",
+      "type": "string",
+      "description": "Order reviews are returned in when scraping reviews. 'most_recent' (default) is newest first; 'highest_rating' / 'lowest_rating' sort by stars; 'most_helpful' uses Shopify's helpfulness ranking. Ignored outside review scraping.",
+      "editor": "select",
+      "enum": [
+        "most_recent",
+        "highest_rating",
+        "lowest_rating",
+        "most_helpful"
+      ],
+      "enumTitles": [
+        "Most recent",
+        "Highest rating",
+        "Lowest rating",
+        "Most helpful"
+      ]
+    },
+    "reviewRating": {
+      "title": "Filter reviews by star rating",
+      "type": "integer",
+      "description": "Only scrape reviews with this exact star rating (1-5). Leave at 0 (default) to scrape all ratings. Useful for pulling only 1-star complaints or 5-star praise. Ignored outside review scraping.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "country": {
+      "title": "Proxy country",
+      "type": "string",
+      "description": "Two-letter country code for the Apify residential/datacenter proxy egress (e.g. 'US', 'GB'). Affects geo-targeted pricing/currency shown on listings. Defaults to 'US'. Uppercase ISO-3166 alpha-2.",
+      "editor": "textfield"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "Maximum parallel requests. Defaults to 10. Lower it (e.g. 5) for very large jobs (thousands of apps) if you hit rate-limit (HTTP 429) blocks \u2014 slower but steadier. Raising it rarely helps and risks more blocks.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify proxy settings. Defaults to Apify Proxy (AUTO) which is sufficient \u2014 apps.shopify.com is not aggressively bot-protected. Override only if you need a specific proxy group or country.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

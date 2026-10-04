@@ -1,0 +1,92 @@
+{
+  "title": "Local Business Lead Generator",
+  "description": "Find local business prospects from Google Maps, enrich public contact details from their websites, and return qualified CRM-ready leads.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Business category or keyword",
+      "type": "string",
+      "description": "The local business type to find on Google Maps. Enter a plain-language category such as 'dentists', 'roofing contractors', or 'Italian restaurants'. Use it with Location for a focused territory search. This is not a Google Maps URL; use Start URLs for direct Maps pages.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "The city, region, or country that limits the business search. Use a clear place such as 'Austin, TX' or 'London, UK'. It defaults to the location encoded in a direct Maps URL when Start URLs are used. It is not a radius or latitude-longitude field.",
+      "editor": "textfield"
+    },
+    "startUrls": {
+      "title": "Google Maps URLs (optional)",
+      "type": "array",
+      "description": "One or more public Google Maps search or place URLs to process directly. Paste a URL such as 'https://www.google.com/maps/search/dentists+in+Austin'. When supplied, these URLs are processed alongside any category search. Do not provide website URLs here; use the category and location fields for discovery.",
+      "editor": "requestListSources"
+    },
+    "maxResults": {
+      "title": "Maximum qualified leads",
+      "type": "integer",
+      "description": "The maximum number of business lead records to return and bill as place-scraped events. Choose 5 for a smoke test, 50 for a focused territory, or a larger bounded campaign. The allowed range is 1 to 5000 and the actor stops once it reaches this limit. This is not a page count, because Maps result pages contain a variable number of businesses.",
+      "minimum": 1,
+      "maximum": 5000
+    },
+    "enrichEmails": {
+      "title": "Find public emails and social profiles",
+      "type": "boolean",
+      "description": "When enabled, the actor visits a business website and its likely contact pages to find public email and social links. Email enrichment is optional and has a separate event only when an email is found. It defaults to true for outreach-ready lead generation. It does not guess, buy, or validate private personal email addresses."
+    },
+    "requireEmail": {
+      "title": "Return only leads with a public email",
+      "type": "boolean",
+      "description": "Keep only businesses for which the website crawl found a public email address. This filter runs after Maps extraction and optional website enrichment. It defaults to false so useful phone or website-only prospects are not discarded. It does not guarantee inbox deliverability or consent for outreach."
+    },
+    "requireWebsite": {
+      "title": "Return only leads with a website",
+      "type": "boolean",
+      "description": "Keep only businesses whose Google Maps listing includes a website URL. This is useful when the next workflow step needs a reachable domain for enrichment or audit. It defaults to false so listing-only local prospects can still be returned. It does not test whether the website is currently online."
+    },
+    "minLeadScore": {
+      "title": "Minimum lead score",
+      "type": "integer",
+      "description": "The minimum 0\u2013100 contactability score a lead must have to be returned. For example, 70 prioritizes leads with several public contact signals while 0 keeps all records. It defaults to 0 and only filters after the complete lead record is assembled. This is not a prediction of purchase intent or a credit score.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "maxReviews": {
+      "title": "Reviews per business",
+      "type": "integer",
+      "description": "The number of recent Google reviews to include for each returned business. Set 0 to omit review text and keep results compact. The allowed range is 0 to 100 and reviews do not change the lead score. This is not the total review count, which is always returned as review_count.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "language": {
+      "title": "Google Maps result language",
+      "type": "string",
+      "description": "The Google Maps interface language used while collecting the listing. Select 'en' for English or another supported language such as 'es' or 'de'. It defaults to 'en' and can influence category and address text. It is not a country or proxy-region selector.",
+      "enum": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "nl",
+        "pl",
+        "ru",
+        "ja",
+        "ko",
+        "zh-CN",
+        "ar",
+        "tr",
+        "hi"
+      ]
+    },
+    "minRating": {
+      "title": "Minimum Google rating",
+      "type": "number",
+      "description": "The minimum 0\u20135 Google Maps rating a business must have before it is returned. For example, 4.2 filters out lower-rated listings while 0 includes all listings. It defaults to 0 and records with no rating do not pass a positive threshold. This is not a review-count filter or a measure of business quality.",
+      "minimum": 0,
+      "maximum": 5
+    }
+  },
+  "required": []
+}

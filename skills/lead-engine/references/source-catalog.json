@@ -1,0 +1,4386 @@
+{
+  "owner": "khadinakbar",
+  "verified_date": "2026-10-05",
+  "inspection": "public metadata and default-build input schemas; no paid runs",
+  "actors": [
+    {
+      "name": "google-maps-leads-scraper",
+      "id": "9XVfT1vIqqL4fiS4q",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/google-maps-leads-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ZPuzdOapj4wKYPHBL",
+        "number": "1.8.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "startUrls",
+        "maxResults",
+        "enrichEmails",
+        "requireEmail",
+        "requireWebsite",
+        "minLeadScore",
+        "maxReviews",
+        "language",
+        "minRating"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-maps-extractor",
+      "id": "c77y9zjyEMnlRbaZH",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/google-maps-extractor",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Myp6EbsjRona75P5V",
+        "number": "1.0.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "startUrls",
+        "maxResults",
+        "minRating",
+        "skipClosedPlaces",
+        "includeWebsiteContacts",
+        "language",
+        "countryCode"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-maps-email-extractor",
+      "id": "Kl05x3ga1ptGJ8IX8",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/google-maps-email-extractor",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "bKTlrvrqvv5aVBxqd",
+        "number": "1.1.14",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "maxResults",
+        "skipWithoutEmail",
+        "minRating",
+        "skipClosedPlaces",
+        "language",
+        "startUrls"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "yelp-scraper-all-in-one",
+      "id": "LqTt06VgB01NP5ZOa",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/yelp-scraper-all-in-one",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "JcwwZrXQ6mAkzdvEU",
+        "number": "1.9.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "startUrls",
+        "maxResults",
+        "includeReviews",
+        "maxReviewsPerBusiness",
+        "proxyType"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "yellow-pages-us-scraper",
+      "id": "LKAk6HaLHNFVSk6eo",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/yellow-pages-us-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "eiW41dJRZLK7ggN3T",
+        "number": "0.1.12",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchTerms",
+        "location",
+        "startUrls",
+        "maxResults",
+        "maxPagesPerSearch",
+        "enrichDetails",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "yellow-pages-uae-scraper",
+      "id": "ZhcyPyawv0MsNJmht",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/yellow-pages-uae-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "j2NfdZLbJ5nLryJvS",
+        "number": "0.1.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "categories",
+        "city",
+        "startUrls",
+        "maxResults",
+        "enrichDetails",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "apple-maps-business-scraper",
+      "id": "cvmZbYW6v9NUYbzsz",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/apple-maps-business-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "G2qrILku3Afhlp0y7",
+        "number": "0.1.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "searchQueries",
+        "location",
+        "latitude",
+        "longitude",
+        "placeUrls",
+        "searchUrls",
+        "maxResults",
+        "enrichEmails",
+        "requireWebsite",
+        "requirePhone",
+        "adaptiveGrid",
+        "language",
+        "countryCode",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "yandex-maps-scraper",
+      "id": "nvSVDwQpjExZEGdUn",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/yandex-maps-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "eD6PZ4QE2NIGNV8R6",
+        "number": "0.1.12",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "category",
+        "city",
+        "startUrls",
+        "maxPlaces",
+        "includeReviews",
+        "maxReviewsPerPlace",
+        "language",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "naver-map-scraper",
+      "id": "fAkwN2B29fxeiIf7I",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/naver-map-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "PqxSc7d12TCpf3o6m",
+        "number": "0.1.23",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "placeType",
+        "location",
+        "category",
+        "startUrls",
+        "enrichDetails",
+        "maxPlaces",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "gelbe-seiten-scraper",
+      "id": "Mm0GVaQ4tzorXYpIO",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/gelbe-seiten-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "XYPkG3yTaQ7UZnvbQ",
+        "number": "1.0.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searches",
+        "startUrls",
+        "maxResults",
+        "enrichDetails"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "bbb-scraper",
+      "id": "Ieo7Fq8mBluwRqGGA",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/bbb-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "GfZxpr8eagYAGW9cq",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchKeyword",
+        "location",
+        "country",
+        "startUrls",
+        "maxResults",
+        "enrichDetails",
+        "minRating",
+        "accreditedOnly",
+        "storeRawSample",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "houzz-scraper",
+      "id": "iEvCUyjKXa3tCUGe2",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/houzz-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "JUJJembpofHSbb3gq",
+        "number": "0.1.15",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "category",
+        "location",
+        "startUrls",
+        "enrichDetails",
+        "maxResults",
+        "proxyCountry",
+        "maxRequestRetries"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "checkatrade-scraper",
+      "id": "NDA7wKRcFeIfwfdjz",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/checkatrade-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "tw6z8KVCVAaUX8yZ4",
+        "number": "1.4.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "trade",
+        "location",
+        "searchUrls",
+        "directUrls",
+        "maxResults",
+        "scrapeDetails",
+        "extractReviews",
+        "requirePhone",
+        "minRating",
+        "minReviews",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "angi-home-services-scraper",
+      "id": "Q8bDbhf70u3tFVEkz",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/angi-home-services-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "wL9IRrlHdqQbK8Elb",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "category",
+        "city",
+        "state",
+        "zipCodes",
+        "startUrls",
+        "maxResults",
+        "enrichDetails",
+        "includeReviews",
+        "maxReviewsPerProvider",
+        "minRating",
+        "requirePhone",
+        "maxPagesPerListing",
+        "proxyConfiguration",
+        "storeRawSample"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-local-services-ads-scraper",
+      "id": "x5gKZkXwagh1WR6sK",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/google-local-services-ads-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ahqoUcbXeNxgyoQsp",
+        "number": "1.7.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries",
+        "locationName",
+        "dataCid"
+      ],
+      "input_keys": [
+        "queries",
+        "locationName",
+        "dataCid",
+        "maxResults",
+        "languageCode",
+        "countryCode",
+        "jobType"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-local-pack-api",
+      "id": "YpwdWR0SnyI3jTWx6",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Local businesses",
+      "url": "https://apify.com/khadinakbar/google-local-pack-api",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "F9orP0ImyrO1kBlMr",
+        "number": "0.2.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries",
+        "locations"
+      ],
+      "input_keys": [
+        "queries",
+        "locations",
+        "languageCode",
+        "device",
+        "seDomain",
+        "maxLocalPackResults"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "b2b-lead-finder-enrichment",
+      "id": "hUKhKQ3mQGtYSfct3",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/b2b-lead-finder-enrichment",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "0EG3uvUWLS1gUkynz",
+        "number": "1.0.28",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "searchQuery",
+        "location",
+        "maxResults",
+        "enableEnrichment",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "universal-lead-finder",
+      "id": "qTbWrJckpXQaUe83d",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/universal-lead-finder",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "2282W4PQtddtRbkij",
+        "number": "1.0.24",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "startUrls",
+        "maxResults",
+        "crawlWebsites",
+        "includeSubpages",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "lead-finder-pro",
+      "id": "YXDqLHgkNFKNxyYpo",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/lead-finder-pro",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "w9M13g1WX02W5lb0L",
+        "number": "1.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQueries"
+      ],
+      "input_keys": [
+        "searchQueries",
+        "location",
+        "maxResults",
+        "enrichContacts",
+        "includeDirectories",
+        "excludeDomains"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-search-scraper",
+      "id": "EmXJMBaKn5SccxM9x",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-company-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "KmfrdB0JvkVPbVXKJ",
+        "number": "0.2.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "keywords",
+        "industry",
+        "location",
+        "country",
+        "maxResults",
+        "enrich"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-profile-scraper",
+      "id": "gn2BKbv4n9GIexJKQ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-company-profile-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "1aqTkgrWWTHHMqG2s",
+        "number": "0.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companyUrls"
+      ],
+      "input_keys": [
+        "companyUrls",
+        "maxCompanies",
+        "includeSimilarCompanies",
+        "includeEmployeesSample",
+        "maxEmployeesSample",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-details-scraper",
+      "id": "VhnNYP5gZkMlC9n35",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-company-details-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "hpOGseaHObswqmByl",
+        "number": "0.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companyUrls"
+      ],
+      "input_keys": [
+        "companyUrls",
+        "includePosts",
+        "maxCompanies"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-by-domain-scraper",
+      "id": "rIx5BxFR9Pxvbe4wX",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-company-by-domain-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "xyECdmQCUaa7iCm3Q",
+        "number": "0.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "domains"
+      ],
+      "input_keys": [
+        "domains",
+        "maxResultsPerDomain",
+        "includeSerpEvidence",
+        "minConfidence"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-finder-from-website",
+      "id": "rs9pkKCfDcdihqtWS",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-company-finder-from-website",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "uL90SHQIcfc0DkvQu",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "websites"
+      ],
+      "input_keys": [
+        "websites",
+        "maxItems",
+        "minConfidence",
+        "enrichCompany",
+        "maxConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-people-search-scraper",
+      "id": "S6dSWuZpECzcBhWIc",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-people-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "3oGg0BNzwWKmiEpdc",
+        "number": "0.1.13",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "jobTitle",
+        "location",
+        "currentCompany",
+        "school",
+        "keywords",
+        "profileUrls",
+        "enrichProfiles",
+        "maxResults",
+        "resultsRegion"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-profile-details-scraper",
+      "id": "96FrUYrH0Zm6SU9K5",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-profile-details-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "1QM3wMzlohmeldRs4",
+        "number": "0.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "profileUrls"
+      ],
+      "input_keys": [
+        "profileUrls",
+        "maxProfiles",
+        "outputMode",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-employee-scraper",
+      "id": "10OSHG9C9mP30WFrN",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-company-employee-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "OLDjk7Dyzq1DYZNei",
+        "number": "0.3.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companyUrls"
+      ],
+      "input_keys": [
+        "companyUrls",
+        "maxEmployees",
+        "maxEmployeesPerCompany",
+        "mode",
+        "searchQuery",
+        "jobTitles",
+        "locations",
+        "includeProfileDetails",
+        "maxConcurrency",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-sales-navigator-scraper",
+      "id": "VsSYUBBqsszsxMntS",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-sales-navigator-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "gflWk5beH8BIqaGaF",
+        "number": "0.1.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "salesNavigatorUrl",
+        "jobTitle",
+        "location",
+        "currentCompany",
+        "school",
+        "keywords",
+        "profileUrls",
+        "enrichProfiles",
+        "maxResults",
+        "resultsRegion",
+        "preferProvider"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-sales-account-scraper",
+      "id": "52YUfbphiN2IesXUi",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/linkedin-sales-account-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ENPdncsPzjCEdNMQ2",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "salesNavigatorUrl",
+        "industry",
+        "location",
+        "companyName",
+        "keywords",
+        "companyUrls",
+        "enrichAccounts",
+        "maxResults",
+        "resultsRegion"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "dnb-companies-scraper",
+      "id": "QYoGBoZGWKtsoTJCB",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/dnb-companies-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "GRmauLexUqVFMQIeb",
+        "number": "0.2.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "industryPath",
+        "countryIsoCode",
+        "regionName",
+        "maxResults",
+        "enrichDetails",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "companies-house-uk-scraper",
+      "id": "IRRvAn8X2ll9zTIgh",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/companies-house-uk-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "T1CIQjPmVhUPpuQzJ",
+        "number": "0.2.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "companyNumbers",
+        "companyNames",
+        "searchQueries",
+        "officerNames",
+        "companyUrls",
+        "includeOfficers",
+        "includePscs",
+        "includeResignedOfficers",
+        "includeCeasedPscs",
+        "emitOfficerLeadRows",
+        "maxResults",
+        "maxSearchResultsPerQuery",
+        "maxConcurrency",
+        "companiesHouseApiKey"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "apollo-alternative",
+      "id": "7chyRbD6rRl5uSvid",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/apollo-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "YS3XySo8VViBmdIoe",
+        "number": "0.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "jobTitles",
+        "keywords",
+        "companyNames",
+        "industry",
+        "location",
+        "country",
+        "maxResults"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "zoominfo-alternative",
+      "id": "Y6fgJKtKB3iDq1wbO",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/zoominfo-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "HgXb2c6JGlBLFSNN7",
+        "number": "0.1.12",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companies"
+      ],
+      "input_keys": [
+        "companies",
+        "maxCompanies",
+        "maxPagesPerCompany",
+        "includePublishedContacts",
+        "includeTechnologySignals",
+        "requestTimeoutSecs",
+        "useApifyUnblockerFallback",
+        "preferApifyUnblocker"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "rocketreach-alternative",
+      "id": "kFR5TDChnXFhWBRu0",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/rocketreach-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "GkiimjuMkL0bKc4ow",
+        "number": "0.2.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "operation",
+        "contacts",
+        "publicProfileSearch",
+        "maxProfiles",
+        "enrichmentMode",
+        "fallbackPolicy",
+        "maxResults",
+        "maxCandidatesPerContact",
+        "includeMxValidatedCandidates"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "clearbit-alternative",
+      "id": "SDthf1Y3UTZJYbtfr",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/clearbit-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "4DMeQ8BIyAdvLTAUs",
+        "number": "1.0.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companies"
+      ],
+      "input_keys": [
+        "companies",
+        "maxCompanies",
+        "maxPagesPerCompany",
+        "includePublishedContacts",
+        "includeTechnologySignals",
+        "useProxyFallback",
+        "requestTimeoutSecs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "lusha-alternative",
+      "id": "n7oPOKjLe1OLcfC5Q",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/lusha-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "SJ8VLbuKsBuJpQ3lZ",
+        "number": "0.1.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "contacts"
+      ],
+      "input_keys": [
+        "contacts",
+        "maxContacts",
+        "maxPagesPerContact",
+        "requestTimeoutSecs",
+        "responseFormat",
+        "useApifyUnblockerFallback"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "cognism-alternative",
+      "id": "3vN9tAAV1lCR8vorN",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/cognism-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "dMnMN74v3CVMayDas",
+        "number": "0.8.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "accounts"
+      ],
+      "input_keys": [
+        "accounts",
+        "maxAccounts",
+        "maxPagesPerAccount",
+        "requestTimeoutSecs",
+        "useApifyUnblockerFallback",
+        "preferApifyUnblocker"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "seamless-ai-alternative",
+      "id": "wptNZi3zSlTeqJTfx",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/seamless-ai-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "5ItbszGqfiJpC45jC",
+        "number": "0.1.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "contacts"
+      ],
+      "input_keys": [
+        "contacts",
+        "maxContacts",
+        "maxPagesPerContact",
+        "requestTimeoutSecs",
+        "useApifyUnblockerFallback",
+        "preferApifyUnblocker"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "snov-io-alternative",
+      "id": "8WS1icazgH7IGOhK7",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "B2B companies and contacts",
+      "url": "https://apify.com/khadinakbar/snov-io-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "hCdFs1Q001s8rsXnS",
+        "number": "0.1.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "targets"
+      ],
+      "input_keys": [
+        "targets",
+        "maxTargets",
+        "maxPagesPerTarget",
+        "requestTimeoutSecs",
+        "useApifyUnblockerFallback",
+        "preferApifyUnblocker"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "producthunt-scraper-pro",
+      "id": "DTljt4BJQ9K6xJp14",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/producthunt-scraper-pro",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "whXk8LCCY8pQrxg03",
+        "number": "1.4.18",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "mode",
+        "leaderboardPeriod",
+        "searchQuery",
+        "topic",
+        "startUrls",
+        "maxResults",
+        "excludeProductHuntUrls",
+        "productHuntResumeCursor",
+        "includeAllProducts",
+        "maxConcurrency",
+        "enrichEmails",
+        "resolveWebsites",
+        "maxWebsitePages",
+        "maxEmailsPerProduct",
+        "verifyEmails",
+        "findContacts",
+        "websiteUrlOverrides",
+        "startDate",
+        "endDate",
+        "lookbackDays",
+        "outputMode"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "ycombinator-scraper",
+      "id": "it8FpWzwrVxQlmofi",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/ycombinator-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "j1pHOt66gxJfNGihP",
+        "number": "0.3.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "mode",
+        "query",
+        "batches",
+        "industries",
+        "regions",
+        "topCompany",
+        "isHiring",
+        "nonprofit",
+        "minTeamSize",
+        "maxTeamSize",
+        "jobRole",
+        "jobLocation",
+        "scrapeFounders",
+        "scrapeOpenJobs",
+        "scrapeJobDescriptions",
+        "scrapeNewsAndLaunches",
+        "maxResults",
+        "startPage",
+        "pageLimit",
+        "monitoringMode",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "shopify-app-store-scraper",
+      "id": "nvdkTgPT0l2uOTwgl",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/shopify-app-store-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "PHleqO9nxZ3AlPKoa",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "queries",
+        "startUrls",
+        "mode",
+        "scrapeReviews",
+        "enrichDetails",
+        "maxApps",
+        "maxReviews",
+        "reviewSort",
+        "reviewRating",
+        "country",
+        "maxConcurrency",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "salesforce-appexchange-scraper",
+      "id": "wHmSH8gBGgMFVKYMU",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/salesforce-appexchange-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "wtkmHaSwZ6LcAk1da",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "listingUrls",
+        "listingType",
+        "keyword",
+        "maxResults",
+        "maxScan",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "apify-store-scraper",
+      "id": "LfwBeMS8ej3n1p8QK",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/apify-store-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ayBhicZJtq7VicLHU",
+        "number": "1.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "categoryNames",
+        "sortBy",
+        "pricingModels",
+        "maintainedBy",
+        "maxItems",
+        "enrichDetails",
+        "detailConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "startup-investors-scraper",
+      "id": "KNOFDhdwSdfQQi9uj",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/startup-investors-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "jlh2R8CGhdkgvehKs",
+        "number": "0.1.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "lists"
+      ],
+      "input_keys": [
+        "lists",
+        "investorTypes",
+        "stages",
+        "geographies",
+        "checkSizeContains",
+        "leadOnly",
+        "maxInvestors",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "pitchbook-scraper",
+      "id": "AUNBd9g5ZZk4E4YzN",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Startups and software",
+      "url": "https://apify.com/khadinakbar/pitchbook-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "2umH6XWQrBuz2Xh2D",
+        "number": "0.2.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "profileUrls",
+        "maxItems",
+        "useApifyProxy",
+        "useGoogleSearchFallback"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-jobs-scraper",
+      "id": "TBxNczWNXst8K72z2",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/linkedin-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "I4bCoGSSCm8pznVUq",
+        "number": "0.2.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "locations",
+        "startUrls",
+        "maxResults",
+        "datePosted",
+        "jobType",
+        "experienceLevel",
+        "workType",
+        "salaryBase"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-jobs-scraper",
+      "id": "jo4IhcXBcbcD0GC3r",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/linkedin-company-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "HVOzgiE9qHRdGmwMI",
+        "number": "0.1.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "company"
+      ],
+      "input_keys": [
+        "company",
+        "keywords",
+        "location",
+        "datePosted",
+        "jobType",
+        "experienceLevel",
+        "remoteOnly",
+        "maxResults",
+        "enrichJobDetails",
+        "enrichCompany",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "indeed-job-scraper",
+      "id": "archZrc8GyycLrX2i",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/indeed-job-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "UZ22KcZUExgWyBWa4",
+        "number": "1.1.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "startUrls",
+        "maxResults",
+        "country",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-jobs-scraper",
+      "id": "QSfNn2wwDEBa69WGO",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/google-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "aG13n0OXxgfxTjB8i",
+        "number": "0.2.15",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "startUrls",
+        "maxResults",
+        "datePosted",
+        "employmentType",
+        "remoteOnly",
+        "proxyCountry"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "wellfound-jobs-scraper",
+      "id": "ddBZbnGzOvViKbPY5",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/wellfound-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "59vx5hCUWBi1ANIgs",
+        "number": "1.3.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "role",
+        "location",
+        "remoteOnly",
+        "startUrls",
+        "maxItems",
+        "enrichDetails",
+        "proxyConfiguration",
+        "maxConcurrency",
+        "debugDumpHtml"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "glassdoor-jobs-scraper",
+      "id": "gDgmwzoi4dAD2ZFMm",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/glassdoor-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "cyBiyxQVBpRnlyDDI",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "searchQuery",
+        "location",
+        "country",
+        "maxResults",
+        "daysOld",
+        "includeNoSalaryJobs",
+        "deduplicate",
+        "debug"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "greenhouse-jobs-scraper",
+      "id": "VWE9UWysLxkHbOETu",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/greenhouse-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "K0GUwfWQ8sNrfmLf2",
+        "number": "1.0.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "boardTokens"
+      ],
+      "input_keys": [
+        "boardTokens",
+        "maxResultsPerBoard",
+        "titleIncludes",
+        "locationIncludes",
+        "departmentIncludes",
+        "includeDescriptions"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "lever-jobs-scraper",
+      "id": "zThhdw9tYfPAM6GEz",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/lever-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "aNetkIWIcaOUdHVAt",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "boardTokens"
+      ],
+      "input_keys": [
+        "boardTokens",
+        "maxResultsPerBoard",
+        "titleIncludes",
+        "locationIncludes",
+        "teamIncludes",
+        "commitmentIncludes",
+        "includeDescriptions"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "ashby-jobs-scraper",
+      "id": "UnbMttEkpRV4otgC9",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/ashby-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "KisofuMwdTCpIQhdN",
+        "number": "1.0.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "boardTokens"
+      ],
+      "input_keys": [
+        "boardTokens",
+        "maxResultsPerBoard",
+        "titleIncludes",
+        "locationIncludes",
+        "departmentIncludes",
+        "remoteOnly",
+        "includeDescriptions"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "workable-jobs-scraper",
+      "id": "cetk6UriLHVw6AIVY",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/workable-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "av3wVaTZ0Eof8yGmZ",
+        "number": "1.0.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companies"
+      ],
+      "input_keys": [
+        "companies",
+        "maxJobsPerCompany",
+        "searchQuery",
+        "titleIncludes",
+        "locationIncludes",
+        "departmentIncludes",
+        "includeDescriptions"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "workday-jobs-scraper",
+      "id": "NkmOXS1fYASEW98Lz",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/workday-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "0FxlRseKLdh3YLeAv",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "careerSiteUrls"
+      ],
+      "input_keys": [
+        "careerSiteUrls",
+        "searchText",
+        "maxResultsPerSite",
+        "includeJobDetails",
+        "useApifyProxy"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "career-site-job-scraper",
+      "id": "NyFhPz1Vq9CMJzn7u",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/career-site-job-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "pY5RXHv58oBU7vmpS",
+        "number": "1.2.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "startUrls"
+      ],
+      "input_keys": [
+        "startUrls",
+        "maxResultsPerSite",
+        "enrichDescriptions",
+        "descriptionFormat",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "hiringcafe-jobs-scraper",
+      "id": "xaNQkBxhf0brOpk7z",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/hiringcafe-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "eQyT7ODHTfAWINBoS",
+        "number": "1.3.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "searchUrls",
+        "maxResults",
+        "maxPages",
+        "useUnblockerFallback"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "remote-jobs-aggregator",
+      "id": "aLeztUWQhTlb3jbpa",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/remote-jobs-aggregator",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "kdnVXduxbI4zopyXR",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "sources",
+        "maxItems",
+        "postedWithinDays",
+        "jobTypes",
+        "locationKeywords",
+        "excludeKeywords",
+        "includeDescription",
+        "dedupe"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "multiple-job-board-scraper",
+      "id": "bSGPfloZAg10KGSna",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/multiple-job-board-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "RlyLDuH1jEc8BV3Bt",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQuery"
+      ],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "sources",
+        "maxResults",
+        "includeDescription"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "jobs-sh-scraper",
+      "id": "eEmG7ByAaXJgmUPHY",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/jobs-sh-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "6nD47SyLKqTJ7Kn7j",
+        "number": "1.0.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "startUrls",
+        "maxResults",
+        "includeJobDetails",
+        "responseFormat"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "bayt-jobs-scraper",
+      "id": "BtSz4YwJNYSzjDEUY",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/bayt-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "TxhSp9Z16hCgvQoPl",
+        "number": "0.6.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "country",
+        "jobCategory",
+        "startUrls",
+        "maxResults",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "gulftalent-job-scraper",
+      "id": "WACeEQaJHjjAi4vsj",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/gulftalent-job-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "0MHbfXB6d1GNQFghi",
+        "number": "1.0.10",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchUrls",
+        "keyword",
+        "maxResults",
+        "maxPages",
+        "includeJobDetails",
+        "proxyCountry"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "naukri-jobs-scraper",
+      "id": "m5Iff4MjzhrwevpOm",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/naukri-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Fl5VmC4Cf1TtqEqnb",
+        "number": "1.6.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "keyword",
+        "location",
+        "startUrls",
+        "experience",
+        "jobAge",
+        "jobType",
+        "workMode",
+        "company",
+        "maxItems",
+        "enrichDetails",
+        "proxyConfiguration",
+        "maxConcurrency",
+        "debugDumpHtml"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "seek-job-scraper",
+      "id": "8N1Ho85C9Y6Cy5Tib",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/seek-job-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "yW9vwPQ9tvhYau7Od",
+        "number": "1.6.1",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "keywords",
+        "location",
+        "country",
+        "searchUrls",
+        "sortBy",
+        "maxResults",
+        "includeDetails",
+        "proxyCountry"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "stepstone-jobs-scraper",
+      "id": "RRD6DxpNDigqXfwWu",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Hiring and expansion",
+      "url": "https://apify.com/khadinakbar/stepstone-jobs-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "zg06WQsRnTkNslc10",
+        "number": "1.0.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "keyword",
+        "location",
+        "startUrls",
+        "postedWithin",
+        "workFromHomeOnly",
+        "maxItems",
+        "enrichDetails",
+        "proxyConfiguration",
+        "maxConcurrency",
+        "debugDumpHtml"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "clutch-scraper",
+      "id": "QHYkMFubWuHnbLnyR",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/clutch-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "27B2oV8TNUXZm46JW",
+        "number": "1.2.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "categoryUrl",
+        "searchUrls",
+        "startUrls",
+        "location",
+        "minRating",
+        "minReviews",
+        "verifiedOnly",
+        "excludeSponsored",
+        "serviceKeyword",
+        "locationKeyword",
+        "maxResults",
+        "maxPages",
+        "maxConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "clutch-listings-scraper",
+      "id": "qGeA0rcK8hiWhot9T",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/clutch-listings-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "dGlQSUvveanQRYZPR",
+        "number": "1.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchUrls",
+        "categoryUrl",
+        "location",
+        "maxResults",
+        "maxPages",
+        "minRating",
+        "minReviews",
+        "verifiedOnly",
+        "excludeSponsored",
+        "serviceKeyword",
+        "locationKeyword",
+        "maxConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "clutch-reviews-scraper",
+      "id": "8z0phzG4wUZAHGn2T",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/clutch-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "YxWiw21IUWaqR6Ogg",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "profileUrls"
+      ],
+      "input_keys": [
+        "profileUrls",
+        "maxReviews",
+        "maxConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "g2-product-reviews-scraper",
+      "id": "FwIxRhXDEbykgdeqc",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/g2-product-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "BsvaC7eHgGDD3WS11",
+        "number": "1.2.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "searchQuery",
+        "maxReviewsPerProduct",
+        "maxProductsPerSearch",
+        "includeReviews",
+        "sortReviewsBy",
+        "proxyConfiguration",
+        "debug"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "capterra-reviews-scraper",
+      "id": "vPxFQ4unR0IzHFm9H",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/capterra-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "axM1fQROQpyZTRtHG",
+        "number": "1.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "searchQuery",
+        "maxReviewsPerProduct",
+        "maxProductsPerSearch",
+        "includeReviews",
+        "sortReviewsBy",
+        "proxyConfiguration",
+        "debug"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "trustradius-reviews-scraper",
+      "id": "lFAe0OfsgZUuP83kR",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/trustradius-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "8yFHWhzNQmVrzhQ0S",
+        "number": "0.1.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "productSlugs",
+        "searchQuery",
+        "maxReviewsPerProduct",
+        "maxProductsPerSearch",
+        "includeReviews",
+        "includeProductSummary",
+        "sortReviewsBy",
+        "starRating",
+        "companySize",
+        "proxyConfiguration",
+        "debug"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "gartner-peer-insights-scraper",
+      "id": "bZkCe9FVekifmOMXD",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/gartner-peer-insights-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Pz0yLWZhKNoERwACk",
+        "number": "0.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "productUrls",
+        "marketUrls",
+        "productSlugs",
+        "searchTerms",
+        "startUrls",
+        "maxReviewsPerProduct",
+        "maxProducts",
+        "includeProductSummary",
+        "includeReviewHighlights",
+        "sort",
+        "sessionCookie",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "software-reviews-all-in-one-scraper",
+      "id": "Z0dljKpv1KUYcpL5C",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/software-reviews-all-in-one-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ekBUBsAu0bWettlHx",
+        "number": "1.0.32",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "searchQuery",
+        "platforms",
+        "maxReviewsPerProduct",
+        "maxProductsPerSearch",
+        "includeReviews",
+        "sortReviewsBy",
+        "proxyConfiguration",
+        "debug"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "trustpilot-company-scraper",
+      "id": "dwzGa9UOUzw2nggC4",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/trustpilot-company-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "dWv9wxd8lQH6ePNIm",
+        "number": "1.0.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries"
+      ],
+      "input_keys": [
+        "queries",
+        "mode",
+        "country",
+        "maxResultsPerQuery",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "trustpilot-reviews-scraper",
+      "id": "AdXgrEqrRSjvp9q6u",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/trustpilot-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "gT8oczsXNZB6qzAca",
+        "number": "1.0.22",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "companyIdentifiers",
+        "maxReviewsPerCompany",
+        "filterStars",
+        "filterLanguage",
+        "filterDateRange",
+        "sortBy",
+        "onlyVerified",
+        "onlyWithReplies",
+        "includeCompanyInfo"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-maps-reviews-scraper",
+      "id": "AktHAcFexdMKzxCux",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/google-maps-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "tiHTLlwqds0E2OetA",
+        "number": "0.4.10",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "placeIds",
+        "dataIds",
+        "searchQuery",
+        "location",
+        "maxReviews",
+        "reviewsSort",
+        "reviewSearchQuery",
+        "language",
+        "countryCode",
+        "includePersonalData",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "yelp-reviews-scraper",
+      "id": "vpR3p6zMAMTvOtBZp",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/yelp-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Or82uyy6giJjR4jgE",
+        "number": "0.1.28",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "businessSlugs",
+        "maxReviewsPerBusiness",
+        "sortBy",
+        "language",
+        "dateFrom",
+        "dateTo",
+        "includeBusinessSummary",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "glassdoor-reviews-scraper",
+      "id": "3X4kIn91FXgsrRiKw",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Reviews and directories",
+      "url": "https://apify.com/khadinakbar/glassdoor-reviews-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "UcTas1AZ1HG9yhajK",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "companyNames",
+        "maxReviewsPerCompany",
+        "maxResults",
+        "sortBy",
+        "includeSubRatings",
+        "includeEmployerResponses",
+        "responseFormat",
+        "debug",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "reddit-search-scraper",
+      "id": "j1gQL2JlzmGKxrPzJ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/reddit-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "kDtqTaEphsfHAwdfH",
+        "number": "1.0.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQuery"
+      ],
+      "input_keys": [
+        "searchQuery",
+        "withinSubreddit",
+        "maxResults",
+        "sortBy",
+        "timeFilter",
+        "postDateLimit",
+        "includeNsfw"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "reddit-posts-search-scraper",
+      "id": "hvkaKLQvHrNYLqmgZ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/reddit-posts-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "sMlUVl1QPxO6O8fab",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries"
+      ],
+      "input_keys": [
+        "queries",
+        "subreddits",
+        "sort",
+        "timeRange",
+        "maxPosts",
+        "includeTopComments",
+        "maxTopCommentsPerPost",
+        "postDateLimit",
+        "includeNsfw",
+        "proxy",
+        "redditClientId",
+        "redditClientSecret"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "reddit-comments-search-scraper",
+      "id": "LBOeAB0frqbihEMl0",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/reddit-comments-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ppl0DrQemrAAKJ44Z",
+        "number": "1.0.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "queries",
+        "subreddit",
+        "maxComments",
+        "sort",
+        "time",
+        "includeNsfw",
+        "responseFormat"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "reddit-subreddit-search-scraper",
+      "id": "dp0G62SqSsVlv77HJ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/reddit-subreddit-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "wMPDza8ZIxJGwKARQ",
+        "number": "1.2.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "queries",
+        "maxSubreddits",
+        "minSubscribers",
+        "sort",
+        "includeNsfw",
+        "responseFormat"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-post-search-scraper",
+      "id": "yMNWUCINasvKFmMED",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/linkedin-post-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "aAGw0s76JbqJnDzJ7",
+        "number": "1.0.11",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "query"
+      ],
+      "input_keys": [
+        "query",
+        "datePosted",
+        "maxResults",
+        "maxProviderPages",
+        "startCursor",
+        "includeComments",
+        "outputMode"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-company-posts-scraper",
+      "id": "pcdyX7pdaieYWnLm3",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/linkedin-company-posts-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "edHFElgAuXDEYwvpe",
+        "number": "0.1.10",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "companyUrls"
+      ],
+      "input_keys": [
+        "companyUrls",
+        "maxPosts",
+        "startPage",
+        "maxPagesPerCompany",
+        "includeCompanyProfile",
+        "enrichPosts",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-post-comments-engagements-scraper",
+      "id": "0tcbv4SIYhcPCFteQ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/linkedin-post-comments-engagements-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "LFu88nhaYiLPMbPsV",
+        "number": "0.1.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "postUrls"
+      ],
+      "input_keys": [
+        "postUrls",
+        "maxPosts",
+        "maxCommentsPerPost",
+        "outputMode",
+        "dedupeComments",
+        "includeRawData",
+        "maxConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "x-twitter-search-scraper",
+      "id": "6xhgv9qnX0z36Btrv",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/x-twitter-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "pZ39e8acQKkBii6H5",
+        "number": "1.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries"
+      ],
+      "input_keys": [
+        "queries",
+        "searchType",
+        "maxResults",
+        "maxPagesPerQuery",
+        "startCursor",
+        "includeRaw",
+        "dedupeResults"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "x-twitter-replies-scraper",
+      "id": "HcEzBhLB9Aqdhbz5b",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/x-twitter-replies-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "MPsr4DxTzLkK1oRFR",
+        "number": "1.0.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "tweetUrls"
+      ],
+      "input_keys": [
+        "tweetUrls",
+        "rankingMode",
+        "maxReplies",
+        "maxPagesPerTweet",
+        "startCursor",
+        "includeRaw",
+        "dedupeReplies"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "search-bluesky-posts",
+      "id": "ZuuohTEzrMJbFL7VF",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/search-bluesky-posts",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "DmrB3q59go6O4v6eZ",
+        "number": "1.0.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQuery"
+      ],
+      "input_keys": [
+        "useUnblockerFallback",
+        "searchQuery",
+        "sort",
+        "maxResults",
+        "since",
+        "until",
+        "lang",
+        "author",
+        "mentions",
+        "domain",
+        "url",
+        "tags",
+        "includeReplies"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "threads-search-scraper",
+      "id": "RWcwKI3Xw3RPfS9bv",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/threads-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "nDDSvknDHKli0UA9F",
+        "number": "0.2.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries"
+      ],
+      "input_keys": [
+        "searchType",
+        "queries",
+        "maxResults",
+        "maxResultsPerQuery",
+        "startDate",
+        "endDate"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "quora-scraper",
+      "id": "sBeeNXEwCMea3jePc",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/quora-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Rm31hfrbR3tZbUZ7g",
+        "number": "0.1.16",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "maxItemsPerTarget",
+        "maxConcurrency",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "github-deep-scraper",
+      "id": "VJF7QtGTpSkiFyPli",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/github-deep-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "MdmZEFHcfPh8q8L0D",
+        "number": "0.1.16",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "mode"
+      ],
+      "input_keys": [
+        "mode",
+        "repo",
+        "query",
+        "user",
+        "language",
+        "timeframe",
+        "state",
+        "since",
+        "maxResults",
+        "includeComments",
+        "includeReviews",
+        "includeFiles"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "facebook-groups-search-scraper",
+      "id": "9nSWzeI0pi1GzrycY",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/facebook-groups-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "d0aw48rj3AZTtz2Cx",
+        "number": "1.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQueries"
+      ],
+      "input_keys": [
+        "searchQueries",
+        "maxResultsPerQuery",
+        "countryCode",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "facebook-group-posts-scraper",
+      "id": "hfPwOw0vcVcuYhJVB",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/facebook-group-posts-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Ico3d4zjwfHP7Ng0T",
+        "number": "1.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "groupUrls",
+        "groupIds",
+        "maxPosts",
+        "maxPagesPerGroup",
+        "startCursor",
+        "sortBy",
+        "dataSource",
+        "useBrowserFallback",
+        "maxBrowserScrolls",
+        "facebookCookies",
+        "proxy",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "skool-community-scraper",
+      "id": "DyVrOeKLG39Fy3vNd",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/skool-community-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "4qBLo5Nn6uX2UtFfp",
+        "number": "0.1.10",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "communityUrls",
+        "searchQueries",
+        "enrichDetails",
+        "maxItems",
+        "maxPagesPerQuery",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-forums-search-scraper",
+      "id": "bJHodTCveq8PX7rJC",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Community and intent",
+      "url": "https://apify.com/khadinakbar/google-forums-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "aJ5FE94gCBxxUqX2e",
+        "number": "0.7.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries"
+      ],
+      "input_keys": [
+        "queries",
+        "countryCode",
+        "languageCode",
+        "device",
+        "maxResultsPerQuery",
+        "dateRange",
+        "includeAnswerPreviews",
+        "includeDomains",
+        "excludeDomains"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "meta-ad-library-scraper",
+      "id": "B4RRM07yZQi5eczJG",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Advertising and competitors",
+      "url": "https://apify.com/khadinakbar/meta-ad-library-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "FF1QthHpneLKSXV5O",
+        "number": "1.3.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "searchQueries",
+        "metaAccessToken",
+        "countries",
+        "adStatus",
+        "adType",
+        "mediaType",
+        "startDate",
+        "endDate",
+        "maxResults",
+        "sortBy",
+        "enrichAds",
+        "providerFallbackEnabled",
+        "onlyCount",
+        "advertiserPageIds",
+        "startUrls",
+        "adId",
+        "contentLanguages",
+        "publisherPlatforms",
+        "searchType",
+        "metaAccessTokens",
+        "proxyUrls"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "facebook-ads-library-scraper",
+      "id": "2yvvGyBDQXi41nPrW",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Advertising and competitors",
+      "url": "https://apify.com/khadinakbar/facebook-ads-library-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "UOSk7cpC6C9BmnWO9",
+        "number": "1.0.8",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "mode",
+        "searchTerms",
+        "companyPageIds",
+        "companyNames",
+        "adIds",
+        "adUrls",
+        "country",
+        "status",
+        "mediaType",
+        "adType",
+        "searchType",
+        "sortBy",
+        "language",
+        "startDate",
+        "endDate",
+        "maxResults",
+        "maxPagesPerSearch",
+        "enrichDetails",
+        "includeRawData",
+        "requestTimeoutSecs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-ads-transparency-scraper",
+      "id": "dCA5Hpf4BCQX094ZD",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Advertising and competitors",
+      "url": "https://apify.com/khadinakbar/google-ads-transparency-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "raiLYK7Ov5mqBD4Xf",
+        "number": "1.5.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "searchType",
+        "countryCode",
+        "adFormat",
+        "maxResults",
+        "startUrls",
+        "enrichDetails"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-ad-library-search-scraper",
+      "id": "fdwr0hBXBdg5ya6tc",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Advertising and competitors",
+      "url": "https://apify.com/khadinakbar/linkedin-ad-library-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "DvyT54eRLuQCD6DKN",
+        "number": "1.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "advertisers",
+        "keywords",
+        "countries",
+        "startDate",
+        "endDate",
+        "maxResults",
+        "maxPagesPerSearch",
+        "fetchAdDetails",
+        "responseFormat"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "tiktok-ads-library-scraper",
+      "id": "x5x84HE8Hq7EJ9VmS",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Advertising and competitors",
+      "url": "https://apify.com/khadinakbar/tiktok-ads-library-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "WVfQFRuKr95yYzE5J",
+        "number": "1.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "libraryUrl",
+        "country",
+        "searchQuery",
+        "searchType",
+        "advertiserBusinessId",
+        "dateFrom",
+        "dateTo",
+        "maxResults",
+        "includeDetails",
+        "requestTimeoutSecs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "pinterest-ads-library-scraper",
+      "id": "oKsJ4mO6RAVbvcrnz",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Advertising and competitors",
+      "url": "https://apify.com/khadinakbar/pinterest-ads-library-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "4cDVUHEfZN7whC0ko",
+        "number": "1.0.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "country",
+        "startDate",
+        "endDate",
+        "advertiserName",
+        "category",
+        "gender",
+        "age",
+        "maxResults",
+        "requestTimeoutSecs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "shopify-all-in-one-scraper",
+      "id": "pOI3iJZfm6l7C6xPD",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/shopify-all-in-one-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "4pgXeXgzx9YGFiuSy",
+        "number": "1.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "storeUrls",
+        "scrapeProducts",
+        "scrapeCollections",
+        "scrapeReviews",
+        "scrapeContactInfo",
+        "maxProductsPerStore",
+        "maxCollectionsPerStore",
+        "maxReviewsPerProduct"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "ecommerce-store-scraper",
+      "id": "43imkJ5nkiEbP4281",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/ecommerce-store-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "8dDNoge0ejeq187ma",
+        "number": "1.0.21",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "maxProducts",
+        "includeVariants",
+        "includeDescription",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "woocommerce-product-scraper",
+      "id": "wNKFSEi4wb1iXE87g",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/woocommerce-product-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "hMlwcz7bayZY1t0UQ",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "storeUrls"
+      ],
+      "input_keys": [
+        "storeUrls",
+        "maxProducts",
+        "search",
+        "categoryIds",
+        "stockStatuses",
+        "onSale",
+        "featured",
+        "sortBy",
+        "sortOrder",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "amazon-seller-scraper",
+      "id": "vzyaCFYKCjXkDp7DK",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/amazon-seller-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "2nbUhta2xJ0UP8ynO",
+        "number": "0.3.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "sellerIds",
+        "startUrls",
+        "asins",
+        "country",
+        "includeFeedback",
+        "maxFeedback",
+        "includeStorefrontProducts",
+        "maxStorefrontProducts",
+        "maxStorefrontPages",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "amazon-seller-email-scraper",
+      "id": "F9WSyqdmOnC76yM4h",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/amazon-seller-email-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "wss1RFnVlmp328n4b",
+        "number": "1.0.19",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "sellerIds",
+        "startUrls",
+        "marketplace",
+        "discoverWebsiteEmails",
+        "companyWebsites",
+        "maxResults",
+        "maxContactPages",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "etsy-shop-details-scraper",
+      "id": "ZAe4FkllNBm4EwWe0",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/etsy-shop-details-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "FpnUfL4VXgpCjKvHj",
+        "number": "0.2.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "shopUrls",
+        "shopNames",
+        "maxShops",
+        "includeShopSections",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "tiktok-shop-scraper",
+      "id": "CsvGzdxkpcqmRf3FM",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Ecommerce sellers",
+      "url": "https://apify.com/khadinakbar/tiktok-shop-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ssJT7sR1kRYcfZYgT",
+        "number": "0.1.18",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "productUrls"
+      ],
+      "input_keys": [
+        "productUrls",
+        "includeReviews",
+        "maxReviewsPerProduct",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "alibaba-listings-scraper",
+      "id": "15WbTOWces7c1L664",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Suppliers and tenders",
+      "url": "https://apify.com/khadinakbar/alibaba-listings-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "fGTnSVTOsR7B3fZtR",
+        "number": "1.2.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "startUrls",
+        "maxResults",
+        "sortBy",
+        "minPrice",
+        "maxPrice",
+        "minMoq",
+        "maxMoq",
+        "verifiedOnly",
+        "tradeAssuranceOnly",
+        "minSupplierYears",
+        "supplierCountries",
+        "minRating",
+        "minOrders",
+        "site",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "thomasnet-suppliers-scraper",
+      "id": "ZAoqDpC01eOCZ8KdQ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Suppliers and tenders",
+      "url": "https://apify.com/khadinakbar/thomasnet-suppliers-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "svfxxkbPDKmcRg9at",
+        "number": "1.1.12",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "startUrls",
+        "maxResults",
+        "maxPagesPerQuery",
+        "enrichDetails",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "importyeti-scraper",
+      "id": "LdxFVnIbSOX7MCEP3",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Suppliers and tenders",
+      "url": "https://apify.com/khadinakbar/importyeti-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "WYAaetQfWu6YzZVME",
+        "number": "0.2.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "startUrls",
+        "maxResultsPerQuery",
+        "countryCode",
+        "typeFilter",
+        "minShipments",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "sam-gov-scraper",
+      "id": "SZC3tSm0Rhoc9KRzO",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Suppliers and tenders",
+      "url": "https://apify.com/khadinakbar/sam-gov-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "A3pyMQQMBWtQe3RrS",
+        "number": "1.0.10",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "query"
+      ],
+      "input_keys": [
+        "query",
+        "noticeTypes",
+        "naicsCode",
+        "setAsideCode",
+        "state",
+        "agency",
+        "postedFrom",
+        "postedTo",
+        "responseDueFrom",
+        "responseDueTo",
+        "maxResults"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "scrape-public-tenders",
+      "id": "ByVZasVU6zOzCqXG5",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Suppliers and tenders",
+      "url": "https://apify.com/khadinakbar/scrape-public-tenders",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "z3Z5rLL61AYILOyyS",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "keyword",
+        "sources",
+        "countries",
+        "cpvCodes",
+        "statusFilter",
+        "datePreset",
+        "publishedFrom",
+        "publishedTo",
+        "expertQuery",
+        "maxResults",
+        "language"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "eventbrite-events-scraper",
+      "id": "LZgovndFTKPXD4yno",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Events and partnerships",
+      "url": "https://apify.com/khadinakbar/eventbrite-events-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "HBxgDKsfGBZJwOKeC",
+        "number": "0.4.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQuery",
+        "location",
+        "category",
+        "dateFilter",
+        "format",
+        "priceFilter",
+        "onlineOnly",
+        "startUrls",
+        "maxResults",
+        "includeDetails",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "10times-events-scraper",
+      "id": "Cea5rGbzIjeMykfDU",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Events and partnerships",
+      "url": "https://apify.com/khadinakbar/10times-events-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Stq0O70UjVNZzfcOP",
+        "number": "0.1.17",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "searchQuery",
+        "city",
+        "country",
+        "eventType",
+        "category",
+        "startDate",
+        "endDate",
+        "onlineOnly",
+        "maxItems",
+        "includeDetails",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "meetup-events-scraper",
+      "id": "hRgmkDqjzRl5SxjUB",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Events and partnerships",
+      "url": "https://apify.com/khadinakbar/meetup-events-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "x8esNNyE0wUoFjw2G",
+        "number": "0.3.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "city",
+        "state",
+        "country",
+        "zip",
+        "lat",
+        "lon",
+        "radius",
+        "eventType",
+        "startDate",
+        "endDate",
+        "minRsvpCount",
+        "sortField",
+        "groupUrls",
+        "groupEventStatus",
+        "eventUrls",
+        "maxItems",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "beehiiv-newsletter-scraper",
+      "id": "qK1jqOSUmQsIdvBit",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Events and partnerships",
+      "url": "https://apify.com/khadinakbar/beehiiv-newsletter-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "o5xHYKkYLxkOP38j9",
+        "number": "1.0.11",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "publicationUrls",
+        "postUrls",
+        "scrapeMode",
+        "maxPostsPerPublication",
+        "maxResults"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "substack-posts-scraper",
+      "id": "U2vs9AzwTDlMEbbWp",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Events and partnerships",
+      "url": "https://apify.com/khadinakbar/substack-posts-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "BeQkpclKL1v1ZmlBp",
+        "number": "0.2.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "startUrls"
+      ],
+      "input_keys": [
+        "startUrls",
+        "maxPosts",
+        "includeBodyHtml",
+        "includeBodyText",
+        "publishedAfter",
+        "publishedBefore",
+        "audience",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "instagram-niche-influencer-finder",
+      "id": "LHCEKswaihgmShn5p",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/instagram-niche-influencer-finder",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "6mVmtexfF84TBIfYe",
+        "number": "1.0.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "topics"
+      ],
+      "input_keys": [
+        "topics",
+        "maxInfluencers",
+        "minFollowers",
+        "maxFollowers",
+        "minEngagementRatePct",
+        "requireEmail",
+        "requireVerified",
+        "sortBy",
+        "postsPerInfluencer",
+        "maxSearchPagesPerTopic",
+        "outputMode"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "instagram-user-search-scraper",
+      "id": "oUoYvWUxieBb8HVE1",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/instagram-user-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "TAYvcGgqU1jEghIG9",
+        "number": "1.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "maxResultsPerQuery",
+        "maxResults",
+        "minimumFollowers",
+        "maximumFollowers",
+        "verifiedOnly",
+        "accountType",
+        "includePrivateProfiles",
+        "parseContacts"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "instagram-profile-stats-scraper",
+      "id": "N3rc0uhS4SJcNE9fb",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/instagram-profile-stats-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "N5e7DuSInN8GUvrHE",
+        "number": "0.0.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "usernames"
+      ],
+      "input_keys": [
+        "usernames",
+        "deduplicate",
+        "maxItems",
+        "maxRequestRetries",
+        "requestTimeoutSecs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "instagram-contact-scraper",
+      "id": "TtmjIptjSXepkD0fP",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/instagram-contact-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "xtKDyccsoDaEJvLjb",
+        "number": "0.1.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "usernames"
+      ],
+      "input_keys": [
+        "usernames",
+        "onlyWithContact",
+        "maxItems"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "tiktok-user-search-scraper",
+      "id": "HrqooIYLDycsbyGEP",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/tiktok-user-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "XemQURVi5Ph7zKaq7",
+        "number": "0.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQueries"
+      ],
+      "input_keys": [
+        "searchQueries",
+        "maxProfilesPerQuery",
+        "maxPagesPerQuery",
+        "maxTotalProfiles",
+        "minFollowerCount",
+        "verifiedOnly",
+        "excludePrivateAccounts",
+        "trim",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "tiktok-shop-creators-scraper",
+      "id": "HN6feG9AqX0gYuhy2",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/tiktok-shop-creators-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "4Zwf6UUWLcWvRa0Fp",
+        "number": "0.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQueries"
+      ],
+      "input_keys": [
+        "searchQueries",
+        "maxProfilesPerQuery",
+        "maxPagesPerQuery",
+        "maxProfilesScanned",
+        "maxTotalCreators",
+        "requireShowcaseProducts",
+        "minFollowerCount",
+        "verifiedOnly",
+        "excludePrivateAccounts",
+        "maxShowcaseProductsPerCreator",
+        "maxShowcasePagesPerCreator",
+        "showcaseRegion",
+        "trim",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "youtube-channel-search-scraper",
+      "id": "vlAeQZCl9NzbiAwAU",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/youtube-channel-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "f9TNe3N5aaz0X5b0y",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "searchQueries"
+      ],
+      "input_keys": [
+        "searchQueries",
+        "searchUrls",
+        "maxResultsPerQuery",
+        "maxResultsTotal",
+        "minSubscribers",
+        "maxSubscribers",
+        "verifiedOnly",
+        "country",
+        "language",
+        "enrichProfiles",
+        "fallbackMode",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "youtube-channel-scraper",
+      "id": "BGuQRhPiGRWOZzqyr",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/youtube-channel-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "agbHdcVyROAG7D0bi",
+        "number": "0.1.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "channelUrls"
+      ],
+      "input_keys": [
+        "channelUrls",
+        "maxVideosPerChannel",
+        "includeShorts",
+        "maxShortsPerChannel",
+        "sortVideosBy",
+        "providerMode",
+        "country",
+        "language"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "youtube-channel-email-extractor",
+      "id": "IRx3DJZeQdk6DhAtn",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/youtube-channel-email-extractor",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ae64IIxg0JUbgobaa",
+        "number": "1.2.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "channelUrls",
+        "searchQueries",
+        "maxResults",
+        "scrapeWebsite",
+        "followLinkAggregators",
+        "proxyConfiguration",
+        "unlockBusinessInquiryEmail",
+        "youtubeSessionCookies",
+        "maxInquiryUnlocksPerRun"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "social-media-influencer-scraper",
+      "id": "qN3wwWqgKBCBEty0P",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Creators and agencies",
+      "url": "https://apify.com/khadinakbar/social-media-influencer-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "0kGNpmugjlHDxuRUx",
+        "number": "0.6.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "platforms",
+        "searchQueries",
+        "profileUrls",
+        "maxProfilesPerQuery",
+        "maxTotalProfiles",
+        "minFollowerCount",
+        "verifiedOnly",
+        "excludePrivateAccounts",
+        "countryCode",
+        "includeRawData"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "google-news-scraper",
+      "id": "7vQKF8hrfRaAk7g50",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "News and funding research",
+      "url": "https://apify.com/khadinakbar/google-news-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "bbFYlpHrCcdAZ0ewm",
+        "number": "0.2.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "searchQueries",
+        "topics",
+        "topicUrls",
+        "startUrls",
+        "maxResultsPerQuery",
+        "regionLanguage",
+        "timeRange",
+        "extractFullText",
+        "decodeUrls",
+        "deduplicateResults"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "reuters-news-scraper",
+      "id": "OBza10QwXDnly48T3",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "News and funding research",
+      "url": "https://apify.com/khadinakbar/reuters-news-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "u7diyk8LB4K1twMpd",
+        "number": "0.1.4",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "sections",
+        "searchKeywords",
+        "searchQuery",
+        "articleUrls",
+        "languages",
+        "sinceHours",
+        "maxItems",
+        "maxSitemapPages",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "financial-times-news-scraper",
+      "id": "3pqzg1Y6WzZM4ceLY",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "News and funding research",
+      "url": "https://apify.com/khadinakbar/financial-times-news-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "3zcfq86p6sMGX981j",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "sections",
+        "searchKeywords",
+        "searchQuery",
+        "articleUrls",
+        "sinceHours",
+        "maxItems",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "bloomberg-news-scraper",
+      "id": "PdjMcLv1UDIkh4NEM",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "News and funding research",
+      "url": "https://apify.com/khadinakbar/bloomberg-news-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "LA00VjEbGcOlJuQrn",
+        "number": "0.1.10",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "sections",
+        "searchKeywords",
+        "tickers",
+        "sinceHours",
+        "maxItems",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "sec-edgar-all-in-one-scraper",
+      "id": "2Jte3UqcYwduMjhid",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "News and funding research",
+      "url": "https://apify.com/khadinakbar/sec-edgar-all-in-one-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "1lOQfeND2N6stdCw9",
+        "number": "0.2.7",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "query"
+      ],
+      "input_keys": [
+        "query",
+        "mode",
+        "formTypes",
+        "dateFrom",
+        "dateTo",
+        "maxResults",
+        "includeFullText",
+        "enableAiSummary",
+        "xbrlConcept"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "scrape-google-serp",
+      "id": "z0r97dqhtUQk2AXd8",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/scrape-google-serp",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "ZnPFdByDFDsblxVt8",
+        "number": "1.0.21",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "queries",
+        "startUrls",
+        "maxResultsPages",
+        "resultsPerPage",
+        "countryCode",
+        "languageCode",
+        "includeAds",
+        "includeFeaturedSnippet",
+        "includePeopleAlsoAsk",
+        "includeRelatedSearches",
+        "includeKnowledgeGraph",
+        "maxConcurrency"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "bing-search-scraper",
+      "id": "Vwq0iHM2LAMo5Vvq6",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/bing-search-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "J4auTGWjcgkncXwEE",
+        "number": "0.3.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "queries"
+      ],
+      "input_keys": [
+        "queries",
+        "country",
+        "language",
+        "safeSearch",
+        "maxResultsPerQuery",
+        "includeAds",
+        "includeCopilotAnswer",
+        "includeRelatedSearches",
+        "fallbackMode",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "website-tech-stack-detector",
+      "id": "CSan7jscwV91lGDM9",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/website-tech-stack-detector",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "Vdq2LM5o2PnTAWSfV",
+        "number": "0.1.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "websiteUrls",
+        "startUrls",
+        "maxUrls",
+        "includeEvidence",
+        "requestTimeoutSecs",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "website-stack-evidence-audit",
+      "id": "XFAdEZmNTVz0ZnZ9M",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/website-stack-evidence-audit",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "tdtZmgG9wavfBtxhH",
+        "number": "0.1.15",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "startUrls"
+      ],
+      "input_keys": [
+        "startUrls",
+        "dataMode",
+        "pathsToInspect",
+        "maxPagesPerDomain",
+        "maxDomains",
+        "useApifyProxy",
+        "responseFormat"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "wappalyzer-alternative",
+      "id": "d2R7wTDKZYk1ekBfh",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/wappalyzer-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "FXjYJy1wq4IG9Ynj6",
+        "number": "1.0.13",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "startUrls"
+      ],
+      "input_keys": [
+        "startUrls",
+        "maxUrls",
+        "requestTimeoutSecs",
+        "useProviderCatalog",
+        "useApifyProxyFallback"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "website-seo-spider",
+      "id": "f0PPU2rWRKUBwAfeZ",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/website-seo-spider",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "VgcoYYZsbn0qxADMx",
+        "number": "0.2.5",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "startUrls"
+      ],
+      "input_keys": [
+        "startUrls",
+        "crawlScope",
+        "maxPages",
+        "maxDepth",
+        "seedFromSitemap",
+        "respectRobotsTxt",
+        "ignoreUrlParameters",
+        "maxConcurrency",
+        "fetchMode",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "website-backlink-checker",
+      "id": "rCohK9eJbjiovPN6s",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/website-backlink-checker",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "wnDuwfaprrBJR108n",
+        "number": "0.1.2",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "targets"
+      ],
+      "input_keys": [
+        "targets",
+        "mode",
+        "maxResults",
+        "dofollowOnly",
+        "excludeLost",
+        "includeSubdomains",
+        "excludeInternalBacklinks"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "backlink-opportunity-finder",
+      "id": "n1uR8aWhzOBYhxLJl",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Web and technology",
+      "url": "https://apify.com/khadinakbar/backlink-opportunity-finder",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "vNnmZncbiNljp3kNk",
+        "number": "1.0.14",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "keywords"
+      ],
+      "input_keys": [
+        "keywords",
+        "targetDomain",
+        "opportunityTypes",
+        "excludeDomains",
+        "countryCode",
+        "languageCode",
+        "maxResultsPerKeyword",
+        "maxPagesPerQuery",
+        "minimumRelevanceScore"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "contact-details-scraper",
+      "id": "xUTDfDQougiuhikSc",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Public contact quality",
+      "url": "https://apify.com/khadinakbar/contact-details-scraper",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "LWg9hKt5BPz5GkFKN",
+        "number": "1.2.9",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "startUrls",
+        "searchQueries",
+        "maxPagesPerDomain",
+        "maxDepth",
+        "maxResults",
+        "proxyConfig"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "bulk-website-contact-extractor",
+      "id": "TwNeQtj5TfaKDkcCK",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Public contact quality",
+      "url": "https://apify.com/khadinakbar/bulk-website-contact-extractor",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "JI1UtSy1u7IYiaN58",
+        "number": "1.2.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "startUrls"
+      ],
+      "input_keys": [
+        "startUrls",
+        "maxPagesPerDomain",
+        "maxResults",
+        "followContactPages",
+        "proxyConfiguration"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "linkedin-email-finder",
+      "id": "QPGUyrwcV7CPITZdI",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Public contact quality",
+      "url": "https://apify.com/khadinakbar/linkedin-email-finder",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "tDP6W3W8zcXPLZb6f",
+        "number": "0.1.12",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [],
+      "input_keys": [
+        "linkedinUrls",
+        "directLeads",
+        "includeUnverified",
+        "maxResults",
+        "maxCandidatesPerLead"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "email-address-validator",
+      "id": "Gvo4zJ8A4otiyCclv",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Public contact quality",
+      "url": "https://apify.com/khadinakbar/email-address-validator",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "PwRc1YzjAkiG2PuYh",
+        "number": "1.3.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "emails"
+      ],
+      "input_keys": [
+        "emails",
+        "checkSmtp",
+        "checkCatchAll",
+        "concurrency",
+        "timeoutMs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "neverbounce-alternative",
+      "id": "rsNtTSJtoFuaUJF9M",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Public contact quality",
+      "url": "https://apify.com/khadinakbar/neverbounce-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "vfBUBZc3FjvUKXZYG",
+        "number": "0.2.6",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "emails"
+      ],
+      "input_keys": [
+        "emails",
+        "maxEmails",
+        "verificationTier",
+        "checkSmtp",
+        "checkCatchAll",
+        "concurrency",
+        "timeoutMs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "zerobounce-alternative",
+      "id": "kyarba8cynnNfvtBc",
+      "owner": "khadinakbar",
+      "public": true,
+      "group": "Public contact quality",
+      "url": "https://apify.com/khadinakbar/zerobounce-alternative",
+      "state": "public_schema_verified",
+      "runtime_tested": false,
+      "build": {
+        "id": "rogOukwLhUgJwAhw1",
+        "number": "0.1.3",
+        "status": "SUCCEEDED",
+        "tag": "latest"
+      },
+      "required_keys": [
+        "emails"
+      ],
+      "input_keys": [
+        "emails",
+        "checkSmtp",
+        "checkCatchAll",
+        "verificationTier",
+        "maxEmails",
+        "concurrency",
+        "timeoutMs"
+      ],
+      "verified_date": "2026-10-05"
+    },
+    {
+      "name": "2gis-places-scraper",
+      "group": "Local businesses",
+      "state": "public_metadata_unavailable",
+      "id": "s12YodiOzxwNenTJ6",
+      "http_status": 404
+    },
+    {
+      "name": "acquire-com-scraper",
+      "group": "Startups and software",
+      "state": "public_metadata_unavailable",
+      "id": "IzMeaEaveAmTFhndd",
+      "http_status": 404
+    },
+    {
+      "name": "scrape-luma-events",
+      "group": "Events and partnerships",
+      "state": "public_metadata_unavailable",
+      "id": "3JyCkOcgh4tjUanzW",
+      "http_status": 404
+    }
+  ]
+}

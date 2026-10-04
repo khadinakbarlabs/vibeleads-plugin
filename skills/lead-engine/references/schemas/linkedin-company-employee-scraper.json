@@ -1,0 +1,97 @@
+{
+  "title": "LinkedIn Company Employee Scraper Input",
+  "description": "Scrape visible LinkedIn company employees from company URLs. Use this actor for account mapping, recruiting research, lead sourcing, and profile-URL seed lists. Do not use it for private LinkedIn data, guaranteed complete rosters, emails, or phone numbers. In auto mode it uses Automatic, the managed fallback route second, then optional LINKEDIN_COOKIES and public-search fallbacks.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyUrls": {
+      "title": "LinkedIn company URLs",
+      "type": "array",
+      "description": "LinkedIn company page URLs to scrape. Pass canonical company pages or company subpages, for example https://www.linkedin.com/company/apify/ or https://www.linkedin.com/company/apify/posts/. The actor normalizes each target to /company/<slug>/ and deduplicates repeated companies. Use this field when an agent already knows the target accounts.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "pattern": "^(https?://)?(www\\.)?linkedin\\.com/company/[^\\s/]+.*$"
+      }
+    },
+    "maxEmployees": {
+      "title": "Max employees",
+      "type": "integer",
+      "description": "Global cap across all companies in the run. The actor stops after this many unique employee profile rows have been pushed to the dataset. This is a maximum, not a guarantee, because LinkedIn and provider sources may expose fewer visible employees. Use a lower value for fast agent calls and a higher value for bulk account mapping.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 2500
+    },
+    "maxEmployeesPerCompany": {
+      "title": "Max employees per company",
+      "type": "integer",
+      "description": "Per-company cap for each LinkedIn company URL. This keeps multi-company runs balanced and prevents one large company from consuming the whole global cap. Use it when an agent is comparing several accounts in one run. The actor can still return fewer rows when visible data is limited.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "mode": {
+      "title": "Scrape mode",
+      "type": "string",
+      "description": "Choose how the actor discovers employee profile URLs. Use auto for production workflows because it tries Automatic, the managed fallback route second, authenticated LinkedIn people-tab scraping when LINKEDIN_COOKIES is set, and public search last. Use publicSearch only when provider and cookie-backed paths are unavailable. Use linkedinPeopleTab only when LINKEDIN_COOKIES is configured and you specifically want the company people-tab path.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "publicSearch",
+        "linkedinPeopleTab"
+      ],
+      "enumTitles": [
+        "Auto",
+        "Public search only",
+        "LinkedIn people tab only"
+      ]
+    },
+    "searchQuery": {
+      "title": "Search query",
+      "type": "string",
+      "description": "Optional words to add to public-search fallback queries. Use this to guide discovery toward roles, teams, seniority, or functions such as founder, sales, security, recruiter, or engineering. This field mainly affects publicSearch mode and the final public-search fallback in auto mode. Leave it blank for broader provider-first company discovery.",
+      "editor": "textfield"
+    },
+    "jobTitles": {
+      "title": "Job title filters",
+      "type": "array",
+      "description": "Optional current-title keywords used to filter or boost visible matches. Examples include CTO, Account Executive, Recruiter, Engineer, Product Manager, or Founder. Rows that match these terms list them in matchedFilters. Use this when an agent needs a role-focused employee list instead of a broad company sample.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "locations": {
+      "title": "Location filters",
+      "type": "array",
+      "description": "Optional location keywords used to filter or boost visible matches. Examples include San Francisco, London, Germany, Remote, or Prague. Location availability depends on the source and may be missing on provider rows. Use this for geo-focused research, but keep filters broad when recall matters.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "includeProfileDetails": {
+      "title": "Visit profile detail pages",
+      "type": "boolean",
+      "description": "Authenticated LinkedIn fallback only. When enabled, the actor visits discovered profile pages to improve visible name, headline, and location extraction. This is slower, uses more compute, and is more likely to hit LinkedIn rate limits. Keep this off for fast MCP calls unless profile-detail quality matters more than speed.",
+      "editor": "checkbox"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "How many companies to process in parallel. Keep this low when using LinkedIn cookies to reduce rate-limit risk and account pressure. Provider-first runs can usually tolerate the default. For AI-agent calls, the default balances speed and reliability.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings for LinkedIn fallback and public search paths. The default uses Apify Residential proxy, which is recommended for reliability. Provider API calls do not need browser proxying, but fallback scraping does. Keep residential proxies enabled for production runs.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "companyUrls"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Google Local Services Ads Scraper input",
+  "description": "Get the public Google Local Services advertiser list for supported service categories in a United States city or district. This Actor returns public advertiser-card data only; it does not access private Google Ads accounts, consumer lead messages, or campaign budgets.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "queries": {
+      "title": "Local Services categories",
+      "type": "array",
+      "description": "One to ten supported Local Services category queries, for example [\"electrician\", \"plumber\"]. Enter the service only; set the market separately with locationName and dataCid. Each completed category and city-CID request is billed once.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "locationName": {
+      "title": "City or district label",
+      "type": "string",
+      "description": "Caller-provided readable label for the same United States city or district represented by dataCid, for example \"Austin, Texas, United States\". dataCid is the authoritative provider market selector; this matching label is carried into every output record for CRM and agent workflows.",
+      "editor": "textfield"
+    },
+    "dataCid": {
+      "title": "Google city or district CID",
+      "type": "string",
+      "description": "Required decimal Google CID for the requested city or district, not a business CID or a Google Place ID. Use it exactly as a string to preserve all digits. Example: Austin, Texas is \"6745062158417646970\". The Actor validates it so it never substitutes a different market.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum advertisers per category",
+      "type": "integer",
+      "description": "Maximum public advertiser records to save for each category query. The dedicated source can return up to 20 cards per category; this cap controls dataset size, not the number of billed category queries.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "languageCode": {
+      "title": "Google interface language",
+      "type": "string",
+      "description": "Two-to-five-letter Google interface language code, such as \"en\" or \"es\". It defaults to en and is included in the provider request.",
+      "editor": "textfield"
+    },
+    "countryCode": {
+      "title": "Country",
+      "type": "string",
+      "description": "The dedicated Google Local Services provider source currently supports United States city and district CIDs. Keep this set to us.",
+      "editor": "select",
+      "enum": [
+        "us"
+      ],
+      "enumTitles": [
+        "United States"
+      ]
+    },
+    "jobType": {
+      "title": "Optional job type",
+      "type": "string",
+      "description": "Optional supported Local Services job-type identifier, for example \"restore_power\" with electrician. Leave blank to collect the category-level advertiser list. The same job type applies to all queries in this run.",
+      "editor": "textfield"
+    }
+  },
+  "required": [
+    "queries",
+    "locationName",
+    "dataCid"
+  ]
+}

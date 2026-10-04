@@ -1,0 +1,103 @@
+{
+  "title": "Bluesky Post Search Scraper Input",
+  "description": "Search public Bluesky posts through Bluesky's public AppView API. One run executes one focused query with optional server-side filters and a hard result cap.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "useUnblockerFallback": {
+      "title": "Use Unblocker after a blocked search",
+      "description": "Retry a blocked public search through Apify Unblocker with at most two requests for transient failures. Defaults to true; set false for direct routes only. Each successful proxy request adds 10 Unblocker units to platform usage. This preserves the query filters and accesses public posts only.",
+      "type": "boolean",
+      "editor": "checkbox"
+    },
+    "searchQuery": {
+      "title": "Post search query",
+      "description": "Use this when you need posts matching text, a phrase, or supported Lucene-style syntax. Enter a focused query such as 'open source' or '\"climate change\"'. The field is required and accepts up to 500 characters. This is not a profile handle or Bluesky post URL.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "sort": {
+      "title": "Result order",
+      "description": "Use this when choosing how Bluesky ranks matching posts. Choose 'latest' for newest indexed posts or 'top' for relevance-ranked results. Defaults to 'latest'. This does not sort the finished dataset locally.",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "latest",
+        "top"
+      ],
+      "enumTitles": [
+        "Latest posts",
+        "Top matching posts"
+      ]
+    },
+    "maxResults": {
+      "title": "Maximum posts",
+      "description": "Use this when bounding dataset size and per-post charges. Enter an integer from 1 to 100, such as 100. Defaults to 100 and the Console prefill is 25. Bluesky's public search route currently supports one page per query.",
+      "type": "integer",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "since": {
+      "title": "Posts since",
+      "description": "Use this when restricting results to posts indexed at or after a date. Enter YYYY-MM-DD or an ISO 8601 timestamp, such as '2026-07-01'. Defaults to no lower date bound. This filter uses Bluesky search time and may differ from the post's createdAt value.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "until": {
+      "title": "Posts until",
+      "description": "Use this when restricting results to posts before a date. Enter YYYY-MM-DD or an ISO 8601 timestamp, such as '2026-07-15'. Defaults to no upper date bound and is exclusive. This must be later than Posts since.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "lang": {
+      "title": "Post language",
+      "description": "Use this when you need posts tagged with one language. Enter a BCP 47 tag such as 'en', 'ja', or 'pt-BR'. Defaults to all languages. This is not a country or proxy location.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "author": {
+      "title": "Author handle or DID",
+      "description": "Use this when limiting search to posts from one public Bluesky account. Enter a handle or DID such as 'jay.bsky.team'; a leading @ is accepted. Defaults to any author. This does not scrape a user's full feed or profile.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "mentions": {
+      "title": "Mentioned account",
+      "description": "Use this when finding posts that mention one Bluesky account through a rich-text mention facet. Enter a handle or DID such as 'bsky.app'; a leading @ is accepted. Defaults to any mention. Plain text that only resembles a handle may not match.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "domain": {
+      "title": "Linked domain",
+      "description": "Use this when finding posts whose facets or embeds link to a hostname. Enter a domain such as 'github.com'; a full https URL is normalized to its hostname. Defaults to any linked domain. This is not a keyword search within page contents.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "url": {
+      "title": "Linked URL",
+      "description": "Use this when finding posts that link to one absolute web URL. Enter an http or https URL such as 'https://example.com/report'. Defaults to any linked URL. This is not the URL of a Bluesky post to fetch directly.",
+      "type": "string",
+      "editor": "textfield"
+    },
+    "tags": {
+      "title": "Hashtags",
+      "description": "Use this when posts must contain specific hashtags. Enter up to 10 tags without #, such as ['ai', 'opensource']; multiple tags use AND matching. Defaults to no hashtag filter. These are structured hashtag facets, not free-text keywords.",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10
+    },
+    "includeReplies": {
+      "title": "Include replies",
+      "description": "Use this when deciding whether reply posts may appear in the dataset. Set false to drop posts containing Bluesky reply metadata after search. Defaults to true. This does not fetch complete reply threads.",
+      "type": "boolean",
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "searchQuery"
+  ]
+}

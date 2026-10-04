@@ -1,0 +1,85 @@
+{
+  "title": "SEEK Job Scraper input",
+  "description": "Use this actor to search public SEEK Australia and New Zealand job listings for recruiting, job-market research, and structured AI-agent workflows.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "keywords": {
+      "title": "Job keywords",
+      "type": "string",
+      "description": "Use this when you want the actor to build a SEEK search from a role or skill query. Enter ordinary search text such as software engineer or data analyst. It defaults to software engineer and can be combined with Location. Do not use this for a job URL or Boolean syntax that SEEK itself does not support.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "Use this to narrow a keyword search to a SEEK place name. Enter a location such as Melbourne VIC or Auckland. It is optional and defaults to an Australia-wide or New Zealand-wide search when blank. This is not a proxy country setting or a street-address field.",
+      "editor": "textfield"
+    },
+    "country": {
+      "title": "SEEK market",
+      "type": "string",
+      "description": "Use this to choose the public SEEK site searched by structured keywords. Choose AU for seek.com.au or NZ for seek.co.nz. It defaults to AU. This does not override the host of a supplied direct SEEK search URL.",
+      "editor": "select",
+      "enum": [
+        "AU",
+        "NZ"
+      ],
+      "enumTitles": [
+        "Australia",
+        "New Zealand"
+      ]
+    },
+    "searchUrls": {
+      "title": "Direct SEEK search URLs",
+      "type": "array",
+      "description": "Use this when you already configured filters on a public SEEK results page. Enter one URL per line, such as https://www.seek.com.au/jobs?keywords=data+analyst. It is optional; when present it takes precedence over Job keywords and Location. Do not enter individual job pages, login pages, or URLs from other job boards.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sortBy": {
+      "title": "Sort order",
+      "type": "string",
+      "description": "Use this to choose how a keyword-built SEEK search is ordered. Choose relevance or date, for example date. It defaults to relevance. This setting does not rewrite the filters or sort order embedded in a Direct SEEK search URL.",
+      "editor": "select",
+      "enum": [
+        "relevance",
+        "date"
+      ],
+      "enumTitles": [
+        "Relevance",
+        "Newest listed"
+      ]
+    },
+    "maxResults": {
+      "title": "Maximum jobs",
+      "type": "integer",
+      "description": "Use this to cap the number of validated job records written to the dataset. Enter an integer such as 25. It defaults to 25 and accepts 1 through 200. This is not a page count; the actor stops before writing or charging more job rows than this limit.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "includeDetails": {
+      "title": "Include job descriptions",
+      "type": "boolean",
+      "description": "Use this when you need the public job description and detail-page fields alongside search-card data. Set true or false, for example true. It defaults to true and a blocked detail page leaves the search result available with a warning. Set false for a faster, compact result set without detail-page enrichment.",
+      "editor": "checkbox"
+    },
+    "proxyCountry": {
+      "title": "Residential proxy country",
+      "type": "string",
+      "description": "Use this to select the actor-managed Residential proxy used for the browser session. Choose AU or NZ, for example AU. It defaults to the selected SEEK market. This is not a location filter and does not collect credentials or cookies.",
+      "editor": "select",
+      "enum": [
+        "AU",
+        "NZ"
+      ],
+      "enumTitles": [
+        "Australia",
+        "New Zealand"
+      ]
+    }
+  }
+}

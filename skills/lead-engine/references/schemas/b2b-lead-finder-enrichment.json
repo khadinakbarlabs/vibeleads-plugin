@@ -1,0 +1,52 @@
+{
+  "title": "B2B Lead Finder & Email Enrichment",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Batch search queries (agency / multi-city mode)",
+      "type": "array",
+      "description": "Use this field when the user wants to run multiple searches in one go \u2014 e.g. the same business type across multiple cities, or multiple industries in one location. Each entry is a full search query like 'dentists in Miami' or 'law firms in Chicago'. When provided, this takes priority over searchQuery. Examples: ['dentists in Miami', 'dentists in Orlando', 'dentists in Tampa']. Leave empty to use the single searchQuery field instead.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "searchQuery": {
+      "title": "Business type / industry",
+      "type": "string",
+      "description": "Use this field when the user provides a business type, industry, or niche to search for. Examples: 'dentists', 'marketing agencies', 'SaaS companies', 'plumbers', 'law firms'. Do NOT use this field for a specific company name \u2014 this is for category-level searches that return many results.",
+      "editor": "textfield"
+    },
+    "location": {
+      "title": "Location (city, state, or country)",
+      "type": "string",
+      "description": "Use this field when the user specifies a geographic area such as a city, state, country, or region. Examples: 'Miami, FL', 'New York', 'London', 'Australia'. Leave empty to search globally or let Google Maps use IP geolocation. Do NOT put the business type here \u2014 use searchQuery for that.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Maximum number of leads to return",
+      "type": "integer",
+      "description": "Maximum number of business leads to extract from Google Maps per query. Each lead is charged as a PPE event. Prefilled at 3 for fast quality testing \u2014 raise to 50, 100, or 500 for real bulk prospecting. Google Maps typically returns up to ~120 results per query before pagination stops.",
+      "minimum": 1,
+      "maximum": 1000,
+      "editor": "number"
+    },
+    "enableEnrichment": {
+      "title": "Enable email enrichment (crawl business websites)",
+      "type": "boolean",
+      "description": "Set to true when the user wants email addresses for each lead. When enabled, the actor crawls each business's own website to find their contact email directly \u2014 no third-party API needed. This costs more credits (lead-enriched event) but returns verified emails sourced directly from the business. Set to false (default) to get basic lead data faster and cheaper (lead-basic event only).",
+      "editor": "checkbox",
+      "sectionCaption": "Email Enrichment (optional)",
+      "sectionDescription": "When enabled, the actor crawls each business's website to find a real contact email. Enriched leads cost more but include verified emails scraped directly from the source."
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "HTTP proxy settings for scraping. Leave as default (Apify datacenter proxies, US) for best results. Only change if you need to target a specific country or use residential proxies for higher-trust requests.",
+      "editor": "proxy",
+      "sectionCaption": "Advanced settings",
+      "sectionDescription": "Proxy and performance settings. The defaults work well for most use cases."
+    }
+  }
+}

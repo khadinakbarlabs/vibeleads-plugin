@@ -1,0 +1,118 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Amazon Seller Scraper \u2014 Input",
+  "description": "Provide at least one of: sellerIds, startUrls (seller / storefront / product URLs), or asins. Returns one record per Amazon seller with business name + address, feedback ratings, and optional storefront products.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sellerIds": {
+      "title": "Seller IDs",
+      "type": "array",
+      "description": "Amazon seller (merchant) IDs, 13\u201314 uppercase chars, e.g. ['A1ODG4ICFE5MU3','AN9M05X8SIK1X']. Each is resolved on the selected marketplace's /sp?seller= profile page. NOT an ASIN (10 chars) \u2014 for products use 'asins'. NOT a URL \u2014 for URLs use 'startUrls'.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{13,14}$"
+      }
+    },
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "Amazon URLs to scrape: seller profile ('/sp?seller=ID'), storefront ('/s?me=ID'), or product ('/dp/ASIN') pages. Product URLs are resolved to the seller(s) in their buy box. The domain in each URL overrides the 'country' setting. Use when you already have exact URLs.",
+      "editor": "requestListSources"
+    },
+    "asins": {
+      "title": "Product ASINs",
+      "type": "array",
+      "description": "Product ASINs (10 chars, e.g. ['B007ADJ4JI']) whose third-party seller(s) you want to find. The actor opens each product, reads the 'Sold by' seller(s), then scrapes their profile. NOT a seller ID (13\u201314 chars) \u2014 for sellers use 'sellerIds'.",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{10}$"
+      }
+    },
+    "country": {
+      "title": "Amazon marketplace",
+      "type": "string",
+      "description": "Which Amazon marketplace to use for sellerIds and asins. Ignored when a startUrl already contains a specific Amazon domain. Defaults to US (amazon.com).",
+      "enum": [
+        "US",
+        "UK",
+        "DE",
+        "FR",
+        "CA",
+        "ES",
+        "IT",
+        "JP",
+        "AU",
+        "IN",
+        "MX",
+        "BR",
+        "NL",
+        "SE",
+        "PL",
+        "TR",
+        "AE",
+        "SG"
+      ],
+      "enumTitles": [
+        "United States (amazon.com)",
+        "United Kingdom (amazon.co.uk)",
+        "Germany (amazon.de)",
+        "France (amazon.fr)",
+        "Canada (amazon.ca)",
+        "Spain (amazon.es)",
+        "Italy (amazon.it)",
+        "Japan (amazon.co.jp)",
+        "Australia (amazon.com.au)",
+        "India (amazon.in)",
+        "Mexico (amazon.com.mx)",
+        "Brazil (amazon.com.br)",
+        "Netherlands (amazon.nl)",
+        "Sweden (amazon.se)",
+        "Poland (amazon.pl)",
+        "Turkey (amazon.com.tr)",
+        "United Arab Emirates (amazon.ae)",
+        "Singapore (amazon.sg)"
+      ]
+    },
+    "includeFeedback": {
+      "title": "Include recent feedback comments",
+      "type": "boolean",
+      "description": "When true, the seller record includes a 'recentFeedback' array of the most recent buyer comments rendered on the profile (rating, comment, author, date). Turn off for a leaner record focused on business details and rating summaries."
+    },
+    "maxFeedback": {
+      "title": "Max feedback comments",
+      "type": "integer",
+      "description": "Maximum recent feedback comments to capture per seller (only the comments rendered on the profile page; Amazon shows ~5\u201310 without pagination). Ignored when 'includeFeedback' is off.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "includeStorefrontProducts": {
+      "title": "Also list storefront products",
+      "type": "boolean",
+      "description": "When true, the actor also opens the seller's storefront ('/s?me=ID') and lists their products into a 'products' array on the seller record. Each product is billed at $0.003. Adds time and cost \u2014 leave off if you only need seller profile + feedback."
+    },
+    "maxStorefrontProducts": {
+      "title": "Max storefront products per seller",
+      "type": "integer",
+      "description": "Maximum products to list from each seller's storefront. Only applies when 'includeStorefrontProducts' is on. Each product returned is billed as one 'storefront-product' event.",
+      "minimum": 1,
+      "maximum": 2000
+    },
+    "maxStorefrontPages": {
+      "title": "Max storefront pages per seller",
+      "type": "integer",
+      "description": "Maximum storefront result pages to paginate per seller (~48 products per page). Only applies when 'includeStorefrontProducts' is on. Amazon caps most listings at ~7 pages.",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Apify Proxy settings. Defaults to automatic proxy. Amazon blocks datacenter IPs aggressively on heavy use \u2014 for reliable, large runs switch this to RESIDENTIAL. Seller profile pages tolerate datacenter better than search/product pages.",
+      "editor": "proxy"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,203 @@
+{
+  "title": "Meta Ad Library Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "sectionCaption": "\ud83d\udd0d What to search",
+      "sectionDescription": "Enter a keyword, brand name, or topic. Use searchQueries (below) to run multiple searches at once.",
+      "title": "Search keyword or phrase",
+      "type": "string",
+      "description": "Keyword or phrase to search in Meta Ad Library. Finds all ads mentioning this term across Facebook, Instagram, and Messenger. Example: 'nike running shoes', 'weight loss', 'crypto'. For MCP/API: pass a plain string.",
+      "editor": "textfield"
+    },
+    "searchQueries": {
+      "title": "Multiple keywords (batch search)",
+      "type": "array",
+      "description": "Run several keyword searches in one go. Each keyword is scraped separately and results are merged. Example: [\"nike\", \"adidas\", \"puma\"]. Leave empty if using the single keyword above.",
+      "editor": "stringList"
+    },
+    "metaAccessToken": {
+      "sectionCaption": "\ud83d\udd11 Meta API Token",
+      "sectionDescription": "Required for full data (spend, impressions, demographics). Get yours free at developers.facebook.com/tools/explorer \u2192 select app \u2192 tick ads_read \u2192 Generate Access Token. Once entered, the actor remembers it for future runs.",
+      "title": "Meta API Access Token",
+      "type": "string",
+      "description": "Your Meta Graph API access token with ads_read permission. Unlocks spend ranges, impressions, demographics, image/video URLs, and much faster scraping. Without it the actor uses web scraping mode (slower, fewer fields). Get a free token at: https://developers.facebook.com/tools/explorer/",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "countries": {
+      "sectionCaption": "\ud83c\udfaf Filters",
+      "sectionDescription": "Narrow down which ads to return. All filters are optional \u2014 leave as default to get broad results.",
+      "title": "Countries",
+      "type": "array",
+      "description": "Countries where the ads were shown. Use ISO 3166-1 alpha-2 codes. Examples: US, GB, AU, CA, DE, FR, IN, BR. Default is US. For MCP: pass as array of strings, e.g. [\"US\", \"GB\"].",
+      "editor": "stringList"
+    },
+    "adStatus": {
+      "title": "Ad status",
+      "type": "string",
+      "description": "ACTIVE = ads currently running (best for competitor research). INACTIVE = stopped ads. ALL = both active and inactive.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "ACTIVE",
+        "INACTIVE"
+      ],
+      "enumTitles": [
+        "All ads (active + inactive)",
+        "Active only (currently running)",
+        "Inactive only (stopped campaigns)"
+      ]
+    },
+    "adType": {
+      "title": "Ad type",
+      "type": "string",
+      "description": "Type of ads to include. ALL covers standard commercial ads and works without a token. HOUSING_ADS, EMPLOYMENT_ADS and CREDIT_ADS are regulated categories that Facebook heavily restricts without a metaAccessToken \u2014 expect limited or blocked results in those modes unless you provide one.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "POLITICAL_AND_ISSUE_ADS",
+        "HOUSING_ADS",
+        "EMPLOYMENT_ADS",
+        "CREDIT_ADS"
+      ],
+      "enumTitles": [
+        "All ad types",
+        "Political & issue ads",
+        "Housing ads",
+        "Employment ads",
+        "Credit ads"
+      ]
+    },
+    "mediaType": {
+      "title": "Media type",
+      "type": "string",
+      "description": "Filter by creative format. IMAGE = photo ads only. VIDEO = video ads only. ALL = no filter.",
+      "editor": "select",
+      "enum": [
+        "ALL",
+        "IMAGE",
+        "VIDEO",
+        "MEME",
+        "NONE"
+      ],
+      "enumTitles": [
+        "All formats",
+        "Images only",
+        "Videos only",
+        "Memes only",
+        "No media"
+      ]
+    },
+    "startDate": {
+      "title": "Start date (from)",
+      "type": "string",
+      "description": "Only include ads that were running on or after this date. Format: YYYY-MM-DD. Example: 2024-01-01. Leave empty for no date filter.",
+      "editor": "datepicker"
+    },
+    "endDate": {
+      "title": "End date (to)",
+      "type": "string",
+      "description": "Only include ads that were running on or before this date. Format: YYYY-MM-DD. Example: 2024-12-31. Leave empty for no date filter.",
+      "editor": "datepicker"
+    },
+    "maxResults": {
+      "sectionCaption": "\u2699\ufe0f Output settings",
+      "title": "Max ads to return",
+      "type": "integer",
+      "description": "Maximum number of ad records to fetch. 50 = quick sample. 100 = standard run. 500\u20131000 = deep competitive analysis. Higher = more cost. Default: 100.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50000
+    },
+    "sortBy": {
+      "title": "Sort results by",
+      "type": "string",
+      "description": "How to order returned ads. impressions_desc = highest-reach ads first (best for finding what's working). most_recent = newest ads first.",
+      "editor": "select",
+      "enum": [
+        "impressions_desc",
+        "most_recent"
+      ],
+      "enumTitles": [
+        "Highest impressions first (recommended)",
+        "Most recent first"
+      ]
+    },
+    "enrichAds": {
+      "title": "Enrich with auto-analysis",
+      "type": "boolean",
+      "description": "Adds extra fields to every ad: ad_summary (one-line description), detected_cta (call-to-action type), ad_category, running_days, word_count, hashtag_count, emoji_count. Highly recommended for LLM/MCP pipelines. No extra cost."
+    },
+    "providerFallbackEnabled": {
+      "title": "Use provider fallback",
+      "type": "boolean",
+      "description": "When the native Meta Graph API or browser scrape returns no ads because of a block, timeout, rate limit, or expired token, try the configured ScrapeCreators/SociaVault public Meta Ad Library API fallback. No user cookies required."
+    },
+    "onlyCount": {
+      "title": "Count only (no ad data)",
+      "type": "boolean",
+      "description": "Returns only the total number of matching ads without downloading records. Use this to check how many ads exist before running a full scrape. Very fast and cheap."
+    },
+    "advertiserPageIds": {
+      "sectionCaption": "\ud83d\udd27 Advanced options",
+      "sectionDescription": "For power users and specific use cases. Leave empty to use the standard keyword search above.",
+      "title": "Advertiser Page IDs",
+      "type": "array",
+      "description": "Get all ads from specific Facebook Pages by their Page ID. To find a Page ID: go to the page on Facebook \u2192 About \u2192 Page ID at the bottom. Example: [\"123456789\", \"987654321\"]. Use this instead of searchQuery to get all ads from a known brand.",
+      "editor": "stringList"
+    },
+    "startUrls": {
+      "title": "Ad Library URLs",
+      "type": "array",
+      "description": "Paste URLs directly from facebook.com/ads/library after setting your filters in the browser. The actor extracts all filter parameters automatically. Also accepts Facebook Page URLs to scrape all ads from that page.",
+      "editor": "requestListSources"
+    },
+    "adId": {
+      "title": "Single Ad ID",
+      "type": "string",
+      "description": "Look up one specific ad by its Meta Ad Library ID (a real working example: 820508563651991). Use this to monitor a single ad or verify it still exists. Works with or without a Meta API token; a nonexistent or taken-down ad ID finishes with an INVALID_INPUT warning instead of data.",
+      "editor": "textfield"
+    },
+    "contentLanguages": {
+      "title": "Content languages",
+      "type": "array",
+      "description": "Only return ads written in these languages. Use ISO 639-1 codes: en (English), es (Spanish), de (German), fr (French), pt (Portuguese). Leave empty for all languages.",
+      "editor": "stringList"
+    },
+    "publisherPlatforms": {
+      "title": "Publisher platforms",
+      "type": "array",
+      "description": "Filter by which Meta platform the ad ran on. Options: facebook, instagram, messenger, audience_network, threads. Default includes Facebook and Instagram.",
+      "editor": "stringList"
+    },
+    "searchType": {
+      "title": "Keyword match type",
+      "type": "string",
+      "description": "KEYWORD_UNORDERED = all words must appear but in any order (broader). KEYWORD_EXACT_PHRASE = words must appear exactly as typed (narrower).",
+      "editor": "select",
+      "enum": [
+        "KEYWORD_UNORDERED",
+        "KEYWORD_EXACT_PHRASE"
+      ],
+      "enumTitles": [
+        "Any order (broader match)",
+        "Exact phrase (narrower match)"
+      ]
+    },
+    "metaAccessTokens": {
+      "title": "Token pool (high-volume)",
+      "type": "array",
+      "description": "Add multiple Meta API tokens to distribute rate limits across tokens. The actor picks one randomly per run. Only needed for very high-volume use (1000+ ads per minute). Leave empty if using the single token above.",
+      "editor": "json"
+    },
+    "proxyUrls": {
+      "title": "Custom proxy URLs",
+      "type": "array",
+      "description": "Use your own residential proxies (Webshare, BrightData, Oxylabs, Smartproxy). Format: http://user:pass@host:port. Only applies in web scrape mode (no Meta token). Leave empty to use Apify's built-in proxies.",
+      "editor": "json"
+    }
+  },
+  "required": []
+}
